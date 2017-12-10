@@ -10,25 +10,29 @@ namespace DAL
 {
     class Dal_imp : DataSource , IDAL
     {
-        void AddNanny(Nanny nunnyToAdd)
+        void AddNanny(Nanny nannyToAdd)
         {
-            if (nunnyToAdd.)
-            nannysList.Add(nunnyToAdd);
+            if (SearchNanny(nannyToAdd)== false)
+                nannysList.Add(nannyToAdd);
         }
-        void ReamoveNanny();
-        void Updating();
+        void ReamoveNanny(Nanny nunnyToRemove);
+        void Updating(Nanny nunnyToUpdate);
+        bool SearchNanny(Nanny nunnyToSearch);
 
-        void AddMother();
-        void ReamoveMother();
-        void UpdatingMother();
+        void AddMother(Mother motherToAdd);
+        void ReamoveMother(Mother motherToRemove);
+        void UpdatingMother(Mother motherToUpdate);
+        bool searchMother(Mother motherTosearch);
 
-        void AddChild();
-        void ReamoveChild();
-        void UpdatingChild();
+        void AddChild(Child childToAdd);
+        void ReamoveChild(Child childToRemove);
+        void UpdatingChild(Child childToUpdate);
+        bool searchChild(Child childToSearch);
 
-        void AddContract();
-        void ReamoveContract();
-        void UpdatingContract();
+        void AddContract(Contract contractToAdd);
+        void ReamoveContract(Contract contractToRemove);
+        void UpdatingContract(Contract contractToUpdate);
+        bool searchContract(Contract contractToSearch);
 
         void GetAllNannys();
         void GetAllMothers();

@@ -3,26 +3,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using BE;
+using DS;
 namespace DAL
 {
      public interface IDAL
     {
-        void AddNanny();
-        void ReamoveNanny();
-        void Updating();
+        void AddNanny(Nanny n);
+        void ReamoveNanny(Nanny n);
+        void Updating(Nanny n);
+        bool SearchNanny(Nanny n);
 
-        void AddMother();
-        void ReamoveMother();
-        void UpdatingMother();
+        void AddMother(Mother m);
+        void ReamoveMother(Mother m);
+        void UpdatingMother(Mother m);
+        bool searchMother(Mother m);
 
-        void AddChild();
-        void ReamoveChild();
-        void UpdatingChild();
+        void AddChild(Child c);
+        void ReamoveChild(Child c);
+        void UpdatingChild(Child c);
+        bool searchChild(Child c);
 
-        void AddContract();
-        void ReamoveContract();
-        void UpdatingContract();
+        void AddContract(Contract c);
+        void ReamoveContract(Contract c);
+        void UpdatingContract(Contract c);
+        bool searchContract(Contract c);
 
         void GetAllNannys();
         void GetAllMothers();
