@@ -4,11 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BE;
+using DS;
+
 namespace DAL
 {
-    class Dal_imp : IDAL
+    class Dal_imp : DataSource , IDAL
     {
-        void AddNanny() { }
+        void AddNanny(Nanny nunnyToAdd)
+        {
+            if (nunnyToAdd.)
+            nannysList.Add(nunnyToAdd);
+        }
         void ReamoveNanny();
         void Updating();
 

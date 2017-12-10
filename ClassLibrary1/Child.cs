@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-    class Child
+    public class Child
     {
         private string id;
         private string motherID;
@@ -14,6 +14,14 @@ namespace BE
         private DateTime birthdate;
         private bool isSpecialKid;
         private string specialNeed;
+
+        public string Id { get => id; set => id = value; }
+        public string MotherID { get => motherID; set => motherID = value; }
+        public string FirstName { get => firstName; set => firstName = value; }
+        public DateTime Birthdate { get => birthdate; set => birthdate = value; }
+        public bool IsSpecialKid { get => isSpecialKid; set => isSpecialKid = value; }
+        public string SpecialNeed { get => specialNeed; set => specialNeed = value; }
+
         public override string ToString()
         {
             return base.ToString();
