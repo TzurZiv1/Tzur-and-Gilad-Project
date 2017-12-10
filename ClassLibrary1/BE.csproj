@@ -41,22 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Child.cs" />
-    <Compile Include="U:\Contract.cs">
-      <Link>Contract.cs</Link>
-    </Compile>
+    <Compile Include="Contract.cs" />
     <Compile Include="Mother.cs" />
     <Compile Include="Nanny.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ClassLibrary2\DS.csproj">
-      <Project>{dcbc8e9d-952b-44fd-8f30-e2960682aede}</Project>
-      <Name>DS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{9126c3e8-394f-4ca1-bd47-4086a9c67afa}</Project>
-      <Name>DAL</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

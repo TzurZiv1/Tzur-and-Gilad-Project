@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BE 
+namespace BE
 {
-    class Contract 
+    class Contract
     {
         private static int contractNumber = 0;
         private int numberOfcontract;

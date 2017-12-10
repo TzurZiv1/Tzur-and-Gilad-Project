@@ -44,5 +44,15 @@
     <Compile Include="Dal_imp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ClassLibrary1\BE.csproj">
+      <Project>{a56a01ca-cb3e-4de4-9669-461d6e1467f3}</Project>
+      <Name>BE</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ClassLibrary2\DS.csproj">
+      <Project>{dcbc8e9d-952b-44fd-8f30-e2960682aede}</Project>
+      <Name>DS</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
