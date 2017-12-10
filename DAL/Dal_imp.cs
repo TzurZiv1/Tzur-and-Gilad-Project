@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DAL
 {
-     interface IDAL
+    class Dal_imp : IDAL
     {
-        void AddNanny();
+        void AddNanny() { }
         void ReamoveNanny();
         void Updating();
 
