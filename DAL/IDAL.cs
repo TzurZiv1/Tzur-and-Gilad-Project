@@ -29,9 +29,9 @@ namespace DAL
         void UpdatingContract(Contract c);
         bool searchContract(Contract c);
 
-        void GetAllNannys();
-        void GetAllMothers();
-        void GetAllChilds();
-        void GetAllContract();
+        List<Nanny> GetAllNannys();
+        List<Mother> GetAllMothers();
+        List<Child> GetAllChilds();
+        List<Contract> GetAllContract();
     }
 }

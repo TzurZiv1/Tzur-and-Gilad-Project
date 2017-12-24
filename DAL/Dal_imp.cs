@@ -14,10 +14,21 @@ namespace DAL
         {
             if (SearchNanny(nannyToAdd)== false)
                 nannysList.Add(nannyToAdd);
+            
         }
-        void ReamoveNanny(Nanny nunnyToRemove);
+        void ReamoveNanny(Nanny nannyToRemove)
+        {
+            if (SearchNanny(nannyToRemove) == true)
+                nannysList.Remove(nannyToRemove);
+        }
         void Updating(Nanny nunnyToUpdate);
-        bool SearchNanny(Nanny nunnyToSearch);
+        bool SearchNanny(Nanny nunnyToSearch)
+        {
+            nannysList.Sort();
+            if (nannysList.BinarySearch(nunnyToSearch) < 0)
+                return false;
+            return true;
+        }
 
         void AddMother(Mother motherToAdd);
         void ReamoveMother(Mother motherToRemove);
@@ -34,9 +45,21 @@ namespace DAL
         void UpdatingContract(Contract contractToUpdate);
         bool searchContract(Contract contractToSearch);
 
-        void GetAllNannys();
-        void GetAllMothers();
-        void GetAllChilds();
-        void GetAllContract();
+        List<Nanny> GetAllNannys()
+        {
+            return nannysList;
+        }
+        List<Mother> GetAllMothers()
+        {
+            return mothersList;
+        }
+        List<Child> GetAllChilds()
+        {
+            return childsList;
+        }
+        List<Contract> GetAllContract()
+        {
+            return contractslist;
+        }
     }
 }

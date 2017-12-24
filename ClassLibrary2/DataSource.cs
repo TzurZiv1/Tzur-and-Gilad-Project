@@ -10,9 +10,9 @@ namespace DS
     public class DataSource
     {
         public List<Nanny> nannysList;
-        private List<Mother> mothersList;
-        private List<Child> childsList;
-        private List<Contract> contractslist;
+        public List<Mother> mothersList;
+        public List<Child> childsList;
+        public List<Contract> contractslist;
         
     }
 }
