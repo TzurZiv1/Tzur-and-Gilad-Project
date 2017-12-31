@@ -10,9 +10,9 @@ namespace DAL
      public interface IDAL
     {
         void AddNanny(Nanny n);
-        void ReamoveNanny(Nanny n);
+        void RemoveNanny(Nanny n);
         void Updating(Nanny n);
-        bool SearchNanny(Nanny n);
+        bool SearchNannyID(Nanny n);
 
         void AddMother(Mother m);
         void ReamoveMother(Mother m);
