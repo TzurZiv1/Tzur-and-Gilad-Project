@@ -8,45 +8,45 @@ namespace BE
 {
     public class Nanny
     {
-        private string NannyID;
-        private string NannyLastName;
-        private string NannyName;
-        private DateTime NannyBorthDate;
-        private string NannyPhoneNumber;
-        private string NannyAdress;
-        private bool IsElevator;
-        private int NannyFloor;
-        private int NannyYears;
-        private int NannyNumChilds;
-        private int NannyMaxChilds;
-        private int NannyMaxAgeChilds;
-        private bool IsPerHour;
-        private int NannyRatePerHour;
-        private int NannyRatePerMonth;
-        private bool [] Week = new bool [7];
-        private int[,] HoursForWeek = new int[2, 6];
-        private bool FinancedVacation;
-        private string NannyRecommendations;
+        private string nannyID;
+        private string nannyLastName;
+        private string nannyName;
+        private DateTime nannyBorthDate;
+        private string nannyPhoneNumber;
+        private string nannyAdress;
+        private bool isElevator;
+        private int nannyFloor;
+        private int nannyYears;
+        private int nannyNumChilds;
+        private int nannyMaxChilds;
+        private int nannyMaxAgeChilds;
+        private bool isPerHour;
+        private int nannyRatePerHour;
+        private int nannyRatePerMonth;
+        private bool [] week = new bool [7];
+        private int[,] hoursForWeek = new int[2, 6];
+        private bool financedVacation;
+        private string nannyRecommendations;
 
-        public string NannyID1 { get => NannyID; set => NannyID = value; }
-        public string NannyLastName1 { get => NannyLastName; set => NannyLastName = value; }
-        public string NannyName1 { get => NannyName; set => NannyName = value; }
-        public DateTime NannyBorthDate1 { get => NannyBorthDate; set => NannyBorthDate = value; }
-        public string NannyPhoneNumber1 { get => NannyPhoneNumber; set => NannyPhoneNumber = value; }
-        public string NannyAdress1 { get => NannyAdress; set => NannyAdress = value; }
-        public bool IsElevator1 { get => IsElevator; set => IsElevator = value; }
-        public int NannyFloor1 { get => NannyFloor; set => NannyFloor = value; }
-        public int NannyYears1 { get => NannyYears; set => NannyYears = value; }
-        public int NannyNumChilds1 { get => NannyNumChilds; set => NannyNumChilds = value; }
-        public int NannyMaxChilds1 { get => NannyMaxChilds; set => NannyMaxChilds = value; }
-        public int NannyMaxAgeChilds1 { get => NannyMaxAgeChilds; set => NannyMaxAgeChilds = value; }
-        public bool IsPerHour1 { get => IsPerHour; set => IsPerHour = value; }
-        public int NannyRatePerHour1 { get => NannyRatePerHour; set => NannyRatePerHour = value; }
-        public int NannyRatePerMonth1 { get => NannyRatePerMonth; set => NannyRatePerMonth = value; }
-        public bool[] Week1 { get => Week; set => Week = value; }
-        public int[,] HoursForWeek1 { get => HoursForWeek; set => HoursForWeek = value; }
-        public bool FinancedVacation1 { get => FinancedVacation; set => FinancedVacation = value; }
-        public string NannyRecommendations1 { get => NannyRecommendations; set => NannyRecommendations = value; }
+        public string NannyID { get => nannyID; set => nannyID = value; }
+        public string NannyLastName { get => nannyLastName; set => nannyLastName = value; }
+        public string NannyName { get => nannyName; set => nannyName = value; }
+        public DateTime NannyBorthDate { get => nannyBorthDate; set => nannyBorthDate = value; }
+        public string NannyPhoneNumber { get => nannyPhoneNumber; set => nannyPhoneNumber = value; }
+        public string NannyAdress { get => nannyAdress; set => nannyAdress = value; }
+        public bool IsElevator { get => isElevator; set => isElevator = value; }
+        public int NannyFloor { get => nannyFloor; set => nannyFloor = value; }
+        public int NannyYears { get => nannyYears; set => nannyYears = value; }
+        public int NannyNumChilds { get => nannyNumChilds; set => nannyNumChilds = value; }
+        public int NannyMaxChilds { get => nannyMaxChilds; set => nannyMaxChilds = value; }
+        public int NannyMaxAgeChilds { get => nannyMaxAgeChilds; set => nannyMaxAgeChilds = value; }
+        public bool IsPerHour { get => isPerHour; set => isPerHour = value; }
+        public int NannyRatePerHour { get => nannyRatePerHour; set => nannyRatePerHour = value; }
+        public int NannyRatePerMonth { get => nannyRatePerMonth; set => nannyRatePerMonth = value; }
+        public bool[] Week { get => week; set => week = value; }
+        public int[,] HoursForWeek { get => hoursForWeek; set => hoursForWeek = value; }
+        public bool FinancedVacation { get => financedVacation; set => financedVacation = value; }
+        public string NannyRecommendations { get => nannyRecommendations; set => nannyRecommendations = value; }
 
         public override string ToString()
         {

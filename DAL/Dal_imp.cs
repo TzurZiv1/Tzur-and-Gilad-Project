@@ -8,6 +8,7 @@ using DS;
 
 namespace DAL
 {
+   
     internal class Dal_imp : DataSource, IDAL
     {
         Dal_imp()
@@ -18,15 +19,13 @@ namespace DAL
             contractslist = new List<Contract>();
         }
         #region NANNY
-        void AddNanny(Nanny nannyToAdd)
+        void IDAL.AddNanny(Nanny nannyToAdd)
         {
             if (SearchNannyID(nannyToAdd) == true)
                 throw new Exception("The nanny is already exist");
             nannysList.Add(nannyToAdd);
-
-
-
         }
+
         void RemoveNanny(Nanny nannyToRemove)
         {
             if (SearchNannyID(nannyToRemove) == false)
@@ -34,13 +33,16 @@ namespace DAL
             nannysList.Remove(nannyToRemove);
 
         }
-        void Updating(Nanny nunnyToUpdate);
+        void Updating(Nanny nunnyToUpdate)
+        {
+
+        }
         bool SearchNannyID(Nanny nannyToSearch)
         {
-            string ID = nannyToSearch.NannyID1;
+            string ID = nannyToSearch.NannyID;
             foreach (Nanny nan in nannysList)
             {
-                if (nan.NannyID1 == nannyToSearch.NannyID1)
+                if (nan.NannyID == nannyToSearch.NannyID)
                     return false;
             }
             return true;
@@ -51,10 +53,24 @@ namespace DAL
         }
         #endregion
         #region MOTHER
-        void IDAL.AddMother(Mother motherToAdd);
-        void IDAL.ReamoveMother(Mother motherToRemove);
-        void IDAL.UpdatingMother(Mother motherToUpdate);
-        bool IDAL.searchMother(Mother motherTosearch);
+        void IDAL.AddMother(Mother motherToAdd)
+        {
+            if (searchMother(motherToAdd) == true)
+                throw new Exception("The mother is already exist");
+            mothersList.Add(motherToAdd);
+        }
+        void ReamoveMother(Mother motherToRemove);
+        void UpdatingMother(Mother motherToUpdate);
+        bool searchMother(Mother motherTosearch)
+        {
+            string ID = motherTosearch.MotherID;
+            foreach (Mother mom in mothersList)
+            {
+                if (mom.MotherID == motherTosearch.MotherID)
+                    return false;
+            }
+            return true;
+        }
         List<Mother> IDAL.GetAllMothers()
         {
             return mothersList;
