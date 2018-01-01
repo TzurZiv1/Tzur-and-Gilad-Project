@@ -8,8 +8,8 @@ namespace BE
 {
     public class Contract
     {
-        private static int contractNumber = 0;
-        private int numberOfcontract;
+        public static int contractNumber = 0;
+        //private int numberOfcontract;
         private string nunnyID;
         private string childID;
         private bool wasMeeting;
@@ -21,7 +21,7 @@ namespace BE
         private DateTime endOfContractDate;
 
         public static int ContractNumber { get => contractNumber; set => contractNumber = value; }
-        public int NumberOfcontract { get => numberOfcontract; set => numberOfcontract = value; }
+        //public int NumberOfcontract { get => numberOfcontract; set => numberOfcontract = value; }
         public string NunnyID { get => nunnyID; set => nunnyID = value; }
         public string ChildID { get => childID; set => childID = value; }
         public bool WasMeeting { get => wasMeeting; set => wasMeeting = value; }
@@ -34,6 +34,7 @@ namespace BE
 
         public override string ToString()
         {
+            
             return base.ToString();
         }
     }
