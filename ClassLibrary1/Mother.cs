@@ -8,23 +8,23 @@ namespace BE
 {
     public class Mother
     {
-        private string motherID;
-        private string motherLastName;
-        private string motherFirstName;
-        private string motherPhonenumber;
-        private string motherAdress;
-        private string motherArea;
+        private string id;
+        private string lastName;
+        private string firstName;
+        private string phoneNumber;
+        private string address;
+        private string area;
         private bool[] week = new bool[7];
-        private int[,] hoursForWeek = new int[2, 6];
+        private WorkHours [] hoursForWeek = new WorkHours [6];
 
-        public string MotherID { get => motherID; set => motherID = value; }
-        public string MotherLastName { get => motherLastName; set => motherLastName = value; }
-        public string MotherFirstName { get => motherFirstName; set => motherFirstName = value; }
-        public string MotherPhonenumber { get => motherPhonenumber; set => motherPhonenumber = value; }
-        public string MotherAdress { get => motherAdress; set => motherAdress = value; }
-        public string MotherArea { get => motherArea; set => motherArea = value; }
+        public string ID { get => id; set => id = value; }
+        public string LastName { get => lastName; set => lastName = value; }
+        public string FirstName { get => firstName; set => firstName = value; }
+        public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
+        public string Address { get => address; set => address = value; }
+        public string Area { get => area; set => area = value; }
         public bool[] Week { get => week; set => week = value; }
-        public int[,] HoursForWeek { get => hoursForWeek; set => hoursForWeek = value; }
+        public WorkHours[] HoursForWeek { get => hoursForWeek; set => hoursForWeek = value; }
 
         public override string ToString()
         {
