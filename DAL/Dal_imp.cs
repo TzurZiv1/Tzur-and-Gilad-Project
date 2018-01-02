@@ -8,136 +8,163 @@ using DS;
 
 namespace DAL
 {
-   
-    internal class Dal_imp : DataSource, IDAL
+    public class Dal_imp : IDAL
     {
-        Dal_imp()
-        {
-            nannysList = new List<Nanny>();
-            childsList = new List<Child>();
-            mothersList = new List<Mother>();
-            contractslist = new List<Contract>();
-        }
         #region NANNY
-        void IDAL.AddNanny(Nanny nannyToAdd)
+        public void AddNanny(Nanny nannyToAdd)
         {
-            if (SearchNannyID(nannyToAdd) == true)
+            if (SearchNanny(nannyToAdd) != null)
                 throw new Exception("The nanny is already exist");
-            nannysList.Add(nannyToAdd);
+            else
+                GetAllNannys().Add(SearchNanny(nannyToAdd));
         }
-        void IDAL.RemoveNanny(Nanny nannyToRemove)
+        public void RemoveNanny(Nanny nannyToRemove)
         {
-            if (IDAL.SearchNannyID(nannyToRemove) == false)
+            if (SearchNanny(nannyToRemove) == null)
                 throw new Exception("The nanny is not exist");
-            nannysList.Remove(nannyToRemove);
-            
+            else
+                GetAllNannys().Remove(SearchNanny(nannyToRemove));
         }
-        void IDAL.Updating(Nanny nunnyToUpdate)
+        public void UpdateNanny(Nanny nannyToUpdate)
         {
-
-        }
-        bool IDAL.SearchNannyID(Nanny nannyToSearch)
-        {
-            string ID = nannyToSearch.NannyID;
-            foreach (Nanny nan in nannysList)
+            if (SearchNanny(nannyToUpdate) == null)
+                throw new Exception("The nanny is not exist");
+            else
             {
-                if (nan.NannyID == nannyToSearch.NannyID)
-                    return false;
+                GetAllNannys().Remove(SearchNanny(nannyToUpdate));
+                GetAllNannys().Add(nannyToUpdate);
             }
-            return true;
         }
-        List<Nanny> GetAllNannys()
+        public Nanny SearchNanny(Nanny nannyToSearch)
         {
-            return nannysList;
+            foreach (var nan in GetAllNannys())
+            {
+                if (nan.ID == nannyToSearch.ID)
+                    return nan;
+            }
+            return null;
+        }
+        public List<Nanny> GetAllNannys()
+        {
+            return DataSource.nannysList;
         }
         #endregion
         #region MOTHER
-        void AddMother(Mother motherToAdd)
+        public void AddMother(Mother motherToAdd)
         {
-            if (searchMother(motherToAdd) == true)
+            if (SearchMother(motherToAdd) != null)
                 throw new Exception("The mother is already exist");
-            mothersList.Add(motherToAdd);
+            else
+                GetAllMothers().Add(motherToAdd);
         }
-        void ReamoveMother(Mother motherToRemove)
+        public void RemoveMother(Mother motherToRemove)
         {
-            if (searchMother(motherToRemove) == false)
+            if (SearchMother(motherToRemove) == null)
                 throw new Exception("The mother is not exist");
-            mothersList.Remove(motherToRemove);
-
+            else
+                GetAllMothers().Remove(SearchMother(motherToRemove));
         }
-        void UpdatingMother(Mother motherToUpdate)
+        public void UpdateMother(Mother motherToUpdate)
         {
 
-        }
-        bool searchMother(Mother motherTosearch)
-        {
-            string ID = motherTosearch.MotherID;
-            foreach (Mother mom in mothersList)
+            if (SearchMother(motherToUpdate) == null)
+                throw new Exception("The mother is not exist");
+            else
             {
-                if (mom.MotherID == motherTosearch.MotherID)
-                    return false;
+                GetAllMothers().Remove(SearchMother(motherToUpdate));
+                GetAllMothers().Add(motherToUpdate);
             }
-            return true;
         }
-        List<Mother> GetAllMothers()
+        public Mother SearchMother(Mother motherToSearch)
         {
-            return mothersList;
+            foreach (var mom in GetAllMothers())
+            {
+                if (mom.ID == motherToSearch.ID)
+                    return mom;
+            }
+            return null;
+        }
+        public List<Mother> GetAllMothers()
+        {
+            return DataSource.mothersList;
         }
         #endregion
         #region CHILD
-        void AddChild(Child childToAdd)
+        public void AddChild(Child childToAdd)
         {
-            if (searchChild(childToAdd) == true)
+            if (SearchChild(childToAdd) != null)
                 throw new Exception("The child is already exist");
-            childsList.Add(childToAdd);
+            else
+                GetAllChilds().Add(childToAdd);
         }
-        void ReamoveChild(Child childToRemove)
+        public void RemoveChild(Child childToRemove)
         {
-            if (searchChild(childToRemove) == false)
+            if (SearchChild(childToRemove) == null)
                 throw new Exception("The child is not exist");
-            childsList.Remove(childToRemove);
+            else
+                GetAllChilds().Remove(SearchChild(childToRemove));
         }
-        void UpdatingChild(Child childToUpdate);
-        bool searchChild(Child childToSearch)
+        public void UpdateChild(Child childToUpdate)
         {
-            string ID = childToSearch.Id;
-            foreach (Child ch in childsList)
+            if (SearchChild(childToUpdate) == null)
+                throw new Exception("The child is not exist");
+            else
             {
-                if (ch.Id == childToSearch.Id)
-                    return false;
+                GetAllChilds().Remove(SearchChild(childToUpdate));
+                GetAllChilds().Add(childToUpdate);
             }
-            return true;
         }
-        List<Child> GetAllChilds()
+        public Child SearchChild(Child childToSearch)
         {
-            return childsList;
+            foreach (var chi in GetAllChilds())
+            {
+                if (chi.Id == childToSearch.Id)
+                    return chi;
+            }
+            return null;
+        }
+        public List<Child> GetAllChilds()
+        {
+            return DataSource.childsList;
         }
         #endregion
-        
-
-        // הקלאס של החוזה לא טוב
         #region CONTRACT
-        void AddContract(Contract contractToAdd)
+        public void AddContract(Contract contractToAdd)
         {
-            if (searchContract(contractToAdd) == true)
+            if (SearchContract(contractToAdd) != null)
                 throw new Exception("The contract is already exist");
-            contractslist.Add(contractToAdd);
-
+            else
+                GetAllContract().Add(contractToAdd);
         }
-        void ReamoveContract(Contract contractToRemove)
+        public void RemoveContract(Contract contractToRemove)
         {
-            if (searchContract(contractToRemove) == false)
+            if (SearchContract(contractToRemove) == null)
                 throw new Exception("The contract is not exist");
-            contractslist.Remove(contractToRemove);
+            else
+                GetAllContract().Remove(SearchContract(contractToRemove));
         }
-        void UpdatingContract(Contract contractToUpdate) { }
-        bool searchContract(Contract contractToSearch)
+        public void UpdateContract(Contract contractToUpdate)
         {
-            return true;
+            if (SearchContract(contractToUpdate) == null)
+                throw new Exception("The contract is not exist");
+            else
+            {
+                GetAllContract().Remove(SearchContract(contractToUpdate));
+                GetAllContract().Add(contractToUpdate);
+            }
         }
-        List<Contract> GetAllContract()
+        public Contract SearchContract(Contract contractToSearch)
         {
-            return contractslist;
+            foreach (var con in GetAllContract())
+            {
+                if (con.Number == contractToSearch.Number)
+                    return con;
+            }
+            return null;
+        }
+        public List<Contract> GetAllContract()
+        {
+            return DataSource.contractslist;
         }
         #endregion
     }
