@@ -8,33 +8,31 @@ namespace BE
 {
     public class Contract
     {
-        public static int contractNumber = 0;
-        //private int numberOfcontract;
+        private static int numberOfContracts = 0;
+        private int number;
         private string nunnyID;
         private string childID;
         private bool wasMeeting;
-        private bool signature;
+        private bool wasSignature;
         private int wagePerHour;
         private int wagePerMonth;
         private string perMonthOrHour;
-        private DateTime beginOfContractDate;
-        private DateTime endOfContractDate;
+        private DateTime startDate;
+        private DateTime endDate;
 
-        public static int ContractNumber { get => contractNumber; set => contractNumber = value; }
-        //public int NumberOfcontract { get => numberOfcontract; set => numberOfcontract = value; }
+        public int Number { get => number; set => number = value; }
         public string NunnyID { get => nunnyID; set => nunnyID = value; }
         public string ChildID { get => childID; set => childID = value; }
         public bool WasMeeting { get => wasMeeting; set => wasMeeting = value; }
-        public bool Signature { get => signature; set => signature = value; }
+        public bool Signature { get => wasSignature; set => wasSignature = value; }
         public int WagePerHour { get => wagePerHour; set => wagePerHour = value; }
         public int WagePerMonth { get => wagePerMonth; set => wagePerMonth = value; }
         public string PerMonthOrHour { get => perMonthOrHour; set => perMonthOrHour = value; }
-        public DateTime BeginOfContractDate { get => beginOfContractDate; set => beginOfContractDate = value; }
-        public DateTime EndOfContractDate { get => endOfContractDate; set => endOfContractDate = value; }
+        public DateTime StartDate { get => startDate; set => startDate = value; }
+        public DateTime EndDate { get => endDate; set => endDate = value; }
 
         public override string ToString()
         {
-            
             return base.ToString();
         }
     }

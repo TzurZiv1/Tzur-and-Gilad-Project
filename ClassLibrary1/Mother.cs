@@ -15,7 +15,8 @@ namespace BE
         private string address;
         private string area;
         private bool[] week = new bool[7];
-        private WorkHours [] hoursForWeek = new WorkHours [6];
+        private WorkHours[] hoursForWeek = new WorkHours[6];
+        private string notes;
 
         public string ID { get => id; set => id = value; }
         public string LastName { get => lastName; set => lastName = value; }
@@ -25,6 +26,7 @@ namespace BE
         public string Area { get => area; set => area = value; }
         public bool[] Week { get => week; set => week = value; }
         public WorkHours[] HoursForWeek { get => hoursForWeek; set => hoursForWeek = value; }
+        public string Notes { get => notes; set => notes = value; }
 
         public override string ToString()
         {
