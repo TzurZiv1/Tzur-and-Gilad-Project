@@ -8,7 +8,14 @@ using DS;
 
 namespace DAL
 {
-    public class Dal_imp : IDAL
+    public class FactoryDal
+    {
+        public static IDAL GetDal()
+        {
+            return new DAL_imp();
+        }
+    }
+    internal class DAL_imp : IDAL
     {
         #region NANNY
         public void AddNanny(Nanny nannyToAdd)
@@ -43,10 +50,6 @@ namespace DAL
                     return nan;
             }
             return null;
-        }
-        public List<Nanny> GetAllNannys()
-        {
-            return DataSource.nannysList;
         }
         #endregion
         #region MOTHER
@@ -84,10 +87,6 @@ namespace DAL
             }
             return null;
         }
-        public List<Mother> GetAllMothers()
-        {
-            return DataSource.mothersList;
-        }
         #endregion
         #region CHILD
         public void AddChild(Child childToAdd)
@@ -122,10 +121,6 @@ namespace DAL
                     return chi;
             }
             return null;
-        }
-        public List<Child> GetAllChilds()
-        {
-            return DataSource.childsList;
         }
         #endregion
         #region CONTRACT
@@ -171,6 +166,20 @@ namespace DAL
                     return con;
             }
             return null;
+        }
+        #endregion
+        #region GetAll
+        public List<Nanny> GetAllNannys()
+        {
+            return DataSource.nannysList;
+        }
+        public List<Mother> GetAllMothers()
+        {
+            return DataSource.mothersList;
+        }
+        public List<Child> GetAllChilds()
+        {
+            return DataSource.childsList;
         }
         public List<Contract> GetAllContract()
         {

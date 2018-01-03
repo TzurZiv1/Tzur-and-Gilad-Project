@@ -29,9 +29,9 @@ namespace DAL
         void UpdateContract(Contract c);
         Contract SearchContract(int num);
 
-        List<Nanny> GetAllNannys();
-        List<Mother> GetAllMothers();
-        List<Child> GetAllChilds();
-        List<Contract> GetAllContract();
+        IEnumerable<Nanny> GetAllNannys(Func<Nanny, bool> predicate = null);
+        IEnumerable<Mother> GetAllMothers(Func<Mother, bool> predicate = null);
+        IEnumerable<Child> GetAllChilds(Func<Child, bool> predicate = null);
+        IEnumerable<Contract> GetAllContracts(Func<Contract, bool> predicate = null);
     }
 }

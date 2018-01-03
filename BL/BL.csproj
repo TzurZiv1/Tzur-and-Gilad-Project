@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9126C3E8-394F-4CA1-BD47-4086A9C67AFA}</ProjectGuid>
+    <ProjectGuid>{3CEA6F36-11B6-4040-B530-67586E7AFBE5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DAL</RootNamespace>
-    <AssemblyName>DAL</AssemblyName>
+    <RootNamespace>BL</RootNamespace>
+    <AssemblyName>BL</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,8 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IDAL.cs" />
-    <Compile Include="DAL_imp.cs" />
+    <Compile Include="BL_imp.cs" />
+    <Compile Include="IBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -49,9 +49,9 @@
       <Project>{a56a01ca-cb3e-4de4-9669-461d6e1467f3}</Project>
       <Name>BE</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ClassLibrary2\DS.csproj">
-      <Project>{dcbc8e9d-952b-44fd-8f30-e2960682aede}</Project>
-      <Name>DS</Name>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{9126c3e8-394f-4ca1-bd47-4086a9c67afa}</Project>
+      <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
