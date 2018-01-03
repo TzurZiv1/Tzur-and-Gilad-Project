@@ -16,7 +16,7 @@ namespace BE
         private string id;
         private string lastName;
         private string firstName;
-        private DateTime birthDate;
+        private DateTime birthDate = new DateTime();
         private string phoneNumber;
         private string address;
         private bool isElevator;

@@ -11,7 +11,7 @@ namespace BE
         private string id;
         private string motherID;
         private string firstName;
-        private DateTime birthdate;
+        private DateTime birthdate = new DateTime();
         private bool isSpecial;
         private string specialNeeds;
 

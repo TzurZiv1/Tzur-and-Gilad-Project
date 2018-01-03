@@ -17,8 +17,8 @@ namespace BE
         private int wagePerHour;
         private int wagePerMonth;
         private string perMonthOrHour;
-        private DateTime startDate;
-        private DateTime endDate;
+        private DateTime startDate = new DateTime();
+        private DateTime endDate = new DateTime();
 
         public int Number { get => number; set => number = value; }
         public string NunnyID { get => nunnyID; set => nunnyID = value; }
@@ -30,6 +30,11 @@ namespace BE
         public string PerMonthOrHour { get => perMonthOrHour; set => perMonthOrHour = value; }
         public DateTime StartDate { get => startDate; set => startDate = value; }
         public DateTime EndDate { get => endDate; set => endDate = value; }
+
+        public Contract ()
+        {
+            number = ++numberOfContracts;
+        }
 
         public override string ToString()
         {
