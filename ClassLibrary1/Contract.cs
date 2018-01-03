@@ -8,7 +8,7 @@ namespace BE
 {
     public class Contract
     {
-        private static int numberOfContracts = 0;
+        //private static int numberOfContracts = 0;
         private int number;
         private string nunnyID;
         private string childID;
@@ -30,12 +30,7 @@ namespace BE
         public string PerMonthOrHour { get => perMonthOrHour; set => perMonthOrHour = value; }
         public DateTime StartDate { get => startDate; set => startDate = value; }
         public DateTime EndDate { get => endDate; set => endDate = value; }
-
-        public Contract ()
-        {
-            number = ++numberOfContracts;
-        }
-
+        
         public override string ToString()
         {
             return base.ToString();

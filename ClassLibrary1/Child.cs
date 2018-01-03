@@ -15,7 +15,7 @@ namespace BE
         private bool isSpecial;
         private string specialNeeds;
 
-        public string Id { get => id; set => id = value; }
+        public string ID { get => id; set => id = value; }
         public string MotherID { get => motherID; set => motherID = value; }
         public string FirstName { get => firstName; set => firstName = value; }
         public DateTime Birthdate { get => birthdate; set => birthdate = value; }
