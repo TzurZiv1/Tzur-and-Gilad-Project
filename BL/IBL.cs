@@ -3,34 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BE;
 
 namespace BL
 {
     public interface IBL
     {
-        void AddNanny(BE.Nanny n);
-        void RemoveNanny(BE.Nanny n);
-        void UpdateNanny(BE.Nanny n);
-        BE.Nanny SearchNanny(string id);
+        void AddNanny(Nanny n);
+        void RemoveNanny(Nanny n);
+        void UpdateNanny(Nanny n);
+        Nanny GetNanny(string id);
 
-        void AddMother(BE.Mother m);
-        void RemoveMother(BE.Mother m);
-        void UpdateMother(BE.Mother m);
-        BE.Mother SearchMother(string id);
+        void AddMother(Mother m);
+        void RemoveMother(Mother m);
+        void UpdateMother(Mother m);
+        Mother GetMother(string id);
 
-        void AddChild(BE.Child c);
-        void RemoveChild(BE.Child c);
-        void UpdateChild(BE.Child c);
-        BE.Child SearchChild(string id);
+        void AddChild(Child c);
+        void RemoveChild(Child c);
+        void UpdateChild(Child c);
+        Child GetChild(string id);
 
-        void AddContract(BE.Contract c);
-        void RemoveContract(BE.Contract c);
-        void UpdateContract(BE.Contract c);
-        BE.Contract SearchContract(int num);
+        void AddContract(Contract c);
+        void RemoveContract(Contract c);
+        void UpdateContract(Contract c);
+        Contract GetContract(int num);
 
-        List<BE.Nanny> GetAllNannys();
-        List<BE.Mother> GetAllMothers();
-        List<BE.Child> GetAllChilds();
-        List<BE.Contract> GetAllContract();
+        List<Nanny> GetAllNannys();
+        List<Mother> GetAllMothers();
+        List<Child> GetAllChilds();
+        List<Contract> GetAllContracts();
     }
 }

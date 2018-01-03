@@ -8,7 +8,6 @@ namespace BE
 {
     public class Contract
     {
-        //private static int numberOfContracts = 0;
         private int number;
         private string nunnyID;
         private string childID;
@@ -16,7 +15,7 @@ namespace BE
         private bool wasSignature;
         private int wagePerHour;
         private int wagePerMonth;
-        private string perMonthOrHour;
+        private bool perMonth;// true = per month. false = per hour
         private DateTime startDate = new DateTime();
         private DateTime endDate = new DateTime();
 
@@ -27,10 +26,10 @@ namespace BE
         public bool Signature { get => wasSignature; set => wasSignature = value; }
         public int WagePerHour { get => wagePerHour; set => wagePerHour = value; }
         public int WagePerMonth { get => wagePerMonth; set => wagePerMonth = value; }
-        public string PerMonthOrHour { get => perMonthOrHour; set => perMonthOrHour = value; }
+        public bool PerMonth { get => perMonth; set => perMonth = value; }
         public DateTime StartDate { get => startDate; set => startDate = value; }
         public DateTime EndDate { get => endDate; set => endDate = value; }
-        
+
         public override string ToString()
         {
             return base.ToString();

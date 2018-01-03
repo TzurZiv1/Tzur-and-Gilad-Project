@@ -12,26 +12,26 @@ namespace DAL
         void AddNanny(Nanny n);
         void RemoveNanny(Nanny n);
         void UpdateNanny(Nanny n);
-        Nanny SearchNanny(string id);
+        Nanny GetNanny(string id);
 
         void AddMother(Mother m);
         void RemoveMother(Mother m);
         void UpdateMother(Mother m);
-        Mother SearchMother(string id);
+        Mother GetMother(string id);
 
         void AddChild(Child c);
         void RemoveChild(Child c);
         void UpdateChild(Child c);
-        Child SearchChild(string id);
+        Child GetChild(string id);
 
         void AddContract(Contract c);
         void RemoveContract(Contract c);
         void UpdateContract(Contract c);
-        Contract SearchContract(int num);
+        Contract GetContract(int num);
 
-        IEnumerable<Nanny> GetAllNannys(Func<Nanny, bool> predicate = null);
-        IEnumerable<Mother> GetAllMothers(Func<Mother, bool> predicate = null);
-        IEnumerable<Child> GetAllChilds(Func<Child, bool> predicate = null);
-        IEnumerable<Contract> GetAllContracts(Func<Contract, bool> predicate = null);
+        List<Nanny> GetAllNannys();
+        List<Mother> GetAllMothers();
+        List<Child> GetAllChilds();
+        List<Contract> GetAllContracts();
     }
 }

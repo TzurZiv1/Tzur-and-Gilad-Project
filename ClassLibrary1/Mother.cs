@@ -17,6 +17,7 @@ namespace BE
         private bool[] week = new bool[7];
         private WorkHours[] hoursForWeek = new WorkHours[6];
         private string notes;
+        private bool perMonth;// true = per month. false = per hour
 
         public string ID { get => id; set => id = value; }
         public string LastName { get => lastName; set => lastName = value; }
@@ -27,6 +28,7 @@ namespace BE
         public bool[] Week { get => week; set => week = value; }
         public WorkHours[] HoursForWeek { get => hoursForWeek; set => hoursForWeek = value; }
         public string Notes { get => notes; set => notes = value; }
+        public bool PerMonth { get => perMonth; set => perMonth = value; }
 
         public override string ToString()
         {

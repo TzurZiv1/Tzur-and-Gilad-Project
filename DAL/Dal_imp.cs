@@ -8,41 +8,34 @@ using DS;
 
 namespace DAL
 {
-    public class FactoryDal
-    {
-        public static IDAL GetDal()
-        {
-            return new DAL_imp();
-        }
-    }
-    internal class DAL_imp : IDAL
+    public class DAL_imp : IDAL
     {
         #region NANNY
         public void AddNanny(Nanny nannyToAdd)
         {
-            if (SearchNanny(nannyToAdd.ID) != null)
+            if (GetNanny(nannyToAdd.ID) != null)
                 throw new Exception("The nanny already exist");
             else
-                GetAllNannys().Add(SearchNanny(nannyToAdd.ID));
+                GetAllNannys().Add(nannyToAdd);
         }
         public void RemoveNanny(Nanny nannyToRemove)
         {
-            if (SearchNanny(nannyToRemove.ID) == null)
+            if (GetNanny(nannyToRemove.ID) == null)
                 throw new Exception("The nanny doesn't exist");
             else
-                GetAllNannys().Remove(SearchNanny(nannyToRemove.ID));
+                GetAllNannys().Remove(GetNanny(nannyToRemove.ID));
         }
         public void UpdateNanny(Nanny nannyToUpdate)
         {
-            if (SearchNanny(nannyToUpdate.ID) == null)
+            if (GetNanny(nannyToUpdate.ID) == null)
                 throw new Exception("The nanny doesn't exist");
             else
             {
-                GetAllNannys().Remove(SearchNanny(nannyToUpdate.ID));
+                GetAllNannys().Remove(GetNanny(nannyToUpdate.ID));
                 GetAllNannys().Add(nannyToUpdate);
             }
         }
-        public Nanny SearchNanny(string id)
+        public Nanny GetNanny(string id)
         {
             foreach (var nan in GetAllNannys())
             {
@@ -55,30 +48,30 @@ namespace DAL
         #region MOTHER
         public void AddMother(Mother motherToAdd)
         {
-            if (SearchMother(motherToAdd.ID) != null)
+            if (GetMother(motherToAdd.ID) != null)
                 throw new Exception("The mother already exist");
             else
                 GetAllMothers().Add(motherToAdd);
         }
         public void RemoveMother(Mother motherToRemove)
         {
-            if (SearchMother(motherToRemove.ID) == null)
+            if (GetMother(motherToRemove.ID) == null)
                 throw new Exception("The mother doesn't exist");
             else
-                GetAllMothers().Remove(SearchMother(motherToRemove.ID));
+                GetAllMothers().Remove(GetMother(motherToRemove.ID));
         }
         public void UpdateMother(Mother motherToUpdate)
         {
 
-            if (SearchMother(motherToUpdate.ID) == null)
+            if (GetMother(motherToUpdate.ID) == null)
                 throw new Exception("The mother doesn't exist");
             else
             {
-                GetAllMothers().Remove(SearchMother(motherToUpdate.ID));
+                GetAllMothers().Remove(GetMother(motherToUpdate.ID));
                 GetAllMothers().Add(motherToUpdate);
             }
         }
-        public Mother SearchMother(string id)
+        public Mother GetMother(string id)
         {
             foreach (var mom in GetAllMothers())
             {
@@ -91,29 +84,29 @@ namespace DAL
         #region CHILD
         public void AddChild(Child childToAdd)
         {
-            if (SearchChild(childToAdd.ID) != null)
+            if (GetChild(childToAdd.ID) != null)
                 throw new Exception("The child already exist");
             else
                 GetAllChilds().Add(childToAdd);
         }
         public void RemoveChild(Child childToRemove)
         {
-            if (SearchChild(childToRemove.ID) == null)
+            if (GetChild(childToRemove.ID) == null)
                 throw new Exception("The child doesn't exist");
             else
-                GetAllChilds().Remove(SearchChild(childToRemove.ID));
+                GetAllChilds().Remove(GetChild(childToRemove.ID));
         }
         public void UpdateChild(Child childToUpdate)
         {
-            if (SearchChild(childToUpdate.ID) == null)
+            if (GetChild(childToUpdate.ID) == null)
                 throw new Exception("The child doesn't exist");
             else
             {
-                GetAllChilds().Remove(SearchChild(childToUpdate.ID));
+                GetAllChilds().Remove(GetChild(childToUpdate.ID));
                 GetAllChilds().Add(childToUpdate);
             }
         }
-        public Child SearchChild(string id)
+        public Child GetChild(string id)
         {
             foreach (var chi in GetAllChilds())
             {
@@ -127,40 +120,40 @@ namespace DAL
         private static int numberOfContracts = 0;
         public void AddContract(Contract contractToAdd)
         {
-            if (SearchChild(contractToAdd.ChildID) == null)
+            if (GetChild(contractToAdd.ChildID) == null)
                 throw new Exception("The child doesn't exist");
-            if (SearchMother(SearchChild(contractToAdd.ChildID).MotherID) == null)
+            if (GetMother(GetChild(contractToAdd.ChildID).MotherID) == null)
                 throw new Exception("The mother doesn't exist");
-            if (SearchNanny(contractToAdd.NunnyID) == null)
+            if (GetNanny(contractToAdd.NunnyID) == null)
                 throw new Exception("The nanny doesn't exist");
 
             contractToAdd.Number = ++numberOfContracts;
-            GetAllContract().Add(contractToAdd);
+            GetAllContracts().Add(contractToAdd);
         }
         public void RemoveContract(Contract contractToRemove)
         {
-            if (SearchContract(contractToRemove.Number) == null)
+            if (GetContract(contractToRemove.Number) == null)
                 throw new Exception("The contract doesn't exist");
 
-            GetAllContract().Remove(SearchContract(contractToRemove.Number));
+            GetAllContracts().Remove(GetContract(contractToRemove.Number));
         }
         public void UpdateContract(Contract contractToUpdate)
         {
-            if (SearchContract(contractToUpdate.Number) == null)
+            if (GetContract(contractToUpdate.Number) == null)
                 throw new Exception("The contract doesn't exist");
-            if (SearchChild(contractToUpdate.ChildID) == null)
+            if (GetChild(contractToUpdate.ChildID) == null)
                 throw new Exception("The child doesn't exist");
-            if (SearchMother(SearchChild(contractToUpdate.ChildID).MotherID) == null)
+            if (GetMother(GetChild(contractToUpdate.ChildID).MotherID) == null)
                 throw new Exception("The mother doesn't exist");
-            if (SearchNanny(contractToUpdate.NunnyID) == null)
+            if (GetNanny(contractToUpdate.NunnyID) == null)
                 throw new Exception("The nanny doesn't exist");
 
-            GetAllContract().Remove(SearchContract(contractToUpdate.Number));
-            GetAllContract().Add(contractToUpdate);
+            GetAllContracts().Remove(GetContract(contractToUpdate.Number));
+            GetAllContracts().Add(contractToUpdate);
         }
-        public Contract SearchContract(int num)
+        public Contract GetContract(int num)
         {
-            foreach (var con in GetAllContract())
+            foreach (var con in GetAllContracts())
             {
                 if (con.Number == num)
                     return con;
@@ -181,7 +174,7 @@ namespace DAL
         {
             return DataSource.childsList;
         }
-        public List<Contract> GetAllContract()
+        public List<Contract> GetAllContracts()
         {
             return DataSource.contractslist;
         }
