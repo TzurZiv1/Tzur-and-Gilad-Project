@@ -10,6 +10,9 @@ namespace BE
     {
         private int start;
         private int finish;
+
+        public int Start { get => start; set => start = value; }
+        public int Finish { get => finish; set => finish = value; }
     }
     public class Nanny
     {
@@ -25,10 +28,10 @@ namespace BE
         private int maxChilds;
         private int minAge;
         private int maxAge;
-        private bool isPerHour;
-        private int ratePerHour;
-        private int ratePerMonth;
-        private bool[] workOnDay = new bool[7];
+        private bool enablePerHour;
+        private double ratePerHour;
+        private double ratePerMonth;
+        private bool[] workOnDay = new bool[6];
         private WorkHours[] hoursOnDay = new WorkHours[6];
         private bool financedVacation;
         private string recommendations;
@@ -45,9 +48,9 @@ namespace BE
         public int MaxChilds { get => maxChilds; set => maxChilds = value; }
         public int MinAge { get => minAge; set => minAge = value; }
         public int MaxAge { get => maxAge; set => maxAge = value; }
-        public bool IsPerHour { get => isPerHour; set => isPerHour = value; }
-        public int RatePerHour { get => ratePerHour; set => ratePerHour = value; }
-        public int NannyRatePerMonth { get => ratePerMonth; set => ratePerMonth = value; }
+        public bool EnablePerHour { get => enablePerHour; set => enablePerHour = value; }
+        public double RatePerHour { get => ratePerHour; set => ratePerHour = value; }
+        public double RatePerMonth { get => ratePerMonth; set => ratePerMonth = value; }
         public bool[] WorkOnDay { get => workOnDay; set => workOnDay = value; }
         public WorkHours[] HoursOnDay { get => hoursOnDay; set => hoursOnDay = value; }
         public bool FinancedVacation { get => financedVacation; set => financedVacation = value; }

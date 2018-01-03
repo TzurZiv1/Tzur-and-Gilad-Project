@@ -11,7 +11,7 @@ namespace BL
     {
         DAL.IDAL dal = new DAL.DAL_imp();
 
-        void init()
+        public void init()
         {
             AddChild(new BE.Child
             {
@@ -32,87 +32,144 @@ namespace BL
             // אפשר להוסיף עוד ילדים, אמהות ומטפלות
         }
         #region Nanny
-        void AddNanny(Nanny n)
+        public void AddNanny(Nanny n)
         {
             if (DateTime.Today < n.BorthDate.AddYears(18))
                 throw new Exception("A nanny must be age 18 and over");
             dal.AddNanny(n);
         }
-        void RemoveNanny(Nanny n)
+        public void RemoveNanny(Nanny n)
         {
             dal.RemoveNanny(n);
         }
-        void UpdateNanny(Nanny n)
+        public void UpdateNanny(Nanny n)
         {
             if (DateTime.Today < n.BorthDate.AddYears(18))
                 throw new Exception("A nanny must be age 18 and over");
             dal.UpdateNanny(n);
         }
-        Nanny GetNanny(string id)
+        public Nanny GetNanny(string id)
         {
             return dal.GetNanny(id);
         }
         #endregion
         #region Mother
-        void AddMother(Mother m)
+        public void AddMother(Mother m)
         {
             dal.AddMother(m);
         }
-        void RemoveMother(Mother m)
+        public void RemoveMother(Mother m)
         {
             dal.RemoveMother(m);
         }
-        void UpdateMother(Mother m)
+        public void UpdateMother(Mother m)
         {
             dal.UpdateMother(m);
         }
-        Mother GetMother(string id)
+        public Mother GetMother(string id)
         {
             return dal.GetMother(id);
         }
         #endregion
         #region Child
-        void AddChild(Child c)
+        public void AddChild(Child c)
         {
             dal.AddChild(c);
         }
-        void RemoveChild(Child c)
+        public void RemoveChild(Child c)
         {
             dal.RemoveChild(c);
         }
-        void UpdateChild(Child c)
+        public void UpdateChild(Child c)
         {
             dal.UpdateChild(c);
         }
-        Child GetChild(string id)
+        public Child GetChild(string id)
         {
             return dal.GetChild(id);
         }
         #endregion
         #region Contract
-        void AddContract(Contract c)
+        public void AddContract(Contract c)
         {
             if (DateTime.Today < GetChild(c.ChildID).Birthdate.AddMonths(3))
                 throw new Exception("The kid is younger than 3 monthes");
-
-            if(GetMother(GetChild(c.ChildID).MotherID).PerMonth)
+            //per month
+            if(GetMother(c.MotherID).IsPerMonth)
             {
+                double wage = double.MaxValue;
+                c.IsPerMonth = true;
+                foreach(var contract in GetAllContracts())
+                {
+                    if (contract.NunnyID == c.NunnyID && contract.MotherID == c.MotherID)
+                        wage = Math.Min(wage, contract.WagePerMonth * 0.98);
+                }
 
+                c.WagePerMonth =  Math.Min(GetNanny(c.NunnyID).RatePerMonth, wage);
             }
+            else//per hour
+            {
+                int hoursPerWeek = 0;
+                for (int i = 0; i < 6; i++)
+                {
+                    if(GetMother(c.MotherID).NeedNannyOnDay[i])
+                        hoursPerWeek += GetMother(c.MotherID).HoursForDay[i].Finish 
+                            - GetMother(c.MotherID).HoursForDay[i].Start;
+                }
+                double wage = 4 * hoursPerWeek;
+
+                foreach (var contract in GetAllContracts())
+                {
+                    if (contract.NunnyID == c.NunnyID && contract.MotherID == c.MotherID)
+                        wage = Math.Min(wage, contract.WagePerMonth * 0.98);
+                }
+
+                c.WagePerMonth = wage;
+            }
+            //Checks if there is a place for another child to this nanny
+            int numChildsToNanny = 0;
+            foreach (var contract in GetAllContracts())
+            {
+                if (contract.NunnyID == c.NunnyID && contract.WasSignature)
+                    numChildsToNanny++;
+            }
+            if (numChildsToNanny < GetNanny(c.NunnyID).MaxChilds)
+                c.WasSignature = true;
             else
-            {
+                c.WasSignature = false;
 
-            }
+            dal.AddContract(c);
         }
-        void RemoveContract(Contract c);
-        void UpdateContract(Contract c);
-        Contract GetContract(int num);
+        public void RemoveContract(Contract c)
+        {
+            dal.RemoveContract(c);
+        }
+        public void UpdateContract(Contract c)
+        {
+            dal.UpdateContract(c);
+        }
+        public Contract GetContract(int num)
+        {
+            return dal.GetContract(num);
+        }
         #endregion
         #region GetAll
-        List<BE.Nanny> GetAllNannys();
-        List<BE.Mother> GetAllMothers();
-        List<BE.Child> GetAllChilds();
-        List<BE.Contract> GetAllContracts();
+        public List<BE.Nanny> GetAllNannys()
+        {
+            return dal.GetAllNannys();
+        }
+        public List<BE.Mother> GetAllMothers()
+        {
+            return dal.GetAllMothers();
+        }
+        public List<BE.Child> GetAllChilds()
+        {
+            return dal.GetAllChilds();
+        }
+        public List<BE.Contract> GetAllContracts()
+        {
+            return dal.GetAllContracts();
+        }
         #endregion
     }
 }

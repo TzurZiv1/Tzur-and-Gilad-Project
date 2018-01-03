@@ -14,10 +14,10 @@ namespace BE
         private string phoneNumber;
         private string address;
         private string area;
-        private bool[] week = new bool[7];
-        private WorkHours[] hoursForWeek = new WorkHours[6];
+        private bool[] needNannyOnDay = new bool[6];
+        private WorkHours[] hoursForDay = new WorkHours[6];
         private string notes;
-        private bool perMonth;// true = per month. false = per hour
+        private bool isPerMonth;// true = per month. false = per hour
 
         public string ID { get => id; set => id = value; }
         public string LastName { get => lastName; set => lastName = value; }
@@ -25,10 +25,10 @@ namespace BE
         public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
         public string Address { get => address; set => address = value; }
         public string Area { get => area; set => area = value; }
-        public bool[] Week { get => week; set => week = value; }
-        public WorkHours[] HoursForWeek { get => hoursForWeek; set => hoursForWeek = value; }
+        public bool[] NeedNannyOnDay { get => needNannyOnDay; set => needNannyOnDay = value; }
+        public WorkHours[] HoursForDay { get => hoursForDay; set => hoursForDay = value; }
         public string Notes { get => notes; set => notes = value; }
-        public bool PerMonth { get => perMonth; set => perMonth = value; }
+        public bool IsPerMonth { get => isPerMonth; set => isPerMonth = value; }
 
         public override string ToString()
         {

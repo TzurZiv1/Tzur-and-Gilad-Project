@@ -143,7 +143,7 @@ namespace DAL
                 throw new Exception("The contract doesn't exist");
             if (GetChild(contractToUpdate.ChildID) == null)
                 throw new Exception("The child doesn't exist");
-            if (GetMother(GetChild(contractToUpdate.ChildID).MotherID) == null)
+            if (GetMother(contractToUpdate.MotherID) == null)
                 throw new Exception("The mother doesn't exist");
             if (GetNanny(contractToUpdate.NunnyID) == null)
                 throw new Exception("The nanny doesn't exist");
