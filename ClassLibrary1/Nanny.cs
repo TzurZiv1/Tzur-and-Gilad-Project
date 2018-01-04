@@ -13,6 +13,15 @@ namespace BE
 
         public int Start { get => start; set => start = value; }
         public int Finish { get => finish; set => finish = value; }
+
+        /// <summary>
+        /// Converts the value of the current WorkHours object to its equivalent string representation
+        /// </summary>
+        /// <returns>A string representation of the value of the current WorkHours object.</returns>
+        public override string ToString()
+        {
+            return start + ":00 - " + finish + ":00";
+        }
     }
     public class Nanny
     {

@@ -30,9 +30,24 @@ namespace BE
         public string Notes { get => notes; set => notes = value; }
         public bool IsPerMonth { get => isPerMonth; set => isPerMonth = value; }
 
+        /// <summary>
+        /// Converts the value of the current Mother object to its equivalent string representation
+        /// </summary>
+        /// <returns>A string representation of the value of the current Mother object.</returns>
         public override string ToString()
         {
-            return base.ToString();
+            return
+"ID: " + ID + "\n" +
+"Last name: " + LastName + "\n" +
+"First name: " + FirstName + "\n" +
+"Phone number: " + PhoneNumber + "\n" +
+"Address: " + Address + "\n" +
+"Area: " + Area + "\n" +
+"Need nanny on days: " + LastName + "\n" +
+"First name: " + FirstName + "\n" +
+"Phone number: " + PhoneNumber + "\n" +
+"Address: " + Address + "\n" +
+"Notes: " + Notes;
         }
     }
 }
