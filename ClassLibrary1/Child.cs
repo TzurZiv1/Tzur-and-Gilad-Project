@@ -32,12 +32,12 @@ namespace BE
         public override string ToString()
         {
             return
-"ID: " + ID + "\n" +
-"Mother's ID: " + MotherID + "\n" +
-"First name: " + FirstName + "\n" +
-"Birth date: " + Birthdate + "\n" +
-"Is the child Special: " + IsSpecial + "\n" +
-"Special needs: " + SpecialNeeds;
+                "ID: " + ID + "\n" +
+                "Mother's ID: " + MotherID + "\n" +
+                "First name: " + FirstName + "\n" +
+                "Birth date: " + Birthdate + "\n" +
+                "Is the child Special: " + IsSpecial + "\n" +
+                "Special needs: " + SpecialNeeds;
         }
 
     }

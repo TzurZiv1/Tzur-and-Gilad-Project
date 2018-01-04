@@ -31,6 +31,12 @@ namespace BL
             });
             // אפשר להוסיף עוד ילדים, אמהות ומטפלות
         }
+
+        List<BE.Nanny> ProperNannys (Mother mother)
+        {
+            
+        }
+        
         #region Nanny
         public void AddNanny(Nanny n)
         {
@@ -53,6 +59,7 @@ namespace BL
             return dal.GetNanny(id);
         }
         #endregion
+
         #region Mother
         public void AddMother(Mother m)
         {
@@ -71,6 +78,7 @@ namespace BL
             return dal.GetMother(id);
         }
         #endregion
+
         #region Child
         public void AddChild(Child c)
         {
@@ -89,6 +97,7 @@ namespace BL
             return dal.GetChild(id);
         }
         #endregion
+
         #region Contract
         public void AddContract(Contract c)
         {
@@ -153,6 +162,7 @@ namespace BL
             return dal.GetContract(num);
         }
         #endregion
+
         #region GetAll
         public List<BE.Nanny> GetAllNannys()
         {

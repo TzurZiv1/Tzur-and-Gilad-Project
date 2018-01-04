@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BE
 {
+    /// <summary>
+    /// Represents a mother, expressed as details and information about her.
+    /// </summary>
     public class Mother
     {
         private string id;
@@ -19,6 +22,7 @@ namespace BE
         private string notes;
         private bool isPerMonth;// true = per month. false = per hour
 
+        //Properties
         public string ID { get => id; set => id = value; }
         public string LastName { get => lastName; set => lastName = value; }
         public string FirstName { get => firstName; set => firstName = value; }
@@ -37,17 +41,17 @@ namespace BE
         public override string ToString()
         {
             return
-"ID: " + ID + "\n" +
-"Last name: " + LastName + "\n" +
-"First name: " + FirstName + "\n" +
-"Phone number: " + PhoneNumber + "\n" +
-"Address: " + Address + "\n" +
-"Area: " + Area + "\n" +
-"Need nanny on days: " + LastName + "\n" +
-"First name: " + FirstName + "\n" +
-"Phone number: " + PhoneNumber + "\n" +
-"Address: " + Address + "\n" +
-"Notes: " + Notes;
+                "ID: " + ID + "\n" +
+                "Last name: " + LastName + "\n" +
+                "First name: " + FirstName + "\n" +
+                "Phone number: " + PhoneNumber + "\n" +
+                "Address: " + Address + "\n" +
+                "Area: " + Area + "\n" +
+                "Need nanny on days: " + LastName + "\n" +
+                "First name: " + FirstName + "\n" +
+                "Phone number: " + PhoneNumber + "\n" +
+                "Address: " + Address + "\n" +
+                "Notes: " + Notes;
         }
     }
 }

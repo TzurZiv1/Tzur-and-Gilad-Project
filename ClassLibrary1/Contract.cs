@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BE
 {
+    /// <summary>
+    /// Represents a contract, expressed as details and information about him.
+    /// </summary>
     public class Contract
     {
         private int number;
@@ -19,7 +22,8 @@ namespace BE
         private bool isPerMonth;// true = per month. false = per hour
         private DateTime startDate = new DateTime();
         private DateTime endDate = new DateTime();
-
+        
+        //Properties
         public int Number { get => number; set => number = value; }
         public string NunnyID { get => nunnyID; set => nunnyID = value; }
         public string ChildID { get => childID; set => childID = value; }
@@ -31,7 +35,10 @@ namespace BE
         public bool IsPerMonth { get => isPerMonth; set => isPerMonth = value; }
         public DateTime StartDate { get => startDate; set => startDate = value; }
         public DateTime EndDate { get => endDate; set => endDate = value; }
-
+        /// <summary>
+        /// Override for ToString
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return base.ToString();

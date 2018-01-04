@@ -6,11 +6,22 @@ using System.Threading.Tasks;
 using BE;
 using DS;
 
+/// <summary>
+/// DAL layer
+/// </summary>
 namespace DAL
 {
+    /// <summary>
+    /// Implementaion of the IDAL interface
+    /// </summary>
     public class DAL_imp : IDAL
     {
         #region NANNY
+
+        /// <summary>
+        /// Add a nanny to the nanny list
+        /// </summary>
+        /// <param name="n"> The nanny you want to add to the nanny list </param>
         public void AddNanny(Nanny nannyToAdd)
         {
             if (GetNanny(nannyToAdd.ID) != null)
@@ -18,6 +29,11 @@ namespace DAL
             else
                 GetAllNannys().Add(nannyToAdd);
         }
+
+        /// <summary>
+        /// Remove a nanny from the nanny list
+        /// </summary>
+        /// <param name="n">The nanny you want to remove from the nanny list</param>
         public void RemoveNanny(Nanny nannyToRemove)
         {
             if (GetNanny(nannyToRemove.ID) == null)
@@ -25,6 +41,11 @@ namespace DAL
             else
                 GetAllNannys().Remove(GetNanny(nannyToRemove.ID));
         }
+
+        /// <summary>
+        /// Update a nanny who is in the list
+        /// </summary>
+        /// <param name="n">The nanny you want to update </param>
         public void UpdateNanny(Nanny nannyToUpdate)
         {
             if (GetNanny(nannyToUpdate.ID) == null)
@@ -35,6 +56,12 @@ namespace DAL
                 GetAllNannys().Add(nannyToUpdate);
             }
         }
+
+        /// <summary>
+        /// Return the nanny from the list who has this ID
+        /// </summary>
+        /// <param name="id">The ID you want to find in the nanny list</param>
+        /// <returns>The nanny from the list who has this ID</returns>
         public Nanny GetNanny(string id)
         {
             foreach (var nan in GetAllNannys())
@@ -45,7 +72,12 @@ namespace DAL
             return null;
         }
         #endregion
+
         #region MOTHER
+        /// <summary>
+        /// Add a mother to the mother list
+        /// </summary>
+        /// <param name="m">The mother you want to add to the child list</param>
         public void AddMother(Mother motherToAdd)
         {
             if (GetMother(motherToAdd.ID) != null)
@@ -53,6 +85,11 @@ namespace DAL
             else
                 GetAllMothers().Add(motherToAdd);
         }
+
+        /// <summary>
+        /// Remove a mother from the mother list
+        /// </summary>
+        /// <param name="m">The mother you want to remove from the mother list</param>
         public void RemoveMother(Mother motherToRemove)
         {
             if (GetMother(motherToRemove.ID) == null)
@@ -60,6 +97,11 @@ namespace DAL
             else
                 GetAllMothers().Remove(GetMother(motherToRemove.ID));
         }
+
+        /// <summary>
+        /// Update a mother who is in the list
+        /// </summary>
+        /// <param name="n">The mother you want to update </param>
         public void UpdateMother(Mother motherToUpdate)
         {
 
@@ -71,6 +113,12 @@ namespace DAL
                 GetAllMothers().Add(motherToUpdate);
             }
         }
+
+        /// <summary>
+        /// Return the mother from the list who has this ID
+        /// </summary>
+        /// <param name="id">The ID you want to find in the mother list</param>
+        /// <returns>The mother from the list who has this ID</returns>
         public Mother GetMother(string id)
         {
             foreach (var mom in GetAllMothers())
@@ -81,7 +129,13 @@ namespace DAL
             return null;
         }
         #endregion
+
         #region CHILD
+
+        /// <summary>
+        /// Add a child to the child list
+        /// </summary>
+        /// <param name="m">The child you want to add to the child list</param>
         public void AddChild(Child childToAdd)
         {
             if (GetChild(childToAdd.ID) != null)
@@ -89,6 +143,11 @@ namespace DAL
             else
                 GetAllChilds().Add(childToAdd);
         }
+
+        /// <summary>
+        /// Remove a child from the child list
+        /// </summary>
+        /// <param name="m">The child you want to remove from the child list</param>
         public void RemoveChild(Child childToRemove)
         {
             if (GetChild(childToRemove.ID) == null)
@@ -96,6 +155,11 @@ namespace DAL
             else
                 GetAllChilds().Remove(GetChild(childToRemove.ID));
         }
+
+        /// <summary>
+        /// Update a child who is in the list
+        /// </summary>
+        /// <param name="n">The child you want to update </param>
         public void UpdateChild(Child childToUpdate)
         {
             if (GetChild(childToUpdate.ID) == null)
@@ -106,6 +170,12 @@ namespace DAL
                 GetAllChilds().Add(childToUpdate);
             }
         }
+
+        /// <summary>
+        /// Return the child from the list who has this ID
+        /// </summary>
+        /// <param name="id">The ID you want to find in the child list</param>
+        /// <returns>The child from the list who has this ID</returns>
         public Child GetChild(string id)
         {
             foreach (var chi in GetAllChilds())
@@ -116,8 +186,14 @@ namespace DAL
             return null;
         }
         #endregion
+
         #region CONTRACT
         private static int numberOfContracts = 0;
+
+        /// <summary>
+        /// Add a contract to the contract list
+        /// </summary>
+        /// <param name="m">The contract you want to add to the mother list</param>
         public void AddContract(Contract contractToAdd)
         {
             if (GetChild(contractToAdd.ChildID) == null)
@@ -130,6 +206,11 @@ namespace DAL
             contractToAdd.Number = ++numberOfContracts;
             GetAllContracts().Add(contractToAdd);
         }
+
+        /// <summary>
+        /// Remove a contract from the child list
+        /// </summary>
+        /// <param name="m">The contract you want to remove from the contract list</param>
         public void RemoveContract(Contract contractToRemove)
         {
             if (GetContract(contractToRemove.Number) == null)
@@ -137,6 +218,11 @@ namespace DAL
 
             GetAllContracts().Remove(GetContract(contractToRemove.Number));
         }
+
+        /// <summary>
+        /// Update a contract who is in the list
+        /// </summary>
+        /// <param name="n">The contract you want to update </param>
         public void UpdateContract(Contract contractToUpdate)
         {
             if (GetContract(contractToUpdate.Number) == null)
@@ -151,6 +237,12 @@ namespace DAL
             GetAllContracts().Remove(GetContract(contractToUpdate.Number));
             GetAllContracts().Add(contractToUpdate);
         }
+
+        /// <summary>
+        /// Return the contract from the list who has this number
+        /// </summary>
+        /// <param name="id">The number you want to find in the contract list</param>
+        /// <returns>The contract from the list who has this number</returns>
         public Contract GetContract(int num)
         {
             foreach (var con in GetAllContracts())
@@ -161,19 +253,39 @@ namespace DAL
             return null;
         }
         #endregion
+
         #region GetAll
+        /// <summary>
+        /// Returns the all nannys who are in the nannys list 
+        /// </summary>
+        /// <returns>all nannys who in the nannys list</returns>
         public List<Nanny> GetAllNannys()
         {
             return DataSource.nannysList;
         }
+
+        /// <summary>
+        /// Returns the all mothers who are in the mothers list 
+        /// </summary>
+        /// <returns>all mothers who in the mothers list</returns>
         public List<Mother> GetAllMothers()
         {
             return DataSource.mothersList;
         }
+
+        /// <summary>
+        /// Returns the all childs who are in the childs list 
+        /// </summary>
+        /// <returns>all childs who in the childs list</returns>
         public List<Child> GetAllChilds()
         {
             return DataSource.childsList;
         }
+
+        /// <summary>
+        /// Returns the all contracts who in the contracts list 
+        /// </summary>
+        /// <returns>all contracts who in the contracts list</returns>
         public List<Contract> GetAllContracts()
         {
             return DataSource.contractslist;

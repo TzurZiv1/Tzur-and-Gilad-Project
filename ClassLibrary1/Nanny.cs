@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BE
 {
+    /// <summary>
+    /// Class for the nanny's work hours 
+    /// </summary>
     public class WorkHours
     {
         private int start;
@@ -23,6 +26,9 @@ namespace BE
             return start + ":00 - " + finish + ":00";
         }
     }
+    /// <summary>
+    ///  Represents a nanny, expressed as details and information about her.
+    /// </summary>
     public class Nanny
     {
         private string id;
@@ -45,6 +51,7 @@ namespace BE
         private bool financedVacation;
         private string recommendations;
 
+        //Properties
         public string ID { get => id; set => id = value; }
         public string LastName { get => lastName; set => lastName = value; }
         public string FirstName { get => firstName; set => firstName = value; }
@@ -64,7 +71,10 @@ namespace BE
         public WorkHours[] HoursOnDay { get => hoursOnDay; set => hoursOnDay = value; }
         public bool FinancedVacation { get => financedVacation; set => financedVacation = value; }
         public string Recommendations { get => recommendations; set => recommendations = value; }
-
+        /// <summary>
+        /// Override for ToString
+        /// </summary>
+        /// <returns></returns>
         public override string ToString()
         {
             return base.ToString();
