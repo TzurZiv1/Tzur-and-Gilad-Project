@@ -36,8 +36,8 @@ namespace BE
                 "Mother's ID: " + MotherID + "\n" +
                 "First name: " + FirstName + "\n" +
                 "Birth date: " + Birthdate + "\n" +
-                "Is the child Special: " + IsSpecial + "\n" +
-                "Special needs: " + SpecialNeeds;
+                "The child "+ (IsSpecial ? "is" : "isn't") + " a special child\n" +
+                "Special needs: " + (SpecialNeeds == null ? "nothing" : SpecialNeeds);
         }
 
     }

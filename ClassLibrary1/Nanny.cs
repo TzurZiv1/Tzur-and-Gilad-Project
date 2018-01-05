@@ -23,7 +23,7 @@ namespace BE
         /// <returns>A string representation of the value of the current WorkHours object.</returns>
         public override string ToString()
         {
-            return start + ":00 - " + finish + ":00";
+            return (start == finish ? "nothing" :"from " + start + ":00 to " + finish + ":00");
         }
     }
     /// <summary>
@@ -34,7 +34,7 @@ namespace BE
         private string id;
         private string lastName;
         private string firstName;
-        private DateTime birthDate = new DateTime();
+        private DateTime birthdate = new DateTime();
         private string phoneNumber;
         private string address;
         private bool isElevator;
@@ -43,7 +43,7 @@ namespace BE
         private int maxChilds;
         private int minAge;
         private int maxAge;
-        private bool enablePerHour;
+        private bool allowPerHour;
         private double ratePerHour;
         private double ratePerMonth;
         private bool[] workOnDay = new bool[6];
@@ -55,7 +55,7 @@ namespace BE
         public string ID { get => id; set => id = value; }
         public string LastName { get => lastName; set => lastName = value; }
         public string FirstName { get => firstName; set => firstName = value; }
-        public DateTime BorthDate { get => birthDate; set => birthDate = value; }
+        public DateTime Birthdate { get => birthdate; set => birthdate = value; }
         public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
         public string Address { get => address; set => address = value; }
         public bool IsElevator { get => isElevator; set => isElevator = value; }
@@ -64,20 +64,53 @@ namespace BE
         public int MaxChilds { get => maxChilds; set => maxChilds = value; }
         public int MinAge { get => minAge; set => minAge = value; }
         public int MaxAge { get => maxAge; set => maxAge = value; }
-        public bool EnablePerHour { get => enablePerHour; set => enablePerHour = value; }
+        public bool AllowPerHour { get => allowPerHour; set => allowPerHour = value; }
         public double RatePerHour { get => ratePerHour; set => ratePerHour = value; }
         public double RatePerMonth { get => ratePerMonth; set => ratePerMonth = value; }
         public bool[] WorkOnDay { get => workOnDay; set => workOnDay = value; }
         public WorkHours[] HoursOnDay { get => hoursOnDay; set => hoursOnDay = value; }
         public bool FinancedVacation { get => financedVacation; set => financedVacation = value; }
         public string Recommendations { get => recommendations; set => recommendations = value; }
-        /// <summary>
-        /// Override for ToString
-        /// </summary>
-        /// <returns></returns>
-        public override string ToString()
+		/// <summary>
+		/// Converts the value of the current Nanny object to its equivalent string representation
+		/// </summary>
+		/// <returns>A string representation of the value of the current WorkHours object.</returns>
+		public override string ToString()
         {
-            return base.ToString();
-        }
+			string strWorksOnDays = "";
+			if (WorkOnDay[0])
+				strWorksOnDays += "\tSunday: " + HoursOnDay[0] + "\n";
+			if (WorkOnDay[1])
+				strWorksOnDays += "\tMonday: " + HoursOnDay[1] + "\n";
+			if (WorkOnDay[2])
+				strWorksOnDays += "\tTuesday: " + HoursOnDay[2] + "\n";
+			if (WorkOnDay[3])
+				strWorksOnDays += "\tWednesday: " + HoursOnDay[3] + "\n";
+			if (WorkOnDay[4])
+				strWorksOnDays += "\tThursday: " + HoursOnDay[4] + "\n";
+			if (WorkOnDay[5])
+				strWorksOnDays += "\tFriday: " + HoursOnDay[5] + "\n";
+
+			return
+				"ID: " + ID + "\n" +
+				"Last name: " + LastName + "\n" +
+				"First name: " + FirstName + "\n" +
+				"Borthdate: " + Birthdate + "\n" +
+				"Phone number: " + PhoneNumber + "\n" +
+				"Address: " + Address + "\n" +
+				"There "+ (IsElevator ? "is" : "is not") + "elevator in the building\n" +
+				"Floor: " + Floor + "\n" +
+				"Experience years: " + ExpYears + "\n" +
+				"Max childs: " + MaxChilds + "\n" +
+				"Minimum age: " + MinAge + "\n" +
+				"Maximum age: " + MaxAge + "\n" +
+				(AllowPerHour ? "Allow" : "Doesn't allow")+ " pay per hour\n" +
+				"Rate per hour: " + RatePerHour + "\n" +
+				"Rate per month: " + RatePerMonth + "\n" +
+				"Work on days:\n" + (strWorksOnDays == "" ? "No day" : strWorksOnDays) + "\n" +
+				"Vacations " + (FinancedVacation ? "is" : "isn't") 
+				+ " based on the Ministry of Education or the Ministry of Industry, Trade and Labor" + "\n" +
+				"Recommendations:\n" + ((Recommendations == null || Recommendations == "") ? "Nothing" : Recommendations);
+		}
     }
 }

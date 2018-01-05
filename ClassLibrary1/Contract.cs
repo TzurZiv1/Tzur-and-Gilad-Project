@@ -41,7 +41,18 @@ namespace BE
         /// <returns></returns>
         public override string ToString()
         {
-            return base.ToString();
-        }
+			return
+				"Number: " + Number + "\n" +
+				"Nunny's ID: " + NunnyID + "\n" +
+				"Child's ID: " + ChildID + "\n" +
+				"Mother's ID: " + MotherID + "\n" +
+				"Was meeting: " + WasMeeting + "\n" +
+				"Was signature: " + WasSignature +
+				"Wage per hour: " + WagePerHour + "\n" +
+				"Wage per month: " + WagePerMonth + "\n" +
+				"Payment is calculated per " + (isPerMonth ? "month" : "hour") + "\n" +
+				"Start date: " + StartDate + "\n" +
+				"End date: " + EndDate + "\n";
+		}
     }
 }

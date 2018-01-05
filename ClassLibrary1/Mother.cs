@@ -40,18 +40,30 @@ namespace BE
         /// <returns>A string representation of the value of the current Mother object.</returns>
         public override string ToString()
         {
-            return
+			string StrNeedNannyOnDays = "";
+			if (NeedNannyOnDay[0])
+				StrNeedNannyOnDays += "\tSunday: " + HoursForDay[0] + "\n";
+			if (NeedNannyOnDay[1])
+				StrNeedNannyOnDays += "\tMonday: " + HoursForDay[1] + "\n";
+			if (NeedNannyOnDay[2])
+				StrNeedNannyOnDays += "\tTuesday: " + HoursForDay[2] + "\n";
+			if (NeedNannyOnDay[3])
+				StrNeedNannyOnDays += "\tWednesday: " + HoursForDay[3] + "\n";
+			if (NeedNannyOnDay[4])
+				StrNeedNannyOnDays += "\tThursday: " + HoursForDay[4] + "\n";
+			if (NeedNannyOnDay[5])
+				StrNeedNannyOnDays += "\tFriday: " + HoursForDay[5] + "\n";
+
+			return
                 "ID: " + ID + "\n" +
                 "Last name: " + LastName + "\n" +
                 "First name: " + FirstName + "\n" +
                 "Phone number: " + PhoneNumber + "\n" +
                 "Address: " + Address + "\n" +
                 "Area: " + Area + "\n" +
-                "Need nanny on days: " + LastName + "\n" +
-                "First name: " + FirstName + "\n" +
-                "Phone number: " + PhoneNumber + "\n" +
-                "Address: " + Address + "\n" +
-                "Notes: " + Notes;
+                "Need nanny on days:\n" + (StrNeedNannyOnDays == "" ? "No day" : StrNeedNannyOnDays) + "\n" +
+				"Wants pay per " + (IsPerMonth ? "month" : "hour") + "\n" +
+                "Notes:\n" + ((Notes == "" || Notes == null)? "Nothing" : Notes);
         }
     }
 }
