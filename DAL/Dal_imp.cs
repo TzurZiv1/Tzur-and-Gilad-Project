@@ -77,7 +77,7 @@ namespace DAL
         /// <summary>
         /// Add a mother to the mother list
         /// </summary>
-        /// <param name="m">The mother you want to add to the child list</param>
+        /// <param name="m">The mother you want to add to the mother list</param>
         public void AddMother(Mother motherToAdd)
         {
             if (GetMother(motherToAdd.ID) != null)
@@ -193,7 +193,7 @@ namespace DAL
         /// <summary>
         /// Add a contract to the contract list
         /// </summary>
-        /// <param name="m">The contract you want to add to the mother list</param>
+        /// <param name="m">The contract you want to add to the contract list</param>
         public void AddContract(Contract contractToAdd)
         {
             if (GetChild(contractToAdd.ChildID) == null)
