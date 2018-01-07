@@ -27,7 +27,7 @@ namespace DAL
             if (GetNanny(nannyToAdd.ID) != null)
                 throw new Exception("The nanny already exist");
             else
-                GetAllNannys().Add(nannyToAdd);
+                GetAllNannies().Add(nannyToAdd);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace DAL
             if (GetNanny(nannyToRemove.ID) == null)
                 throw new Exception("The nanny doesn't exist");
             else
-                GetAllNannys().Remove(GetNanny(nannyToRemove.ID));
+                GetAllNannies().Remove(GetNanny(nannyToRemove.ID));
         }
 
         /// <summary>
@@ -52,8 +52,8 @@ namespace DAL
                 throw new Exception("The nanny doesn't exist");
             else
             {
-                GetAllNannys().Remove(GetNanny(nannyToUpdate.ID));
-                GetAllNannys().Add(nannyToUpdate);
+                GetAllNannies().Remove(GetNanny(nannyToUpdate.ID));
+                GetAllNannies().Add(nannyToUpdate);
             }
         }
 
@@ -64,7 +64,7 @@ namespace DAL
         /// <returns>The nanny from the list who has this ID</returns>
         public Nanny GetNanny(string id)
         {
-            foreach (var nan in GetAllNannys())
+            foreach (var nan in GetAllNannies())
             {
                 if (nan.ID == id)
                     return nan;
@@ -259,7 +259,7 @@ namespace DAL
         /// Returns the all nannys who are in the nannys list 
         /// </summary>
         /// <returns>all nannys who in the nannys list</returns>
-        public List<Nanny> GetAllNannys()
+        public List<Nanny> GetAllNannies()
         {
             return DataSource.nannysList;
         }

@@ -160,11 +160,11 @@ namespace BL
             return dal.GetContract(num);
         }
         #endregion
-        
+
         #region GetAll
-        public List<BE.Nanny> GetAllNannys()
+        public List<BE.Nanny> GetAllNannies()
         {
-            return dal.GetAllNannys();
+            return dal.GetAllNannies();
         }
         public List<BE.Mother> GetAllMothers()
         {
@@ -215,7 +215,7 @@ namespace BL
             else // if there is no area to mother
                 area = m.Address;
 
-            foreach (var n in GetAllNannys())
+            foreach (var n in GetAllNannies())
                 if (CalculateDistance(n.Address, area) <= 1000 * desirableDistanceInKM)
                     nannies.Add(n);
 
@@ -225,34 +225,43 @@ namespace BL
 
         #region Match nannies to mother
         /// <summary>
+        /// Returns list just of nannies who can work for m at any hour needed
+        /// </summary>
+        /// <param name="m">mother</param>
+        /// <returns>list just of nannies who can work for m at any hour needed</returns>
+        public List<Nanny> CompletelyMatchNannies(Mother m)
+        {
+            List<Nanny> nannies = new List<Nanny>();
+
+            foreach (var n in GetAllNannies())
+            {
+                if (NannyToMother(m, n))//if n completely match to m
+                    nannies.Add(n);
+            }
+            return nannies;
+        }
+        /// <summary>
         /// Returns list of nannies who can work for m
         /// If there is no one, return the five with the best match
         /// </summary>
         /// <param name="m">The mother we want match nannies to her</param>
         /// <returns>list of nannies who can work for m
         /// If there is no one, return the five with the best match</returns>
-        public List<Nanny> ProperNannies(Mother m)
+        public List<Nanny> MatchNannies(Mother m)
         {
-            List<Nanny> nannies = new List<Nanny>();
-
-            foreach (var n in GetAllNannys())
-            {
-                if (NannyToMother(m, n))//if n completely match to m
-                    nannies.Add(n);
-            }
+            List<Nanny> nannies = CompletelyMatchNannies(m);
 
             if (nannies.Count != 0)
                 return nannies;
-            else//When no one completely match to m
-            {
-                for (int i = 0; i < GetAllNannys().Count; i++)
-                    nannies.Add(GetAllNannys()[i]);
+            
+            //When no one completely match to m
+            nannies = GetAllNannies();
 
-                while (nannies.Count > 5)
-                {
-                    nannies.Remove(WorstNanny(m, nannies));
-                }
+            while (nannies.Count > 5)
+            {
+                nannies.Remove(WorstNanny(m, nannies));
             }
+
             return nannies;
         }
         /// <summary>
@@ -352,12 +361,13 @@ namespace BL
         public List<Nanny> AllFinancedVacation()
         {
             List<Nanny> nannies = new List<Nanny>();
-            foreach (var n in GetAllNannys())
+            foreach (var n in GetAllNannies())
                 if (n.FinancedVacation == true)
                     nannies.Add(n);
-            
+
             return nannies;
         }
+
         /// <summary>
         /// Return list of contracts that match a certain condition
         /// </summary>

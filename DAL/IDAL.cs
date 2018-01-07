@@ -129,7 +129,7 @@ namespace DAL
         /// Returns the all nannys who are in the nannys list 
         /// </summary>
         /// <returns>all nannys who in the nannys list</returns>
-        List<Nanny> GetAllNannys();
+        List<Nanny> GetAllNannies();
         /// <summary>
         /// Returns the all mothers who are in the mothers list 
         /// </summary>

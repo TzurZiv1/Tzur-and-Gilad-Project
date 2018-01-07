@@ -29,13 +29,14 @@ namespace BL
         void UpdateContract(Contract c);
         Contract GetContract(int num);
 
-        List<Nanny> GetAllNannys();
+        List<Nanny> GetAllNannies();
         List<Mother> GetAllMothers();
         List<Child> GetAllChilds();
         List<Contract> GetAllContracts();
         
-		List<Nanny> ProperNannies(Mother m);
         List<Nanny> DistanseFromMotherInKM(Mother m, int desirableDistanceInKM);
+        List<Nanny> CompletelyMatchNannies(Mother m);
+        List<Nanny> MatchNannies(Mother m);
         List<Child> ChildsWithoutNanny();
         List<Nanny> AllFinancedVacation();
         List<Contract> GetContractsByTerm(Predicate<Contract> cond);
