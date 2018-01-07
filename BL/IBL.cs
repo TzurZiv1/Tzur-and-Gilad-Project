@@ -33,8 +33,8 @@ namespace BL
         List<Mother> GetAllMothers();
         List<Child> GetAllChilds();
         List<Contract> GetAllContracts();
-
-		int CalculateDistance(string source, string dest);
+        
 		List<Nanny> ProperNannies(Mother m);
-	}
+
+    }
 }

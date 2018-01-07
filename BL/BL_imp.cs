@@ -186,7 +186,7 @@ namespace BL
 		/// <param name="source"></param>
 		/// <param name="dest"></param>
 		/// <returns>The distance between source and dest</returns>
-		public int CalculateDistance(string source, string dest)
+		private int CalculateDistance(string source, string dest)
 		{
 			var drivingDirectionRequest = new DirectionsRequest
 			{
@@ -199,6 +199,20 @@ namespace BL
 			Leg leg = route.Legs.First();
 			return leg.Distance.Value;
 		}
+
+        public List<Nanny> DistanseFromMotherKM(Mother m, int desirableDistance)
+        {
+            string area;
+            if (m.Area != null && m.Area != "")
+                area = m.Area;
+            else
+                area = m.Address;
+
+            foreach (var n in GetAllNannys())
+            {
+                if (CalculateDistance(n.Address, area) <= 1000 * desirableDistance)
+            }
+        }
 
 		#region Match nannies to mother
 		/// <summary>
