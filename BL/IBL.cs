@@ -38,6 +38,7 @@ namespace BL
         List<Nanny> DistanseFromMotherInKM(Mother m, int desirableDistanceInKM);
         List<Child> ChildsWithoutNanny();
         List<Nanny> AllFinancedVacation();
-
+        List<Contract> GetContractsByTerm(Predicate<Contract> cond);
+        int NumOfContractsByTerm(Predicate<Contract> cond);
     }
 }

@@ -160,7 +160,7 @@ namespace BL
             return dal.GetContract(num);
         }
         #endregion
-
+        
         #region GetAll
         public List<BE.Nanny> GetAllNannys()
         {
@@ -358,7 +358,23 @@ namespace BL
             
             return nannies;
         }
-
-        public List<Contract> GetContractsByTerm(Delegate ())
+        /// <summary>
+        /// Return list of contracts that match a certain condition
+        /// </summary>
+        /// <param name="cond">condition</param>
+        /// <returns>List of contracts that match cond</returns>
+        public List<Contract> GetContractsByTerm(Predicate<Contract> cond)
+        {
+            return GetAllContracts().FindAll(cond);
+        }
+        /// <summary>
+        /// Return the number of the contracts that match a certain condition
+        /// </summary>
+        /// <param name="cond">condition</param>
+        /// <returns>Number of the contracts that match a certain condition</returns>
+        public int NumOfContractsByTerm(Predicate<Contract> cond)
+        {
+            return GetContractsByTerm(cond).Count;
+        }
     }
 }
