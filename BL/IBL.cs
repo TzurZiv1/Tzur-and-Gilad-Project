@@ -146,11 +146,16 @@ namespace BL
         #endregion
 
         List<Nanny> DistanseFromMotherInKM(Mother m, int desirableDistanceInKM);
+
         List<Nanny> CompletelyMatchNannies(Mother m);
         List<Nanny> MatchNannies(Mother m);
+
         List<Child> ChildsWithoutNanny();
         List<Nanny> AllFinancedVacation();
+
         List<Contract> GetContractsByTerm(Predicate<Contract> cond);
         int NumOfContractsByTerm(Predicate<Contract> cond);
+
+        IEnumerable<List<Nanny>> NanniesByChildsAge(bool byMax, bool order = false);
     }
 }

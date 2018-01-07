@@ -8,6 +8,7 @@ using GoogleMapsApi;
 using GoogleMapsApi.Entities.Directions.Request;
 using GoogleMapsApi.Entities.Directions.Response;
 
+
 namespace BL
 {
     public class BL_imp : IBL
@@ -253,7 +254,7 @@ namespace BL
 
             if (nannies.Count != 0)
                 return nannies;
-            
+
             //When no one completely match to m
             nannies = GetAllNannies();
 
@@ -385,6 +386,14 @@ namespace BL
         public int NumOfContractsByTerm(Predicate<Contract> cond)
         {
             return GetContractsByTerm(cond).Count;
+        }
+
+        public IEnumerable<Nanny> NanniesByChildsAge(bool byMax, bool order = false)
+        {
+            // צריך לתקןןןןןןן
+            var res = from n in GetAllNannies()
+                   group n by n.MaxAge;
+            return res;
         }
     }
 }
