@@ -47,7 +47,7 @@ namespace DAL
         /// <summary>
         /// Add a mother to the mother list
         /// </summary>
-        /// <param name="m">The mother you want to add to the child list</param>
+        /// <param name="m">The mother you want to add to the mother list</param>
         void AddMother(Mother m);
 
         /// <summary>
@@ -97,15 +97,15 @@ namespace DAL
         Child GetChild(string id);
         #endregion
 
-        #region
+        #region CONTRACT
         /// <summary>
         /// Add a contract to the contract list
         /// </summary>
-        /// <param name="m">The contract you want to add to the mother list</param>
+        /// <param name="m">The contract you want to add to the contract list</param>
         void AddContract(Contract c);
 
         /// <summary>
-        /// Remove a contract from the child list
+        /// Remove a contract from the contract list
         /// </summary>
         /// <param name="m">The contract you want to remove from the contract list</param>
         void RemoveContract(Contract c);
