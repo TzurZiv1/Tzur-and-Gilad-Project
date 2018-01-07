@@ -35,6 +35,9 @@ namespace BL
         List<Contract> GetAllContracts();
         
 		List<Nanny> ProperNannies(Mother m);
+        List<Nanny> DistanseFromMotherInKM(Mother m, int desirableDistanceInKM);
+        List<Child> ChildsWithoutNanny();
+        List<Nanny> AllFinancedVacation();
 
     }
 }

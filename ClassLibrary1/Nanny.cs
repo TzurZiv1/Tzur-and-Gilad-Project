@@ -26,6 +26,7 @@ namespace BE
             return (start == finish ? "nothing" :"from " + start + ":00 to " + finish + ":00");
         }
     }
+
     /// <summary>
     ///  Represents a nanny, expressed as details and information about her.
     /// </summary>
