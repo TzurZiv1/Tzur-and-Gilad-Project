@@ -14,7 +14,7 @@ namespace BL
     {
         DAL.IDAL dal = new DAL.DAL_imp();
 
-        public void init()
+         public void init()
         {
             AddChild(new BE.Child
             {
