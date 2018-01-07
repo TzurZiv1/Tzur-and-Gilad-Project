@@ -33,7 +33,7 @@ namespace BL
         List<Mother> GetAllMothers();
         List<Child> GetAllChilds();
         List<Contract> GetAllContracts();
-        
+
         List<Nanny> DistanseFromMotherInKM(Mother m, int desirableDistanceInKM);
         List<Nanny> CompletelyMatchNannies(Mother m);
         List<Nanny> MatchNannies(Mother m);
