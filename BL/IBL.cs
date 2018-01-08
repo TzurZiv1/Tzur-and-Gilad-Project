@@ -156,6 +156,7 @@ namespace BL
         List<Contract> GetContractsByTerm(Predicate<Contract> cond);
         int NumOfContractsByTerm(Predicate<Contract> cond);
 
-        IEnumerable<List<Nanny>> NanniesByChildsAge(bool byMax, bool order = false);
+        IEnumerable<IGrouping<int, Nanny>> NanniesByChildsAge(bool byMax, bool order = false);
+        IEnumerable<IGrouping<int, Contract>> ContractsByDistance(bool order = false);
     }
 }

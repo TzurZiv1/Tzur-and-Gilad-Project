@@ -42,8 +42,8 @@ namespace BE
         private int floor;
         private int expYears;
         private int maxChilds;
-        private int minAge;
-        private int maxAge;
+        private int minAgeInMonth;
+        private int maxAgeInMonth;
         private bool allowPerHour;
         private double ratePerHour;
         private double ratePerMonth;
@@ -63,8 +63,8 @@ namespace BE
         public int Floor { get => floor; set => floor = value; }
         public int ExpYears { get => expYears; set => expYears = value; }
         public int MaxChilds { get => maxChilds; set => maxChilds = value; }
-        public int MinAge { get => minAge; set => minAge = value; }
-        public int MaxAge { get => maxAge; set => maxAge = value; }
+        public int MinAgeInMonth { get => minAgeInMonth; set => minAgeInMonth = value; }
+        public int MaxAgeInMonth { get => maxAgeInMonth; set => maxAgeInMonth = value; }
         public bool AllowPerHour { get => allowPerHour; set => allowPerHour = value; }
         public double RatePerHour { get => ratePerHour; set => ratePerHour = value; }
         public double RatePerMonth { get => ratePerMonth; set => ratePerMonth = value; }
@@ -103,8 +103,8 @@ namespace BE
 				"Floor: " + Floor + "\n" +
 				"Experience years: " + ExpYears + "\n" +
 				"Max childs: " + MaxChilds + "\n" +
-				"Minimum age: " + MinAge + "\n" +
-				"Maximum age: " + MaxAge + "\n" +
+				"Minimum age: " + MinAgeInMonth + "\n" +
+				"Maximum age: " + MaxAgeInMonth + "\n" +
 				(AllowPerHour ? "Allow" : "Doesn't allow")+ " pay per hour\n" +
 				"Rate per hour: " + RatePerHour + "\n" +
 				"Rate per month: " + RatePerMonth + "\n" +

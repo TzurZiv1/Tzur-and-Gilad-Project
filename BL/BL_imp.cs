@@ -387,13 +387,41 @@ namespace BL
         {
             return GetContractsByTerm(cond).Count;
         }
-
-        public IEnumerable<Nanny> NanniesByChildsAge(bool byMax, bool order = false)
+        /// <summary>
+        /// Returns IEnumerable IGrouping nannies by age, minimum or maximum by choice
+        /// </summary>
+        /// <param name="byMax">true = group by max, false = group by min</param>
+        /// <param name="order">true = order the nannies, false = don't order</param>
+        /// <returns>IEnumerable IGrouping nannies by age</returns>
+        public IEnumerable<IGrouping<int, Nanny>> NanniesByChildsAge(bool byMax, bool order = false)
         {
-            // צריך לתקןןןןןןן
-            var res = from n in GetAllNannies()
-                   group n by n.MaxAge;
-            return res;
+            if (byMax)//group by max age
+            {
+                if (order)//order nannies by name
+                    return from n in GetAllNannies()
+                           orderby n.FirstName, n.LastName
+                           group n by n.MaxAgeInMonth;
+                //Don't order nannies
+                return from n in GetAllNannies()
+                       group n by n.MaxAgeInMonth;
+            }
+            //group by min age
+            if (order)//order nannies by name
+                return from n in GetAllNannies()
+                       orderby n.FirstName, n.LastName
+                       group n by n.MinAgeInMonth;
+            //Don't order nannies
+            return from n in GetAllNannies()
+                   group n by n.MinAgeInMonth;
+        }
+        public IEnumerable<IGrouping<int, Contract>> ContractsByDistance(bool order = false)
+        {
+            if (order)
+            {
+                if ()
+                return from c in GetAllContracts()
+                       group c by CalculateDistance()
+                       }
         }
     }
 }
