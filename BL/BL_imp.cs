@@ -388,18 +388,18 @@ namespace BL
             return GetContractsByTerm(cond).Count;
         }
         /// <summary>
-        /// Returns IEnumerable IGrouping nannies by age, minimum or maximum by choice
+        /// Returns nannies grouped by age, minimum or maximum by choice
         /// </summary>
         /// <param name="byMax">true = group by max, false = group by min</param>
         /// <param name="order">true = order the nannies, false = don't order</param>
-        /// <returns>IEnumerable IGrouping nannies by age</returns>
+        /// <returns>nannies grouped by age</returns>
         public IEnumerable<IGrouping<int, Nanny>> NanniesByChildsAge(bool byMax, bool order = false)
         {
             if (byMax)//group by max age
             {
                 if (order)//order nannies by name
                     return from n in GetAllNannies()
-                           orderby n.FirstName, n.LastName
+                           orderby n.ID
                            group n by n.MaxAgeInMonth;
                 //Don't order nannies
                 return from n in GetAllNannies()
@@ -414,14 +414,24 @@ namespace BL
             return from n in GetAllNannies()
                    group n by n.MinAgeInMonth;
         }
+        /// <summary>
+        /// Returns all contracts grouped by distance between mother's area and nanny's address
+        /// </summary>
+        /// <param name="order">true = order the nannies, false = don't order</param>
+        /// <returns></returns>
         public IEnumerable<IGrouping<int, Contract>> ContractsByDistance(bool order = false)
         {
-            if (order)
-            {
-                if ()
+            if (order)//order nannies by number
                 return from c in GetAllContracts()
-                       group c by CalculateDistance()
-                       }
+                       orderby c.Number
+                       let tempArea = GetMother(c.MotherID).Area
+                       let area = (tempArea != null && tempArea != "") ? tempArea : GetMother(c.MotherID).Address
+                       group c by (CalculateDistance(area, GetNanny(c.NunnyID).Address) / 5000);
+            //Don't order nannies
+            return from c in GetAllContracts()
+                   let tempArea = GetMother(c.MotherID).Area
+                   let area = (tempArea != null && tempArea != "") ? tempArea : GetMother(c.MotherID).Address
+                   group c by (CalculateDistance(area, GetNanny(c.NunnyID).Address) / 5000);
         }
     }
 }
