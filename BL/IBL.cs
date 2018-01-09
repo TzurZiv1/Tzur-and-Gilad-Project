@@ -137,6 +137,7 @@ namespace BL
         /// </summary>
         /// <returns>all childs who in the childs list</returns>
         List<Child> GetAllChilds();
+        IEnumerable<IGrouping<string, Child>> GetAllChildsByMother();
 
         /// <summary>
         /// Returns the all contracts who in the contracts list 

@@ -126,22 +126,25 @@ namespace DAL
 
         #region GetAll
         /// <summary>
-        /// Returns the all nannys who are in the nannys list 
+        /// Returns the all nannies who are in the nannies list 
         /// </summary>
-        /// <returns>all nannys who in the nannys list</returns>
+        /// <returns>all nannies who in the nannys list</returns>
         List<Nanny> GetAllNannies();
         /// <summary>
         /// Returns the all mothers who are in the mothers list 
         /// </summary>
         /// <returns>all mothers who in the mothers list</returns>
         List<Mother> GetAllMothers();
-
         /// <summary>
         /// Returns the all childs who are in the childs list 
         /// </summary>
         /// <returns>all childs who in the childs list</returns>
         List<Child> GetAllChilds();
-
+        /// <summary>
+        /// Returns list of all childs grouped by mother
+        /// </summary>
+        /// <returns>List of all childs grouped by mother</returns>
+        IEnumerable<IGrouping<string, Child>> GetAllChildsByMother();
         /// <summary>
         /// Returns the all contracts who in the contracts list 
         /// </summary>

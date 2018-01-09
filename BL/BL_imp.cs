@@ -175,6 +175,10 @@ namespace BL
         {
             return dal.GetAllChilds();
         }
+        public IEnumerable<IGrouping<string, Child>> GetAllChildsByMother()
+        {
+            return dal.GetAllChildsByMother();
+        }
         public List<BE.Contract> GetAllContracts()
         {
             return dal.GetAllContracts();

@@ -256,12 +256,16 @@ namespace DAL
 
         #region GetAll
         /// <summary>
-        /// Returns the all nannys who are in the nannys list 
+        /// Returns the all nannies who are in the nannies list 
         /// </summary>
-        /// <returns>all nannys who in the nannys list</returns>
+        /// <returns>all nannies who in the nannies list</returns>
         public List<Nanny> GetAllNannies()
         {
-            return DataSource.nannysList;
+            List<Nanny> nannies = new List<Nanny>();
+            foreach (var n in DataSource.NanniesList)
+                nannies.Add(n);
+
+            return nannies;
         }
 
         /// <summary>
@@ -270,25 +274,45 @@ namespace DAL
         /// <returns>all mothers who in the mothers list</returns>
         public List<Mother> GetAllMothers()
         {
-            return DataSource.mothersList;
+            List<Mother> mothers = new List<Mother>();
+            foreach (var m in DataSource.MothersList)
+                mothers.Add(m);
+
+            return mothers;
         }
 
         /// <summary>
-        /// Returns the all childs who are in the childs list 
+        /// Returns all childs who are in the childs list 
         /// </summary>
         /// <returns>all childs who in the childs list</returns>
         public List<Child> GetAllChilds()
         {
-            return DataSource.childsList;
-        }
+            List<Child> childs = new List<Child>();
+            foreach (var c in DataSource.ChildsList)
+                childs.Add(c);
 
+            return childs;
+        }
+        /// <summary>
+        /// Returns list of all childs grouped by mother
+        /// </summary>
+        /// <returns>List of all childs grouped by mother</returns>
+        public IEnumerable<IGrouping<string, Child>> GetAllChildsByMother()
+        {
+            return from c in DataSource.ChildsList
+                   group c by c.MotherID;
+        }
         /// <summary>
         /// Returns the all contracts who in the contracts list 
         /// </summary>
         /// <returns>all contracts who in the contracts list</returns>
         public List<Contract> GetAllContracts()
         {
-            return DataSource.contractslist;
+            List<Contract> contracts = new List<Contract>();
+            foreach (var c in DataSource.Contractslist)
+                contracts.Add(c);
+
+            return contracts;
         }
         #endregion
     }
