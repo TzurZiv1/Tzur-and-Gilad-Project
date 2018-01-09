@@ -155,6 +155,10 @@ namespace BL
         List<Nanny> AllFinancedVacation();
 
         List<Contract> GetContractsByTerm(Predicate<Contract> cond);
+        List<Mother> GetMothersByTerm(Predicate<Mother> cond);
+        List<Child> GetChildsByTerm(Predicate<Child> cond);
+        List<Nanny> GetNanniesByTerm(Predicate<Nanny> cond);
+
         int NumOfContractsByTerm(Predicate<Contract> cond);
 
         IEnumerable<IGrouping<int, Nanny>> NanniesByChildsAge(bool byMax, bool order = false);

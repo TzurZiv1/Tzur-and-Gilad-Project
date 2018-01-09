@@ -45,6 +45,9 @@ namespace BL
         }
         public void RemoveNanny(Nanny n)
         {
+            foreach (var c in GetContractsByTerm(c => c.NunnyID == n.ID))
+                RemoveContract(c);
+
             dal.RemoveNanny(n);
         }
         public void UpdateNanny(Nanny n)
@@ -52,6 +55,14 @@ namespace BL
             if (DateTime.Today < n.Birthdate.AddYears(18))
                 throw new Exception("A nanny must be age 18 and over");
             dal.UpdateNanny(n);
+
+            foreach (var c in GetContractsByTerm(c => c.NunnyID == n.ID))
+            {
+                Mother m = GetMother(c.MotherID);
+                RemoveContract(c);
+                if (NannyToMother(m, n))
+                    AddContract(c);
+            }
         }
         public Nanny GetNanny(string id)
         {
@@ -66,11 +77,27 @@ namespace BL
         }
         public void RemoveMother(Mother m)
         {
+            foreach (var c in GetContractsByTerm(c => c.MotherID == m.ID))
+                RemoveContract(c);
+
+            foreach (var c in GetChildsByTerm(c => c.MotherID == m.ID))
+                RemoveChild(c);
+
             dal.RemoveMother(m);
         }
         public void UpdateMother(Mother m)
         {
             dal.UpdateMother(m);
+            foreach (var c in GetAllContracts())
+            {
+                if (c.MotherID == m.ID)
+                {
+                    Nanny n = GetNanny(c.NunnyID);
+                    RemoveContract(c);
+                    if (NannyToMother(m, n))
+                        AddContract(c);
+                }
+            }
         }
         public Mother GetMother(string id)
         {
@@ -85,6 +112,9 @@ namespace BL
         }
         public void RemoveChild(Child c)
         {
+            foreach (var con in GetContractsByTerm(con => c.ID == con.ChildID))
+                RemoveContract(con);
+
             dal.RemoveChild(c);
         }
         public void UpdateChild(Child c)
@@ -102,59 +132,29 @@ namespace BL
         {
             if (DateTime.Today < GetChild(c.ChildID).Birthdate.AddMonths(3))
                 throw new Exception("The kid is younger than 3 monthes");
-            //per month
-            if (GetMother(c.MotherID).IsPerMonth)
-            {
-                double wage = double.MaxValue;
-                c.IsPerMonth = true;
-                foreach (var contract in GetAllContracts())
-                {
-                    if (contract.NunnyID == c.NunnyID && contract.MotherID == c.MotherID)
-                        wage = Math.Min(wage, contract.WagePerMonth * 0.98);
-                }
 
-                c.WagePerMonth = Math.Min(GetNanny(c.NunnyID).RatePerMonth, wage);
-            }
-            else//per hour
-            {
-                int hoursPerWeek = 0;
-                for (int i = 0; i < 6; i++)
-                {
-                    if (GetMother(c.MotherID).NeedNannyOnDay[i])
-                        hoursPerWeek += GetMother(c.MotherID).HoursForDay[i].Finish
-                            - GetMother(c.MotherID).HoursForDay[i].Start;
-                }
-                double wage = 4 * hoursPerWeek;
-
-                foreach (var contract in GetAllContracts())
-                {
-                    if (contract.NunnyID == c.NunnyID && contract.MotherID == c.MotherID)
-                        wage = Math.Min(wage, contract.WagePerMonth * 0.98);
-                }
-
-                c.WagePerMonth = wage;
-            }
             //Checks if there is a place for another child to this nanny
             int numChildsToNanny = 0;
-            foreach (var contract in GetAllContracts())
-            {
-                if (contract.NunnyID == c.NunnyID && contract.WasSignature)
+            foreach (var con in GetContractsByTerm(con => con.NunnyID == c.NunnyID && con.WasSignature))
                     numChildsToNanny++;
-            }
+
             if (numChildsToNanny < GetNanny(c.NunnyID).MaxChilds)
                 c.WasSignature = true;
             else
                 c.WasSignature = false;
 
             dal.AddContract(c);
+            RepairWageForMotherAndNanny(GetMother(c.MotherID), GetNanny(c.NunnyID));
         }
         public void RemoveContract(Contract c)
         {
             dal.RemoveContract(c);
+            RepairWageForMotherAndNanny(GetMother(c.MotherID), GetNanny(c.NunnyID));
         }
         public void UpdateContract(Contract c)
         {
             dal.UpdateContract(c);
+            RepairWageForMotherAndNanny(GetMother(c.MotherID), GetNanny(c.NunnyID));
         }
         public Contract GetContract(int num)
         {
@@ -220,9 +220,8 @@ namespace BL
             else // if there is no area to mother
                 area = m.Address;
 
-            foreach (var n in GetAllNannies())
-                if (CalculateDistance(n.Address, area) <= 1000 * desirableDistanceInKM)
-                    nannies.Add(n);
+            foreach (var n in GetNanniesByTerm(n => CalculateDistance(n.Address, area) <= 1000 * desirableDistanceInKM))
+                nannies.Add(n);
 
             return nannies;
         }
@@ -238,11 +237,9 @@ namespace BL
         {
             List<Nanny> nannies = new List<Nanny>();
 
-            foreach (var n in GetAllNannies())
-            {
-                if (NannyToMother(m, n))//if n completely match to m
+            foreach (var n in GetNanniesByTerm(n => NannyToMother(m, n)))//if n completely match to m
                     nannies.Add(n);
-            }
+
             return nannies;
         }
         /// <summary>
@@ -348,6 +345,32 @@ namespace BL
         #endregion
 
         /// <summary>
+        /// repairs the wage of every contract that is shared with m and n
+        /// </summary>
+        /// <param name="m">mother</param>
+        /// <param name="n">nanny</param>
+        private void RepairWageForMotherAndNanny(Mother m, Nanny n)
+        {
+            double discount = 1;
+            foreach (var c in GetContractsByTerm(c => m.ID == c.MotherID && n.ID == c.NunnyID))
+                discount *= 0.98;
+            discount /= 0.98;
+            foreach (var c in GetAllContracts())
+            {
+                if (m.IsPerMonth)
+                {
+                    c.IsPerMonth = true;
+                    c.WagePerMonth = n.RatePerMonth * discount;
+                }
+                else
+                {
+                    c.IsPerMonth = false;
+                    c.WagePerMonth = n.RatePerHour * GradeNannyToMother(m, n) * 4 * discount;
+                }
+            }
+        }
+
+        /// <summary>
         /// Returns list of childs who haven't yet any nanny.
         /// </summary>
         /// <returns>List of childs who haven't yet any nanny.</returns>
@@ -366,13 +389,39 @@ namespace BL
         public List<Nanny> AllFinancedVacation()
         {
             List<Nanny> nannies = new List<Nanny>();
-            foreach (var n in GetAllNannies())
-                if (n.FinancedVacation == true)
-                    nannies.Add(n);
+            foreach (var n in GetNanniesByTerm(n => n.FinancedVacation == true))
+                nannies.Add(n);
 
             return nannies;
         }
 
+        /// <summary>
+        /// Return list of Mothers that match a certain condition
+        /// </summary>
+        /// <param name="cond">condition</param>
+        /// <returns>List of Mothers that match cond</returns>
+        public List<Mother> GetMothersByTerm(Predicate<Mother> cond)
+        {
+            return GetAllMothers().FindAll(cond);
+        }
+        /// <summary>
+        /// Return list of Childs that match a certain condition
+        /// </summary>
+        /// <param name="cond">condition</param>
+        /// <returns>List of Childs that match cond</returns>
+        public List<Child> GetChildsByTerm(Predicate<Child> cond)
+        {
+            return GetAllChilds().FindAll(cond);
+        }
+        /// <summary>
+        /// Return list of Nannies that match a certain condition
+        /// </summary>
+        /// <param name="cond">condition</param>
+        /// <returns>List of Nannies that match cond</returns>
+        public List<Nanny> GetNanniesByTerm(Predicate<Nanny> cond)
+        {
+            return GetAllNannies().FindAll(cond);
+        }
         /// <summary>
         /// Return list of contracts that match a certain condition
         /// </summary>
@@ -391,6 +440,7 @@ namespace BL
         {
             return GetContractsByTerm(cond).Count;
         }
+
         /// <summary>
         /// Returns nannies grouped by age, minimum or maximum by choice
         /// </summary>
