@@ -137,7 +137,7 @@ namespace BL
         /// </summary>
         /// <returns>all childs who in the childs list</returns>
         List<Child> GetAllChilds();
-        IEnumerable<IGrouping<string, Child>> GetAllChildsByMother();
+        IEnumerable<IGrouping<int, Child>> GetAllChildsByMother();
 
         /// <summary>
         /// Returns the all contracts who in the contracts list 
@@ -146,6 +146,7 @@ namespace BL
         List<Contract> GetAllContracts();
         #endregion
 
+        int CalculateDistance(string source, string dest);
         List<Nanny> DistanseFromMotherInKM(Mother m, int desirableDistanceInKM);
 
         List<Nanny> CompletelyMatchNannies(Mother m);
@@ -163,7 +164,7 @@ namespace BL
         IEnumerable<IGrouping<int, Nanny>> NanniesByChildsAge(bool byMax, bool order = false);
         IEnumerable<IGrouping<int, Nanny>> NanniesByExpYears(bool order = false);
         IEnumerable<IGrouping<int, Contract>> ContractsByDistance(bool order = false);
-        IEnumerable<IGrouping<int, Contract>> ContractsByNanny(bool order = false);
-        IEnumerable<IGrouping<int, Contract>> ContractsByMother(bool order = false);
+        IEnumerable<IGrouping<int, Contract>> GetAllContractsByNanny();
+        IEnumerable<IGrouping<int, Contract>> GetAllContractsByMother();
     }
 }

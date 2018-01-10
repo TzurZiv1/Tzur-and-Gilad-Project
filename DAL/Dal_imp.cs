@@ -276,7 +276,7 @@ namespace DAL
         /// Returns all childs grouped by mother
         /// </summary>
         /// <returns>List of all childs grouped by mother</returns>
-        public IEnumerable<IGrouping<string, Child>> GetAllChildsByMother() => from c in GetAllChilds()
+        public IEnumerable<IGrouping<int, Child>> GetAllChildsByMother() => from c in GetAllChilds()
                                                                                group c by c.MotherID;
         /// <summary>
         /// Returns the all contracts who in the contracts list 
@@ -289,13 +289,13 @@ namespace DAL
         /// Returns all contracts grouped by motherID
         /// </summary>
         /// <returns>all contracts grouped by motherID</returns>
-        public IEnumerable<IGrouping<string, Contract>> GetAllContractsByMother() => from c in GetAllContracts()
+        public IEnumerable<IGrouping<int, Contract>> GetAllContractsByMother() => from c in GetAllContracts()
                                                                                      group c by c.MotherID;
         /// <summary>
         /// Returns all contracts grouped by nannyID
         /// </summary>
         /// <returns>all contracts grouped by nannyID</returns>
-        public IEnumerable<IGrouping<string, Contract>> GetAllContractsByNanny() => from c in GetAllContracts()
+        public IEnumerable<IGrouping<int, Contract>> GetAllContractsByNanny() => from c in GetAllContracts()
                                                                                     group c by c.NunnyID;
         #endregion
     }

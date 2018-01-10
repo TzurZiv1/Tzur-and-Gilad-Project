@@ -15,26 +15,28 @@ namespace BL
     {
         DAL.IDAL dal = new DAL.DAL_imp();
 
-        public void init()
+        /*
+    public void init()
+    {
+        AddChild(new BE.Child
         {
-            AddChild(new BE.Child
-            {
-                // צריך לשים פה פרטים לילד
-            });
-            AddNanny(new BE.Nanny
-            {
-                // צריך לשים פה פרטים למטפלת
-            });
-            AddMother(new BE.Mother
-            {
-                // צריך לשים פה פרטים לאמא
-            });
-            AddContract(new BE.Contract
-            {
-                // צריך לשים פה פרטים לחוזה העסקה
-            });
-            // אפשר להוסיף עוד ילדים, אמהות ומטפלות
-        }
+            // צריך לשים פה פרטים לילד
+        });
+        AddNanny(new BE.Nanny
+        {
+            // צריך לשים פה פרטים למטפלת
+        });
+        AddMother(new BE.Mother
+        {
+            // צריך לשים פה פרטים לאמא
+        });
+        AddContract(new BE.Contract
+        {
+            // צריך לשים פה פרטים לחוזה העסקה
+        });
+        // אפשר להוסיף עוד ילדים, אמהות ומטפלות
+
+    }*/
 
         #region Nanny
         public void AddNanny(Nanny n)
@@ -136,7 +138,7 @@ namespace BL
             //Checks if there is a place for another child to this nanny
             int numChildsToNanny = 0;
             foreach (var con in GetContractsByTerm(con => con.NunnyID == c.NunnyID && con.WasSignature))
-                    numChildsToNanny++;
+                numChildsToNanny++;
 
             if (numChildsToNanny < GetNanny(c.NunnyID).MaxChilds)
                 c.WasSignature = true;
@@ -163,26 +165,11 @@ namespace BL
         #endregion
 
         #region GetAll
-        public List<BE.Nanny> GetAllNannies()
-        {
-            return dal.GetAllNannies();
-        }
-        public List<BE.Mother> GetAllMothers()
-        {
-            return dal.GetAllMothers();
-        }
-        public List<BE.Child> GetAllChilds()
-        {
-            return dal.GetAllChilds();
-        }
-        public IEnumerable<IGrouping<string, Child>> GetAllChildsByMother()
-        {
-            return dal.GetAllChildsByMother();
-        }
-        public List<BE.Contract> GetAllContracts()
-        {
-            return dal.GetAllContracts();
-        }
+        public List<BE.Nanny> GetAllNannies() => dal.GetAllNannies();
+        public List<BE.Mother> GetAllMothers() => dal.GetAllMothers();
+        public List<BE.Child> GetAllChilds() => dal.GetAllChilds();
+        public IEnumerable<IGrouping<int, Child>> GetAllChildsByMother() => dal.GetAllChildsByMother();
+        public List<BE.Contract> GetAllContracts() => dal.GetAllContracts();
         #endregion
 
         #region Distance
@@ -192,7 +179,7 @@ namespace BL
         /// <param name="source"></param>
         /// <param name="dest"></param>
         /// <returns>The distance between source and dest</returns>
-        private int CalculateDistance(string source, string dest)
+        public int CalculateDistance(string source, string dest)
         {
             var drivingDirectionRequest = new DirectionsRequest
             {
@@ -238,7 +225,7 @@ namespace BL
             List<Nanny> nannies = new List<Nanny>();
 
             foreach (var n in GetNanniesByTerm(n => NannyToMother(m, n)))//if n completely match to m
-                    nannies.Add(n);
+                nannies.Add(n);
 
             return nannies;
         }
@@ -432,19 +419,19 @@ namespace BL
                 if (order)//order nannies by name
                     return from n in GetAllNannies()
                            orderby n.ID
-                           group n by n.MaxAgeInMonth/3;
+                           group n by n.MaxAgeInMonth / 3;
                 //Don't order nannies
                 return from n in GetAllNannies()
-                       group n by n.MaxAgeInMonth/3;
+                       group n by n.MaxAgeInMonth / 3;
             }
             //group by min age
             if (order)//order nannies by name
                 return from n in GetAllNannies()
                        orderby n.FirstName, n.LastName
-                       group n by n.MinAgeInMonth/3;
+                       group n by n.MinAgeInMonth / 3;
             //Don't order nannies
             return from n in GetAllNannies()
-                   group n by n.MinAgeInMonth/3;
+                   group n by n.MinAgeInMonth / 3;
         }
         /// <summary>
         /// Returns nannies grouped by ExpYears
@@ -486,30 +473,12 @@ namespace BL
         /// </summary>
         /// <param name="order">true = order the contracts, false = don't order</param>
         /// <returns></returns>
-        public IEnumerable<IGrouping<int, Contract>> ContractsByNanny(bool order = false)
-        {
-            if (order)//order contracts by number
-                return from c in GetAllContracts()
-                       orderby c.Number
-                       group c by c.NunnyID;
-            //Don't order contracts
-            return from c in GetAllContracts()
-                   group c by c.NunnyID;
-        }
+        public IEnumerable<IGrouping<int, Contract>> GetAllContractsByNanny() => dal.GetAllContractsByNanny();
         /// <summary>
         /// Returns all contracts grouped by Mother
         /// </summary>
         /// <param name="order">true = order the contracts, false = don't order</param>
         /// <returns></returns>
-        public IEnumerable<IGrouping<int, Contract>> ContractsByMother(bool order = false)
-        {
-            if (order)//order contracts by number
-                return from c in GetAllContracts()
-                       orderby c.Number
-                       group c by c.MotherID;
-            //Don't order contracts
-            return from c in GetAllContracts()
-                   group c by c.MotherID;
-        }
+        public IEnumerable<IGrouping<int, Contract>> GetAllContractsByMother() => dal.GetAllContractsByMother();
     }
 }
