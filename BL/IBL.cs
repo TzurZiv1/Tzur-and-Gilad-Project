@@ -158,10 +158,12 @@ namespace BL
         List<Mother> GetMothersByTerm(Predicate<Mother> cond);
         List<Child> GetChildsByTerm(Predicate<Child> cond);
         List<Nanny> GetNanniesByTerm(Predicate<Nanny> cond);
-
         int NumOfContractsByTerm(Predicate<Contract> cond);
 
         IEnumerable<IGrouping<int, Nanny>> NanniesByChildsAge(bool byMax, bool order = false);
+        IEnumerable<IGrouping<int, Nanny>> NanniesByExpYears(bool order = false);
         IEnumerable<IGrouping<int, Contract>> ContractsByDistance(bool order = false);
+        IEnumerable<IGrouping<string, Contract>> ContractsByNanny(bool order = false);
+        IEnumerable<IGrouping<string, Contract>> ContractsByMother(bool order = false);
     }
 }

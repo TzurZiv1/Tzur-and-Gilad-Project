@@ -13,6 +13,12 @@ namespace DS
         private static List<Mother> mothersList = new List<Mother>();
         private static List<Child> childsList = new List<Child>();
         private static List<Contract> contractslist = new List<Contract>();
+        
+        public static List<Nanny> NanniesList { get => new List<Nanny>(nanniesList); }
+        public static List<Mother> MothersList { get => new List<Mother>(mothersList); }
+        public static List<Child> ChildsList { get => new List<Child>(childsList); }
+        public static List<Contract> ContractsList { get => new List<Contract>(contractslist); }
+
         /// <summary>
         /// Add n to nanniesList
         /// </summary>
@@ -77,10 +83,5 @@ namespace DS
         {
             contractslist.Remove(c);
         }
-
-        public static List<Nanny> NanniesList { get => new List<Nanny>(nanniesList); }
-        public static List<Mother> MothersList { get => new List<Mother>(mothersList); }
-        public static List<Child> ChildsList { get => new List<Child>(childsList); }
-        public static List<Contract> Contractslist { get => new List<Contract>(contractslist); }
     }
 }

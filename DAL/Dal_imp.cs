@@ -27,7 +27,7 @@ namespace DAL
             if (GetNanny(nannyToAdd.ID) != null)
                 throw new Exception("The nanny already exist");
             else
-                GetAllNannies().Add(nannyToAdd);
+                DataSource.AddNanny(nannyToAdd);
         }
 
         /// <summary>
@@ -39,7 +39,7 @@ namespace DAL
             if (GetNanny(nannyToRemove.ID) == null)
                 throw new Exception("The nanny doesn't exist");
             else
-                GetAllNannies().Remove(GetNanny(nannyToRemove.ID));
+                DataSource.RemoveNanny(GetNanny(nannyToRemove.ID));
         }
 
         /// <summary>
@@ -52,8 +52,8 @@ namespace DAL
                 throw new Exception("The nanny doesn't exist");
             else
             {
-                GetAllNannies().Remove(GetNanny(nannyToUpdate.ID));
-                GetAllNannies().Add(nannyToUpdate);
+                DataSource.RemoveNanny(GetNanny(nannyToUpdate.ID));
+                DataSource.AddNanny(nannyToUpdate);
             }
         }
 
@@ -65,10 +65,9 @@ namespace DAL
         public Nanny GetNanny(string id)
         {
             foreach (var nan in GetAllNannies())
-            {
                 if (nan.ID == id)
                     return nan;
-            }
+
             return null;
         }
         #endregion
@@ -83,7 +82,7 @@ namespace DAL
             if (GetMother(motherToAdd.ID) != null)
                 throw new Exception("The mother already exist");
             else
-                GetAllMothers().Add(motherToAdd);
+                DataSource.AddMother(motherToAdd);
         }
 
         /// <summary>
@@ -95,7 +94,7 @@ namespace DAL
             if (GetMother(motherToRemove.ID) == null)
                 throw new Exception("The mother doesn't exist");
             else
-                GetAllMothers().Remove(GetMother(motherToRemove.ID));
+                DataSource.RemoveMother(GetMother(motherToRemove.ID));
         }
 
         /// <summary>
@@ -109,8 +108,8 @@ namespace DAL
                 throw new Exception("The mother doesn't exist");
             else
             {
-                GetAllMothers().Remove(GetMother(motherToUpdate.ID));
-                GetAllMothers().Add(motherToUpdate);
+                DataSource.RemoveMother(GetMother(motherToUpdate.ID));
+                DataSource.AddMother(motherToUpdate);
             }
         }
 
@@ -122,10 +121,9 @@ namespace DAL
         public Mother GetMother(string id)
         {
             foreach (var mom in GetAllMothers())
-            {
                 if (mom.ID == id)
                     return mom;
-            }
+            
             return null;
         }
         #endregion
@@ -141,7 +139,7 @@ namespace DAL
             if (GetChild(childToAdd.ID) != null)
                 throw new Exception("The child already exist");
             else
-                GetAllChilds().Add(childToAdd);
+                DataSource.AddChild(childToAdd);
         }
 
         /// <summary>
@@ -153,7 +151,7 @@ namespace DAL
             if (GetChild(childToRemove.ID) == null)
                 throw new Exception("The child doesn't exist");
             else
-                GetAllChilds().Remove(GetChild(childToRemove.ID));
+                DataSource.RemoveChild(GetChild(childToRemove.ID));
         }
 
         /// <summary>
@@ -166,8 +164,8 @@ namespace DAL
                 throw new Exception("The child doesn't exist");
             else
             {
-                GetAllChilds().Remove(GetChild(childToUpdate.ID));
-                GetAllChilds().Add(childToUpdate);
+                DataSource.RemoveChild(GetChild(childToUpdate.ID));
+                DataSource.AddChild(childToUpdate);
             }
         }
 
@@ -179,10 +177,9 @@ namespace DAL
         public Child GetChild(string id)
         {
             foreach (var chi in GetAllChilds())
-            {
                 if (chi.ID == id)
                     return chi;
-            }
+            
             return null;
         }
         #endregion
@@ -198,13 +195,13 @@ namespace DAL
         {
             if (GetChild(contractToAdd.ChildID) == null)
                 throw new Exception("The child doesn't exist");
-            if (GetMother(GetChild(contractToAdd.ChildID).MotherID) == null)
+            if (GetMother(contractToAdd.MotherID) == null)
                 throw new Exception("The mother doesn't exist");
             if (GetNanny(contractToAdd.NunnyID) == null)
                 throw new Exception("The nanny doesn't exist");
 
             contractToAdd.Number = ++numberOfContracts;
-            GetAllContracts().Add(contractToAdd);
+            DataSource.AddContract(contractToAdd);
         }
 
         /// <summary>
@@ -216,7 +213,7 @@ namespace DAL
             if (GetContract(contractToRemove.Number) == null)
                 throw new Exception("The contract doesn't exist");
 
-            GetAllContracts().Remove(GetContract(contractToRemove.Number));
+            DataSource.RemoveContract(GetContract(contractToRemove.Number));
         }
 
         /// <summary>
@@ -234,8 +231,8 @@ namespace DAL
             if (GetNanny(contractToUpdate.NunnyID) == null)
                 throw new Exception("The nanny doesn't exist");
 
-            GetAllContracts().Remove(GetContract(contractToUpdate.Number));
-            GetAllContracts().Add(contractToUpdate);
+            DataSource.RemoveContract(GetContract(contractToUpdate.Number));
+            DataSource.AddContract(contractToUpdate);
         }
 
         /// <summary>
@@ -246,10 +243,9 @@ namespace DAL
         public Contract GetContract(int num)
         {
             foreach (var con in GetAllContracts())
-            {
                 if (con.Number == num)
                     return con;
-            }
+            
             return null;
         }
         #endregion
@@ -259,86 +255,48 @@ namespace DAL
         /// Returns the all nannies who are in the nannies list 
         /// </summary>
         /// <returns>all nannies who in the nannies list</returns>
-        public List<Nanny> GetAllNannies()
-        {
-            List<Nanny> nannies = new List<Nanny>();
-            foreach (var n in DataSource.NanniesList)
-                nannies.Add(n);
-            return (List<Nanny>)from n in nannies
-                                orderby n.ID
-                                select n;
-        }
-
+        public List<Nanny> GetAllNannies() => (from n in DataSource.NanniesList
+                                               orderby n.ID
+                                               select n).ToList();
         /// <summary>
         /// Returns the all mothers who are in the mothers list 
         /// </summary>
         /// <returns>all mothers who in the mothers list</returns>
-        public List<Mother> GetAllMothers()
-        {
-            List<Mother> mothers = new List<Mother>();
-            foreach (var m in DataSource.MothersList)
-                mothers.Add(m);
-
-            return (List<Mother>)from m in mothers
-                                 orderby m.ID
-                                 select m;
-        }
-
+        public List<Mother> GetAllMothers() => (from m in DataSource.MothersList
+                                                orderby m.ID
+                                                select m).ToList();
         /// <summary>
         /// Returns all childs who are in the childs list 
         /// </summary>
         /// <returns>all childs who in the childs list</returns>
-        public List<Child> GetAllChilds()
-        {
-            List<Child> childs = new List<Child>();
-            foreach (var c in DataSource.ChildsList)
-                childs.Add(c);
-
-            return (List<Child>)from c in childs
-                                orderby c.ID
-                                select c;
-        }
+        public List<Child> GetAllChilds() => (from c in DataSource.ChildsList
+                                              orderby c.ID
+                                              select c).ToList();
         /// <summary>
         /// Returns all childs grouped by mother
         /// </summary>
         /// <returns>List of all childs grouped by mother</returns>
-        public IEnumerable<IGrouping<string, Child>> GetAllChildsByMother()
-        {
-            return from c in GetAllChilds()
-                   group c by c.MotherID;
-        }
+        public IEnumerable<IGrouping<string, Child>> GetAllChildsByMother() => from c in GetAllChilds()
+                                                                               group c by c.MotherID;
         /// <summary>
         /// Returns the all contracts who in the contracts list 
         /// </summary>
         /// <returns>all contracts who in the contracts list</returns>
-        public List<Contract> GetAllContracts()
-        {
-            List<Contract> contracts = new List<Contract>();
-            foreach (var c in DataSource.Contractslist)
-                contracts.Add(c);
-
-            return (List<Contract>)from c in contracts
-                                   orderby c.Number
-                                   select c;
-        }
+        public List<Contract> GetAllContracts() => (from c in DataSource.ContractsList
+                                                    orderby c.Number
+                                                    select c).ToList();
         /// <summary>
         /// Returns all contracts grouped by motherID
         /// </summary>
         /// <returns>all contracts grouped by motherID</returns>
-        public IEnumerable<IGrouping<string, Contract>> GetAllContractsByMother()
-        {
-            return from c in GetAllContracts()
-                   group c by c.MotherID;
-        }
+        public IEnumerable<IGrouping<string, Contract>> GetAllContractsByMother() => from c in GetAllContracts()
+                                                                                     group c by c.MotherID;
         /// <summary>
         /// Returns all contracts grouped by nannyID
         /// </summary>
         /// <returns>all contracts grouped by nannyID</returns>
-        public IEnumerable<IGrouping<string, Contract>> GetAllContractsByNanny()
-        {
-            return from c in GetAllContracts()
-                   group c by c.NunnyID;
-        }
+        public IEnumerable<IGrouping<string, Contract>> GetAllContractsByNanny() => from c in GetAllContracts()
+                                                                                    group c by c.NunnyID;
         #endregion
     }
 }

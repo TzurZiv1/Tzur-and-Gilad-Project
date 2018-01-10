@@ -386,60 +386,38 @@ namespace BL
         /// Returns list of nannies with financed vacation by ministry of Industry, Trade and Labor
         /// </summary>
         /// <returns>list of nannies with financed vacation</returns>
-        public List<Nanny> AllFinancedVacation()
-        {
-            List<Nanny> nannies = new List<Nanny>();
-            foreach (var n in GetNanniesByTerm(n => n.FinancedVacation == true))
-                nannies.Add(n);
-
-            return nannies;
-        }
+        public List<Nanny> AllFinancedVacation() => GetNanniesByTerm(n => n.FinancedVacation);
 
         /// <summary>
         /// Return list of Mothers that match a certain condition
         /// </summary>
         /// <param name="cond">condition</param>
         /// <returns>List of Mothers that match cond</returns>
-        public List<Mother> GetMothersByTerm(Predicate<Mother> cond)
-        {
-            return GetAllMothers().FindAll(cond);
-        }
+        public List<Mother> GetMothersByTerm(Predicate<Mother> cond) => GetAllMothers().FindAll(cond);
         /// <summary>
         /// Return list of Childs that match a certain condition
         /// </summary>
         /// <param name="cond">condition</param>
         /// <returns>List of Childs that match cond</returns>
-        public List<Child> GetChildsByTerm(Predicate<Child> cond)
-        {
-            return GetAllChilds().FindAll(cond);
-        }
+        public List<Child> GetChildsByTerm(Predicate<Child> cond) => GetAllChilds().FindAll(cond);
         /// <summary>
         /// Return list of Nannies that match a certain condition
         /// </summary>
         /// <param name="cond">condition</param>
         /// <returns>List of Nannies that match cond</returns>
-        public List<Nanny> GetNanniesByTerm(Predicate<Nanny> cond)
-        {
-            return GetAllNannies().FindAll(cond);
-        }
+        public List<Nanny> GetNanniesByTerm(Predicate<Nanny> cond) => GetAllNannies().FindAll(cond);
         /// <summary>
         /// Return list of contracts that match a certain condition
         /// </summary>
         /// <param name="cond">condition</param>
         /// <returns>List of contracts that match cond</returns>
-        public List<Contract> GetContractsByTerm(Predicate<Contract> cond)
-        {
-            return GetAllContracts().FindAll(cond);
-        }
+        public List<Contract> GetContractsByTerm(Predicate<Contract> cond) => GetAllContracts().FindAll(cond);
         /// <summary>
         /// Return the number of the contracts that match a certain condition
         /// </summary>
         /// <param name="cond">condition</param>
         /// <returns>Number of the contracts that match a certain condition</returns>
-        public int NumOfContractsByTerm(Predicate<Contract> cond)
-        {
-            return GetContractsByTerm(cond).Count;
-        }
+        public int NumOfContractsByTerm(Predicate<Contract> cond) => GetContractsByTerm(cond).Count;
 
         /// <summary>
         /// Returns nannies grouped by age, minimum or maximum by choice
@@ -469,23 +447,69 @@ namespace BL
                    group n by n.MinAgeInMonth;
         }
         /// <summary>
-        /// Returns all contracts grouped by distance between mother's area and nanny's address
+        /// Returns nannies grouped by ExpYears
         /// </summary>
         /// <param name="order">true = order the nannies, false = don't order</param>
+        /// <returns>nannies grouped by ExpYears</returns>
+        public IEnumerable<IGrouping<int, Nanny>> NanniesByExpYears(bool order = false)
+        {
+            if (order)//order nannies by name
+                return from n in GetAllNannies()
+                       orderby n.FirstName, n.LastName
+                       group n by n.ExpYears;
+            //Don't order nannies
+            return from n in GetAllNannies()
+                   group n by n.ExpYears;
+        }
+
+        /// <summary>
+        /// Returns all contracts grouped by distance between mother's area and nanny's address
+        /// </summary>
+        /// <param name="order">true = order the contracts, false = don't order</param>
         /// <returns></returns>
         public IEnumerable<IGrouping<int, Contract>> ContractsByDistance(bool order = false)
         {
-            if (order)//order nannies by number
+            if (order)//order contracts by number
                 return from c in GetAllContracts()
                        orderby c.Number
                        let tempArea = GetMother(c.MotherID).Area
                        let area = (tempArea != null && tempArea != "") ? tempArea : GetMother(c.MotherID).Address
                        group c by (CalculateDistance(area, GetNanny(c.NunnyID).Address) / 5000);
-            //Don't order nannies
+            //Don't order contracts
             return from c in GetAllContracts()
                    let tempArea = GetMother(c.MotherID).Area
                    let area = (tempArea != null && tempArea != "") ? tempArea : GetMother(c.MotherID).Address
                    group c by (CalculateDistance(area, GetNanny(c.NunnyID).Address) / 5000);
+        }
+        /// <summary>
+        /// Returns all contracts grouped by nanny
+        /// </summary>
+        /// <param name="order">true = order the contracts, false = don't order</param>
+        /// <returns></returns>
+        public IEnumerable<IGrouping<string, Contract>> ContractsByNanny(bool order = false)
+        {
+            if (order)//order contracts by number
+                return from c in GetAllContracts()
+                       orderby c.Number
+                       group c by c.NunnyID;
+            //Don't order contracts
+            return from c in GetAllContracts()
+                   group c by c.NunnyID;
+        }
+        /// <summary>
+        /// Returns all contracts grouped by Mother
+        /// </summary>
+        /// <param name="order">true = order the contracts, false = don't order</param>
+        /// <returns></returns>
+        public IEnumerable<IGrouping<string, Contract>> ContractsByMother(bool order = false)
+        {
+            if (order)//order contracts by number
+                return from c in GetAllContracts()
+                       orderby c.Number
+                       group c by c.MotherID;
+            //Don't order contracts
+            return from c in GetAllContracts()
+                   group c by c.MotherID;
         }
     }
 }
