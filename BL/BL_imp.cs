@@ -11,6 +11,16 @@ using GoogleMapsApi.Entities.Directions.Response;
 
 namespace BL
 {
+    public class FactoryBL
+    {
+        static IBL bl = null;
+        public static IBL GetBL()
+        {
+            if (bl == null)
+                bl = new BL_imp();
+            return bl;
+        }
+    }
     public class BL_imp : IBL
     {
         DAL.IDAL dal = new DAL.DAL_imp();

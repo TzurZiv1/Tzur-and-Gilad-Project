@@ -55,6 +55,25 @@ namespace BE
         public bool IsSpecial { get => isSpecial; set => isSpecial = value; }
         public string SpecialNeeds { get => specialNeeds ?? ""; set => specialNeeds = value; }
         /// <summary>
+        /// constructor
+        /// </summary>
+        /// <param name="id1"></param>
+        /// <param name="motherID1"></param>
+        /// <param name="firstName1"></param>
+        /// <param name="birthdate1"></param>
+        /// <param name="isSpecial1"></param>
+        /// <param name="specialNeeds1"></param>
+        public Child(int id1, int motherID1, string firstName1, DateTime birthdate1,
+            bool isSpecial1 = false, string specialNeeds1 = "Nothing")
+        {
+            ID = id1;
+            MotherID = motherID1;
+            FirstName = firstName1;
+            Birthdate = birthdate1;
+            IsSpecial = isSpecial1;
+            SpecialNeeds = specialNeeds1;
+        }
+        /// <summary>
         /// Converts the value of the current Child object to its equivalent string representation
         /// </summary>
         /// <returns>A string representation of the value of the current Child object.</returns>

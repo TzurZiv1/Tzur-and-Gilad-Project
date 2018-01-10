@@ -82,6 +82,54 @@ namespace BE
         private WorkHours[] hoursOnDay = new WorkHours[6];
         private bool financedVacation;
         private string recommendations;
+        /// <summary>
+        /// Constructor of nanny
+        /// </summary>
+        /// <param name="id1"></param>
+        /// <param name="firstName1"></param>
+        /// <param name="lastName1"></param>
+        /// <param name="birthdate1"></param>
+        /// <param name="address1"></param>
+        /// <param name="maxChilds1"></param>
+        /// <param name="minAgeInMonth1"></param>
+        /// <param name="maxAgeInMonth1"></param>
+        /// <param name="workOnDay1"></param>
+        /// <param name="hoursOnDay1"></param>
+        /// <param name="ratePerHour1"></param>
+        /// <param name="ratePerMonth1"></param>
+        /// <param name="phoneNumber1"></param>
+        /// <param name="isElevator1"></param>
+        /// <param name="floor1"></param>
+        /// <param name="expYears1"></param>
+        /// <param name="allowPerHour1"></param>
+        /// <param name="financedVacation1"></param>
+        /// <param name="recommendations1"></param>
+        public Nanny(int id1, string firstName1, string lastName1, DateTime birthdate1, string address1,
+            int maxChilds1, int minAgeInMonth1, int maxAgeInMonth1, bool[] workOnDay1,
+            WorkHours[] hoursOnDay1, double ratePerHour1, double ratePerMonth1 = 0,
+            string phoneNumber1 = "No phone number", bool isElevator1 = false, int floor1 = 0,
+            int expYears1 = 0, bool allowPerHour1 = false, bool financedVacation1 = false, string recommendations1 = "Nothing")
+        {
+            ID = id1;
+            LastName = lastName1;
+            FirstName = firstName1;
+            Birthdate = birthdate1;
+            PhoneNumber = phoneNumber1;
+            Address = address1;
+            IsElevator = isElevator1;
+            Floor = floor1;
+            ExpYears = expYears1;
+            MaxChilds = maxChilds1;
+            MinAgeInMonth = minAgeInMonth1;
+            MaxAgeInMonth = maxAgeInMonth1;
+            AllowPerHour = allowPerHour1;
+            RatePerHour = ratePerHour1;
+            RatePerMonth = ratePerMonth1;
+            WorkOnDay = workOnDay1;
+            HoursOnDay = hoursOnDay1;
+            FinancedVacation = financedVacation1;
+            Recommendations = recommendations1;
+        }
 
         //Properties
         public int ID
