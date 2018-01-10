@@ -264,8 +264,9 @@ namespace DAL
             List<Nanny> nannies = new List<Nanny>();
             foreach (var n in DataSource.NanniesList)
                 nannies.Add(n);
-
-            return nannies;
+            return (List<Nanny>)from n in nannies
+                                orderby n.ID
+                                select n;
         }
 
         /// <summary>
@@ -278,7 +279,9 @@ namespace DAL
             foreach (var m in DataSource.MothersList)
                 mothers.Add(m);
 
-            return mothers;
+            return (List<Mother>)from m in mothers
+                                 orderby m.ID
+                                 select m;
         }
 
         /// <summary>
@@ -291,15 +294,17 @@ namespace DAL
             foreach (var c in DataSource.ChildsList)
                 childs.Add(c);
 
-            return childs;
+            return (List<Child>)from c in childs
+                                orderby c.ID
+                                select c;
         }
         /// <summary>
-        /// Returns list of all childs grouped by mother
+        /// Returns all childs grouped by mother
         /// </summary>
         /// <returns>List of all childs grouped by mother</returns>
         public IEnumerable<IGrouping<string, Child>> GetAllChildsByMother()
         {
-            return from c in DataSource.ChildsList
+            return from c in GetAllChilds()
                    group c by c.MotherID;
         }
         /// <summary>
@@ -312,7 +317,27 @@ namespace DAL
             foreach (var c in DataSource.Contractslist)
                 contracts.Add(c);
 
-            return contracts;
+            return (List<Contract>)from c in contracts
+                                   orderby c.Number
+                                   select c;
+        }
+        /// <summary>
+        /// Returns all contracts grouped by motherID
+        /// </summary>
+        /// <returns>all contracts grouped by motherID</returns>
+        public IEnumerable<IGrouping<string, Contract>> GetAllContractsByMother()
+        {
+            return from c in GetAllContracts()
+                   group c by c.MotherID;
+        }
+        /// <summary>
+        /// Returns all contracts grouped by nannyID
+        /// </summary>
+        /// <returns>all contracts grouped by nannyID</returns>
+        public IEnumerable<IGrouping<string, Contract>> GetAllContractsByNanny()
+        {
+            return from c in GetAllContracts()
+                   group c by c.NunnyID;
         }
         #endregion
     }

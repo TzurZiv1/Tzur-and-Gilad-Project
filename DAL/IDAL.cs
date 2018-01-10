@@ -141,15 +141,27 @@ namespace DAL
         /// <returns>all childs who in the childs list</returns>
         List<Child> GetAllChilds();
         /// <summary>
-        /// Returns list of all childs grouped by mother
+        /// Returns childs grouped by motherID
         /// </summary>
-        /// <returns>List of all childs grouped by mother</returns>
+        /// <returns>all childs grouped by motherID</returns>
         IEnumerable<IGrouping<string, Child>> GetAllChildsByMother();
         /// <summary>
         /// Returns the all contracts who in the contracts list 
         /// </summary>
         /// <returns>all contracts who in the contracts list</returns>
         List<Contract> GetAllContracts();
+        /// <summary>
+        /// Returns all contracts grouped by motherID
+        /// </summary>
+        /// <returns>all contracts grouped by motherID</returns>
+        IEnumerable<IGrouping<string, Contract>> GetAllContractsByMother();
+        /// <summary>
+        /// Returns all contracts grouped by nannyID
+        /// </summary>
+        /// <returns>all contracts grouped by nannyID</returns>
+        IEnumerable<IGrouping<string, Contract>> GetAllContractsByNanny();
         #endregion
+
+
     }
 }
