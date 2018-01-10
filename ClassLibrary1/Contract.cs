@@ -97,7 +97,7 @@ namespace BE
 				"Child's ID: " + ChildID + "\n" +
 				"Mother's ID: " + MotherID + "\n" +
 				"Was meeting: " + WasMeeting + "\n" +
-				"Was signature: " + WasSignature +
+				"Was signature: " + WasSignature + "\n" +
 				"Wage per hour: " + WagePerHour + "\n" +
 				"Wage per month: " + WagePerMonth + "\n" +
 				"Payment is calculated per " + (isPerMonth ? "month" : "hour") + "\n" +

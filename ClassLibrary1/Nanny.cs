@@ -37,6 +37,16 @@ namespace BE
                     throw new Exception("Work hours must be between 0 and 24");
             }
         }
+        /// <summary>
+        /// constructor to WorkHours
+        /// </summary>
+        /// <param name="s"></param>
+        /// <param name="f"></param>
+        public WorkHours(int s, int f)
+        {
+            Start = s;
+            Finish = f;
+        }
 
         /// <summary>
         /// Converts the value of the current WorkHours object to its equivalent string representation
