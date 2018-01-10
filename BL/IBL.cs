@@ -34,7 +34,7 @@ namespace BL
         /// </summary>
         /// <param name="id">The ID you want to find in the nanny list</param>
         /// <returns>The nanny from the list who has this ID</returns>
-        Nanny GetNanny(string id);
+        Nanny GetNanny(int id);
         #endregion
 
         #region MOTHER
@@ -62,7 +62,7 @@ namespace BL
         /// </summary>
         /// <param name="id">The ID you want to find in the mother list</param>
         /// <returns>The mother from the list who has this ID</returns>
-        Mother GetMother(string id);
+        Mother GetMother(int id);
 
         #endregion
 
@@ -90,7 +90,7 @@ namespace BL
         /// </summary>
         /// <param name="id">The ID you want to find in the child list</param>
         /// <returns>The child from the list who has this ID</returns>
-        Child GetChild(string id);
+        Child GetChild(int id);
         #endregion
 
         #region CONTRACT
@@ -163,7 +163,7 @@ namespace BL
         IEnumerable<IGrouping<int, Nanny>> NanniesByChildsAge(bool byMax, bool order = false);
         IEnumerable<IGrouping<int, Nanny>> NanniesByExpYears(bool order = false);
         IEnumerable<IGrouping<int, Contract>> ContractsByDistance(bool order = false);
-        IEnumerable<IGrouping<string, Contract>> ContractsByNanny(bool order = false);
-        IEnumerable<IGrouping<string, Contract>> ContractsByMother(bool order = false);
+        IEnumerable<IGrouping<int, Contract>> ContractsByNanny(bool order = false);
+        IEnumerable<IGrouping<int, Contract>> ContractsByMother(bool order = false);
     }
 }

@@ -11,20 +11,49 @@ namespace BE
     /// </summary>
     public class Child
     {
-        private string id;
-        private string motherID;
+        private int id;
+        private int motherID;
         private string firstName;
         private DateTime birthdate = new DateTime();
         private bool isSpecial;//the child is a special boy?
         private string specialNeeds;
 
         //Properties
-        public string ID { get => id; set => id = value; }
-        public string MotherID { get => motherID; set => motherID = value; }
-        public string FirstName { get => firstName; set => firstName = value; }
-        public DateTime Birthdate { get => birthdate; set => birthdate = value; }
+        public int ID {
+            get => id;
+            set
+            {
+                if (value > 0)
+                    id = value;
+                else
+                    throw new Exception("ID can't be negative");
+            }
+        }
+        public int MotherID
+        {
+            get => motherID;
+            set
+            {
+                if (value > 0)
+                    motherID = value;
+                else
+                    throw new Exception("ID can't be negative");
+            }
+        }
+        public string FirstName { get => firstName ?? ""; set => firstName = value; }
+        public DateTime Birthdate
+        {
+            get => birthdate;
+            set
+            {
+                if (value > DateTime.Today)
+                    throw new Exception("Birthdate can't be in the future");
+                else
+                    birthdate = value;
+            }
+        }
         public bool IsSpecial { get => isSpecial; set => isSpecial = value; }
-        public string SpecialNeeds { get => specialNeeds; set => specialNeeds = value; }
+        public string SpecialNeeds { get => specialNeeds ?? ""; set => specialNeeds = value; }
         /// <summary>
         /// Converts the value of the current Child object to its equivalent string representation
         /// </summary>
@@ -37,7 +66,7 @@ namespace BE
                 "First name: " + FirstName + "\n" +
                 "Birth date: " + Birthdate + "\n" +
                 "The child "+ (IsSpecial ? "is" : "isn't") + " a special child\n" +
-                "Special needs: " + (SpecialNeeds == null ? "nothing" : SpecialNeeds);
+                "Special needs: " + (SpecialNeeds == "" ? "Nothing" : SpecialNeeds);
         }
 
     }

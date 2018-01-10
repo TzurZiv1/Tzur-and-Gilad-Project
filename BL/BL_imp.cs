@@ -64,7 +64,7 @@ namespace BL
                     AddContract(c);
             }
         }
-        public Nanny GetNanny(string id)
+        public Nanny GetNanny(int id)
         {
             return dal.GetNanny(id);
         }
@@ -99,7 +99,7 @@ namespace BL
                 }
             }
         }
-        public Mother GetMother(string id)
+        public Mother GetMother(int id)
         {
             return dal.GetMother(id);
         }
@@ -121,7 +121,7 @@ namespace BL
         {
             dal.UpdateChild(c);
         }
-        public Child GetChild(string id)
+        public Child GetChild(int id)
         {
             return dal.GetChild(id);
         }
@@ -432,19 +432,19 @@ namespace BL
                 if (order)//order nannies by name
                     return from n in GetAllNannies()
                            orderby n.ID
-                           group n by n.MaxAgeInMonth;
+                           group n by n.MaxAgeInMonth/3;
                 //Don't order nannies
                 return from n in GetAllNannies()
-                       group n by n.MaxAgeInMonth;
+                       group n by n.MaxAgeInMonth/3;
             }
             //group by min age
             if (order)//order nannies by name
                 return from n in GetAllNannies()
                        orderby n.FirstName, n.LastName
-                       group n by n.MinAgeInMonth;
+                       group n by n.MinAgeInMonth/3;
             //Don't order nannies
             return from n in GetAllNannies()
-                   group n by n.MinAgeInMonth;
+                   group n by n.MinAgeInMonth/3;
         }
         /// <summary>
         /// Returns nannies grouped by ExpYears
@@ -486,7 +486,7 @@ namespace BL
         /// </summary>
         /// <param name="order">true = order the contracts, false = don't order</param>
         /// <returns></returns>
-        public IEnumerable<IGrouping<string, Contract>> ContractsByNanny(bool order = false)
+        public IEnumerable<IGrouping<int, Contract>> ContractsByNanny(bool order = false)
         {
             if (order)//order contracts by number
                 return from c in GetAllContracts()
@@ -501,7 +501,7 @@ namespace BL
         /// </summary>
         /// <param name="order">true = order the contracts, false = don't order</param>
         /// <returns></returns>
-        public IEnumerable<IGrouping<string, Contract>> ContractsByMother(bool order = false)
+        public IEnumerable<IGrouping<int, Contract>> ContractsByMother(bool order = false)
         {
             if (order)//order contracts by number
                 return from c in GetAllContracts()

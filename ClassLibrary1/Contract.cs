@@ -12,9 +12,9 @@ namespace BE
     public class Contract
     {
         private int number;
-        private string nunnyID;
-        private string childID;
-        private string motherID;
+        private int nunnyID;
+        private int childID;
+        private int motherID;
         private bool wasMeeting;
         private bool wasSignature;
         private double wagePerHour;
@@ -25,13 +25,63 @@ namespace BE
         
         //Properties
         public int Number { get => number; set => number = value; }
-        public string NunnyID { get => nunnyID; set => nunnyID = value; }
-        public string ChildID { get => childID; set => childID = value; }
-        public string MotherID { get => motherID; set => motherID = value; }
+        public int NunnyID
+        {
+            get => nunnyID;
+            set
+            {
+                if (value > 0)
+                    nunnyID = value;
+                else
+                    throw new Exception("ID can't be negative");
+            }
+        }
+        public int ChildID
+        {
+            get => childID;
+            set
+            {
+                if (value > 0)
+                    childID = value;
+                else
+                    throw new Exception("ID can't be negative");
+            }
+        }
+        public int MotherID
+        {
+            get => motherID;
+            set
+            {
+                if (value > 0)
+                    motherID = value;
+                else
+                    throw new Exception("ID can't be negative");
+            }
+        }
         public bool WasMeeting { get => wasMeeting; set => wasMeeting = value; }
         public bool WasSignature { get => wasSignature; set => wasSignature = value; }
-        public double WagePerHour { get => wagePerHour; set => wagePerHour = value; }
-        public double WagePerMonth { get => wagePerMonth; set => wagePerMonth = value; }
+        public double WagePerHour
+        {
+            get => wagePerHour;
+            set
+            {
+                if (value >= 0)
+                    wagePerHour = value;
+                else
+                    throw new Exception("WagePerHour can't be negative");
+            }
+        }
+        public double WagePerMonth
+        {
+            get => wagePerMonth;
+            set
+            {
+                if (value >= 0)
+                    wagePerMonth = value;
+                else
+                    throw new Exception("WagePerMonth can't be negative");
+            }
+        }
         public bool IsPerMonth { get => isPerMonth; set => isPerMonth = value; }
         public DateTime StartDate { get => startDate; set => startDate = value; }
         public DateTime EndDate { get => endDate; set => endDate = value; }

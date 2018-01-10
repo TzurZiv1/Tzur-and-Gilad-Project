@@ -40,7 +40,7 @@ namespace DAL
         /// </summary>
         /// <param name="id">The ID you want to find in the nanny list</param>
         /// <returns>The nanny from the list who has this ID</returns>
-        Nanny GetNanny(string id);
+        Nanny GetNanny(int id);
         #endregion NANNY
 
         #region MOTHER
@@ -67,7 +67,7 @@ namespace DAL
         /// </summary>
         /// <param name="id">The ID you want to find in the mother list</param>
         /// <returns>The mother from the list who has this ID</returns>
-        Mother GetMother(string id);
+        Mother GetMother(int id);
         #endregion
 
         #region CHILD
@@ -94,7 +94,7 @@ namespace DAL
         /// </summary>
         /// <param name="id">The ID you want to find in the child list</param>
         /// <returns>The child from the list who has this ID</returns>
-        Child GetChild(string id);
+        Child GetChild(int id);
         #endregion
 
         #region CONTRACT

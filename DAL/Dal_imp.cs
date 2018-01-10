@@ -62,7 +62,7 @@ namespace DAL
         /// </summary>
         /// <param name="id">The ID you want to find in the nanny list</param>
         /// <returns>The nanny from the list who has this ID</returns>
-        public Nanny GetNanny(string id)
+        public Nanny GetNanny(int id)
         {
             foreach (var nan in GetAllNannies())
                 if (nan.ID == id)
@@ -118,7 +118,7 @@ namespace DAL
         /// </summary>
         /// <param name="id">The ID you want to find in the mother list</param>
         /// <returns>The mother from the list who has this ID</returns>
-        public Mother GetMother(string id)
+        public Mother GetMother(int id)
         {
             foreach (var mom in GetAllMothers())
                 if (mom.ID == id)
@@ -174,7 +174,7 @@ namespace DAL
         /// </summary>
         /// <param name="id">The ID you want to find in the child list</param>
         /// <returns>The child from the list who has this ID</returns>
-        public Child GetChild(string id)
+        public Child GetChild(int id)
         {
             foreach (var chi in GetAllChilds())
                 if (chi.ID == id)

@@ -14,8 +14,29 @@ namespace BE
         private int start;
         private int finish;
 
-        public int Start { get => start; set => start = value; }
-        public int Finish { get => finish; set => finish = value; }
+        //properties
+        public int Start
+        {
+            get => start;
+            set
+            {
+                if (value >= 0 && value <= 24)
+                    start = value;
+                else
+                    throw new Exception("Work hours must be between 0 and 24");
+            }
+        }
+        public int Finish
+        {
+            get => finish;
+            set
+            {
+                if (value >= 0 && value <= 24)
+                    finish = value;
+                else
+                    throw new Exception("Work hours must be between 0 and 24");
+            }
+        }
 
         /// <summary>
         /// Converts the value of the current WorkHours object to its equivalent string representation
@@ -32,7 +53,7 @@ namespace BE
     /// </summary>
     public class Nanny
     {
-        private string id;
+        private int id;
         private string lastName;
         private string firstName;
         private DateTime birthdate = new DateTime();
@@ -53,25 +74,104 @@ namespace BE
         private string recommendations;
 
         //Properties
-        public string ID { get => id; set => id = value; }
-        public string LastName { get => lastName; set => lastName = value; }
-        public string FirstName { get => firstName; set => firstName = value; }
-        public DateTime Birthdate { get => birthdate; set => birthdate = value; }
-        public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
-        public string Address { get => address; set => address = value; }
+        public int ID
+        {
+            get => id;
+            set
+            {
+                if (value > 0)
+                    id = value;
+                else
+                    throw new Exception("ID can't be negative");
+            }
+        }
+        public string LastName { get => lastName ?? ""; set => lastName = value; }
+        public string FirstName { get => firstName ?? ""; set => firstName = value; }
+        public DateTime Birthdate
+        {
+            get => birthdate;
+            set
+            {
+                if (value > DateTime.Today)
+                    throw new Exception("Birthdate can't be in the future");
+                else
+                    birthdate = value;
+            }
+        }
+        public string PhoneNumber { get => phoneNumber ?? ""; set => phoneNumber = value; }
+        public string Address { get => address ?? ""; set => address = value; }
         public bool IsElevator { get => isElevator; set => isElevator = value; }
         public int Floor { get => floor; set => floor = value; }
-        public int ExpYears { get => expYears; set => expYears = value; }
-        public int MaxChilds { get => maxChilds; set => maxChilds = value; }
-        public int MinAgeInMonth { get => minAgeInMonth; set => minAgeInMonth = value; }
-        public int MaxAgeInMonth { get => maxAgeInMonth; set => maxAgeInMonth = value; }
+        public int ExpYears
+        {
+            get => expYears;
+            set
+            {
+                if (value < 0)
+                    throw new Exception("expYears can't be negative");
+                else
+                    expYears = value;
+            }
+        }
+        public int MaxChilds
+        {
+            get => maxChilds;
+            set
+            {
+                if (value < 0)
+                    throw new Exception("maxChilds can't be negative");
+                else
+                    maxChilds = value;
+            }
+        }
+        public int MinAgeInMonth {
+            get => minAgeInMonth;
+            set
+            {
+                if (value >= 0)
+                    minAgeInMonth = value;
+                else
+                    throw new Exception("minAge can't be negative");
+            }
+        }
+        public int MaxAgeInMonth
+        {
+            get => maxAgeInMonth;
+            set
+            {
+                if (value >= 0)
+                    maxAgeInMonth = value;
+                else
+                    throw new Exception("maxAge can't be negative");
+            }
+        }
         public bool AllowPerHour { get => allowPerHour; set => allowPerHour = value; }
-        public double RatePerHour { get => ratePerHour; set => ratePerHour = value; }
-        public double RatePerMonth { get => ratePerMonth; set => ratePerMonth = value; }
+        public double RatePerHour
+        {
+            get => ratePerHour;
+            set
+            {
+                if (value >= 0)
+                    ratePerHour = value;
+                else
+                    throw new Exception("RatePerHour can't be negative");
+            }
+        }
+        public double RatePerMonth
+        {
+            get => ratePerMonth;
+            set
+            {
+                if (value >= 0)
+                    ratePerMonth = value;
+                else
+                    throw new Exception("RatePerMonth can't be negative");
+            }
+        }
         public bool[] WorkOnDay { get => workOnDay; set => workOnDay = value; }
         public WorkHours[] HoursOnDay { get => hoursOnDay; set => hoursOnDay = value; }
         public bool FinancedVacation { get => financedVacation; set => financedVacation = value; }
-        public string Recommendations { get => recommendations; set => recommendations = value; }
+        public string Recommendations { get => recommendations ?? ""; set => recommendations = value; }
 		/// <summary>
 		/// Converts the value of the current Nanny object to its equivalent string representation
 		/// </summary>
@@ -111,7 +211,7 @@ namespace BE
 				"Work on days:\n" + (strWorksOnDays == "" ? "No day" : strWorksOnDays) + "\n" +
 				"Vacations " + (FinancedVacation ? "is" : "isn't") 
 				+ " based on the Ministry of Education or the Ministry of Industry, Trade and Labor" + "\n" +
-				"Recommendations:\n" + ((Recommendations == null || Recommendations == "") ? "Nothing" : Recommendations);
+				"Recommendations:\n" + (Recommendations == "" ? "Nothing" : Recommendations);
 		}
     }
 }
