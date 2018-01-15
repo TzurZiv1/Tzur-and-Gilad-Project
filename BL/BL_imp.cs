@@ -8,9 +8,6 @@ using GoogleMapsApi;
 using GoogleMapsApi.Entities.Directions.Request;
 using GoogleMapsApi.Entities.Directions.Response;
 
-/////klklklklk lklklk lkl lkl lkl lkl lklk lk
-
-
 namespace BL
 {
     public class FactoryBL
