@@ -54,8 +54,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="RemoveMotherWin.xaml.cs">
+      <DependentUpon>RemoveMotherWin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RemoveNannyWin.xaml.cs">
       <DependentUpon>RemoveNannyWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateMotherWin.xaml.cs">
+      <DependentUpon>UpdateMotherWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateNannyWin.xaml.cs">
+      <DependentUpon>UpdateNannyWin.xaml</DependentUpon>
     </Compile>
     <Page Include="AddMotherWin.xaml">
       <SubType>Designer</SubType>
@@ -83,7 +92,19 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RemoveMotherWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RemoveNannyWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateMotherWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateNannyWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -102,12 +102,14 @@ namespace PLWPF
 
         private void RemoveNanny_Click(object sender, RoutedEventArgs e)
         {
-
+            RemoveNannyWin remove = new RemoveNannyWin();
+            remove.Show();
         }
 
         private void RemoveMother_Click(object sender, RoutedEventArgs e)
         {
-
+            RemoveMotherWin remove = new RemoveMotherWin();
+            remove.Show();
         }
 
         private void RemoveChild_Click(object sender, RoutedEventArgs e)
@@ -123,12 +125,14 @@ namespace PLWPF
 
         private void UpdateNanny_Click(object sender, RoutedEventArgs e)
         {
-
+            UpdateNannyWin update = new UpdateNannyWin();
+            update.Show();
         }
 
         private void UpdateMother_Click(object sender, RoutedEventArgs e)
         {
-
+            UpdateMotherWin update = new UpdateMotherWin();
+            update.Show();
         }
 
         private void UpdateChild_Click(object sender, RoutedEventArgs e)
