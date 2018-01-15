@@ -76,5 +76,69 @@ namespace PLWPF
 			RemoveContract.Visibility = Visibility.Visible;
 			UpdateContract.Visibility = Visibility.Visible;
 		}
-	}
+
+        private void AddNanny_Click(object sender, RoutedEventArgs e)
+        {
+            AddNannyWin add = new AddNannyWin();
+            add.Show();
+        }
+
+        private void AddMother_Click(object sender, RoutedEventArgs e)
+        {
+            AddMotherWin add = new AddMotherWin();
+            add.Show();
+        }
+
+        private void AddChild_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddContract_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        private void RemoveNanny_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RemoveMother_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RemoveChild_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void RemoveContract_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+        private void UpdateNanny_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UpdateMother_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UpdateChild_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void UpdateContract_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+    }
 }

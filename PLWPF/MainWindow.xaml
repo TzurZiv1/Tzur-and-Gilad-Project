@@ -24,20 +24,20 @@
         <Button Name="Child" Content="Child" Grid.Row="0" Grid.Column="2" FontSize="32" Click="Child_Click"/>
         <Button Name="Contract" Content="Contract" Grid.Row="0" Grid.Column="3" FontSize="32" Click="Contract_Click"/>
 
-		<Button Name="AddNanny" Content="Add" Grid.Row="1" Grid.Column="0" FontSize="32" Visibility="Hidden"/>
-		<Button Name="AddMother" Content="Add" Grid.Row="1" Grid.Column="1" FontSize="32" Visibility="Hidden"/>
-		<Button Name="AddChild" Content="Add" Grid.Row="1" Grid.Column="2" FontSize="32" Visibility="Hidden"/>
-		<Button Name="AddContract" Content="Add" Grid.Row="1" Grid.Column="3" FontSize="32" Visibility="Hidden"/>
+		<Button Name="AddNanny" Content="Add" Grid.Row="1" Grid.Column="0" FontSize="32" Visibility="Hidden"  Click="AddNanny_Click"/>
+		<Button Name="AddMother" Content="Add" Grid.Row="1" Grid.Column="1" FontSize="32" Visibility="Hidden" Click="AddMother_Click"/>
+		<Button Name="AddChild" Content="Add" Grid.Row="1" Grid.Column="2" FontSize="32" Visibility="Hidden" Click="AddChild_Click"/>
+		<Button Name="AddContract" Content="Add" Grid.Row="1" Grid.Column="3" FontSize="32" Visibility="Hidden" Click="AddContract_Click"/>
 
-		<Button Name="RemoveNanny" Content="Remove" Grid.Row="2" Grid.Column="0" FontSize="32" Visibility="Hidden"/>
-		<Button Name="RemoveMother" Content="Remove" Grid.Row="2" Grid.Column="1" FontSize="32" Visibility="Hidden"/>
-		<Button Name="RemoveChild" Content="Remove" Grid.Row="2" Grid.Column="2" FontSize="32" Visibility="Hidden"/>
-		<Button Name="RemoveContract" Content="Remove" Grid.Row="2" Grid.Column="3" FontSize="32" Visibility="Hidden"/>
+		<Button Name="RemoveNanny" Content="Remove" Grid.Row="2" Grid.Column="0" FontSize="32" Visibility="Hidden" Click="RemoveNanny_Click"/>
+		<Button Name="RemoveMother" Content="Remove" Grid.Row="2" Grid.Column="1" FontSize="32" Visibility="Hidden" Click="RemoveMother_Click"/>
+		<Button Name="RemoveChild" Content="Remove" Grid.Row="2" Grid.Column="2" FontSize="32" Visibility="Hidden" Click="RemoveChild_Click"/>
+		<Button Name="RemoveContract" Content="Remove" Grid.Row="2" Grid.Column="3" FontSize="32" Visibility="Hidden" Click="RemoveContract_Click"/>
 
-		<Button Name="UpdateNanny" Content="Update" Grid.Row="3" Grid.Column="0" FontSize="32" Visibility="Hidden"/>
-		<Button Name="UpdateMother" Content="Update" Grid.Row="3" Grid.Column="1" FontSize="32" Visibility="Hidden"/>
-		<Button Name="UpdateChild" Content="Update" Grid.Row="3" Grid.Column="2" FontSize="32" Visibility="Hidden"/>
-		<Button Name="UpdateContract" Content="Update" Grid.Row="3" Grid.Column="3" FontSize="32" Visibility="Hidden"/>
+        <Button Name="UpdateNanny" Content="Update" Grid.Row="3" Grid.Column="0" FontSize="32" Visibility="Hidden" Click="UpdateNanny_Click"/>
+        <Button Name="UpdateMother" Content="Update" Grid.Row="3" Grid.Column="1" FontSize="32" Visibility="Hidden" Click="UpdateMother_Click"/>
+		<Button Name="UpdateChild" Content="Update" Grid.Row="3" Grid.Column="2" FontSize="32" Visibility="Hidden" Click="UpdateChild_Click"/>
+		<Button Name="UpdateContract" Content="Update" Grid.Row="3" Grid.Column="3" FontSize="32" Visibility="Hidden" Click="UpdateContract_Click"/>
 
 	</Grid>
 </Window>
