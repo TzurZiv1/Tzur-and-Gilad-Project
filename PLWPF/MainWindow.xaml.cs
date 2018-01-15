@@ -91,12 +91,14 @@ namespace PLWPF
 
         private void AddChild_Click(object sender, RoutedEventArgs e)
         {
-
+            AddChildWin add = new AddChildWin();
+            add.Show();
         }
 
         private void AddContract_Click(object sender, RoutedEventArgs e)
         {
-
+            AddContractWin add = new AddContractWin();
+            add.Show();
         }
 
 
@@ -114,12 +116,14 @@ namespace PLWPF
 
         private void RemoveChild_Click(object sender, RoutedEventArgs e)
         {
-
+            RemoveChildWin remove = new RemoveChildWin();
+            remove.Show();
         }
 
         private void RemoveContract_Click(object sender, RoutedEventArgs e)
         {
-
+            RemoveContractWin remove = new RemoveContractWin();
+            remove.Show();
         }
 
 
@@ -137,12 +141,14 @@ namespace PLWPF
 
         private void UpdateChild_Click(object sender, RoutedEventArgs e)
         {
-
+            UpdateChildWin update = new UpdateChildWin();
+            update.Show();
         }
 
         private void UpdateContract_Click(object sender, RoutedEventArgs e)
         {
-
+            UpdateContractWin update = new UpdateContractWin();
+            update.Show();
         }
     }
 }

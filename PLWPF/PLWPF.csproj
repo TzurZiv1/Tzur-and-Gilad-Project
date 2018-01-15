@@ -54,9 +54,44 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddChildWin.xaml.cs">
+      <DependentUpon>AddChildWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddContractWin.xaml.cs">
+      <DependentUpon>AddContractWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RemoveChildWin.xaml.cs">
+      <DependentUpon>RemoveChildWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RemoveContractWin.xaml.cs">
+      <DependentUpon>RemoveContractWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="RemoveMotherWin.xaml.cs">
+      <DependentUpon>RemoveMotherWin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RemoveNannyWin.xaml.cs">
       <DependentUpon>RemoveNannyWin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateChildWin.xaml.cs">
+      <DependentUpon>UpdateChildWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateContractWin.xaml.cs">
+      <DependentUpon>UpdateContractWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateMotherWin.xaml.cs">
+      <DependentUpon>UpdateMotherWin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateNannyWin.xaml.cs">
+      <DependentUpon>UpdateNannyWin.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AddChildWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddContractWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddMotherWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -83,7 +118,35 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RemoveChildWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RemoveContractWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RemoveMotherWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RemoveNannyWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateChildWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateContractWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateMotherWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateNannyWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
