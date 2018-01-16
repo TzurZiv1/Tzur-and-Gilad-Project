@@ -3,73 +3,24 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:PLWPF"
         xmlns:BE="clr-namespace:BE;assembly=ClassLibrary1" x:Class="PLWPF.AddChildWin"
         mc:Ignorable="d"
-        Title="AddChildWin" Height="350" Width="300" Loaded="Window_Loaded">
-
-    <Window.Resources>
-        <CollectionViewSource x:Key="childViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Child}, CreateList=True}"/>
-    </Window.Resources>
+        Title="AddChildWin" Height="330" Width="300">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <!--
-        <Grid Grid.Row="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-                <RowDefinition Height="auto"/>
-            </Grid.RowDefinitions>
-            <Label Content="ID:" Grid.Column="0" Grid.Row="0"/>
-            <Label Content="Mother:" Grid.Column="0" Grid.Row="1"/>
-            <Label Content="First name:" Grid.Column="0" Grid.Row="2"/>
-            <Label Content="Birthdate:" Grid.Column="0" Grid.Row="3"/>
-            <Label Content="Is special?" Grid.Column="0" Grid.Row="4"/>
-            <Label Content="Special needs:" Grid.Column="0" Grid.Row="5"/>
-        </Grid>
--->
+
         <Label Grid.Row="0" Content="Add New Child" FontSize="25" HorizontalContentAlignment="Center" HorizontalAlignment="left"/>
         <Image Grid.Row="0"  HorizontalAlignment="right" Source="images/child.png" Height="50"/>
 
 
-        <Button x:Name="AddChildButton"  Content="Add" Grid.Row="2"  Margin="0,5" Width="150" Height="30"/>
-        <Grid x:Name="grid1" DataContext="{StaticResource childViewSource}" HorizontalAlignment="Left" Margin="30,5,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.RowSpan="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Label Content="Birthdate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <DatePicker x:Name="birthdateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="0" SelectedDate="{Binding Birthdate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
-            <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="firstNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBox x:Name="iDTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Is Special:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <CheckBox x:Name="isSpecialCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding IsSpecial, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <Label Content="Mother ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBox x:Name="motherIDTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding MotherID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Special Needs:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="specialNeedsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding SpecialNeeds, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-        </Grid>
+        <Button Name="AddChildButton"  Content="Add" Grid.Row="2"  Margin="0,5" Width="150" Height="30" Click="AddChildButton_Click"/>
+
     </Grid>
 </Window>

@@ -22,6 +22,8 @@ namespace BE
         private bool isPerMonth;// true = per month. false = per hour
         private DateTime startDate = new DateTime();
         private DateTime endDate = new DateTime();
+
+        public Contract() { }
         /// <summary>
         /// Constructor to contract
         /// </summary>
@@ -129,18 +131,18 @@ namespace BE
         /// <returns>contract represented as a string</returns>
         public override string ToString()
         {
-			return
-				"Number: " + Number + "\n" +
-				"Nunny's ID: " + NunnyID + "\n" +
-				"Child's ID: " + ChildID + "\n" +
-				"Mother's ID: " + MotherID + "\n" +
-				"Was meeting: " + WasMeeting + "\n" +
-				"Was signature: " + WasSignature + "\n" +
-				"Wage per hour: " + WagePerHour + "\n" +
-				"Wage per month: " + WagePerMonth + "\n" +
-				"Payment is calculated per " + (isPerMonth ? "month" : "hour") + "\n" +
-				"Start date: " + StartDate + "\n" +
-				"End date: " + EndDate + "\n";
-		}
+            return
+                "Number: " + Number + "\n" +
+                "Nunny's ID: " + NunnyID + "\n" +
+                "Child's ID: " + ChildID + "\n" +
+                "Mother's ID: " + MotherID + "\n" +
+                "Was meeting: " + WasMeeting + "\n" +
+                "Was signature: " + WasSignature + "\n" +
+                "Wage per hour: " + WagePerHour + "\n" +
+                "Wage per month: " + WagePerMonth + "\n" +
+                "Payment is calculated per " + (isPerMonth ? "month" : "hour") + "\n" +
+                "Start date: " + StartDate + "\n" +
+                "End date: " + EndDate + "\n";
+        }
     }
 }

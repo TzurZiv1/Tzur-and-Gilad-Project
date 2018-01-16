@@ -19,7 +19,8 @@ namespace BE
         private string specialNeeds;
 
         //Properties
-        public int ID {
+        public int ID
+        {
             get => id;
             set
             {
@@ -54,6 +55,12 @@ namespace BE
         }
         public bool IsSpecial { get => isSpecial; set => isSpecial = value; }
         public string SpecialNeeds { get => specialNeeds ?? ""; set => specialNeeds = value; }
+
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public Child() { }
+
         /// <summary>
         /// constructor
         /// </summary>
@@ -84,7 +91,7 @@ namespace BE
                 "Mother's ID: " + MotherID + "\n" +
                 "First name: " + FirstName + "\n" +
                 "Birth date: " + Birthdate + "\n" +
-                "The child "+ (IsSpecial ? "is" : "isn't") + " a special child\n" +
+                "The child " + (IsSpecial ? "is" : "isn't") + " a special child\n" +
                 "Special needs: " + (SpecialNeeds == "" ? "Nothing" : SpecialNeeds);
         }
 

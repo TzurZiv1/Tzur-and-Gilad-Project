@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit;
 
 namespace PLWPF
 {
@@ -19,17 +20,30 @@ namespace PLWPF
     /// </summary>
     public partial class AddChildWin : Window
     {
+        BE.Child child;
+        BL.IBL bl;
         public AddChildWin()
         {
             InitializeComponent();
+            child = new BE.Child();
+            this.DataContext = child;
+            bl = BL.FactoryBL.GetBL();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private void AddChildButton_Click(object sender, RoutedEventArgs e)
         {
-
-            System.Windows.Data.CollectionViewSource childViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("childViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // childViewSource.Source = [generic data source]
+            try
+            {
+                bl.AddChild(child);
+                child = new BE.Child();
+                this.DataContext = child;
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+            this.Close();
+            
         }
     }
 }
