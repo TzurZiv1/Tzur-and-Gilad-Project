@@ -40,7 +40,7 @@
             <Label Content="Special needs:" Grid.Column="0" Grid.Row="5"/>
             <Text
         </Grid>
-
+-->
         <Label Grid.Row="0" Content="Add New Child" FontSize="25" HorizontalContentAlignment="Center" HorizontalAlignment="left"/>
         <Image Grid.Row="0"  HorizontalAlignment="right" Source="images/child.png" Height="50"/>
 
