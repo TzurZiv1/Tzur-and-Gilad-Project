@@ -80,75 +80,75 @@ namespace PLWPF
         private void AddNanny_Click(object sender, RoutedEventArgs e)
         {
             AddNannyWin add = new AddNannyWin();
-            add.Show();
+            add.ShowDialog();
         }
 
         private void AddMother_Click(object sender, RoutedEventArgs e)
         {
             AddMotherWin add = new AddMotherWin();
-            add.Show();
+            add.ShowDialog();
         }
 
         private void AddChild_Click(object sender, RoutedEventArgs e)
         {
             AddChildWin add = new AddChildWin();
-            add.Show();
+            add.ShowDialog();
         }
 
         private void AddContract_Click(object sender, RoutedEventArgs e)
         {
             AddContractWin add = new AddContractWin();
-            add.Show();
+            add.ShowDialog();
         }
 
 
         private void RemoveNanny_Click(object sender, RoutedEventArgs e)
         {
             RemoveNannyWin remove = new RemoveNannyWin();
-            remove.Show();
+            remove.ShowDialog();
         }
 
         private void RemoveMother_Click(object sender, RoutedEventArgs e)
         {
             RemoveMotherWin remove = new RemoveMotherWin();
-            remove.Show();
+            remove.ShowDialog();
         }
 
         private void RemoveChild_Click(object sender, RoutedEventArgs e)
         {
             RemoveChildWin remove = new RemoveChildWin();
-            remove.Show();
+            remove.ShowDialog();
         }
 
         private void RemoveContract_Click(object sender, RoutedEventArgs e)
         {
             RemoveContractWin remove = new RemoveContractWin();
-            remove.Show();
+            remove.ShowDialog();
         }
 
 
         private void UpdateNanny_Click(object sender, RoutedEventArgs e)
         {
             UpdateNannyWin update = new UpdateNannyWin();
-            update.Show();
+            update.ShowDialog();
         }
 
         private void UpdateMother_Click(object sender, RoutedEventArgs e)
         {
             UpdateMotherWin update = new UpdateMotherWin();
-            update.Show();
+            update.ShowDialog();
         }
 
         private void UpdateChild_Click(object sender, RoutedEventArgs e)
         {
             UpdateChildWin update = new UpdateChildWin();
-            update.Show();
+            update.ShowDialog();
         }
 
         private void UpdateContract_Click(object sender, RoutedEventArgs e)
         {
             UpdateContractWin update = new UpdateContractWin();
-            update.Show();
+            update.ShowDialog();
         }
     }
 }
