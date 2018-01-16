@@ -169,6 +169,11 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\BE.Child.datasource" />
+    <None Include="Properties\DataSources\BE.Contract.datasource" />
+    <None Include="Properties\DataSources\BE.Mother.datasource" />
+    <None Include="Properties\DataSources\BE.Nanny.datasource" />
+    <None Include="Properties\DataSources\BE.WorkHours.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
