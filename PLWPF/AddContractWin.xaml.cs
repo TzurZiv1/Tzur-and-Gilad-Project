@@ -23,5 +23,10 @@ namespace PLWPF
         {
             InitializeComponent();
         }
+
+        private void AddContractButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

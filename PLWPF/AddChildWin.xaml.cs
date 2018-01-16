@@ -28,6 +28,7 @@ namespace PLWPF
             child = new BE.Child();
             this.DataContext = child;
             bl = BL.FactoryBL.GetBL();
+            this.motherIDComboBox.ItemsSource = bl.GetAllMothers();
         }
 
         private void AddChildButton_Click(object sender, RoutedEventArgs e)
@@ -43,7 +44,6 @@ namespace PLWPF
                 System.Windows.MessageBox.Show(ex.Message);
             }
             this.Close();
-            
         }        
     }
 }

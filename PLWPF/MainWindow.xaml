@@ -3,41 +3,74 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" Icon="images/nanny.png">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-			<RowDefinition Height="*"/>
-		</Grid.RowDefinitions>
-        <Button Name="Nanny" Content="Nanny" Grid.Row="0" Grid.Column="0" FontSize="32" Click="Nanny_Click"/>
-        <Button Name="Mother" Content="Mother" Grid.Row="0" Grid.Column="1" FontSize="32" Click="Mother_Click"/>
-        <Button Name="Child" Content="Child" Grid.Row="0" Grid.Column="2" FontSize="32" Click="Child_Click"/>
-        <Button Name="Contract" Content="Contract" Grid.Row="0" Grid.Column="3" FontSize="32" Click="Contract_Click"/>
+    <Window.Background>
+        <ImageBrush ImageSource="images/Project.jpg"/>
+    </Window.Background>
+    <Grid TextElement.FontSize="20">
+        <TabControl Background="{x:Null}">
+            <TabControl.Items>
+                <TabItem Header="Add">
+                    <TabItem.Content>
+                        <Grid TextElement.FontSize="48" Opacity="0.6">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
 
-		<Button Name="AddNanny" Content="Add" Grid.Row="1" Grid.Column="0" FontSize="32" Visibility="Hidden"  Click="AddNanny_Click"/>
-		<Button Name="AddMother" Content="Add" Grid.Row="1" Grid.Column="1" FontSize="32" Visibility="Hidden" Click="AddMother_Click"/>
-		<Button Name="AddChild" Content="Add" Grid.Row="1" Grid.Column="2" FontSize="32" Visibility="Hidden" Click="AddChild_Click"/>
-		<Button Name="AddContract" Content="Add" Grid.Row="1" Grid.Column="3" FontSize="32" Visibility="Hidden" Click="AddContract_Click"/>
+                            <Button Name="AddNanny" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="AddNanny_Click" Background="{x:Null}/>
+                            <Button Name="AddMother" Content="Mother" Grid.Row="1" Grid.Column="0" Click="AddMother_Click" Background="{x:Null}"/>
+                            <Button Name="AddChild" Content="Child" Grid.Row="0" Grid.Column="1" Click="AddChild_Click" Background="{x:Null}"/>
+                            <Button Name="AddContract" Content="Contract" Grid.Row="1" Grid.Column="1" Click="AddContract_Click" Background="{x:Null}"/>
+                        </Grid>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="Remove">
+                    <TabItem.Content>
+                        <Grid TextElement.FontSize="48">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
 
-		<Button Name="RemoveNanny" Content="Remove" Grid.Row="2" Grid.Column="0" FontSize="32" Visibility="Hidden" Click="RemoveNanny_Click"/>
-		<Button Name="RemoveMother" Content="Remove" Grid.Row="2" Grid.Column="1" FontSize="32" Visibility="Hidden" Click="RemoveMother_Click"/>
-		<Button Name="RemoveChild" Content="Remove" Grid.Row="2" Grid.Column="2" FontSize="32" Visibility="Hidden" Click="RemoveChild_Click"/>
-		<Button Name="RemoveContract" Content="Remove" Grid.Row="2" Grid.Column="3" FontSize="32" Visibility="Hidden" Click="RemoveContract_Click"/>
+                            <Button Name="RemoveNanny" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="RemoveNanny_Click" Background="{x:Null}"/>
+                            <Button Name="RemoveMother" Content="Mother" Grid.Row="1" Grid.Column="0" Click="RemoveMother_Click" Background="{x:Null}"/>
+                            <Button Name="RemoveChild" Content="Child" Grid.Row="0" Grid.Column="1" Click="RemoveChild_Click" Background="{x:Null}"/>
+                            <Button Name="RemoveContract" Content="Contract" Grid.Row="1" Grid.Column="1" Click="RemoveContract_Click" Background="{x:Null}"/>
+                        </Grid>
+                    </TabItem.Content>
+                </TabItem>
+                <TabItem Header="Update">
+                    <TabItem.Content>
+                        <Grid TextElement.FontSize="48">
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
 
-        <Button Name="UpdateNanny" Content="Update" Grid.Row="3" Grid.Column="0" FontSize="32" Visibility="Hidden" Click="UpdateNanny_Click"/>
-        <Button Name="UpdateMother" Content="Update" Grid.Row="3" Grid.Column="1" FontSize="32" Visibility="Hidden" Click="UpdateMother_Click"/>
-		<Button Name="UpdateChild" Content="Update" Grid.Row="3" Grid.Column="2" FontSize="32" Visibility="Hidden" Click="UpdateChild_Click"/>
-		<Button Name="UpdateContract" Content="Update" Grid.Row="3" Grid.Column="3" FontSize="32" Visibility="Hidden" Click="UpdateContract_Click"/>
-
-	</Grid>
+                            <Button Name="UpdateNanny" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="UpdateNanny_Click" Background="{x:Null}"/>
+                            <Button Name="UpdateMother" Content="Mother" Grid.Row="1" Grid.Column="0" Click="UpdateMother_Click" Background="{x:Null}"/>
+                            <Button Name="UpdateChild" Content="Child" Grid.Row="0" Grid.Column="1" Click="UpdateChild_Click" Background="{x:Null}"/>
+                            <Button Name="UpdateContract" Content="Contract" Grid.Row="1" Grid.Column="1" Click="UpdateContract_Click" Background="{x:Null}"/>
+                        </Grid>
+                    </TabItem.Content>
+                </TabItem>
+            </TabControl.Items>
+        </TabControl>
+    </Grid>
 </Window>
