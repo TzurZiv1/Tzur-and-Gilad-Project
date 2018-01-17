@@ -5,19 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="RemoveNannyWin" Height="300" Width="300">
+        Title="RemoveNannyWin" Height="160" Width="230">
     <Grid>
-
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="Remove Child" FontSize="25" HorizontalContentAlignment="Center" HorizontalAlignment="left" Width="162"/>
+        <Label Grid.Row="0" Content="Remove Nanny" FontSize="25" Margin="0" HorizontalContentAlignment="Center"/>
+        <Button x:Name="RemoveNanny" Grid.Row="2" Content="Remove" Margin="71,5" Click="RemoveNanny_Click"/>
 
-        <Button x:Name="RemoveNannyButton" Content="Remove" Grid.Row="2"  Margin="71,5" Click="RemoveNannyButton_Click"/>
-        
         <Grid x:Name="grid1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -29,7 +27,6 @@
             <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <ComboBox x:Name="iDComboBox" Grid.Column="1" SelectedItem="{Binding nanny}" HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120"/>
         </Grid>
-
 
 
     </Grid>
