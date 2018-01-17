@@ -19,9 +19,20 @@ namespace PLWPF
     /// </summary>
     public partial class RemoveChildWin : Window
     {
+        BE.Child child;
+        BL.IBL bl;
         public RemoveChildWin()
         {
             InitializeComponent();
+            child = new BE.Child();
+            this.DataContext = child;
+            bl = BL.FactoryBL.GetBL();
+            this.iDComboBox.ItemsSource = bl.GetAllChilds();
+        }
+
+        private void RemoveChildButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

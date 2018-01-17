@@ -15,7 +15,7 @@
             <TabControl.Items>
                 <TabItem Header="Add">
                     <TabItem.Content>
-                        <Grid TextElement.FontSize="48" Opacity="0.6">
+                        <Grid TextElement.FontSize="48">
                             <Grid.RowDefinitions>
                                 <RowDefinition/>
                                 <RowDefinition/>
@@ -25,10 +25,10 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="AddNanny" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="AddNanny_Click" Background="{x:Null}/>
-                            <Button Name="AddMother" Content="Mother" Grid.Row="1" Grid.Column="0" Click="AddMother_Click" Background="{x:Null}"/>
-                            <Button Name="AddChild" Content="Child" Grid.Row="0" Grid.Column="1" Click="AddChild_Click" Background="{x:Null}"/>
-                            <Button Name="AddContract" Content="Contract" Grid.Row="1" Grid.Column="1" Click="AddContract_Click" Background="{x:Null}"/>
+                            <Button Name="AddNanny" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="AddNanny_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
+                            <Button Name="AddMother" Content="Mother" Grid.Row="1" Grid.Column="0" Click="AddMother_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
+                            <Button Name="AddChild" Content="Child" Grid.Row="0" Grid.Column="1" Click="AddChild_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
+                            <Button Name="AddContract" Content="Contract" Grid.Row="1" Grid.Column="1" Click="AddContract_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
                         </Grid>
                     </TabItem.Content>
                 </TabItem>
@@ -44,10 +44,10 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="RemoveNanny" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="RemoveNanny_Click" Background="{x:Null}"/>
-                            <Button Name="RemoveMother" Content="Mother" Grid.Row="1" Grid.Column="0" Click="RemoveMother_Click" Background="{x:Null}"/>
-                            <Button Name="RemoveChild" Content="Child" Grid.Row="0" Grid.Column="1" Click="RemoveChild_Click" Background="{x:Null}"/>
-                            <Button Name="RemoveContract" Content="Contract" Grid.Row="1" Grid.Column="1" Click="RemoveContract_Click" Background="{x:Null}"/>
+                            <Button Name="RemoveNanny" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="RemoveNanny_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
+                            <Button Name="RemoveMother" Content="Mother" Grid.Row="1" Grid.Column="0" Click="RemoveMother_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
+                            <Button Name="RemoveChild" Content="Child" Grid.Row="0" Grid.Column="1" Click="RemoveChild_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
+                            <Button Name="RemoveContract" Content="Contract" Grid.Row="1" Grid.Column="1" Click="RemoveContract_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
                         </Grid>
                     </TabItem.Content>
                 </TabItem>
@@ -63,10 +63,10 @@
                                 <ColumnDefinition/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="UpdateNanny" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="UpdateNanny_Click" Background="{x:Null}"/>
-                            <Button Name="UpdateMother" Content="Mother" Grid.Row="1" Grid.Column="0" Click="UpdateMother_Click" Background="{x:Null}"/>
-                            <Button Name="UpdateChild" Content="Child" Grid.Row="0" Grid.Column="1" Click="UpdateChild_Click" Background="{x:Null}"/>
-                            <Button Name="UpdateContract" Content="Contract" Grid.Row="1" Grid.Column="1" Click="UpdateContract_Click" Background="{x:Null}"/>
+                            <Button Name="UpdateNanny" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="UpdateNanny_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
+                            <Button Name="UpdateMother" Content="Mother" Grid.Row="1" Grid.Column="0" Click="UpdateMother_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
+                            <Button Name="UpdateChild" Content="Child" Grid.Row="0" Grid.Column="1" Click="UpdateChild_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
+                            <Button Name="UpdateContract" Content="Contract" Grid.Row="1" Grid.Column="1" Click="UpdateContract_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
                         </Grid>
                     </TabItem.Content>
                 </TabItem>

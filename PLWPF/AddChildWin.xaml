@@ -16,11 +16,11 @@
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="Add New Child" FontSize="25" HorizontalContentAlignment="Center" HorizontalAlignment="left" Width="176"/>
-        <Image Grid.Row="0"  HorizontalAlignment="right" Source="images/child.png" Margin="0,0,0,0" Width="50"/>
+        <Label Grid.Row="0" Content="Add New Child" FontSize="25" HorizontalContentAlignment="Center" HorizontalAlignment="left"/>
+        <Image Grid.Row="0"  HorizontalAlignment="right" Source="images/child.png" Width="50"/>
 
         <Button Name="AddChildButton"  Content="Add" Grid.Row="2"  Margin="71,5,71,5" Click="AddChildButton_Click"/>
-        
+
         <Grid x:Name="grid1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -48,6 +48,5 @@
             <TextBox x:Name="specialNeedsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" IsEnabled="{Binding ElementName=isSpecialCheckBox, Path=IsChecked}" 
                      Text="{Binding SpecialNeeds, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
-
     </Grid>
 </Window>
