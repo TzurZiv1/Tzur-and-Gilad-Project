@@ -190,16 +190,23 @@ namespace BL
         /// <returns>The distance between source and dest</returns>
         public int CalculateDistance(string source, string dest)
         {
-            var drivingDirectionRequest = new DirectionsRequest
+            try
             {
-                TravelMode = TravelMode.Walking,
-                Origin = source,
-                Destination = dest,
-            };
-            DirectionsResponse drivingDirections = GoogleMaps.Directions.Query(drivingDirectionRequest);
-            Route route = drivingDirections.Routes.First();
-            Leg leg = route.Legs.First();
-            return leg.Distance.Value;
+                var drivingDirectionRequest = new DirectionsRequest
+                {
+                    TravelMode = TravelMode.Walking,
+                    Origin = source,
+                    Destination = dest,
+                };
+                DirectionsResponse drivingDirections = GoogleMaps.Directions.Query(drivingDirectionRequest);
+                Route route = drivingDirections.Routes.First();
+                Leg leg = route.Legs.First();
+                return leg.Distance.Value;
+            }
+            catch(Exception)
+            {
+                return -1;
+            }
         }
         /// <summary>
         /// Returns list of nannies who close to area of m

@@ -19,14 +19,28 @@ namespace PLWPF
     /// </summary>
     public partial class RemoveNannyWin : Window
     {
+        BE.Nanny nanny;
+        BL.IBL bl;
         public RemoveNannyWin()
         {
             InitializeComponent();
+            nanny = new BE.Nanny();
+            this.DataContext = nanny;
+            bl = BL.FactoryBL.GetBL();
+            this.iDComboBox.ItemsSource = bl.GetAllNannies()/*.Select(x => x.ID)*/;
         }
 
-        private void RemoveNanny_Click(object sender, RoutedEventArgs e)
+        private void RemoveNannyButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                bl.RemoveNanny(nanny);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+            this.Close();
         }
     }
 }

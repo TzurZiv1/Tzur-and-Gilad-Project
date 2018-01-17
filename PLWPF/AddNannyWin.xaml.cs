@@ -25,7 +25,6 @@ namespace PLWPF
         public AddNannyWin()
         {
             InitializeComponent();
-
             nanny = new BE.Nanny();
             this.DataContext = nanny;
             bl = BL.FactoryBL.GetBL();
@@ -34,7 +33,9 @@ namespace PLWPF
 
         private void AddNannyButton_Click(object sender, RoutedEventArgs e)
         {
-            try {
+            try
+            {
+                nanny.Address = addressTextBox.Text;
                 bl.AddNanny(nanny);
             }
             catch (Exception ex)
