@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="RemoveNannyWin" Height="300" Width="300">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="Remove Nanny" FontSize="25" Margin="0" HorizontalContentAlignment="Center"/>
+        <Button x:Name="RemoveNanny" Grid.Row="2" Content="Add" Width="150" Height="30" Margin="0,5" Click="RemoveNanny_Click"/>
+        
+        
         
     </Grid>
 </Window>

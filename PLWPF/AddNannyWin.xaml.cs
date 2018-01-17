@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Xceed.Wpf.Toolkit;
 
 namespace PLWPF
 {
@@ -35,8 +36,6 @@ namespace PLWPF
         {
             try {
                 bl.AddNanny(nanny);
-                nanny = new BE.Nanny();
-                this.DataContext = nanny;
             }
             catch (Exception ex)
             {

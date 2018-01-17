@@ -34,8 +34,7 @@ namespace PLWPF
         {
             try  {
                 bl.AddMother(mother);
-                mother = new BE.Mother();
-                this.DataContext = mother;
+                
             }
             catch (Exception ex)
             {

@@ -23,5 +23,10 @@ namespace PLWPF
         {
             InitializeComponent();
         }
+
+        private void RemoveNanny_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
