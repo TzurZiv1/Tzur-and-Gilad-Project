@@ -27,12 +27,20 @@ namespace PLWPF
             child = new BE.Child();
             this.DataContext = child;
             bl = BL.FactoryBL.GetBL();
-            this.iDComboBox.ItemsSource = bl.GetAllChilds();
+            this.iDComboBox.ItemsSource = bl.GetAllChilds()/*.Select(x => x.ID)*/;
         }
 
         private void RemoveChildButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                bl.RemoveChild(child);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+            this.Close();
         }
     }
 }

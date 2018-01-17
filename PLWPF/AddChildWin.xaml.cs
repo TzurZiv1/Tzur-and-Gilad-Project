@@ -36,8 +36,6 @@ namespace PLWPF
             try
             {
                 bl.AddChild(child);
-                child = new BE.Child();
-                this.DataContext = child;
             }
             catch (Exception ex)
             {
