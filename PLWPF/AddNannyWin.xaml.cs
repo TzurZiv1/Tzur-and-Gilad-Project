@@ -35,7 +35,7 @@ namespace PLWPF
         {
             try
             {
-                nanny.Address = addressTextBox.Text;
+                //nanny.Address = addressTextBox.Text;
                 bl.AddNanny(nanny);
             }
             catch (Exception ex)
@@ -44,6 +44,5 @@ namespace PLWPF
             }
             this.Close();
         }
-
     }
 }

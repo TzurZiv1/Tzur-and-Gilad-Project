@@ -14,7 +14,7 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Content="Remove Nanny" FontSize="25" Margin="0" HorizontalContentAlignment="Center"/>
-        <Button x:Name="RemoveNanny" Grid.Row="2" Content="Remove" Margin="71,5" Click="RemoveNanny_Click"/>
+        <Button x:Name="RemoveNannyButton" Grid.Row="2" Content="Remove" Margin="71,5" Click="RemoveNannyButton_Click"/>
 
         <Grid x:Name="grid1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>

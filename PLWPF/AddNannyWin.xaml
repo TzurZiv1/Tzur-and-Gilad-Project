@@ -8,12 +8,13 @@
         xmlns:BE="clr-namespace:BE;assembly=ClassLibrary1"
     xmlns:UserControl="clr-namespace:PLWPF.UserControl" x:Class="PLWPF.AddNannyWin"
         mc:Ignorable="d"
-        Title="AddNannyWin" Height="700" Width="500" >
+        Title="AddNannyWin" Height="700" Width="500">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
@@ -44,7 +45,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <UserControl:PlaceAutoCompleteUC x:Name="addressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120"/>
+            <UserControl:PlaceAutoCompleteUC Grid.Column="1" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" Grid.Row="0" Width="120" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
             <Label Content="Allow Per Hour:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <CheckBox x:Name="allowPerHourCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding AllowPerHour, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <Label Content="Birthdate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
@@ -113,19 +114,18 @@
             <CheckBox Grid.Column="1" Grid.Row="6" IsChecked="{Binding WorkOnDay[5], Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
 
             <xctk:IntegerUpDown Grid.Column="2" Grid.Row="1" Value="{Binding HoursOnDay[0].Start, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown Grid.Column="2" Grid.Row="2" Value="{Binding HoursOnDay[0].Start, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown Grid.Column="2" Grid.Row="3" Value="{Binding HoursOnDay[0].Start, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown Grid.Column="2" Grid.Row="4" Value="{Binding HoursOnDay[0].Start, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown Grid.Column="2" Grid.Row="5" Value="{Binding HoursOnDay[0].Start, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown Grid.Column="2" Grid.Row="6" Value="{Binding HoursOnDay[0].Start, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown Grid.Column="2" Grid.Row="2" Value="{Binding HoursOnDay[1].Start, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown Grid.Column="2" Grid.Row="3" Value="{Binding HoursOnDay[2].Start, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown Grid.Column="2" Grid.Row="4" Value="{Binding HoursOnDay[3].Start, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown Grid.Column="2" Grid.Row="5" Value="{Binding HoursOnDay[4].Start, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown Grid.Column="2" Grid.Row="6" Value="{Binding HoursOnDay[5].Start, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Minimum="0" Maximum="24"/>
 
-            <xctk:IntegerUpDown Grid.Column="3" Grid.Row="1" Value="{Binding HoursOnDay[0].Finish, Mode=TwoWay}" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown Grid.Column="3" Grid.Row="1" Value="{Binding HoursOnDay[0].Finish, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Minimum="0" Maximum="24"/>
             <xctk:IntegerUpDown Grid.Column="3" Grid.Row="2" Value="{Binding HoursOnDay[1].Finish, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Minimum="0" Maximum="24"/>
             <xctk:IntegerUpDown Grid.Column="3" Grid.Row="3" Value="{Binding HoursOnDay[2].Finish, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Minimum="0" Maximum="24"/>
             <xctk:IntegerUpDown Grid.Column="3" Grid.Row="4" Value="{Binding HoursOnDay[3].Finish, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Minimum="0" Maximum="24"/>
             <xctk:IntegerUpDown Grid.Column="3" Grid.Row="5" Value="{Binding HoursOnDay[4].Finish, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Minimum="0" Maximum="24"/>
             <xctk:IntegerUpDown Grid.Column="3" Grid.Row="6" Value="{Binding HoursOnDay[5].Finish, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Minimum="0" Maximum="24"/>
-
         </Grid>
     </Grid>
 </Window>
