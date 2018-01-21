@@ -31,9 +31,9 @@ namespace DS
         /// Remove n from nanniesList
         /// </summary>
         /// <param name="n">nanny</param>
-        public static void RemoveNanny(Nanny n)
+        public static void RemoveNanny(int id)
         {
-            nanniesList.Remove(n);
+            nanniesList.Remove(nanniesList.FirstOrDefault(n => n.ID == id));
         }
         /// <summary>
         /// Add m to mothersList
@@ -47,9 +47,9 @@ namespace DS
         /// Remove m grom mothersList
         /// </summary>
         /// <param name="m">mother</param>
-        public static void RemoveMother(Mother m)
+        public static void RemoveMother(int id)
         {
-            mothersList.Remove(m);
+            mothersList.Remove(mothersList.FirstOrDefault(m => m.ID == id));
         }
         /// <summary>
         /// Add c to childsList
@@ -63,9 +63,9 @@ namespace DS
         /// Remove c from childsList
         /// </summary>
         /// <param name="c">child</param>
-        public static void RemoveChild(Child c)
+        public static void RemoveChild(int id)
         {
-            childsList.Remove(c);
+            childsList.Remove(childsList.FirstOrDefault(c => c.ID == id));
         }
         /// <summary>
         /// Add c to contractsList
@@ -79,9 +79,9 @@ namespace DS
         /// Remove c from contractsList
         /// </summary>
         /// <param name="c">contract</param>
-        public static void RemoveContract(Contract c)
+        public static void RemoveContract(int num)
         {
-            contractslist.Remove(c);
+            contractslist.Remove(contractslist.FirstOrDefault(c => c.Number == num));
         }
     }
 }

@@ -28,19 +28,39 @@ namespace PLWPF
             nanny = new BE.Nanny();
             this.DataContext = nanny;
             bl = BL.FactoryBL.GetBL();
-
         }
 
         private void AddNannyButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                //nanny.Address = addressTextBox.Text;
+                #region initialization
+                nanny.Address = addressPlaceAutoCompleteUC.Text;
+                nanny.HoursOnDay = new BE.WorkHours[6];
+                nanny.HoursOnDay[0] = new BE.WorkHours();
+                nanny.HoursOnDay[1] = new BE.WorkHours();
+                nanny.HoursOnDay[2] = new BE.WorkHours();
+                nanny.HoursOnDay[3] = new BE.WorkHours();
+                nanny.HoursOnDay[4] = new BE.WorkHours();
+                nanny.HoursOnDay[5] = new BE.WorkHours();
+                nanny.HoursOnDay[0].Start = int.Parse(hods0.Text);
+                nanny.HoursOnDay[1].Start = int.Parse(hods1.Text);
+                nanny.HoursOnDay[2].Start = int.Parse(hods2.Text);
+                nanny.HoursOnDay[3].Start = int.Parse(hods3.Text);
+                nanny.HoursOnDay[4].Start = int.Parse(hods4.Text);
+                nanny.HoursOnDay[5].Start = int.Parse(hods5.Text);
+                nanny.HoursOnDay[0].Finish = int.Parse(hodf0.Text);
+                nanny.HoursOnDay[1].Finish = int.Parse(hodf1.Text);
+                nanny.HoursOnDay[2].Finish = int.Parse(hodf2.Text);
+                nanny.HoursOnDay[3].Finish = int.Parse(hodf3.Text);
+                nanny.HoursOnDay[4].Finish = int.Parse(hodf4.Text);
+                nanny.HoursOnDay[5].Finish = int.Parse(hodf5.Text);
+                #endregion
                 bl.AddNanny(nanny);
             }
             catch (Exception ex)
             {
-               System.Windows.MessageBox.Show(ex.Message);
+                System.Windows.MessageBox.Show(ex.Message);
             }
             this.Close();
         }

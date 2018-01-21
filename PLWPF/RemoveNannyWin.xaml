@@ -25,7 +25,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <ComboBox x:Name="iDComboBox" Grid.Column="1" SelectedItem="{Binding nanny}" HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120"/>
+            <ComboBox x:Name="iDComboBox" Grid.Column="1" SelectedItem="{Binding Path=Id, Mode=TwoWay}" HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120"/>
         </Grid>
 
 

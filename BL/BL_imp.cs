@@ -22,8 +22,12 @@ namespace BL
     }
     public class BL_imp : IBL
     {
-        DAL.IDAL dal = new DAL.DAL_imp();
-
+        DAL.IDAL dal;
+        public BL_imp()
+        {
+            dal = DAL.FactoryDAL.GetDAL();
+            //init();
+        }
         /*
     public void init()
     {
@@ -54,12 +58,12 @@ namespace BL
                 throw new Exception("A nanny must be age 18 and over");
             dal.AddNanny(n);
         }
-        public void RemoveNanny(Nanny n)
+        public void RemoveNanny(int id)
         {
-            foreach (var c in GetContractsByTerm(c => c.NunnyID == n.ID))
-                RemoveContract(c);
+            foreach (var c in GetContractsByTerm(c => c.NunnyID == id))
+                RemoveContract(c.Number);
 
-            dal.RemoveNanny(n);
+            dal.RemoveNanny(id);
         }
         public void UpdateNanny(Nanny n)
         {
@@ -70,7 +74,7 @@ namespace BL
             foreach (var c in GetContractsByTerm(c => c.NunnyID == n.ID))
             {
                 Mother m = GetMother(c.MotherID);
-                RemoveContract(c);
+                RemoveContract(c.Number);
                 if (NannyToMother(m, n))
                     AddContract(c);
             }
@@ -86,15 +90,15 @@ namespace BL
         {
             dal.AddMother(m);
         }
-        public void RemoveMother(Mother m)
+        public void RemoveMother(int id)
         {
-            foreach (var c in GetContractsByTerm(c => c.MotherID == m.ID))
-                RemoveContract(c);
+            foreach (var c in GetContractsByTerm(c => c.MotherID == id))
+                RemoveContract(c.Number);
 
-            foreach (var c in GetChildsByTerm(c => c.MotherID == m.ID))
-                RemoveChild(c);
+            foreach (var c in GetChildsByTerm(c => c.MotherID == id))
+                RemoveChild(c.ID);
 
-            dal.RemoveMother(m);
+            dal.RemoveMother(id);
         }
         public void UpdateMother(Mother m)
         {
@@ -104,7 +108,7 @@ namespace BL
                 if (c.MotherID == m.ID)
                 {
                     Nanny n = GetNanny(c.NunnyID);
-                    RemoveContract(c);
+                    RemoveContract(c.Number);
                     if (NannyToMother(m, n))
                         AddContract(c);
                 }
@@ -121,12 +125,12 @@ namespace BL
         {
             dal.AddChild(c);
         }
-        public void RemoveChild(Child c)
+        public void RemoveChild(int id)
         {
-            foreach (var con in GetContractsByTerm(con => c.ID == con.ChildID))
-                RemoveContract(con);
+            foreach (var c in GetContractsByTerm(con => id == con.ChildID))
+                RemoveContract(c.Number);
 
-            dal.RemoveChild(c);
+            dal.RemoveChild(id);
         }
         public void UpdateChild(Child c)
         {
@@ -157,9 +161,10 @@ namespace BL
             dal.AddContract(c);
             RepairWageForMotherAndNanny(GetMother(c.MotherID), GetNanny(c.NunnyID));
         }
-        public void RemoveContract(Contract c)
+        public void RemoveContract(int num)
         {
-            dal.RemoveContract(c);
+            Contract c = GetContract(num);
+            dal.RemoveContract(num);
             RepairWageForMotherAndNanny(GetMother(c.MotherID), GetNanny(c.NunnyID));
         }
         public void UpdateContract(Contract c)

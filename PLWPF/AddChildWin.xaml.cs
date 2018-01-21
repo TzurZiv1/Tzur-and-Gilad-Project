@@ -29,6 +29,7 @@ namespace PLWPF
             this.DataContext = child;
             bl = BL.FactoryBL.GetBL();
             this.motherIDComboBox.ItemsSource = bl.GetAllMothers();
+            motherIDComboBox.DisplayMemberPath = "ID";
         }
 
         private void AddChildButton_Click(object sender, RoutedEventArgs e)

@@ -11,6 +11,16 @@ using DS;
 /// </summary>
 namespace DAL
 {
+    public class FactoryDAL
+    {
+        static IDAL dal = null;
+        public static IDAL GetDAL()
+        {
+            if (dal == null)
+                dal = new DAL_imp();
+            return dal;
+        }
+    }
     /// <summary>
     /// Implementaion of the IDAL interface
     /// </summary>
@@ -21,7 +31,7 @@ namespace DAL
         /// <summary>
         /// Add a nanny to the nanny list
         /// </summary>
-        /// <param name="n"> The nanny you want to add to the nanny list </param>
+        /// <param name="nannyToAdd"> The nanny you want to add to the nanny list </param>
         public void AddNanny(Nanny nannyToAdd)
         {
             if (GetNanny(nannyToAdd.ID) != null)
@@ -33,26 +43,26 @@ namespace DAL
         /// <summary>
         /// Remove a nanny from the nanny list
         /// </summary>
-        /// <param name="n">The nanny you want to remove from the nanny list</param>
-        public void RemoveNanny(Nanny nannyToRemove)
+        /// <param name="id">The id of the nanny you want to remove from the nanny list</param>
+        public void RemoveNanny(int id)
         {
-            if (GetNanny(nannyToRemove.ID) == null)
+            if (GetNanny(id) == null)
                 throw new Exception("The nanny doesn't exist");
             else
-                DataSource.RemoveNanny(GetNanny(nannyToRemove.ID));
+                DataSource.RemoveNanny(id);
         }
 
         /// <summary>
         /// Update a nanny who is in the list
         /// </summary>
-        /// <param name="n">The nanny you want to update </param>
+        /// <param name="nannyToUpdate">The nanny you want to update </param>
         public void UpdateNanny(Nanny nannyToUpdate)
         {
             if (GetNanny(nannyToUpdate.ID) == null)
                 throw new Exception("The nanny doesn't exist");
             else
             {
-                DataSource.RemoveNanny(GetNanny(nannyToUpdate.ID));
+                DataSource.RemoveNanny(nannyToUpdate.ID);
                 DataSource.AddNanny(nannyToUpdate);
             }
         }
@@ -76,7 +86,7 @@ namespace DAL
         /// <summary>
         /// Add a mother to the mother list
         /// </summary>
-        /// <param name="m">The mother you want to add to the mother list</param>
+        /// <param name="motherToAdd">The mother you want to add to the mother list</param>
         public void AddMother(Mother motherToAdd)
         {
             if (GetMother(motherToAdd.ID) != null)
@@ -88,19 +98,19 @@ namespace DAL
         /// <summary>
         /// Remove a mother from the mother list
         /// </summary>
-        /// <param name="m">The mother you want to remove from the mother list</param>
-        public void RemoveMother(Mother motherToRemove)
+        /// <param name="id">The id of the mother you want to remove from the mother list</param>
+        public void RemoveMother(int id)
         {
-            if (GetMother(motherToRemove.ID) == null)
+            if (GetMother(id) == null)
                 throw new Exception("The mother doesn't exist");
             else
-                DataSource.RemoveMother(GetMother(motherToRemove.ID));
+                DataSource.RemoveMother(id);
         }
 
         /// <summary>
         /// Update a mother who is in the list
         /// </summary>
-        /// <param name="n">The mother you want to update </param>
+        /// <param name="motherToUpdate">The mother you want to update </param>
         public void UpdateMother(Mother motherToUpdate)
         {
 
@@ -108,7 +118,7 @@ namespace DAL
                 throw new Exception("The mother doesn't exist");
             else
             {
-                DataSource.RemoveMother(GetMother(motherToUpdate.ID));
+                DataSource.RemoveMother(motherToUpdate.ID);
                 DataSource.AddMother(motherToUpdate);
             }
         }
@@ -133,7 +143,7 @@ namespace DAL
         /// <summary>
         /// Add a child to the child list
         /// </summary>
-        /// <param name="m">The child you want to add to the child list</param>
+        /// <param name="childToAdd">The child you want to add to the child list</param>
         public void AddChild(Child childToAdd)
         {
             if (GetChild(childToAdd.ID) != null)
@@ -145,26 +155,26 @@ namespace DAL
         /// <summary>
         /// Remove a child from the child list
         /// </summary>
-        /// <param name="m">The child you want to remove from the child list</param>
-        public void RemoveChild(Child childToRemove)
+        /// <param name="id">The id of the child you want to remove from the child list</param>
+        public void RemoveChild(int id)
         {
-            if (GetChild(childToRemove.ID) == null)
+            if (GetChild(id) == null)
                 throw new Exception("The child doesn't exist");
             else
-                DataSource.RemoveChild(GetChild(childToRemove.ID));
+                DataSource.RemoveChild(id);
         }
 
         /// <summary>
         /// Update a child who is in the list
         /// </summary>
-        /// <param name="n">The child you want to update </param>
+        /// <param name="childToUpdate">The child you want to update </param>
         public void UpdateChild(Child childToUpdate)
         {
             if (GetChild(childToUpdate.ID) == null)
                 throw new Exception("The child doesn't exist");
             else
             {
-                DataSource.RemoveChild(GetChild(childToUpdate.ID));
+                DataSource.RemoveChild(childToUpdate.ID);
                 DataSource.AddChild(childToUpdate);
             }
         }
@@ -190,7 +200,7 @@ namespace DAL
         /// <summary>
         /// Add a contract to the contract list
         /// </summary>
-        /// <param name="m">The contract you want to add to the contract list</param>
+        /// <param name="contractToAdd">The contract you want to add to the contract list</param>
         public void AddContract(Contract contractToAdd)
         {
             if (GetChild(contractToAdd.ChildID) == null)
@@ -207,19 +217,19 @@ namespace DAL
         /// <summary>
         /// Remove a contract from the child list
         /// </summary>
-        /// <param name="m">The contract you want to remove from the contract list</param>
-        public void RemoveContract(Contract contractToRemove)
+        /// <param name="num">The number of the contract you want to remove from the contract list</param>
+        public void RemoveContract(int num)
         {
-            if (GetContract(contractToRemove.Number) == null)
+            if (GetContract(num) == null)
                 throw new Exception("The contract doesn't exist");
 
-            DataSource.RemoveContract(GetContract(contractToRemove.Number));
+            DataSource.RemoveContract(num);
         }
 
         /// <summary>
         /// Update a contract who is in the list
         /// </summary>
-        /// <param name="n">The contract you want to update </param>
+        /// <param name="contractToUpdate">The contract you want to update </param>
         public void UpdateContract(Contract contractToUpdate)
         {
             if (GetContract(contractToUpdate.Number) == null)
@@ -231,7 +241,7 @@ namespace DAL
             if (GetNanny(contractToUpdate.NunnyID) == null)
                 throw new Exception("The nanny doesn't exist");
 
-            DataSource.RemoveContract(GetContract(contractToUpdate.Number));
+            DataSource.RemoveContract(contractToUpdate.Number);
             DataSource.AddContract(contractToUpdate);
         }
 

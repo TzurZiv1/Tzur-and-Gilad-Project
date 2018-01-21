@@ -4,13 +4,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BE;
-
+/// <summary>
+/// BL layer
+/// </summary>
 namespace BL
 {
+    /// <summary>
+    /// Interface for the BL layer
+    /// </summary>
     public interface IBL
     {
         #region NANNY
-
         /// <summary>
         /// Add a nanny to the nanny list
         /// </summary>
@@ -20,8 +24,8 @@ namespace BL
         /// <summary>
         /// Remove a nanny from the nanny list
         /// </summary>
-        /// <param name="n">The nanny you want to remove from the nanny list</param>
-        void RemoveNanny(Nanny n);
+        /// <param name="id">The id of nanny you want to remove from the nanny list</param>
+        void RemoveNanny(int id);
 
         /// <summary>
         /// Update a nanny who is in the list
@@ -38,7 +42,6 @@ namespace BL
         #endregion
 
         #region MOTHER
-
         /// <summary>
         /// Add a mother to the mother list
         /// </summary>
@@ -48,8 +51,8 @@ namespace BL
         /// <summary>
         /// Remove a mother from the mother list
         /// </summary>
-        /// <param name="m">The mother you want to remove from the mother list</param>
-        void RemoveMother(Mother m);
+        /// <param name="id">The id of the mother you want to remove from the mother list</param>
+        void RemoveMother(int id);
 
         /// <summary>
         /// Update a mother who is in the list
@@ -63,7 +66,6 @@ namespace BL
         /// <param name="id">The ID you want to find in the mother list</param>
         /// <returns>The mother from the list who has this ID</returns>
         Mother GetMother(int id);
-
         #endregion
 
         #region CHILD
@@ -76,8 +78,8 @@ namespace BL
         /// <summary>
         /// Remove a child from the child list
         /// </summary>
-        /// <param name="m">The child you want to remove from the child list</param>
-        void RemoveChild(Child c);
+        /// <param name="id">The id of the child you want to remove from the child list</param>
+        void RemoveChild(int id);
 
         /// <summary>
         /// Update a child who is in the list
@@ -103,8 +105,8 @@ namespace BL
         /// <summary>
         /// Remove a contract from the contract list
         /// </summary>
-        /// <param name="m">The contract you want to remove from the contract list</param>
-        void RemoveContract(Contract c);
+        /// <param name="num">The number of the contract you want to remove from the contract list</param>
+        void RemoveContract(int num);
 
         /// <summary>
         /// Update a contract who is in the list

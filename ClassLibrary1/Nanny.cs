@@ -42,7 +42,7 @@ namespace BE
         /// </summary>
         /// <param name="s"></param>
         /// <param name="f"></param>
-        public WorkHours(int s, int f)
+        public WorkHours(int s = 0, int f = 0)
         {
             Start = s;
             Finish = f;
@@ -54,7 +54,7 @@ namespace BE
         /// <returns>A string representation of the value of the current WorkHours object.</returns>
         public override string ToString()
         {
-            return (start == finish ? "nothing" :"from " + start + ":00 to " + finish + ":00");
+            return (start == finish ? "nothing" : "from " + start + ":00 to " + finish + ":00");
         }
     }
 
@@ -79,39 +79,39 @@ namespace BE
         private double ratePerHour;
         private double ratePerMonth;
         private bool[] workOnDay = new bool[6];
-        private WorkHours[] hoursOnDay = new WorkHours[6];
+        private WorkHours[] hoursOnDay;
         private bool financedVacation;
         private string recommendations;
 
-        public Nanny() { }
+        public Nanny() { hoursOnDay = new WorkHours[6]; }
 
-            /// <summary>
-            /// Constructor of nanny
-            /// </summary>
-            /// <param name="id1"></param>
-            /// <param name="firstName1"></param>
-            /// <param name="lastName1"></param>
-            /// <param name="birthdate1"></param>
-            /// <param name="address1"></param>
-            /// <param name="maxChilds1"></param>
-            /// <param name="minAgeInMonth1"></param>
-            /// <param name="maxAgeInMonth1"></param>
-            /// <param name="workOnDay1"></param>
-            /// <param name="hoursOnDay1"></param>
-            /// <param name="ratePerHour1"></param>
-            /// <param name="ratePerMonth1"></param>
-            /// <param name="phoneNumber1"></param>
-            /// <param name="isElevator1"></param>
-            /// <param name="floor1"></param>
-            /// <param name="expYears1"></param>
-            /// <param name="allowPerHour1"></param>
-            /// <param name="financedVacation1"></param>
-            /// <param name="recommendations1"></param>
-            public Nanny(int id1, string firstName1, string lastName1, DateTime birthdate1, string address1,
-            int maxChilds1, int minAgeInMonth1, int maxAgeInMonth1, bool[] workOnDay1,
-            WorkHours[] hoursOnDay1, double ratePerHour1, double ratePerMonth1 = 0,
-            string phoneNumber1 = "No phone number", bool isElevator1 = false, int floor1 = 0,
-            int expYears1 = 0, bool allowPerHour1 = false, bool financedVacation1 = false, string recommendations1 = "Nothing")
+        /// <summary>
+        /// Constructor of nanny
+        /// </summary>
+        /// <param name="id1"></param>
+        /// <param name="firstName1"></param>
+        /// <param name="lastName1"></param>
+        /// <param name="birthdate1"></param>
+        /// <param name="address1"></param>
+        /// <param name="maxChilds1"></param>
+        /// <param name="minAgeInMonth1"></param>
+        /// <param name="maxAgeInMonth1"></param>
+        /// <param name="workOnDay1"></param>
+        /// <param name="hoursOnDay1"></param>
+        /// <param name="ratePerHour1"></param>
+        /// <param name="ratePerMonth1"></param>
+        /// <param name="phoneNumber1"></param>
+        /// <param name="isElevator1"></param>
+        /// <param name="floor1"></param>
+        /// <param name="expYears1"></param>
+        /// <param name="allowPerHour1"></param>
+        /// <param name="financedVacation1"></param>
+        /// <param name="recommendations1"></param>
+        public Nanny(int id1, string firstName1, string lastName1, DateTime birthdate1, string address1,
+        int maxChilds1, int minAgeInMonth1, int maxAgeInMonth1, bool[] workOnDay1,
+        WorkHours[] hoursOnDay1, double ratePerHour1, double ratePerMonth1 = 0,
+        string phoneNumber1 = "No phone number", bool isElevator1 = false, int floor1 = 0,
+        int expYears1 = 0, bool allowPerHour1 = false, bool financedVacation1 = false, string recommendations1 = "Nothing")
         {
             ID = id1;
             LastName = lastName1;
@@ -185,7 +185,8 @@ namespace BE
                     maxChilds = value;
             }
         }
-        public int MinAgeInMonth {
+        public int MinAgeInMonth
+        {
             get => minAgeInMonth;
             set
             {
@@ -233,46 +234,46 @@ namespace BE
         public WorkHours[] HoursOnDay { get => hoursOnDay; set => hoursOnDay = value; }
         public bool FinancedVacation { get => financedVacation; set => financedVacation = value; }
         public string Recommendations { get => recommendations ?? ""; set => recommendations = value; }
-		/// <summary>
-		/// Converts the value of the current Nanny object to its equivalent string representation
-		/// </summary>
-		/// <returns>A string representation of the value of the current WorkHours object.</returns>
-		public override string ToString()
+        /// <summary>
+        /// Converts the value of the current Nanny object to its equivalent string representation
+        /// </summary>
+        /// <returns>A string representation of the value of the current WorkHours object.</returns>
+        public override string ToString()
         {
-			string strWorksOnDays = "";
-			if (WorkOnDay[0])
-				strWorksOnDays += "\tSunday: " + HoursOnDay[0] + "\n";
-			if (WorkOnDay[1])
-				strWorksOnDays += "\tMonday: " + HoursOnDay[1] + "\n";
-			if (WorkOnDay[2])
-				strWorksOnDays += "\tTuesday: " + HoursOnDay[2] + "\n";
-			if (WorkOnDay[3])
-				strWorksOnDays += "\tWednesday: " + HoursOnDay[3] + "\n";
-			if (WorkOnDay[4])
-				strWorksOnDays += "\tThursday: " + HoursOnDay[4] + "\n";
-			if (WorkOnDay[5])
-				strWorksOnDays += "\tFriday: " + HoursOnDay[5] + "\n";
+            string strWorksOnDays = "";
+            if (WorkOnDay[0])
+                strWorksOnDays += "\tSunday: " + HoursOnDay[0] + "\n";
+            if (WorkOnDay[1])
+                strWorksOnDays += "\tMonday: " + HoursOnDay[1] + "\n";
+            if (WorkOnDay[2])
+                strWorksOnDays += "\tTuesday: " + HoursOnDay[2] + "\n";
+            if (WorkOnDay[3])
+                strWorksOnDays += "\tWednesday: " + HoursOnDay[3] + "\n";
+            if (WorkOnDay[4])
+                strWorksOnDays += "\tThursday: " + HoursOnDay[4] + "\n";
+            if (WorkOnDay[5])
+                strWorksOnDays += "\tFriday: " + HoursOnDay[5] + "\n";
 
-			return
-				"ID: " + ID + "\n" +
-				"Last name: " + LastName + "\n" +
-				"First name: " + FirstName + "\n" +
-				"Borthdate: " + Birthdate + "\n" +
-				"Phone number: " + PhoneNumber + "\n" +
-				"Address: " + Address + "\n" +
-				"There "+ (IsElevator ? "is" : "is not") + "elevator in the building\n" +
-				"Floor: " + Floor + "\n" +
-				"Experience years: " + ExpYears + "\n" +
-				"Max childs: " + MaxChilds + "\n" +
-				"Minimum age: " + MinAgeInMonth + "\n" +
-				"Maximum age: " + MaxAgeInMonth + "\n" +
-				(AllowPerHour ? "Allow" : "Doesn't allow")+ " pay per hour\n" +
-				"Rate per hour: " + RatePerHour + "\n" +
-				"Rate per month: " + RatePerMonth + "\n" +
-				"Work on days:\n" + (strWorksOnDays == "" ? "No day" : strWorksOnDays) + "\n" +
-				"Vacations " + (FinancedVacation ? "is" : "isn't") 
-				+ " based on the Ministry of Education or the Ministry of Industry, Trade and Labor" + "\n" +
-				"Recommendations:\n" + (Recommendations == "" ? "Nothing" : Recommendations);
-		}
+            return
+                "ID: " + ID + "\n" +
+                "Last name: " + LastName + "\n" +
+                "First name: " + FirstName + "\n" +
+                "Borthdate: " + Birthdate + "\n" +
+                "Phone number: " + PhoneNumber + "\n" +
+                "Address: " + Address + "\n" +
+                "There " + (IsElevator ? "is" : "is not") + "elevator in the building\n" +
+                "Floor: " + Floor + "\n" +
+                "Experience years: " + ExpYears + "\n" +
+                "Max childs: " + MaxChilds + "\n" +
+                "Minimum age: " + MinAgeInMonth + "\n" +
+                "Maximum age: " + MaxAgeInMonth + "\n" +
+                (AllowPerHour ? "Allow" : "Doesn't allow") + " pay per hour\n" +
+                "Rate per hour: " + RatePerHour + "\n" +
+                "Rate per month: " + RatePerMonth + "\n" +
+                "Work on days:\n" + (strWorksOnDays == "" ? "No day" : strWorksOnDays) + "\n" +
+                "Vacations " + (FinancedVacation ? "is" : "isn't")
+                + " based on the Ministry of Education or the Ministry of Industry, Trade and Labor" + "\n" +
+                "Recommendations:\n" + (Recommendations == "" ? "Nothing" : Recommendations);
+        }
     }
 }

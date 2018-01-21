@@ -26,8 +26,8 @@ namespace DAL
         /// <summary>
         /// Remove a nanny from the nanny list
         /// </summary>
-        /// <param name="n">The nanny you want to remove from the nanny list</param>
-        void RemoveNanny(Nanny n);
+        /// <param name="id">The id of nanny you want to remove from the nanny list</param>
+        void RemoveNanny(int id);
 
         /// <summary>
         /// Update a nanny who is in the list
@@ -41,7 +41,7 @@ namespace DAL
         /// <param name="id">The ID you want to find in the nanny list</param>
         /// <returns>The nanny from the list who has this ID</returns>
         Nanny GetNanny(int id);
-        #endregion NANNY
+        #endregion
 
         #region MOTHER
         /// <summary>
@@ -53,8 +53,8 @@ namespace DAL
         /// <summary>
         /// Remove a mother from the mother list
         /// </summary>
-        /// <param name="m">The mother you want to remove from the mother list</param>
-        void RemoveMother(Mother m);
+        /// <param name="id">The id of the mother you want to remove from the mother list</param>
+        void RemoveMother(int id);
 
         /// <summary>
         /// Update a mother who is in the list
@@ -80,8 +80,8 @@ namespace DAL
         /// <summary>
         /// Remove a child from the child list
         /// </summary>
-        /// <param name="m">The child you want to remove from the child list</param>
-        void RemoveChild(Child c);
+        /// <param name="id">The id of the child you want to remove from the child list</param>
+        void RemoveChild(int id);
 
         /// <summary>
         /// Update a child who is in the list
@@ -107,8 +107,8 @@ namespace DAL
         /// <summary>
         /// Remove a contract from the contract list
         /// </summary>
-        /// <param name="m">The contract you want to remove from the contract list</param>
-        void RemoveContract(Contract c);
+        /// <param name="num">The number of the contract you want to remove from the contract list</param>
+        void RemoveContract(int num);
 
         /// <summary>
         /// Update a contract who is in the list
@@ -161,7 +161,5 @@ namespace DAL
         /// <returns>all contracts grouped by nannyID</returns>
         IEnumerable<IGrouping<int, Contract>> GetAllContractsByNanny();
         #endregion
-
-
     }
 }

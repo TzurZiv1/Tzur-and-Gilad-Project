@@ -19,22 +19,27 @@ namespace PLWPF
     /// </summary>
     public partial class RemoveNannyWin : Window
     {
-        BE.Nanny nanny;
+        class MyData
+        {
+            int id;
+            public int Id { get => id; set => id = value; }
+        }
         BL.IBL bl;
+        MyData myData = new MyData() { Id = 0 };
+
         public RemoveNannyWin()
         {
             InitializeComponent();
-            nanny = new BE.Nanny();
-            this.DataContext = nanny;
             bl = BL.FactoryBL.GetBL();
-            this.iDComboBox.ItemsSource = bl.GetAllNannies()/*.Select(x => x.ID)*/;
+            this.iDComboBox.ItemsSource = bl.GetAllNannies().Select(x => x.ID);
+            iDComboBox.DataContext = myData;
         }
 
         private void RemoveNannyButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                bl.RemoveNanny(nanny);
+                bl.RemoveNanny(myData.Id);
             }
             catch (Exception ex)
             {
