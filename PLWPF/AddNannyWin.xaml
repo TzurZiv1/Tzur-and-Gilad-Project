@@ -5,8 +5,9 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
-        xmlns:BE="clr-namespace:BE;assembly=ClassLibrary1"
-    xmlns:UserControl="clr-namespace:PLWPF.UserControl" x:Class="PLWPF.AddNannyWin"
+        xmlns:BE="clr-namespace:BE;assembly=ClassLibrary1" 
+        xmlns:UserControl="clr-namespace:PLWPF.UserControl"
+        x:Class="PLWPF.AddNannyWin"
         mc:Ignorable="d"
         Title="AddNannyWin" Height="700" Width="500">
 
@@ -19,6 +20,7 @@
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Content="Add New Nanny" FontSize="25" Margin="0" HorizontalContentAlignment="Center"/>
+        <Image Grid.Row="0"  HorizontalAlignment="right" Source="images\nanny.png" Width="50"/>
         <Button x:Name="AddNannyButton" Grid.Row="2" Content="Add" Width="150" Height="30" Margin="0,5" Click="AddNannyButton_Click"/>
         <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="0,0" Grid.Row="1" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>

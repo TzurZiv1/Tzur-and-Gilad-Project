@@ -19,9 +19,14 @@ namespace PLWPF
     /// </summary>
     public partial class RemoveMotherWin : Window
     {
+        BL.IBL bl;
         public RemoveMotherWin()
         {
             InitializeComponent();
+            bl = BL.FactoryBL.GetBL();
+            this.iDComboBox.ItemsSource = bl.GetAllMothers();
+            iDComboBox.DisplayMemberPath = "ID";
+
         }
     }
 }

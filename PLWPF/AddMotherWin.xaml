@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:PLWPF"
-        xmlns:BE="clr-namespace:BE;assembly=ClassLibrary1" x:Class="PLWPF.AddMotherWin"
+        xmlns:BE="clr-namespace:BE;assembly=ClassLibrary1" 
+        x:Class="PLWPF.AddMotherWin"
+        xmlns:UserControl="clr-namespace:PLWPF.UserControl"
         mc:Ignorable="d"
         Title="AddMotherWin" Height="400" Width="500" >
     
@@ -34,7 +36,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="addressTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Address, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <UserControl:PlaceAutoCompleteUC x:Name="addressPlaceAutoCompleteUC" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0"  VerticalAlignment="Center" Width="120"/>
             <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="areaTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Area, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
@@ -83,19 +85,19 @@
             <CheckBox Grid.Column="1" Grid.Row="5" IsChecked="{Binding NeedNannyOnDay[4], Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
             <CheckBox Grid.Column="1" Grid.Row="6" IsChecked="{Binding NeedNannyOnDay[5], Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
 
-            <xctk:IntegerUpDown Grid.Column="2" Grid.Row="1" Value="{Binding HoursOnDay[0].Start, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown Grid.Column="2" Grid.Row="2" Value="{Binding HoursOnDay[0].Start, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown Grid.Column="2" Grid.Row="3" Value="{Binding HoursOnDay[0].Start, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown Grid.Column="2" Grid.Row="4" Value="{Binding HoursOnDay[0].Start, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown Grid.Column="2" Grid.Row="5" Value="{Binding HoursOnDay[0].Start, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown Grid.Column="2" Grid.Row="6" Value="{Binding HoursOnDay[0].Start, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true }" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown x:Name="hods0" Text="0" Grid.Column="2" Grid.Row="1"  Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown x:Name="hods1" Text="0" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown x:Name="hods2" Text="0" Grid.Column="2" Grid.Row="3" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown x:Name="hods3" Text="0" Grid.Column="2" Grid.Row="4" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown x:Name="hods4" Text="0" Grid.Column="2" Grid.Row="5" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown x:Name="hods5" Text="0" Grid.Column="2" Grid.Row="6" Minimum="0" Maximum="24"/>
 
-            <xctk:IntegerUpDown Grid.Column="3" Grid.Row="1" Value="{Binding HoursOnDay[0].Finish, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown Grid.Column="3" Grid.Row="2" Value="{Binding HoursOnDay[1].Finish, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown Grid.Column="3" Grid.Row="3" Value="{Binding HoursOnDay[2].Finish, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown Grid.Column="3" Grid.Row="4" Value="{Binding HoursOnDay[3].Finish, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown Grid.Column="3" Grid.Row="5" Value="{Binding HoursOnDay[4].Finish, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown Grid.Column="3" Grid.Row="6" Value="{Binding HoursOnDay[5].Finish, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown x:Name="hodf0" Text="0" Grid.Column="3" Grid.Row="1" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown x:Name="hodf1" Text="0" Grid.Column="3" Grid.Row="2" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown x:Name="hodf2" Text="0" Grid.Column="3" Grid.Row="3" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown x:Name="hodf3" Text="0" Grid.Column="3" Grid.Row="4" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown x:Name="hodf4" Text="0" Grid.Column="3" Grid.Row="5" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown x:Name="hodf5" Text="0" Grid.Column="3" Grid.Row="6" Minimum="0" Maximum="24"/>
 
         </Grid>
 

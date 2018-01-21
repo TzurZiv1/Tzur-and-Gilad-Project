@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="RemoveMotherWin" Height="300" Width="300">
+        Title="RemoveMotherWin" Height="180" Width="300">
     <Grid>
-        
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="Remove Mother" FontSize="25" HorizontalContentAlignment="Center" Margin="50,0"/>
+       
+        <Button x:Name="RemoveChildButton" Content="Remove" Grid.Row="2"  Margin="68,16,74,-6" Click="RemoveChildButton_Click" RenderTransformOrigin="0.475,1.892"/>
+
+        <Grid x:Name="grid1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <ComboBox x:Name="iDComboBox" Grid.Column="1" SelectedItem="{Binding Path=Id, Mode=TwoWay}" HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120"/>
+        </Grid>
     </Grid>
 </Window>
