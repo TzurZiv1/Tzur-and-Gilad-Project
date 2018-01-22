@@ -12,7 +12,7 @@ namespace BE
     public class Contract
     {
         private int number;
-        private int nunnyID;
+        private int nannyID;
         private int childID;
         private int motherID;
         private bool wasMeeting;
@@ -20,10 +20,15 @@ namespace BE
         private double wagePerHour;
         private double wagePerMonth;
         private bool isPerMonth;// true = per month. false = per hour
-        private DateTime startDate = new DateTime();
-        private DateTime endDate = new DateTime();
+        private DateTime startDate;
+        private DateTime endDate;
 
-        public Contract() { }
+        public Contract()
+        {
+            startDate = new DateTime();
+            endDate = new DateTime();
+        }
+
         /// <summary>
         /// Constructor to contract
         /// </summary>
@@ -37,11 +42,11 @@ namespace BE
         /// <param name="wasSignature1"></param>
         /// <param name="startDate1"></param>
         /// <param name="endDate1"></param>
-        public Contract(int nunnyID1, int childID1, int motherID1, double wagePerHour1 = 0,
+        public Contract(int nannyID1, int childID1, int motherID1, double wagePerHour1 = 0,
             double wagePerMonth1 = 0, bool isPerMonth1 = false, bool wasMeeting1 = false,
             bool wasSignature1 = false, DateTime startDate1 = default(DateTime), DateTime endDate1 = default(DateTime))
         {
-            NunnyID = nunnyID1;
+            NannyID = nannyID1;
             ChildID = childID1;
             MotherID = motherID1;
             WagePerHour = wagePerHour1;
@@ -55,15 +60,15 @@ namespace BE
 
         //Properties
         public int Number { get => number; set => number = value; }
-        public int NunnyID
+        public int NannyID
         {
-            get => nunnyID;
+            get => nannyID;
             set
             {
                 if (value > 0)
-                    nunnyID = value;
+                    nannyID = value;
                 else
-                    throw new Exception("ID can't be negative");
+                    throw new Exception("ID can't be negative or zero");
             }
         }
         public int ChildID
@@ -74,7 +79,7 @@ namespace BE
                 if (value > 0)
                     childID = value;
                 else
-                    throw new Exception("ID can't be negative");
+                    throw new Exception("ID can't be negative or zero");
             }
         }
         public int MotherID
@@ -85,7 +90,7 @@ namespace BE
                 if (value > 0)
                     motherID = value;
                 else
-                    throw new Exception("ID can't be negative");
+                    throw new Exception("ID can't be negative or zero");
             }
         }
         public bool WasMeeting { get => wasMeeting; set => wasMeeting = value; }
@@ -133,7 +138,7 @@ namespace BE
         {
             return
                 "Number: " + Number + "\n" +
-                "Nunny's ID: " + NunnyID + "\n" +
+                "Nunny's ID: " + NannyID + "\n" +
                 "Child's ID: " + ChildID + "\n" +
                 "Mother's ID: " + MotherID + "\n" +
                 "Was meeting: " + WasMeeting + "\n" +

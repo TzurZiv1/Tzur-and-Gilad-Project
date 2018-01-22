@@ -27,7 +27,7 @@ namespace BE
                 if (value > 0)
                     id = value;
                 else
-                    throw new Exception("ID can't be negative");
+                    throw new Exception("ID can't be negative or zero");
             }
         }
         public int MotherID
@@ -38,7 +38,7 @@ namespace BE
                 if (value > 0)
                     motherID = value;
                 else
-                    throw new Exception("ID can't be negative");
+                    throw new Exception("ID can't be negative or zero");
             }
         }
         public string FirstName { get => firstName ?? ""; set => firstName = value; }

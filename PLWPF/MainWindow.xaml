@@ -6,7 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525" Icon="images/nanny.png">
+        Title="MainWindow" Height="350" Width="525" Icon="images/icon.png">
     <Window.Background>
         <ImageBrush ImageSource="images/Project.jpg"/>
     </Window.Background>

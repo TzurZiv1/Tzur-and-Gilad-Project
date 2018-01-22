@@ -98,6 +98,7 @@ namespace DAL
         #endregion
 
         #region CONTRACT
+        int CurrentNumber();
         /// <summary>
         /// Add a contract to the contract list
         /// </summary>

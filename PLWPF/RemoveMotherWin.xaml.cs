@@ -25,7 +25,10 @@ namespace PLWPF
             InitializeComponent();
             bl = BL.FactoryBL.GetBL();
             this.iDComboBox.ItemsSource = bl.GetAllMothers();
-            iDComboBox.DisplayMemberPath = "ID";
+        }
+
+        private void RemoveMotherButton_Click(object sender, RoutedEventArgs e)
+        {
 
         }
     }

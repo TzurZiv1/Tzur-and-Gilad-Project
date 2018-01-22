@@ -60,7 +60,7 @@ namespace BL
         }
         public void RemoveNanny(int id)
         {
-            foreach (var c in GetContractsByTerm(c => c.NunnyID == id))
+            foreach (var c in GetContractsByTerm(c => c.NannyID == id))
                 RemoveContract(c.Number);
 
             dal.RemoveNanny(id);
@@ -71,7 +71,7 @@ namespace BL
                 throw new Exception("A nanny must be age 18 and over");
             dal.UpdateNanny(n);
 
-            foreach (var c in GetContractsByTerm(c => c.NunnyID == n.ID))
+            foreach (var c in GetContractsByTerm(c => c.NannyID == n.ID))
             {
                 Mother m = GetMother(c.MotherID);
                 RemoveContract(c.Number);
@@ -107,7 +107,7 @@ namespace BL
             {
                 if (c.MotherID == m.ID)
                 {
-                    Nanny n = GetNanny(c.NunnyID);
+                    Nanny n = GetNanny(c.NannyID);
                     RemoveContract(c.Number);
                     if (NannyToMother(m, n))
                         AddContract(c);
@@ -143,6 +143,8 @@ namespace BL
         #endregion
 
         #region Contract
+        public int CurrentNumber() => dal.CurrentNumber();
+
         public void AddContract(Contract c)
         {
             if (DateTime.Today < GetChild(c.ChildID).Birthdate.AddMonths(3))
@@ -150,27 +152,27 @@ namespace BL
 
             //Checks if there is a place for another child to this nanny
             int numChildsToNanny = 0;
-            foreach (var con in GetContractsByTerm(con => con.NunnyID == c.NunnyID && con.WasSignature))
+            foreach (var con in GetContractsByTerm(con => con.NannyID == c.NannyID && con.WasSignature))
                 numChildsToNanny++;
 
-            if (numChildsToNanny < GetNanny(c.NunnyID).MaxChilds)
+            if (numChildsToNanny < GetNanny(c.NannyID).MaxChilds)
                 c.WasSignature = true;
             else
                 c.WasSignature = false;
 
             dal.AddContract(c);
-            RepairWageForMotherAndNanny(GetMother(c.MotherID), GetNanny(c.NunnyID));
+            RepairWageForMotherAndNanny(GetMother(c.MotherID), GetNanny(c.NannyID));
         }
         public void RemoveContract(int num)
         {
             Contract c = GetContract(num);
             dal.RemoveContract(num);
-            RepairWageForMotherAndNanny(GetMother(c.MotherID), GetNanny(c.NunnyID));
+            RepairWageForMotherAndNanny(GetMother(c.MotherID), GetNanny(c.NannyID));
         }
         public void UpdateContract(Contract c)
         {
             dal.UpdateContract(c);
-            RepairWageForMotherAndNanny(GetMother(c.MotherID), GetNanny(c.NunnyID));
+            RepairWageForMotherAndNanny(GetMother(c.MotherID), GetNanny(c.NannyID));
         }
         public Contract GetContract(int num)
         {
@@ -316,12 +318,12 @@ namespace BL
             return grade;
         }
         /// <summary>
-        /// Returns the least suitable Nanny to m from, 2 nunnies
+        /// Returns the least suitable Nanny to m from, 2 nannies
         /// </summary>
         /// <param name="m">The Mother who we want to check match to her</param>
         /// <param name="n1">first nanny</param>
         /// <param name="n2">second nanny</param>
-        /// <returns>The least suitable Nanny to m, from 2 nunnies</returns>
+        /// <returns>The least suitable Nanny to m, from 2 nannies</returns>
         private Nanny MinGrade(Mother m, Nanny n1, Nanny n2)
         {
             int min = Math.Min(GradeNannyToMother(m, n1), GradeNannyToMother(m, n2));
@@ -360,7 +362,7 @@ namespace BL
         private void RepairWageForMotherAndNanny(Mother m, Nanny n)
         {
             double discount = 1;
-            foreach (var c in GetContractsByTerm(c => m.ID == c.MotherID && n.ID == c.NunnyID))
+            foreach (var c in GetContractsByTerm(c => m.ID == c.MotherID && n.ID == c.NannyID))
                 discount *= 0.98;
             discount /= 0.98;
             foreach (var c in GetAllContracts())
@@ -483,12 +485,12 @@ namespace BL
                        orderby c.Number
                        let tempArea = GetMother(c.MotherID).Area
                        let area = (tempArea != null && tempArea != "") ? tempArea : GetMother(c.MotherID).Address
-                       group c by (CalculateDistance(area, GetNanny(c.NunnyID).Address) / 5000);
+                       group c by (CalculateDistance(area, GetNanny(c.NannyID).Address) / 5000);
             //Don't order contracts
             return from c in GetAllContracts()
                    let tempArea = GetMother(c.MotherID).Area
                    let area = (tempArea != null && tempArea != "") ? tempArea : GetMother(c.MotherID).Address
-                   group c by (CalculateDistance(area, GetNanny(c.NunnyID).Address) / 5000);
+                   group c by (CalculateDistance(area, GetNanny(c.NannyID).Address) / 5000);
         }
         /// <summary>
         /// Returns all contracts grouped by nanny

@@ -96,6 +96,8 @@ namespace BL
         #endregion
 
         #region CONTRACT
+        int CurrentNumber();
+
         /// <summary>
         /// Add a contract to the contract list
         /// </summary>

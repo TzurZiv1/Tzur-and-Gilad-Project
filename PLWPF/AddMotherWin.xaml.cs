@@ -36,6 +36,7 @@ namespace PLWPF
             try  {
                 #region initialization
                 mother.Address = addressPlaceAutoCompleteUC.Text;
+                mother.Area = areaPlaceAutoCompleteUC.Text;
                 mother.HoursForDay = new BE.WorkHours[6];
                 mother.HoursForDay[0] = new BE.WorkHours();
                 mother.HoursForDay[1] = new BE.WorkHours();

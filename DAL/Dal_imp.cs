@@ -195,7 +195,8 @@ namespace DAL
         #endregion
 
         #region CONTRACT
-        private static int numberOfContracts = 0;
+        private static int currentNumber = 0;
+        public int CurrentNumber() => currentNumber;
 
         /// <summary>
         /// Add a contract to the contract list
@@ -207,10 +208,10 @@ namespace DAL
                 throw new Exception("The child doesn't exist");
             if (GetMother(contractToAdd.MotherID) == null)
                 throw new Exception("The mother doesn't exist");
-            if (GetNanny(contractToAdd.NunnyID) == null)
+            if (GetNanny(contractToAdd.NannyID) == null)
                 throw new Exception("The nanny doesn't exist");
 
-            contractToAdd.Number = ++numberOfContracts;
+            contractToAdd.Number = ++currentNumber;
             DataSource.AddContract(contractToAdd);
         }
 
@@ -238,7 +239,7 @@ namespace DAL
                 throw new Exception("The child doesn't exist");
             if (GetMother(contractToUpdate.MotherID) == null)
                 throw new Exception("The mother doesn't exist");
-            if (GetNanny(contractToUpdate.NunnyID) == null)
+            if (GetNanny(contractToUpdate.NannyID) == null)
                 throw new Exception("The nanny doesn't exist");
 
             DataSource.RemoveContract(contractToUpdate.Number);
@@ -306,7 +307,7 @@ namespace DAL
         /// </summary>
         /// <returns>all contracts grouped by nannyID</returns>
         public IEnumerable<IGrouping<int, Contract>> GetAllContractsByNanny() => from c in GetAllContracts()
-                                                                                    group c by c.NunnyID;
+                                                                                    group c by c.NannyID;
         #endregion
     }
 }

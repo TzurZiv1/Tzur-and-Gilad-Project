@@ -26,19 +26,20 @@ namespace PLWPF
             InitializeComponent();
 
             contract = new BE.Contract();
+            contract.StartDate = new DateTime();
+            contract.EndDate = new DateTime();
             this.DataContext = contract;
             bl = BL.FactoryBL.GetBL();
-            this.motherIDComboBox.ItemsSource = bl.GetAllMothers();
-            motherIDComboBox.DisplayMemberPath = "ID";
-            this.childIDComboBox.ItemsSource = bl.GetAllChilds();
-            childIDComboBox.DisplayMemberPath = "ID";
-            this.nunnyIDComboBox.ItemsSource = bl.GetAllNannies();
-            nunnyIDComboBox.DisplayMemberPath = "ID";
+            
+            this.childIDComboBox.ItemsSource = bl.GetAllChilds().Select(x => x.ID);
+            this.nunnyIDComboBox.ItemsSource = bl.GetAllNannies().Select(x => x.ID);
+            numberTextBlock.Text = (bl.CurrentNumber() + 1).ToString();
         }
         private void AddContractButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                contract.MotherID = bl.GetChild(contract.ChildID).MotherID;
                 bl.AddContract(contract);
             }
             catch (Exception ex)

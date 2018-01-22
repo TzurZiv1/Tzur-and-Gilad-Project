@@ -143,7 +143,7 @@ namespace BE
                 if (value > 0)
                     id = value;
                 else
-                    throw new Exception("ID can't be negative");
+                    throw new Exception("ID can't be negative or zero");
             }
         }
         public string LastName { get => lastName ?? ""; set => lastName = value; }
