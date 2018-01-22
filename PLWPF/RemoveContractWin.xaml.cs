@@ -30,11 +30,24 @@ namespace PLWPF
         public RemoveContractWin()
         {
             InitializeComponent();
+            bl = BL.FactoryBL.GetBL();
+            numberComboBox.DataContext = myData;
+            this.numberComboBox.ItemsSource = bl.GetAllContracts();
+            numberComboBox.DisplayMemberPath = "MainDetails";
+            numberComboBox.SelectedValuePath = "Number";
         }
 
         private void RemoveContractButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                bl.RemoveContract(myData.Number);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+            Close();
         }
     }
 }

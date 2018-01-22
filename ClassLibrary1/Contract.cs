@@ -22,6 +22,13 @@ namespace BE
         private bool isPerMonth;// true = per month. false = per hour
         private DateTime startDate;
         private DateTime endDate;
+        public string MainDetails
+        {
+            get => "Number: " + Number + "\n" +
+                "Nunny's ID: " + NannyID + "\n" +
+                "Child's ID: " + ChildID + "\n" +
+                "Mother's ID: " + MotherID;
+        }
 
         public Contract()
         {
@@ -130,6 +137,8 @@ namespace BE
                     throw new Exception("EndDate must be after startDate");
             }
         }
+        
+
         /// <summary>
         /// Override for ToString
         /// </summary>
@@ -147,7 +156,7 @@ namespace BE
                 "Wage per month: " + WagePerMonth + "\n" +
                 "Payment is calculated per " + (isPerMonth ? "month" : "hour") + "\n" +
                 "Start date: " + StartDate + "\n" +
-                "End date: " + EndDate + "\n";
+                "End date: " + EndDate;
         }
     }
 }
