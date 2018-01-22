@@ -33,7 +33,8 @@ namespace PLWPF
 
         private void AddmotherButton_Click(object sender, RoutedEventArgs e)
         {
-            try  {
+            try
+            {
                 #region initialization
                 mother.Address = addressPlaceAutoCompleteUC.Text;
                 mother.Area = areaPlaceAutoCompleteUC.Text;
@@ -58,7 +59,6 @@ namespace PLWPF
                 mother.HoursForDay[5].Finish = int.Parse(hodf5.Text);
                 #endregion
                 bl.AddMother(mother);
-                
             }
             catch (Exception ex)
             {
