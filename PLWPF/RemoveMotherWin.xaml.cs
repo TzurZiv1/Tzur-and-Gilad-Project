@@ -19,17 +19,32 @@ namespace PLWPF
     /// </summary>
     public partial class RemoveMotherWin : Window
     {
+        class MyData
+        {
+            int id;
+            public int Id { get => id; set => id = value; }
+        }
         BL.IBL bl;
+        MyData myData = new MyData() { Id = 0 };
         public RemoveMotherWin()
         {
             InitializeComponent();
             bl = BL.FactoryBL.GetBL();
-            this.iDComboBox.ItemsSource = bl.GetAllMothers();
+            this.iDComboBox.ItemsSource = bl.GetAllMothers().Select(m => m.ID);
+            iDComboBox.DataContext = myData;
         }
 
         private void RemoveMotherButton_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                bl.RemoveMother(myData.Id);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+            this.Close();
         }
     }
 }

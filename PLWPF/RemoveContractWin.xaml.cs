@@ -19,9 +19,22 @@ namespace PLWPF
     /// </summary>
     public partial class RemoveContractWin : Window
     {
+        class MyData
+        {
+            int number;
+            public int Number { get => number; set => number = value; }
+        }
+        BL.IBL bl;
+        MyData myData = new MyData() { Number = 0 };
+
         public RemoveContractWin()
         {
             InitializeComponent();
+        }
+
+        private void RemoveContractButton_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

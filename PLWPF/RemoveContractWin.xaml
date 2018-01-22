@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="RemoveContractWin" Height="300" Width="300">
+        Title="RemoveContractWin" Height="160" Width="270">
     <Grid>
-        
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="Remove Contract" FontSize="25" HorizontalContentAlignment="Center" HorizontalAlignment="left"/>
+        <Image Grid.Row="0"  HorizontalAlignment="right" Source="images/contract.png" Margin="0,0,0,0" Width="50"/>
+
+        <Button x:Name="RemoveContractButton" Content="Remove" Grid.Row="2"  Margin="71,5" Click="RemoveContractButton_Click"/>
+
+        <Grid x:Name="grid1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <ComboBox x:Name="iDComboBox" Grid.Column="1" SelectedItem="{Binding Path=Id, Mode=TwoWay}" HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120"/>
+        </Grid>
     </Grid>
 </Window>
