@@ -58,7 +58,8 @@ namespace PLWPF
             add.ShowDialog();
             if (bl.GetAllNannies().Count != 0)
             {
-                AddContract.IsEnabled = true;
+                if (bl.GetAllMothers().Count != 0 && bl.GetAllChilds().Count != 0)
+                    AddContract.IsEnabled = true;
                 RemoveNanny.IsEnabled = true;
                 UpdateNanny.IsEnabled = true;
             }
@@ -71,7 +72,6 @@ namespace PLWPF
             if (bl.GetAllMothers().Count != 0)
             {
                 AddChild.IsEnabled = true;
-                AddContract.IsEnabled = true;
                 RemoveMother.IsEnabled = true;
                 UpdateMother.IsEnabled = true;
             }
@@ -83,9 +83,11 @@ namespace PLWPF
             add.ShowDialog();
             if (bl.GetAllChilds().Count != 0)
             {
+                if (bl.GetAllNannies().Count != 0 && bl.GetAllNannies().Count != 0)
+                    AddContract.IsEnabled = true;
                 RemoveChild.IsEnabled = true;
                 UpdateChild.IsEnabled = true;
-                AddContract.IsEnabled = true;
+               
             }
         }
 
@@ -109,7 +111,9 @@ namespace PLWPF
             {
                 AddContract.IsEnabled = false;
                 RemoveNanny.IsEnabled = false;
+                RemoveContract.IsEnabled = false;
                 UpdateNanny.IsEnabled = false;
+                UpdateContract.IsEnabled = false;
             }
         }
 
@@ -122,7 +126,11 @@ namespace PLWPF
                 AddChild.IsEnabled = false;
                 AddContract.IsEnabled = false;
                 RemoveMother.IsEnabled = false;
+                RemoveContract.IsEnabled = false;
+                RemoveChild.IsEnabled = false;
                 UpdateMother.IsEnabled = false;
+                UpdateChild.IsEnabled = false;
+                UpdateContract.IsEnabled = false;
             }
         }
 
@@ -133,7 +141,9 @@ namespace PLWPF
             if (bl.GetAllChilds().Count == 0)
             {
                 RemoveChild.IsEnabled = false;
+                RemoveContract.IsEnabled = false;
                 UpdateChild.IsEnabled = false;
+                UpdateContract.IsEnabled = false;
                 AddContract.IsEnabled = false;
             }
         }
