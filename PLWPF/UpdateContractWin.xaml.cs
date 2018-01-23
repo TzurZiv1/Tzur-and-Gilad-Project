@@ -19,9 +19,38 @@ namespace PLWPF
     /// </summary>
     public partial class UpdateContractWin : Window
     {
+        BE.Contract contract;
+        BL.IBL bl;
         public UpdateContractWin()
         {
             InitializeComponent();
+            contract = new BE.Contract();
+            this.DataContext = contract;
+            bl = BL.FactoryBL.GetBL();
+
+            this.numberComboBox.ItemsSource = bl.GetAllContracts();
+            numberComboBox.DisplayMemberPath = "MainDetails";
+            numberComboBox.SelectedValuePath = "Number";
+        }
+
+        private void UpdateContractButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                contract.MotherID = bl.GetChild(contract.ChildID).MotherID;
+                bl.UpdateContract(contract);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+            this.Close();
+        }
+
+        private void numberComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            nannyIDTextBlock.Text = bl.GetContract((int)numberComboBox.SelectedValue).NannyID.ToString();
+            childIDTextBlock.Text = bl.GetContract((int)numberComboBox.SelectedValue).ChildID.ToString();
         }
     }
 }

@@ -36,7 +36,7 @@
             <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="firstNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <ComboBox x:Name="iDComboBox" Grid.Column="1" SelectedItem="{Binding ID}" HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120"/>
+            <ComboBox x:Name="iDComboBox" Grid.Column="1" SelectedItem="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120"/>
             <Label Content="Is Special:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
             <CheckBox x:Name="isSpecialCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding IsSpecial, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
             <Label Content="Special Needs:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" IsEnabled="{Binding ElementName=isSpecialCheckBox, Path=IsChecked}"/>

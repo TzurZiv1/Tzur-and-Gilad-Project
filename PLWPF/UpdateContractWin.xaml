@@ -5,8 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="UpdateContractWin" Height="300" Width="300">
+        Title="UpdateContractWin" Height="330" Width="300">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Row="0" Content="Update Contract" FontSize="25" HorizontalContentAlignment="left" HorizontalAlignment="left" Width="220"/>
+        <Image Grid.Row="0"  HorizontalAlignment="right" Source="images/contract.png" Margin="0,0,0,0" Width="50"/>
+
+        <Button x:Name="UpdateContractButton"  Content="Add" Grid.Row="2"  Margin="71,10,71,5" Click="UpdateContractButton_Click"/>
+
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="32,10,0,0" Grid.Row="1" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Child ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="2" VerticalAlignment="Center" Height="26" Width="55"/>
+            <TextBlock x:Name="childIDTextBlock" Grid.Column="1" Text="{Binding Path=ChildID, Mode=TwoWay}" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="2" VerticalAlignment="Center" Width="120"/>
+            <Label Content="End Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="61"/>
+            <DatePicker x:Name="endDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3,4,0,4" Grid.Row="4" SelectedDate="{Binding EndDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="24" Width="102"/>
+            <Label Content="Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="0" VerticalAlignment="Center" Height="26" Width="56"/>
+            <ComboBox x:Name="numberComboBox" Grid.Column="1"  SelectedItem="{Binding Path=Number, Mode=TwoWay}" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="0" VerticalAlignment="Center" Width="120" SelectionChanged="numberComboBox_SelectionChanged"/>
+            <Label Content="Nanny ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="63"/>
+            <TextBlock x:Name="nannyIDTextBlock" Grid.Column="1" Text="{Binding Path=NannyID, Mode=TwoWay}" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="1" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Start Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="3" VerticalAlignment="Center" Height="26" Width="65"/>
+            <DatePicker x:Name="startDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3,4,0,4" Grid.Row="3" SelectedDate="{Binding StartDate, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Height="24" Width="102"/>
+            <Label Content="Was Meeting:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="5" VerticalAlignment="Center" Height="26" Width="82"/>
+            <CheckBox x:Name="wasMeetingCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding WasMeeting, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3,8,0,8" Grid.Row="5" VerticalAlignment="Center" Height="16" Width="20"/>
+        </Grid>
     </Grid>
 </Window>

@@ -26,8 +26,6 @@ namespace PLWPF
             InitializeComponent();
 
             contract = new BE.Contract();
-            contract.StartDate = new DateTime();
-            contract.EndDate = new DateTime();
             this.DataContext = contract;
             bl = BL.FactoryBL.GetBL();
             

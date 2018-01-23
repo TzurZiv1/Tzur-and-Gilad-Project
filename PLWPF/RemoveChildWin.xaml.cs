@@ -31,7 +31,7 @@ namespace PLWPF
         {
             InitializeComponent();
             bl = BL.FactoryBL.GetBL();
-            this.iDComboBox.ItemsSource = bl.GetAllChilds().Select(c => c.ID);
+            this.iDComboBox.ItemsSource = bl.GetAllChilds()/*.Select(c => c.ID)*/;
             iDComboBox.DataContext = myData;
         }
 

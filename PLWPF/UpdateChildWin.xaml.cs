@@ -34,6 +34,7 @@ namespace PLWPF
         {
             try
             {
+                child.MotherID = bl.GetChild(child.ID).MotherID;
                 bl.UpdateChild(child);
             }
             catch (Exception ex)

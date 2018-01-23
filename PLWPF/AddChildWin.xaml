@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:PLWPF"
         xmlns:BE="clr-namespace:BE;assembly=ClassLibrary1" x:Class="PLWPF.AddChildWin"
         mc:Ignorable="d"
-        Title="AddChildWin" Height="320" Width="300" ResizeMode="NoResize">
+        Title="AddChildWin" Height="320" Width="300">
 
     <Grid>
         <Grid.RowDefinitions>
