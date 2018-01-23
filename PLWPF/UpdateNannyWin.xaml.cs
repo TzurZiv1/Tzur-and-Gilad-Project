@@ -35,11 +35,15 @@ namespace PLWPF
         {
             try
             {
+                if (iDComboBox.SelectedValue == null)
+                    throw new Exception("No nanny was selected");
                 bl.UpdateNanny(nanny);
             }
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
+                if (ex.Message == "No nanny was selected")
+                    return;
             }
             this.Close();
         }

@@ -18,7 +18,7 @@
         <Label Grid.Row="0" Content="   Update Mother" FontSize="25" HorizontalContentAlignment="Center" HorizontalAlignment="left"/>
         <Image Grid.Row="0"  HorizontalAlignment="right" Source="images/mother.png" Width="50"/>
 
-        <Button x:Name="UpdatemotherButton" Grid.Row="2" Content="Update" Width="150" Height="30" Margin="0,5" Click="UpdatemotherButton_Click"/>
+        <Button x:Name="UpdateMotherButton" Grid.Row="2" Content="Update" Width="150" Height="30" Margin="0,5" Click="UpdateMotherButton_Click"/>
 
         <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="40,5,0,-35" Grid.Row="1" VerticalAlignment="Top" Grid.RowSpan="2">
             <Grid.ColumnDefinitions>
@@ -42,7 +42,7 @@
             <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="firstNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <ComboBox x:Name="iDComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" SelectedItem="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <ComboBox x:Name="iDComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" SelectedItem="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" SelectionChanged="iDComboBox_SelectionChanged"/>
             <Label Content="Is Per Month:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
             <CheckBox x:Name="isPerMonthCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding IsPerMonth, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
             <Label Content="Last Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>

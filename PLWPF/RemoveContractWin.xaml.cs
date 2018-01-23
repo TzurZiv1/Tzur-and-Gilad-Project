@@ -33,7 +33,7 @@ namespace PLWPF
             bl = BL.FactoryBL.GetBL();
             numberComboBox.DataContext = myData;
             this.numberComboBox.ItemsSource = bl.GetAllContracts();
-            numberComboBox.DisplayMemberPath = "MainDetails";
+            //numberComboBox.DisplayMemberPath = "MainDetails";
             numberComboBox.SelectedValuePath = "Number";
         }
 
@@ -41,11 +41,15 @@ namespace PLWPF
         {
             try
             {
+                if (numberComboBox.SelectedValue == null)
+                    throw new Exception("No contract was selected");
                 bl.RemoveContract(myData.Number);
             }
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
+                if (ex.Message == "No contract was selected")
+                    return;
             }
             Close();
         }

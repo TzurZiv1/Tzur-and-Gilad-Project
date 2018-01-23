@@ -32,7 +32,7 @@ namespace PLWPF
             InitializeComponent();
             bl = BL.FactoryBL.GetBL();
             this.iDComboBox.ItemsSource = bl.GetAllChilds();
-            iDComboBox.DisplayMemberPath = "MainDetails";
+            //iDComboBox.DisplayMemberPath = "MainDetails";
             iDComboBox.SelectedValuePath = "ID";
             iDComboBox.DataContext = myData;
         }
@@ -41,11 +41,15 @@ namespace PLWPF
         {
             try
             {
+                if (iDComboBox.SelectedValue == null)
+                    throw new Exception("No child was selected");
                 bl.RemoveChild(myData.Id);
             }
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
+                if (ex.Message == "No child was selected")
+                    return;
             }
             this.Close();
         }

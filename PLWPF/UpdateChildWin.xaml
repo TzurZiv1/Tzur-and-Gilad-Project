@@ -11,8 +11,8 @@
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto" MinHeight="46"/>
-            <RowDefinition Height="auto" MinHeight="31"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Content="Update Child" FontSize="25" HorizontalContentAlignment="Center" HorizontalAlignment="left" Width="154"/>

@@ -27,25 +27,35 @@ namespace PLWPF
             mother = new BE.Mother();
             this.DataContext = mother;
             bl = BL.FactoryBL.GetBL();
-            this.iDComboBox.ItemsSource = bl.GetAllMothers().Select(x => x.ID);
+            iDComboBox.ItemsSource = bl.GetAllMothers();
+            iDComboBox.DisplayMemberPath = "MainDetails";
+            iDComboBox.SelectedValuePath = "ID";
         }
 
-        private void UpdatemotherButton_Click(object sender, RoutedEventArgs e)
+        private void UpdateMotherButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                if (iDComboBox.SelectedValue == null)
+                    throw new Exception("No mother was selected");
+
                 bl.UpdateMother(mother);
             }
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
+                if (ex.Message == "No mother was selected")
+                    return;
             }
             this.Close();
         }
 
-        private void UpdatemotherButton_Click(object sender, RoutedEventArgs e)
+        private void iDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            addressPlaceAutoCompleteUC.Text = bl.GetMother(mother.ID).Address;
+            areaPlaceAutoCompleteUC.Text = bl.GetMother(mother.ID).Area;
+            firstNameTextBox.Text = bl.GetMother(mother.ID).FirstName;
+            // לא גמור!!!!!!!!
         }
     }
 }

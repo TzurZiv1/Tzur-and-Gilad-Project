@@ -30,19 +30,25 @@ namespace PLWPF
             bl = BL.FactoryBL.GetBL();
             
             this.childIDComboBox.ItemsSource = bl.GetAllChilds().Select(x => x.ID);
-            this.nunnyIDComboBox.ItemsSource = bl.GetAllNannies().Select(x => x.ID);
+            this.nannyIDComboBox.ItemsSource = bl.GetAllNannies().Select(x => x.ID);
             numberTextBlock.Text = (bl.CurrentNumber() + 1).ToString();
         }
         private void AddContractButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
+                if (nannyIDComboBox.SelectedValue == null)
+                    throw new Exception("No nanny was selected");
+                if (childIDComboBox.SelectedValue == null)
+                    throw new Exception("No child was selected");
                 contract.MotherID = bl.GetChild(contract.ChildID).MotherID;
                 bl.AddContract(contract);
             }
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
+                if (ex.Message == "No nanny was selected" || ex.Message == "No child was selected")
+                    return;
             }
             this.Close();
         }

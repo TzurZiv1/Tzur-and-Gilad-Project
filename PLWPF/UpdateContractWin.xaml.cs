@@ -37,6 +37,9 @@ namespace PLWPF
         {
             try
             {
+                if(numberComboBox.SelectedValue == null)
+                    throw new Exception("No contract was selected");
+
                 contract.MotherID = bl.GetChild(contract.ChildID).MotherID;
                 contract.IsPerMonth = bl.GetContract(contract.Number).IsPerMonth;
                 contract.WagePerHour = bl.GetContract(contract.Number).WagePerHour;
@@ -48,6 +51,8 @@ namespace PLWPF
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
+                if (ex.Message == "No contract was selected")
+                    return;
             }
             this.Close();
         }
@@ -56,6 +61,9 @@ namespace PLWPF
         {
             nannyIDTextBlock.Text = bl.GetContract((int)numberComboBox.SelectedValue).NannyID.ToString();
             childIDTextBlock.Text = bl.GetContract((int)numberComboBox.SelectedValue).ChildID.ToString();
+            startDateDatePicker.SelectedDate = bl.GetContract((int)numberComboBox.SelectedValue).StartDate;
+            endDateDatePicker.SelectedDate = bl.GetContract((int)numberComboBox.SelectedValue).EndDate;
+            wasMeetingCheckBox.IsChecked = bl.GetContract((int)numberComboBox.SelectedValue).WasMeeting;
         }
     }
 }

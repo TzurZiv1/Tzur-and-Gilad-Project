@@ -37,11 +37,16 @@ namespace PLWPF
         {
             try
             {
+                if (motherIDComboBox.SelectedValue == null)
+                    throw new Exception("No mother was selected");
+
                 bl.AddChild(child);
             }
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
+                if (ex.Message == "No mother was selected")
+                    return;
             }
             this.Close();
         }

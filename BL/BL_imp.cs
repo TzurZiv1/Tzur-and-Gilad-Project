@@ -363,7 +363,7 @@ namespace BL
             foreach (var c in GetContractsByTerm(c => m.ID == c.MotherID && n.ID == c.NannyID))
                 discount *= 0.98;
             discount /= 0.98;
-            foreach (var c in GetAllContracts())
+            foreach (var c in GetContractsByTerm(c => m.ID == c.MotherID && n.ID == c.NannyID))
             {
                 if (m.IsPerMonth)
                 {
