@@ -19,9 +19,28 @@ namespace PLWPF
     /// </summary>
     public partial class UpdateMotherWin : Window
     {
+        BE.Mother mother;
+        BL.IBL bl;
         public UpdateMotherWin()
         {
             InitializeComponent();
+            mother = new BE.Mother();
+            this.DataContext = mother;
+            bl = BL.FactoryBL.GetBL();
+            this.iDComboBox.ItemsSource = bl.GetAllMothers().Select(x => x.ID);
+        }
+
+        private void UpdatemotherButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.UpdateMother(mother);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+            this.Close();
         }
 
         private void UpdatemotherButton_Click(object sender, RoutedEventArgs e)

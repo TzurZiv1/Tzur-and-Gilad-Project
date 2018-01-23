@@ -40,14 +40,15 @@
                                 <RowDefinition/>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
+                                <ColumnDefinition Width="6*"/>
+                                <ColumnDefinition Width="250*"/>
+                                <ColumnDefinition Width="255*"/>
                             </Grid.ColumnDefinitions>
 
-                            <Button Name="RemoveNanny" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="RemoveNanny_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
-                            <Button Name="RemoveMother" Content="Mother" Grid.Row="1" Grid.Column="0" Click="RemoveMother_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
-                            <Button Name="RemoveChild" Content="Child" Grid.Row="0" Grid.Column="1" Click="RemoveChild_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
-                            <Button Name="RemoveContract" Content="Contract" Grid.Row="1" Grid.Column="1" Click="RemoveContract_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
+                            <Button Name="RemoveNanny" Content="Nanny" Grid.Row="0" Grid.Column="1" Click="RemoveNanny_Click" Margin="3.82,10,10,10" Background="WhiteSmoke" Opacity="0.8"/>
+                            <Button Name="RemoveMother" Content="Mother" Grid.Row="1" Grid.Column="1" Click="RemoveMother_Click" Margin="3.82,10,10,10" Background="WhiteSmoke" Opacity="0.8"/>
+                            <Button Name="RemoveChild" Content="Child" Grid.Row="0" Grid.Column="2" Click="RemoveChild_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
+                            <Button Name="RemoveContract" Content="Contract" Grid.Row="1" Grid.Column="2" Click="RemoveContract_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
                         </Grid>
                     </TabItem.Content>
                 </TabItem>

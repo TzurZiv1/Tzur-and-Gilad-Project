@@ -66,6 +66,5 @@ namespace PLWPF
             }
             this.Close();
         }
-
     }
 }

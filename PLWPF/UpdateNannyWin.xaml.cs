@@ -19,9 +19,29 @@ namespace PLWPF
     /// </summary>
     public partial class UpdateNannyWin : Window
     {
+        BE.Nanny nanny;
+        BL.IBL bl;
+
         public UpdateNannyWin()
         {
             InitializeComponent();
+            nanny = new BE.Nanny();
+            this.DataContext = nanny;
+            bl = BL.FactoryBL.GetBL();
+            this.iDComboBox.ItemsSource = bl.GetAllNannies().Select(x => x.ID);
+        }
+
+        private void UpdateNannyButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                bl.UpdateNanny(nanny);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.MessageBox.Show(ex.Message);
+            }
+            this.Close();
         }
     }
 }
