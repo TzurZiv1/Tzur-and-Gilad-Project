@@ -38,6 +38,11 @@ namespace PLWPF
             try
             {
                 contract.MotherID = bl.GetChild(contract.ChildID).MotherID;
+                contract.IsPerMonth = bl.GetContract(contract.Number).IsPerMonth;
+                contract.WagePerHour = bl.GetContract(contract.Number).WagePerHour;
+                contract.WagePerMonth = bl.GetContract(contract.Number).WagePerMonth;
+                contract.WasSignature = bl.GetContract(contract.Number).WasSignature;
+
                 bl.UpdateContract(contract);
             }
             catch (Exception ex)

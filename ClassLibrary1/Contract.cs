@@ -25,7 +25,7 @@ namespace BE
         public string MainDetails
         {
             get => "Number: " + Number + "\n" +
-                "Nunny's ID: " + NannyID + "\n" +
+                "Nanny's ID: " + NannyID + "\n" +
                 "Child's ID: " + ChildID + "\n" +
                 "Mother's ID: " + MotherID;
         }
@@ -49,9 +49,10 @@ namespace BE
         /// <param name="wasSignature1"></param>
         /// <param name="startDate1"></param>
         /// <param name="endDate1"></param>
-        public Contract(int nannyID1, int childID1, int motherID1, double wagePerHour1 = 0,
-            double wagePerMonth1 = 0, bool isPerMonth1 = false, bool wasMeeting1 = false,
-            bool wasSignature1 = false, DateTime startDate1 = default(DateTime), DateTime endDate1 = default(DateTime))
+        public Contract(int nannyID1, int childID1, int motherID1, DateTime startDate1 = default(DateTime),
+            DateTime endDate1 = default(DateTime), bool wasMeeting1 = false, double wagePerHour1 = 0,
+            double wagePerMonth1 = 0, bool isPerMonth1 = false,
+            bool wasSignature1 = false)
         {
             NannyID = nannyID1;
             ChildID = childID1;

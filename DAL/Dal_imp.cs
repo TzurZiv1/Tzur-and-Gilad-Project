@@ -34,10 +34,8 @@ namespace DAL
         /// <param name="nannyToAdd"> The nanny you want to add to the nanny list </param>
         public void AddNanny(Nanny nannyToAdd)
         {
-            if (GetNanny(nannyToAdd.ID) != null)
-                throw new Exception("The nanny already exist");
-            else
-                DataSource.AddNanny(nannyToAdd);
+            IdAlreadyExist(nannyToAdd.ID);
+            DataSource.AddNanny(nannyToAdd);
         }
 
         /// <summary>
@@ -89,9 +87,7 @@ namespace DAL
         /// <param name="motherToAdd">The mother you want to add to the mother list</param>
         public void AddMother(Mother motherToAdd)
         {
-            if (GetMother(motherToAdd.ID) != null)
-                throw new Exception("The mother already exist");
-            else
+            IdAlreadyExist(motherToAdd.ID);
                 DataSource.AddMother(motherToAdd);
         }
 
@@ -146,9 +142,7 @@ namespace DAL
         /// <param name="childToAdd">The child you want to add to the child list</param>
         public void AddChild(Child childToAdd)
         {
-            if (GetChild(childToAdd.ID) != null)
-                throw new Exception("The child already exist");
-            else
+            IdAlreadyExist(childToAdd.ID);
                 DataSource.AddChild(childToAdd);
         }
 
@@ -309,5 +303,11 @@ namespace DAL
         public IEnumerable<IGrouping<int, Contract>> GetAllContractsByNanny() => from c in GetAllContracts()
                                                                                     group c by c.NannyID;
         #endregion
+
+        private void IdAlreadyExist(int id)
+        {
+            if (GetChild(id) != null || GetMother(id) != null || GetNanny(id) != null)
+                throw new Exception("This ID already exist");
+        }
     }
 }

@@ -73,6 +73,11 @@ namespace BE
         public WorkHours[] HoursForDay { get => hoursForDay; set => hoursForDay = value; }
         public string Notes { get => notes ?? ""; set => notes = value; }
         public bool IsPerMonth { get => isPerMonth; set => isPerMonth = value; }
+        public string MainDetails
+        {
+            get => "ID: " + ID + "\n" +
+                "Name: " + FirstName + LastName;
+        }
 
         /// <summary>
         /// Converts the value of the current Mother object to its equivalent string representation

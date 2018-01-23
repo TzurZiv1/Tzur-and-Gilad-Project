@@ -55,6 +55,11 @@ namespace BE
         }
         public bool IsSpecial { get => isSpecial; set => isSpecial = value; }
         public string SpecialNeeds { get => specialNeeds ?? ""; set => specialNeeds = value; }
+        public string MainDetails
+        {
+            get => "ID: " + ID + "\n" +
+                "Name: " + FirstName;
+        }
 
         /// <summary>
         /// Default constructor

@@ -27,7 +27,9 @@ namespace PLWPF
             child = new BE.Child();
             this.DataContext = child;
             bl = BL.FactoryBL.GetBL();
-            this.iDComboBox.ItemsSource = bl.GetAllChilds().Select(x => x.ID);
+            this.iDComboBox.ItemsSource = bl.GetAllChilds();
+            iDComboBox.DisplayMemberPath = "MainDetails";
+            iDComboBox.SelectedValuePath = "ID";
         }
 
         private void UpdateChildButton_Click(object sender, RoutedEventArgs e)
@@ -42,6 +44,16 @@ namespace PLWPF
                 System.Windows.MessageBox.Show(ex.Message);
             }
             this.Close();
+        }
+
+        private void iDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            firstNameTextBox.Text = bl.GetChild(child.ID).FirstName;
+            birthdateDatePicker.SelectedDate = bl.GetChild(child.ID).Birthdate;
+            isSpecialCheckBox.IsChecked = bl.GetChild(child.ID).IsSpecial;
+            specialNeedsTextBox.Text = bl.GetChild(child.ID).SpecialNeeds;
+            firstNameTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            specialNeedsTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
     }
 }

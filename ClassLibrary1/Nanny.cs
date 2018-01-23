@@ -234,6 +234,11 @@ namespace BE
         public WorkHours[] HoursOnDay { get => hoursOnDay; set => hoursOnDay = value; }
         public bool FinancedVacation { get => financedVacation; set => financedVacation = value; }
         public string Recommendations { get => recommendations ?? ""; set => recommendations = value; }
+        public string MainDetails
+        {
+            get => "ID: " + ID + "\n" +
+                "Name: " + FirstName + LastName;
+        }
         /// <summary>
         /// Converts the value of the current Nanny object to its equivalent string representation
         /// </summary>

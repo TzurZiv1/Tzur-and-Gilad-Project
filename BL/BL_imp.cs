@@ -26,30 +26,28 @@ namespace BL
         public BL_imp()
         {
             dal = DAL.FactoryDAL.GetDAL();
-            //init();
+            init();
         }
-        /*
-    public void init()
-    {
-        AddChild(new BE.Child
-        {
-            // צריך לשים פה פרטים לילד
-        });
-        AddNanny(new BE.Nanny
-        {
-            // צריך לשים פה פרטים למטפלת
-        });
-        AddMother(new BE.Mother
-        {
-            // צריך לשים פה פרטים לאמא
-        });
-        AddContract(new BE.Contract
-        {
-            // צריך לשים פה פרטים לחוזה העסקה
-        });
-        // אפשר להוסיף עוד ילדים, אמהות ומטפלות
 
-    }*/
+        public void init()
+        {
+            AddNanny(new Nanny(123451234, "Mor", "Cohen", new DateTime(1994, 12, 2), "Jerusalem, Israel", 8, 24, 100, new bool[] { true, false, false, true, false, false },
+                new WorkHours[6] { new WorkHours(1, 23), new WorkHours(0, 0), new WorkHours(0, 0), new WorkHours(1, 23), new WorkHours(0, 0), new WorkHours(0, 0) },
+                27, 1500, "054-1231234", true, 2, 2, true, true, "Very good nanny"));
+            AddNanny(new Nanny(398734128, "Miri", "Factor", new DateTime(1995, 3, 23), "Ben Zakai 25, Rishon LeTsiyon, Israel", 1, 3, 36, new bool[] { false, false, true, false, false, true },
+                new WorkHours[6] { new WorkHours(0, 0), new WorkHours(0, 0), new WorkHours(12, 20), new WorkHours(0, 0), new WorkHours(0, 0), new WorkHours(10, 15) },
+                29, 2300, "057-3453535", true, 5, 3, true, false));
+            AddMother(new Mother(274857123, "Galia", "Nagar", "pinkhas zekharya 24, rishon lezion, israel", "rishon lezion, israel", new bool[] { true, false, false, true, false, false },
+                new WorkHours[6] { new WorkHours(15, 20), new WorkHours(0, 0), new WorkHours(0, 0), new WorkHours(15, 18), new WorkHours(0, 0), new WorkHours(0, 0) },
+                false, "032-2345674"));
+            AddMother(new Mother(123123123, "Shoshy", "Smith", "Rabbi Meir Street 12, Tel Aviv-Yafo, Israel", null, new bool[] { false, false, true, false, true, true },
+                new WorkHours[6] { new WorkHours(0, 0), new WorkHours(0, 0), new WorkHours(10, 15), new WorkHours(0, 0), new WorkHours(18, 22), new WorkHours(10, 15) },
+                true, "03-9582615"));
+            AddChild(new Child(234875912, 274857123, "Gili", new DateTime(2012, 4, 15), true, "Need a lot of tzumy"));
+            AddChild(new Child(829347234, 123123123, "RL", new DateTime(2017, 2, 24)));
+            AddChild(new Child(546987244, 123123123, "BD", new DateTime(2017, 9, 29)));
+            AddContract(new Contract(123451234, 234875912, 274857123, new DateTime(2018, 2, 1), new DateTime(2018, 6, 1), true));
+        }
 
         #region Nanny
         public void AddNanny(Nanny n)
@@ -210,7 +208,7 @@ namespace BL
                 Leg leg = route.Legs.First();
                 return leg.Distance.Value;
             }
-            catch(Exception)
+            catch (Exception)
             {
                 return -1;
             }
@@ -470,7 +468,7 @@ namespace BL
             //Don't order nannies
             return from n in GetAllNannies()
                    group n by n.ExpYears;
-            
+
         }
 
         /// <summary>
