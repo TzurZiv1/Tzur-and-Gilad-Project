@@ -4,6 +4,12 @@
              xmlns:local="clr-namespace:PLWPF"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <Style x:Key="RemoveButtonStyle">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=iDComboBox, Path=Text}" Value="">
+                    <Setter Property="Button.IsEnabled" Value="false"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
     </Application.Resources>
 </Application>

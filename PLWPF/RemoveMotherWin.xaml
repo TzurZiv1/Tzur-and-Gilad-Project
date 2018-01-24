@@ -6,19 +6,19 @@
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
         Validation.Error="validation_Error"  
-        Title="RemoveMotherWin" Height="180" Width="300">
+        Title="RemoveMotherWin" Height="200" Width="300">
     <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Content="Remove Mother" FontSize="25" HorizontalContentAlignment="Center" HorizontalAlignment="left" Width="195"/>
         <Image Grid.Row="0"  HorizontalAlignment="right" Source="images/mother.png" Margin="0,0,0,0" Width="50"/>
-        
-        <Button x:Name="RemoveMotherButton" Content="Remove" Grid.Row="2"  Margin="68,16,74,-6" Click="RemoveMotherButton_Click"/>
+
+        <Button x:Name="RemoveMotherButton" Content="Remove" Grid.Row="2"  Margin="70,24" Click="RemoveMotherButton_Click" Style="{StaticResource RemoveButtonStyle}"/>
 
         <Grid x:Name="grid1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>

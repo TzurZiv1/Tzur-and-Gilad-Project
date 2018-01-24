@@ -7,20 +7,20 @@
         xmlns:BE="clr-namespace:BE;assembly=ClassLibrary1" x:Class="PLWPF.RemoveChildWin"
         mc:Ignorable="d"
         Validation.Error="validation_Error"  
-        Title="RemoveChildWin" Height="160" Width="230">
+        Title="RemoveChildWin" Height="200" Width="300">
 
     <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" Content="Remove Child" FontSize="25" HorizontalContentAlignment="Center" HorizontalAlignment="left" Width="162"/>
         <Image Grid.Row="0"  HorizontalAlignment="right" Source="images/child.png" Margin="0,0,0,0" Width="50"/>
 
-        <Button x:Name="RemoveChildButton" Content="Remove" Grid.Row="2"  Margin="71,5" Click="RemoveChildButton_Click"/>
+        <Button x:Name="RemoveChildButton" Content="Remove" Grid.Row="2"  Margin="70,24" Click="RemoveChildButton_Click" Style="{StaticResource RemoveButtonStyle}"/>
 
         <Grid x:Name="grid1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
