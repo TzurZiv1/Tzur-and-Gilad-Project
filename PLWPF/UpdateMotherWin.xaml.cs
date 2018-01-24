@@ -55,7 +55,16 @@ namespace PLWPF
             addressPlaceAutoCompleteUC.Text = bl.GetMother(mother.ID).Address;
             areaPlaceAutoCompleteUC.Text = bl.GetMother(mother.ID).Area;
             firstNameTextBox.Text = bl.GetMother(mother.ID).FirstName;
-            // לא גמור!!!!!!!!
+            isPerMonthCheckBox.IsChecked = bl.GetMother(mother.ID).IsPerMonth;
+            lastNameTextBox.Text = bl.GetMother(mother.ID).LastName;
+            notesTextBox.Text = bl.GetMother(mother.ID).Notes;
+            phoneNumberTextBox.Text = bl.GetMother(mother.ID).PhoneNumber;
+            addressPlaceAutoCompleteUC.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            areaPlaceAutoCompleteUC.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            firstNameTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            lastNameTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            notesTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            phoneNumberTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
         }
     }
 }

@@ -47,5 +47,37 @@ namespace PLWPF
             }
             this.Close();
         }
+
+        private void iDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            addressPlaceAutoCompleteUC.Text = bl.GetNanny(nanny.ID).Address;
+            allowPerHourCheckBox.IsChecked = bl.GetNanny(nanny.ID).AllowPerHour;
+            birthdateDatePicker.SelectedDate = bl.GetNanny(nanny.ID).Birthdate;
+            expYearsTextBox.Text = bl.GetNanny(nanny.ID).ExpYears.ToString();
+            financedVacationCheckBox.IsChecked = bl.GetNanny(nanny.ID).FinancedVacation;
+            firstNameTextBox.Text = bl.GetNanny(nanny.ID).FirstName;
+            floorTextBox.Text = bl.GetNanny(nanny.ID).Floor.ToString();
+            isElevatorCheckBox.IsChecked = bl.GetNanny(nanny.ID).IsElevator;
+            lastNameTextBox.Text = bl.GetNanny(nanny.ID).LastName;
+            maxAgeInMonthTextBox.Text = bl.GetNanny(nanny.ID).MaxAgeInMonth.ToString();
+            maxChildsTextBox.Text = bl.GetNanny(nanny.ID).MaxChilds.ToString();
+            minAgeInMonthTextBox.Text = bl.GetNanny(nanny.ID).MinAgeInMonth.ToString();
+            phoneNumberTextBox.Text = bl.GetNanny(nanny.ID).PhoneNumber;
+            ratePerHourTextBox.Text = bl.GetNanny(nanny.ID).RatePerHour.ToString();
+            ratePerMonthTextBox.Text = bl.GetNanny(nanny.ID).RatePerMonth.ToString();
+            recommendationsTextBox.Text = bl.GetNanny(nanny.ID).Recommendations;
+            addressPlaceAutoCompleteUC.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            expYearsTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            firstNameTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            floorTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            lastNameTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            maxAgeInMonthTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            maxChildsTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            minAgeInMonthTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            phoneNumberTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            ratePerHourTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            ratePerMonthTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            recommendationsTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+        }
     }
 }
