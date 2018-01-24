@@ -41,7 +41,7 @@ namespace PLWPF
             bl = BL.FactoryBL.GetBL();
             numberComboBox.DataContext = myData;
             this.numberComboBox.ItemsSource = bl.GetAllContracts();
-            //numberComboBox.DisplayMemberPath = "MainDetails";
+            numberComboBox.DisplayMemberPath = "MainDetails";
             numberComboBox.SelectedValuePath = "Number";
         }
 

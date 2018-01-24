@@ -352,6 +352,8 @@ namespace BL
         }
         #endregion
 
+        #region Other functions
+
         /// <summary>
         /// repairs the wage of every contract that is shared with m and n
         /// </summary>
@@ -502,5 +504,6 @@ namespace BL
         /// <param name="order">true = order the contracts, false = don't order</param>
         /// <returns></returns>
         public IEnumerable<IGrouping<int, Contract>> GetAllContractsByMother() => dal.GetAllContractsByMother();
+        #endregion
     }
 }

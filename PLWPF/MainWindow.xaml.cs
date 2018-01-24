@@ -115,6 +115,11 @@ namespace PLWPF
                 UpdateNanny.IsEnabled = false;
                 UpdateContract.IsEnabled = false;
             }
+            else if (bl.GetAllContracts().Count == 0)
+            {
+                RemoveContract.IsEnabled = false;
+                UpdateContract.IsEnabled = false;
+            }
         }
 
         private void RemoveMother_Click(object sender, RoutedEventArgs e)
@@ -132,6 +137,16 @@ namespace PLWPF
                 UpdateChild.IsEnabled = false;
                 UpdateContract.IsEnabled = false;
             }
+            else if (bl.GetAllContracts().Count == 0)
+            {
+                RemoveContract.IsEnabled = false;
+                UpdateContract.IsEnabled = false;
+            }
+            if(bl.GetAllChilds().Count == 0)
+            {
+                UpdateChild.IsEnabled = false;
+                RemoveChild.IsEnabled = false;
+            }
         }
 
         private void RemoveChild_Click(object sender, RoutedEventArgs e)
@@ -145,6 +160,11 @@ namespace PLWPF
                 UpdateChild.IsEnabled = false;
                 UpdateContract.IsEnabled = false;
                 AddContract.IsEnabled = false;
+            }
+            else if (bl.GetAllContracts().Count == 0)
+            {
+                RemoveContract.IsEnabled = false;
+                UpdateContract.IsEnabled = false;
             }
         }
 
@@ -163,18 +183,37 @@ namespace PLWPF
         private void UpdateNanny_Click(object sender, RoutedEventArgs e)
         {
             new UpdateNannyWin().ShowDialog();
+            if (bl.GetAllContracts().Count == 0)
+            {
+                RemoveContract.IsEnabled = false;
+                UpdateContract.IsEnabled = false;
+            }
         }
 
         private void UpdateMother_Click(object sender, RoutedEventArgs e)
         {
-            UpdateMotherWin update = new UpdateMotherWin();
-            update.ShowDialog();
+            new UpdateMotherWin().ShowDialog();
+            if (bl.GetAllContracts().Count == 0)
+            {
+                RemoveContract.IsEnabled = false;
+                UpdateContract.IsEnabled = false;
+            }
+            if(bl.GetAllChilds().Count == 0)
+            {
+                RemoveChild.IsEnabled = false;
+                UpdateChild.IsEnabled = false;
+            }
         }
 
         private void UpdateChild_Click(object sender, RoutedEventArgs e)
         {
             UpdateChildWin update = new UpdateChildWin();
             update.ShowDialog();
+            if (bl.GetAllContracts().Count == 0)
+            {
+                RemoveContract.IsEnabled = false;
+                UpdateContract.IsEnabled = false;
+            }
         }
 
         private void UpdateContract_Click(object sender, RoutedEventArgs e)

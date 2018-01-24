@@ -189,7 +189,7 @@ namespace DAL
         #endregion
 
         #region CONTRACT
-        private static int currentNumber = 0;
+        private static int currentNumber = 10000000;
         public int CurrentNumber() => currentNumber;
 
         /// <summary>
@@ -205,7 +205,9 @@ namespace DAL
             if (GetNanny(contractToAdd.NannyID) == null)
                 throw new Exception("The nanny doesn't exist");
 
-            contractToAdd.Number = ++currentNumber;
+            if(contractToAdd.Number == 0)
+                contractToAdd.Number = ++currentNumber;
+            
             DataSource.AddContract(contractToAdd);
         }
 
