@@ -21,6 +21,14 @@ namespace PLWPF
     {
         BE.Contract contract;
         BL.IBL bl;
+        private List<string> errorMessages = new List<string>();
+        private void validation_Error(object sender, ValidationErrorEventArgs e)
+        {
+            if (e.Action == ValidationErrorEventAction.Added)
+                errorMessages.Add((string)e.Error.ErrorContent);
+            else
+                errorMessages.Remove((string)e.Error.ErrorContent);
+        }
         public AddContractWin()
         {
             InitializeComponent();
@@ -29,12 +37,24 @@ namespace PLWPF
             this.DataContext = contract;
             bl = BL.FactoryBL.GetBL();
             
-            this.childIDComboBox.ItemsSource = bl.GetAllChilds().Select(x => x.ID);
-            this.nannyIDComboBox.ItemsSource = bl.GetAllNannies().Select(x => x.ID);
+            this.childIDComboBox.ItemsSource = bl.GetAllChilds();
+            childIDComboBox.DisplayMemberPath = "MainDetails";
+            childIDComboBox.SelectedValuePath = "ID";
+            this.nannyIDComboBox.ItemsSource = bl.GetAllNannies();
+            nannyIDComboBox.DisplayMemberPath = "MainDetails";
+            nannyIDComboBox.SelectedValuePath = "ID";
             numberTextBlock.Text = (bl.CurrentNumber() + 1).ToString();
         }
         private void AddContractButton_Click(object sender, RoutedEventArgs e)
         {
+            if (errorMessages.Any()) //errorMessages.Count > 0  
+            {
+                string err = "Exception:";
+                foreach (var item in errorMessages)
+                    err += "\n" + item;
+                System.Windows.MessageBox.Show(err);
+                return;
+            }
             try
             {
                 if (nannyIDComboBox.SelectedValue == null)
@@ -47,12 +67,10 @@ namespace PLWPF
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
-                if (ex.Message == "No nanny was selected" || ex.Message == "No child was selected")
-                    return;
+                return;
             }
             this.Close();
         }
-
     }
 
 }

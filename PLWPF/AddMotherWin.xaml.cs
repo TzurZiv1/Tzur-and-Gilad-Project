@@ -22,6 +22,14 @@ namespace PLWPF
     {
         BE.Mother mother;
         BL.IBL bl;
+        private List<string> errorMessages = new List<string>();
+        private void validation_Error(object sender, ValidationErrorEventArgs e)
+        {
+            if (e.Action == ValidationErrorEventAction.Added)
+                errorMessages.Add((string)e.Error.ErrorContent);
+            else
+                errorMessages.Remove((string)e.Error.ErrorContent);
+        }
         public AddMotherWin()
         {
             InitializeComponent();
@@ -31,8 +39,16 @@ namespace PLWPF
             bl = BL.FactoryBL.GetBL();
         }
 
-        private void AddmotherButton_Click(object sender, RoutedEventArgs e)
+        private void AddMotherButton_Click(object sender, RoutedEventArgs e)
         {
+            if (errorMessages.Any()) //errorMessages.Count > 0  
+            {
+                string err = "Exception:";
+                foreach (var item in errorMessages)
+                    err += "\n" + item;
+                System.Windows.MessageBox.Show(err);
+                return;
+            }
             try
             {
                 #region initialization
@@ -63,6 +79,7 @@ namespace PLWPF
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
+                return;
             }
             this.Close();
         }

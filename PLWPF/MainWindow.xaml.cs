@@ -93,8 +93,8 @@ namespace PLWPF
 
         private void AddContract_Click(object sender, RoutedEventArgs e)
         {
-            AddContractWin add = new AddContractWin();
-            add.ShowDialog();
+            new AddContractWin().ShowDialog();
+
             if (bl.GetAllContracts().Count != 0)
             {
                 RemoveContract.IsEnabled = true;
@@ -162,8 +162,7 @@ namespace PLWPF
 
         private void UpdateNanny_Click(object sender, RoutedEventArgs e)
         {
-            UpdateNannyWin update = new UpdateNannyWin();
-            update.ShowDialog();
+            new UpdateNannyWin().ShowDialog();
         }
 
         private void UpdateMother_Click(object sender, RoutedEventArgs e)

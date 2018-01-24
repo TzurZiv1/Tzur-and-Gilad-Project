@@ -76,7 +76,7 @@ namespace BE
         public string MainDetails
         {
             get => "ID: " + ID + "\n" +
-                "Name: " + FirstName + LastName;
+                "Name: " + FirstName +" "+ LastName;
         }
 
         /// <summary>

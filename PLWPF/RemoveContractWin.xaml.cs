@@ -26,6 +26,14 @@ namespace PLWPF
         }
         BL.IBL bl;
         MyData myData = new MyData() { Number = 0 };
+        private List<string> errorMessages = new List<string>();
+        private void validation_Error(object sender, ValidationErrorEventArgs e)
+        {
+            if (e.Action == ValidationErrorEventAction.Added)
+                errorMessages.Add((string)e.Error.ErrorContent);
+            else
+                errorMessages.Remove((string)e.Error.ErrorContent);
+        }
 
         public RemoveContractWin()
         {
@@ -39,6 +47,14 @@ namespace PLWPF
 
         private void RemoveContractButton_Click(object sender, RoutedEventArgs e)
         {
+            if (errorMessages.Any()) //errorMessages.Count > 0  
+            {
+                string err = "Exception:";
+                foreach (var item in errorMessages)
+                    err += "\n" + item;
+                System.Windows.MessageBox.Show(err);
+                return;
+            }
             try
             {
                 if (numberComboBox.SelectedValue == null)
@@ -48,8 +64,7 @@ namespace PLWPF
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
-                if (ex.Message == "No contract was selected")
-                    return;
+                return;
             }
             Close();
         }

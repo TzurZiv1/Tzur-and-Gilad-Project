@@ -21,52 +21,110 @@ namespace PLWPF
     {
         BE.Nanny nanny;
         BL.IBL bl;
-
+        private List<string> errorMessages =new List<string>();
+        private void validation_Error(object sender, ValidationErrorEventArgs e)
+        {
+            if (e.Action == ValidationErrorEventAction.Added)
+                errorMessages.Add((string)e.Error.ErrorContent);
+            else
+                errorMessages.Remove((string)e.Error.ErrorContent);
+        }
         public UpdateNannyWin()
         {
             InitializeComponent();
             nanny = new BE.Nanny();
             this.DataContext = nanny;
             bl = BL.FactoryBL.GetBL();
-            this.iDComboBox.ItemsSource = bl.GetAllNannies().Select(x => x.ID);
+            this.iDComboBox.ItemsSource = bl.GetAllNannies();
+            iDComboBox.DisplayMemberPath = "MainDetails";
+            iDComboBox.SelectedValuePath = "ID";
         }
 
         private void UpdateNannyButton_Click(object sender, RoutedEventArgs e)
         {
+            if (errorMessages.Any()) //errorMessages.Count > 0  
+            {
+                string err = "Exception:";
+                foreach (var item in errorMessages)
+                    err += "\n" + item;
+                System.Windows.MessageBox.Show(err);
+                return;
+            }
             try
             {
                 if (iDComboBox.SelectedValue == null)
                     throw new Exception("No nanny was selected");
+
+                nanny.Address = addressPlaceAutoCompleteUC.Text;
+                nanny.HoursOnDay[0] = new BE.WorkHours();
+                nanny.HoursOnDay[1] = new BE.WorkHours();
+                nanny.HoursOnDay[2] = new BE.WorkHours();
+                nanny.HoursOnDay[3] = new BE.WorkHours();
+                nanny.HoursOnDay[4] = new BE.WorkHours();
+                nanny.HoursOnDay[5] = new BE.WorkHours();
+                nanny.HoursOnDay[0].Start = int.Parse(hods0.Text);
+                nanny.HoursOnDay[1].Start = int.Parse(hods1.Text);
+                nanny.HoursOnDay[2].Start = int.Parse(hods2.Text);
+                nanny.HoursOnDay[3].Start = int.Parse(hods3.Text);
+                nanny.HoursOnDay[4].Start = int.Parse(hods4.Text);
+                nanny.HoursOnDay[5].Start = int.Parse(hods5.Text);
+                nanny.HoursOnDay[0].Finish = int.Parse(hodf0.Text);
+                nanny.HoursOnDay[1].Finish = int.Parse(hodf1.Text);
+                nanny.HoursOnDay[2].Finish = int.Parse(hodf2.Text);
+                nanny.HoursOnDay[3].Finish = int.Parse(hodf3.Text);
+                nanny.HoursOnDay[4].Finish = int.Parse(hodf4.Text);
+                nanny.HoursOnDay[5].Finish = int.Parse(hodf5.Text);
+
                 bl.UpdateNanny(nanny);
             }
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
-                if (ex.Message == "No nanny was selected")
-                    return;
+                return;
             }
             this.Close();
         }
 
         private void iDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            addressPlaceAutoCompleteUC.Text = bl.GetNanny(nanny.ID).Address;
-            allowPerHourCheckBox.IsChecked = bl.GetNanny(nanny.ID).AllowPerHour;
-            birthdateDatePicker.SelectedDate = bl.GetNanny(nanny.ID).Birthdate;
-            expYearsTextBox.Text = bl.GetNanny(nanny.ID).ExpYears.ToString();
-            financedVacationCheckBox.IsChecked = bl.GetNanny(nanny.ID).FinancedVacation;
-            firstNameTextBox.Text = bl.GetNanny(nanny.ID).FirstName;
-            floorTextBox.Text = bl.GetNanny(nanny.ID).Floor.ToString();
-            isElevatorCheckBox.IsChecked = bl.GetNanny(nanny.ID).IsElevator;
-            lastNameTextBox.Text = bl.GetNanny(nanny.ID).LastName;
-            maxAgeInMonthTextBox.Text = bl.GetNanny(nanny.ID).MaxAgeInMonth.ToString();
-            maxChildsTextBox.Text = bl.GetNanny(nanny.ID).MaxChilds.ToString();
-            minAgeInMonthTextBox.Text = bl.GetNanny(nanny.ID).MinAgeInMonth.ToString();
-            phoneNumberTextBox.Text = bl.GetNanny(nanny.ID).PhoneNumber;
-            ratePerHourTextBox.Text = bl.GetNanny(nanny.ID).RatePerHour.ToString();
-            ratePerMonthTextBox.Text = bl.GetNanny(nanny.ID).RatePerMonth.ToString();
-            recommendationsTextBox.Text = bl.GetNanny(nanny.ID).Recommendations;
-            addressPlaceAutoCompleteUC.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            BE.Nanny n = bl.GetNanny(nanny.ID);
+
+            addressPlaceAutoCompleteUC.Text = n.Address;
+            allowPerHourCheckBox.IsChecked = n.AllowPerHour;
+            birthdateDatePicker.SelectedDate = n.Birthdate;
+            expYearsTextBox.Text = n.ExpYears.ToString();
+            financedVacationCheckBox.IsChecked = n.FinancedVacation;
+            firstNameTextBox.Text = n.FirstName;
+            floorTextBox.Text = n.Floor.ToString();
+            isElevatorCheckBox.IsChecked = n.IsElevator;
+            lastNameTextBox.Text = n.LastName;
+            maxAgeInMonthTextBox.Text = n.MaxAgeInMonth.ToString();
+            maxChildsTextBox.Text = n.MaxChilds.ToString();
+            minAgeInMonthTextBox.Text = n.MinAgeInMonth.ToString();
+            phoneNumberTextBox.Text = n.PhoneNumber;
+            ratePerHourTextBox.Text = n.RatePerHour.ToString();
+            ratePerMonthTextBox.Text = n.RatePerMonth.ToString();
+            recommendationsTextBox.Text = n.Recommendations;
+            wod0.IsChecked = n.WorkOnDay[0];
+            wod1.IsChecked = n.WorkOnDay[1];
+            wod2.IsChecked = n.WorkOnDay[2];
+            wod3.IsChecked = n.WorkOnDay[3];
+            wod4.IsChecked = n.WorkOnDay[4];
+            wod5.IsChecked = n.WorkOnDay[5];
+            hods0.Text = n.HoursOnDay[0].Start.ToString();
+            hods1.Text = n.HoursOnDay[1].Start.ToString();
+            hods2.Text = n.HoursOnDay[2].Start.ToString();
+            hods3.Text = n.HoursOnDay[3].Start.ToString();
+            hods4.Text = n.HoursOnDay[4].Start.ToString();
+            hods5.Text = n.HoursOnDay[5].Start.ToString();
+            hodf0.Text = n.HoursOnDay[0].Finish.ToString();
+            hodf1.Text = n.HoursOnDay[1].Finish.ToString();
+            hodf2.Text = n.HoursOnDay[2].Finish.ToString();
+            hodf3.Text = n.HoursOnDay[3].Finish.ToString();
+            hodf4.Text = n.HoursOnDay[4].Finish.ToString();
+            hodf5.Text = n.HoursOnDay[5].Finish.ToString();
+
+            nanny.Address = n.Address;
             expYearsTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             firstNameTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             floorTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();

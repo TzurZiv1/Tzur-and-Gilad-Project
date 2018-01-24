@@ -7,6 +7,7 @@
         xmlns:UserControl="clr-namespace:PLWPF.UserControl"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
+        Validation.Error="validation_Error"  
         Title="UpdateMotherWin" Height="400" Width="500">
     <Grid>
         <Grid.RowDefinitions>
@@ -40,17 +41,17 @@
             <Label Content="Area:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
             <UserControl:PlaceAutoCompleteUC x:Name="areaPlaceAutoCompleteUC" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" VerticalAlignment="Center" Width="120"/>
             <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="firstNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="firstNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="120"/>
             <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <ComboBox x:Name="iDComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" SelectedValue="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" SelectionChanged="iDComboBox_SelectionChanged"/>
+            <ComboBox x:Name="iDComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" SelectedValue="{Binding ID, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="120" SelectionChanged="iDComboBox_SelectionChanged"/>
             <Label Content="Is Per Month:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <CheckBox x:Name="isPerMonthCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding IsPerMonth, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <CheckBox x:Name="isPerMonthCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding IsPerMonth, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
             <Label Content="Last Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBox x:Name="lastNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding LastName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="lastNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Notes:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
-            <TextBox x:Name="notesTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding Notes, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="notesTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding Notes, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Phone Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-            <TextBox x:Name="phoneNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding PhoneNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="phoneNumberTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding PhoneNumber, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="120"/>
         </Grid>
         <Grid x:Name="checkboxGrid" Grid.Row="1" HorizontalAlignment="Right">
             <Grid.RowDefinitions>
@@ -78,26 +79,26 @@
             <Label Content="Thursday" Grid.Column="0" Grid.Row="5"/>
             <Label Content="Friday" Grid.Column="0" Grid.Row="6"/>
 
-            <CheckBox Grid.Column="1" Grid.Row="1" IsChecked="{Binding NeedNannyOnDay[0], Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
-            <CheckBox Grid.Column="1" Grid.Row="2" IsChecked="{Binding NeedNannyOnDay[1], Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
-            <CheckBox Grid.Column="1" Grid.Row="3" IsChecked="{Binding NeedNannyOnDay[2], Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
-            <CheckBox Grid.Column="1" Grid.Row="4" IsChecked="{Binding NeedNannyOnDay[3], Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
-            <CheckBox Grid.Column="1" Grid.Row="5" IsChecked="{Binding NeedNannyOnDay[4], Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
-            <CheckBox Grid.Column="1" Grid.Row="6" IsChecked="{Binding NeedNannyOnDay[5], Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
+            <CheckBox x:Name="nnod0" Grid.Column="1" Grid.Row="1" IsChecked="{Binding NeedNannyOnDay[0], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
+            <CheckBox x:Name="nnod1" Grid.Column="1" Grid.Row="2" IsChecked="{Binding NeedNannyOnDay[1], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
+            <CheckBox x:Name="nnod2" Grid.Column="1" Grid.Row="3" IsChecked="{Binding NeedNannyOnDay[2], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
+            <CheckBox x:Name="nnod3" Grid.Column="1" Grid.Row="4" IsChecked="{Binding NeedNannyOnDay[3], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
+            <CheckBox x:Name="nnod4" Grid.Column="1" Grid.Row="5" IsChecked="{Binding NeedNannyOnDay[4], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
+            <CheckBox x:Name="nnod5" Grid.Column="1" Grid.Row="6" IsChecked="{Binding NeedNannyOnDay[5], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
 
-            <xctk:IntegerUpDown x:Name="hods0" Text="0" Grid.Column="2" Grid.Row="1"  Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown x:Name="hods1" Text="0" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown x:Name="hods2" Text="0" Grid.Column="2" Grid.Row="3" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown x:Name="hods3" Text="0" Grid.Column="2" Grid.Row="4" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown x:Name="hods4" Text="0" Grid.Column="2" Grid.Row="5" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown x:Name="hods5" Text="0" Grid.Column="2" Grid.Row="6" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown x:Name="hods0" Text="0" Grid.Column="2" Grid.Row="1" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=nnod0, Path=IsChecked}"/>
+            <xctk:IntegerUpDown x:Name="hods1" Text="0" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=nnod1, Path=IsChecked}"/>
+            <xctk:IntegerUpDown x:Name="hods2" Text="0" Grid.Column="2" Grid.Row="3" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=nnod2, Path=IsChecked}"/>
+            <xctk:IntegerUpDown x:Name="hods3" Text="0" Grid.Column="2" Grid.Row="4" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=nnod3, Path=IsChecked}"/>
+            <xctk:IntegerUpDown x:Name="hods4" Text="0" Grid.Column="2" Grid.Row="5" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=nnod4, Path=IsChecked}"/>
+            <xctk:IntegerUpDown x:Name="hods5" Text="0" Grid.Column="2" Grid.Row="6" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=nnod5, Path=IsChecked}"/>
 
-            <xctk:IntegerUpDown x:Name="hodf0" Text="0" Grid.Column="3" Grid.Row="1" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown x:Name="hodf1" Text="0" Grid.Column="3" Grid.Row="2" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown x:Name="hodf2" Text="0" Grid.Column="3" Grid.Row="3" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown x:Name="hodf3" Text="0" Grid.Column="3" Grid.Row="4" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown x:Name="hodf4" Text="0" Grid.Column="3" Grid.Row="5" Minimum="0" Maximum="24"/>
-            <xctk:IntegerUpDown x:Name="hodf5" Text="0" Grid.Column="3" Grid.Row="6" Minimum="0" Maximum="24"/>
+            <xctk:IntegerUpDown x:Name="hodf0" Text="0" Grid.Column="3" Grid.Row="1" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=nnod0, Path=IsChecked}"/>
+            <xctk:IntegerUpDown x:Name="hodf1" Text="0" Grid.Column="3" Grid.Row="2" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=nnod1, Path=IsChecked}"/>
+            <xctk:IntegerUpDown x:Name="hodf2" Text="0" Grid.Column="3" Grid.Row="3" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=nnod2, Path=IsChecked}"/>
+            <xctk:IntegerUpDown x:Name="hodf3" Text="0" Grid.Column="3" Grid.Row="4" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=nnod3, Path=IsChecked}"/>
+            <xctk:IntegerUpDown x:Name="hodf4" Text="0" Grid.Column="3" Grid.Row="5" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=nnod4, Path=IsChecked}"/>
+            <xctk:IntegerUpDown x:Name="hodf5" Text="0" Grid.Column="3" Grid.Row="6" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=nnod5, Path=IsChecked}"/>
 
         </Grid>
     </Grid>

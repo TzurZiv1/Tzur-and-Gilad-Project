@@ -31,10 +31,12 @@ namespace BE
             get => finish;
             set
             {
-                if (value >= 0 && value <= 24)
+                if (value >= 0 && value <= 24 && value >= Start)
                     finish = value;
-                else
+                else if (value < 0 || value > 24)
                     throw new Exception("Work hours must be between 0 and 24");
+                else
+                    throw new Exception("Finish hour must be after start hour");
             }
         }
         /// <summary>
@@ -237,7 +239,7 @@ namespace BE
         public string MainDetails
         {
             get => "ID: " + ID + "\n" +
-                "Name: " + FirstName + LastName;
+                "Name: " + FirstName + " " + LastName;
         }
         /// <summary>
         /// Converts the value of the current Nanny object to its equivalent string representation

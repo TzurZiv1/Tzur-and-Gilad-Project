@@ -21,6 +21,14 @@ namespace PLWPF
     {
         BE.Child child;
         BL.IBL bl;
+        private List<string> errorMessages = new List<string>();
+        private void validation_Error(object sender, ValidationErrorEventArgs e)
+        {
+            if (e.Action == ValidationErrorEventAction.Added)
+                errorMessages.Add((string)e.Error.ErrorContent);
+            else
+                errorMessages.Remove((string)e.Error.ErrorContent);
+        }
         public UpdateChildWin()
         {
             InitializeComponent();
@@ -34,19 +42,26 @@ namespace PLWPF
 
         private void UpdateChildButton_Click(object sender, RoutedEventArgs e)
         {
+            if (errorMessages.Any()) //errorMessages.Count > 0  
+            {
+                string err = "Exception:";
+                foreach (var item in errorMessages)
+                    err += "\n" + item;
+                System.Windows.MessageBox.Show(err);
+                return;
+            }
             try
             {
                 if (iDComboBox.SelectedValue == null)
                     throw new Exception("No child was selected");
-                
+
                 child.MotherID = bl.GetChild(child.ID).MotherID;
                 bl.UpdateChild(child);
             }
             catch (Exception ex)
             {
                 System.Windows.MessageBox.Show(ex.Message);
-                if (ex.Message == "No child was selected")
-                    return;
+                return;
             }
             this.Close();
         }
