@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dal_XML_imp.cs" />
     <Compile Include="IDAL.cs" />
     <Compile Include="DAL_imp.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
