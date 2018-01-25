@@ -8,91 +8,90 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525" Icon="images/icon.png"
     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-     TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-     TextElement.FontWeight="Regular"
-     TextElement.FontSize="13"
+        xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+     TextElement.FontWeight="Medium"
+     TextElement.FontSize="14"
      TextOptions.TextFormattingMode="Ideal"
      TextOptions.TextRenderingMode="Auto"
      Background="{DynamicResource MaterialDesignPaper}"
-     FontFamily="{DynamicResource MaterialDesignFont}">
-    <Window.Background>
-        <ImageBrush ImageSource="images/Project.jpg"/>
-    </Window.Background>
-    <Grid TextElement.FontSize="20">
-        <TabControl Background="{x:Null}">
-            <TabControl.Items>
-                <TabItem Header="Welcome">
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition/>
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition/>
-                        </Grid.ColumnDefinitions>
-                        <xctk:PropertyGridEditorTextBlock Grid.Row="0" Grid.Column="0">
+     FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
+    <dragablz:TabablzControl Margin="8">
+        <dragablz:TabablzControl.InterTabController>
+            <dragablz:InterTabController />
+        </dragablz:TabablzControl.InterTabController>
+        <TabControl.Background>
+            <ImageBrush ImageSource="images/Project.jpg"/>
+        </TabControl.Background>
+        <TabItem Header="Welcome" Foreground="{DynamicResource PrimaryHueMidBrush}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Row="0" Grid.Column="0">
+Welcome to the the system of
+                </TextBlock>
+            </Grid>
+        </TabItem>
+        <TabItem Header="Add" Foreground="{DynamicResource PrimaryHueMidBrush}">
+            <TabItem.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                        </xctk:PropertyGridEditorTextBlock>
-                    </Grid>
-                </TabItem>
-                <TabItem Header="Add">
-                    <TabItem.Content>
-                        <Grid TextElement.FontSize="48">
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
+                    <Button Name="AddNanny" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="AddNanny_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"/>
+                    <Button Name="AddMother" Content="Mother" Grid.Row="1" Grid.Column="0" Click="AddMother_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"/>
+                    <Button Name="AddChild" Content="Child" Grid.Row="0" Grid.Column="1" Click="AddChild_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"/>
+                    <Button Name="AddContract" Content="Contract" Grid.Row="1" Grid.Column="1" Click="AddContract_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"/>
+                </Grid>
+            </TabItem.Content>
+        </TabItem>
+        <TabItem Header="Remove" Foreground="{DynamicResource PrimaryHueMidBrush}">
+            <TabItem.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                            <Button Name="AddNanny" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="AddNanny_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
-                            <Button Name="AddMother" Content="Mother" Grid.Row="1" Grid.Column="0" Click="AddMother_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
-                            <Button Name="AddChild" Content="Child" Grid.Row="0" Grid.Column="1" Click="AddChild_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
-                            <Button Name="AddContract" Content="Contract" Grid.Row="1" Grid.Column="1" Click="AddContract_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
-                        </Grid>
-                    </TabItem.Content>
-                </TabItem>
-                <TabItem Header="Remove">
-                    <TabItem.Content>
-                        <Grid TextElement.FontSize="48">
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="6*"/>
-                                <ColumnDefinition Width="250*"/>
-                                <ColumnDefinition Width="255*"/>
-                            </Grid.ColumnDefinitions>
+                    <Button Name="RemoveNanny" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="RemoveNanny_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"/>
+                    <Button Name="RemoveMother" Content="Mother" Grid.Row="1" Grid.Column="0" Click="RemoveMother_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"/>
+                    <Button Name="RemoveChild" Content="Child" Grid.Row="0" Grid.Column="1" Click="RemoveChild_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"/>
+                    <Button Name="RemoveContract" Content="Contract" Grid.Row="1" Grid.Column="1" Click="RemoveContract_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"/>
+                </Grid>
+            </TabItem.Content>
+        </TabItem>
+        <TabItem Header="Update" Foreground="{DynamicResource PrimaryHueMidBrush}">
+            <TabItem.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
 
-                            <Button Name="RemoveNanny" Content="Nanny" Grid.Row="0" Grid.Column="1" Click="RemoveNanny_Click" Margin="3.82,10,10,10" Background="WhiteSmoke" Opacity="0.8"/>
-                            <Button Name="RemoveMother" Content="Mother" Grid.Row="1" Grid.Column="1" Click="RemoveMother_Click" Margin="3.82,10,10,10" Background="WhiteSmoke" Opacity="0.8"/>
-                            <Button Name="RemoveChild" Content="Child" Grid.Row="0" Grid.Column="2" Click="RemoveChild_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
-                            <Button Name="RemoveContract" Content="Contract" Grid.Row="1" Grid.Column="2" Click="RemoveContract_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
-                        </Grid>
-                    </TabItem.Content>
-                </TabItem>
-                <TabItem Header="Update">
-                    <TabItem.Content>
-                        <Grid TextElement.FontSize="48">
-                            <Grid.RowDefinitions>
-                                <RowDefinition/>
-                                <RowDefinition/>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition/>
-                                <ColumnDefinition/>
-                            </Grid.ColumnDefinitions>
-
-                            <Button Name="UpdateNanny" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="UpdateNanny_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
-                            <Button Name="UpdateMother" Content="Mother" Grid.Row="1" Grid.Column="0" Click="UpdateMother_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
-                            <Button Name="UpdateChild" Content="Child" Grid.Row="0" Grid.Column="1" Click="UpdateChild_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
-                            <Button Name="UpdateContract" Content="Contract" Grid.Row="1" Grid.Column="1" Click="UpdateContract_Click" Margin="10" Background="WhiteSmoke" Opacity="0.8"/>
-                        </Grid>
-                    </TabItem.Content>
-                </TabItem>
-            </TabControl.Items>
-        </TabControl>
-    </Grid>
+                    <Button Name="UpdateNanny" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="UpdateNanny_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"/>
+                    <Button Name="UpdateMother" Content="Mother" Grid.Row="1" Grid.Column="0" Click="UpdateMother_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"/>
+                    <Button Name="UpdateChild" Content="Child" Grid.Row="0" Grid.Column="1" Click="UpdateChild_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"/>
+                    <Button Name="UpdateContract" Content="Contract" Grid.Row="1" Grid.Column="1" Click="UpdateContract_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}"/>
+                </Grid>
+            </TabItem.Content>
+        </TabItem>
+    </dragablz:TabablzControl>
 </Window>
