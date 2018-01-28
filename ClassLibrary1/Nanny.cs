@@ -56,7 +56,7 @@ namespace BE
         /// <returns>A string representation of the value of the current WorkHours object.</returns>
         public override string ToString()
         {
-            return (start == finish ? "nothing" : "from " + start + ":00 to " + finish + ":00");
+            return (start == finish ? "nothing" : start + " - " + finish );
         }
     }
 
@@ -68,7 +68,7 @@ namespace BE
         private int id;
         private string lastName;
         private string firstName;
-        private DateTime birthdate = new DateTime();
+        private DateTime birthdate;
         private string phoneNumber;
         private string address;
         private bool isElevator;
@@ -80,12 +80,21 @@ namespace BE
         private bool allowPerHour;
         private double ratePerHour;
         private double ratePerMonth;
-        private bool[] workOnDay = new bool[6];
+        private bool[] workOnDay;
         private WorkHours[] hoursOnDay;
         private bool financedVacation;
         private string recommendations;
-
-        public Nanny() { hoursOnDay = new WorkHours[6]; }
+        
+        public Nanny()
+        {
+            hoursOnDay = new WorkHours[6];
+            for (int i = 0; i < 6; i++)
+            {
+                hoursOnDay[i] = new WorkHours();
+            }
+            birthdate = DateTime.Now.AddYears(-18);
+            workOnDay = new bool[6];
+        }
 
         /// <summary>
         /// Constructor of nanny
@@ -240,6 +249,10 @@ namespace BE
         {
             get => "ID: " + ID + "\n" +
                 "Name: " + FirstName + " " + LastName;
+        }
+        public string Name
+        {
+            get =>FirstName + " " + LastName;
         }
         /// <summary>
         /// Converts the value of the current Nanny object to its equivalent string representation

@@ -58,24 +58,6 @@ namespace PLWPF
 
                 mother.Address = addressPlaceAutoCompleteUC.Text;
                 mother.Area = areaPlaceAutoCompleteUC.Text;
-                mother.HoursForDay[0] = new BE.WorkHours();
-                mother.HoursForDay[1] = new BE.WorkHours();
-                mother.HoursForDay[2] = new BE.WorkHours();
-                mother.HoursForDay[3] = new BE.WorkHours();
-                mother.HoursForDay[4] = new BE.WorkHours();
-                mother.HoursForDay[5] = new BE.WorkHours();
-                mother.HoursForDay[0].Start = int.Parse(hods0.Text);
-                mother.HoursForDay[1].Start = int.Parse(hods1.Text);
-                mother.HoursForDay[2].Start = int.Parse(hods2.Text);
-                mother.HoursForDay[3].Start = int.Parse(hods3.Text);
-                mother.HoursForDay[4].Start = int.Parse(hods4.Text);
-                mother.HoursForDay[5].Start = int.Parse(hods5.Text);
-                mother.HoursForDay[0].Finish = int.Parse(hodf0.Text);
-                mother.HoursForDay[1].Finish = int.Parse(hodf1.Text);
-                mother.HoursForDay[2].Finish = int.Parse(hodf2.Text);
-                mother.HoursForDay[3].Finish = int.Parse(hodf3.Text);
-                mother.HoursForDay[4].Finish = int.Parse(hodf4.Text);
-                mother.HoursForDay[5].Finish = int.Parse(hodf5.Text);
 
                 bl.UpdateMother(mother);
             }

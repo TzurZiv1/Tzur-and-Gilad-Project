@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
         Validation.Error="validation_Error"  
-        Title="RemoveMotherWin" Height="200" Width="300">
+        Title="RemoveMotherWin" Height="200" Width="300" ResizeMode="NoResize" Icon="images/mother.png">
     <Grid>
 
         <Grid.RowDefinitions>

@@ -221,5 +221,25 @@ namespace PLWPF
             UpdateContractWin update = new UpdateContractWin();
             update.ShowDialog();
         }
+
+        private void GetAllNannies_Click(object sender, RoutedEventArgs e)
+        {
+            new AllNannies().ShowDialog();
+        }
+
+        private void GetAllMothers_Click(object sender, RoutedEventArgs e)
+        {
+            new AllMothers().ShowDialog();
+        }
+
+        private void GetAllChilds_Click(object sender, RoutedEventArgs e)
+        {
+            new AllChilds().ShowDialog();
+        }
+
+        private void GetAllContracts_Click(object sender, RoutedEventArgs e)
+        {
+            new AllContracts().ShowDialog();
+        }
     }
 }

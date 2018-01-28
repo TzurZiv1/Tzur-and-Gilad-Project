@@ -32,8 +32,8 @@ namespace BE
 
         public Contract()
         {
-            startDate = new DateTime();
-            endDate = new DateTime();
+            startDate = DateTime.Now;
+            endDate = DateTime.Now;
         }
 
         /// <summary>

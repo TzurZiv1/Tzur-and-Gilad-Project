@@ -52,28 +52,7 @@ namespace PLWPF
             }
             try
             {
-                if (iDComboBox.SelectedValue == null)
-                    throw new Exception("No nanny was selected");
-
                 nanny.Address = addressPlaceAutoCompleteUC.Text;
-                nanny.HoursOnDay[0] = new BE.WorkHours();
-                nanny.HoursOnDay[1] = new BE.WorkHours();
-                nanny.HoursOnDay[2] = new BE.WorkHours();
-                nanny.HoursOnDay[3] = new BE.WorkHours();
-                nanny.HoursOnDay[4] = new BE.WorkHours();
-                nanny.HoursOnDay[5] = new BE.WorkHours();
-                nanny.HoursOnDay[0].Start = int.Parse(hods0.Text);
-                nanny.HoursOnDay[1].Start = int.Parse(hods1.Text);
-                nanny.HoursOnDay[2].Start = int.Parse(hods2.Text);
-                nanny.HoursOnDay[3].Start = int.Parse(hods3.Text);
-                nanny.HoursOnDay[4].Start = int.Parse(hods4.Text);
-                nanny.HoursOnDay[5].Start = int.Parse(hods5.Text);
-                nanny.HoursOnDay[0].Finish = int.Parse(hodf0.Text);
-                nanny.HoursOnDay[1].Finish = int.Parse(hodf1.Text);
-                nanny.HoursOnDay[2].Finish = int.Parse(hodf2.Text);
-                nanny.HoursOnDay[3].Finish = int.Parse(hodf3.Text);
-                nanny.HoursOnDay[4].Finish = int.Parse(hodf4.Text);
-                nanny.HoursOnDay[5].Finish = int.Parse(hodf5.Text);
 
                 bl.UpdateNanny(nanny);
             }
@@ -89,6 +68,7 @@ namespace PLWPF
         {
             BE.Nanny n = bl.GetNanny(nanny.ID);
 
+            #region initialization
             addressPlaceAutoCompleteUC.Text = n.Address;
             allowPerHourCheckBox.IsChecked = n.AllowPerHour;
             birthdateDatePicker.SelectedDate = n.Birthdate;
@@ -136,6 +116,7 @@ namespace PLWPF
             ratePerHourTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             ratePerMonthTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
             recommendationsTextBox.GetBindingExpression(TextBox.TextProperty).UpdateSource();
+            #endregion
         }
     }
 }

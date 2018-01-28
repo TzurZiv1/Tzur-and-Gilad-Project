@@ -17,28 +17,38 @@ namespace BE
         private string phoneNumber;
         private string address;
         private string area;
-        private bool[] needNannyOnDay = new bool[6];
-        private WorkHours[] hoursForDay = new WorkHours[6];
+        private bool[] needNannyOnDay;
+        private WorkHours[] hoursForDay;
         private string notes;
         private bool isPerMonth;// true = per month. false = per hour
-
-        public Mother(){ }
-            /// <summary>
-            /// Constructor of Mother
-            /// </summary>
-            /// <param name="id1"></param>
-            /// <param name="firstName1"></param>
-            /// <param name="lastName1"></param>
-            /// <param name="address1"></param>
-            /// <param name="area1"></param>
-            /// <param name="needNannyOdDay1"></param>
-            /// <param name="hoursForDay1"></param>
-            /// <param name="isPerMonth1"></param>
-            /// <param name="phoneNumber1"></param>
-            /// <param name="notes1"></param>
-            public Mother(int id1, string firstName1, string lastName1, string address1,
-            string area1, bool[] needNannyOdDay1, WorkHours[] hoursForDay1, bool isPerMonth1,
-            string phoneNumber1 = "No phone number", string notes1 = "Nothing")
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public Mother()
+        {
+            NeedNannyOnDay = new bool[6];
+            HoursForDay = new WorkHours[6];
+            for (int i = 0; i < 6; i++)
+            {
+                HoursForDay[i] = new WorkHours();
+            }
+        }
+        /// <summary>
+        /// Constructor of Mother
+        /// </summary>
+        /// <param name="id1"></param>
+        /// <param name="firstName1"></param>
+        /// <param name="lastName1"></param>
+        /// <param name="address1"></param>
+        /// <param name="area1"></param>
+        /// <param name="needNannyOdDay1"></param>
+        /// <param name="hoursForDay1"></param>
+        /// <param name="isPerMonth1"></param>
+        /// <param name="phoneNumber1"></param>
+        /// <param name="notes1"></param>
+        public Mother(int id1, string firstName1, string lastName1, string address1,
+        string area1, bool[] needNannyOdDay1, WorkHours[] hoursForDay1, bool isPerMonth1,
+        string phoneNumber1 = "No phone number", string notes1 = "Nothing")
         {
             ID = id1;
             FirstName = firstName1;
@@ -64,6 +74,10 @@ namespace BE
                     throw new Exception("ID can't be negative or zero");
             }
         }
+        public string Name
+        {
+            get => FirstName + " " + LastName;
+        }
         public string LastName { get => lastName ?? ""; set => lastName = value; }
         public string FirstName { get => firstName ?? ""; set => firstName = value; }
         public string PhoneNumber { get => phoneNumber ?? ""; set => phoneNumber = value; }
@@ -76,7 +90,7 @@ namespace BE
         public string MainDetails
         {
             get => "ID: " + ID + "\n" +
-                "Name: " + FirstName +" "+ LastName;
+                "Name: " + FirstName + " " + LastName;
         }
 
         /// <summary>

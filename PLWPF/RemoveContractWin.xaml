@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
         Validation.Error="validation_Error"  
-        Title="RemoveContractWin" Height="250" Width="300">
+        Title="RemoveContractWin" Height="250" Width="300" ResizeMode="NoResize" Icon="images/contract.png">
     <Grid>
 
         <Grid.RowDefinitions>

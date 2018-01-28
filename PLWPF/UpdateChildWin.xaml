@@ -7,7 +7,7 @@
         xmlns:BE="clr-namespace:BE;assembly=ClassLibrary1" x:Class="PLWPF.UpdateChildWin"
         mc:Ignorable="d"
         Validation.Error="validation_Error"  
-        Title="UpdateChildWin" Height="300" Width="300">
+        Title="UpdateChildWin" Height="380" Width="300" ResizeMode="NoResize" Icon="images/child.png">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -21,7 +21,7 @@
 
         <Button x:Name="UpdateChildButton"  Content="Update" Grid.Row="2"  Margin="71,5,71,5" Click="UpdateChildButton_Click">
             <Button.Style>
-				<Style TargetType="{x:Type Button}" 
+                <Style TargetType="{x:Type Button}" 
             BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding ElementName=birthdateDatePicker, Path=Text}" Value="">
@@ -37,28 +37,28 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Grid x:Name="grid1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top">
+        <Grid x:Name="grid1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Height="249" Margin="40,0,22,0" Width="232">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto" MinHeight="47"/>
+                <RowDefinition Height="Auto" MinHeight="41"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Birthdate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <DatePicker x:Name="birthdateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="2" SelectedDate="{Binding Birthdate, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center"/>
-            <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="firstNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <ComboBox x:Name="iDComboBox" Grid.Column="1" SelectedValue="{Binding ID, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120" SelectionChanged="iDComboBox_SelectionChanged"/>
-            <Label Content="Is Special:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <CheckBox x:Name="isSpecialCheckBox" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding IsSpecial, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <Label Content="Special Needs:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" IsEnabled="{Binding ElementName=isSpecialCheckBox, Path=IsChecked, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}"/>
-            <TextBox x:Name="specialNeedsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding SpecialNeeds, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="120" IsEnabled="{Binding ElementName=isSpecialCheckBox, Path=IsChecked, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}"/>
+            <Label Content="Birthdate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,7" Grid.Row="2" VerticalAlignment="Center" Height="26" Width="61"/>
+            <DatePicker x:Name="birthdateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3,4,0,7" Grid.Row="2" SelectedDate="{Binding Birthdate, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Height="26" Width="21"/>
+            <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,7,0,8" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="70"/>
+            <TextBox x:Name="firstNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,9,0,9" Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,10,0,11" Grid.Row="0" VerticalAlignment="Center" Height="26" Width="24"/>
+            <ComboBox x:Name="iDComboBox" Grid.Column="1" SelectedValue="{Binding ID, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" HorizontalAlignment="Left" Height="46" Margin="3,10,0,9" Grid.Row="0" VerticalAlignment="Center" Width="120" SelectionChanged="iDComboBox_SelectionChanged"/>
+            <Label Content="Is Special:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,7,0,4" Grid.Row="3" VerticalAlignment="Center" Height="26" Width="61"/>
+            <CheckBox x:Name="isSpecialCheckBox" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding IsSpecial, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="3,11,0,8" Grid.Row="3" VerticalAlignment="Center" Height="18" Width="34"/>
+            <Label Content="Special Needs:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,7" Grid.Row="4" VerticalAlignment="Center" IsEnabled="{Binding ElementName=isSpecialCheckBox, Path=IsChecked, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Height="26" Width="87"/>
+            <TextBox x:Name="specialNeedsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="22" Margin="3,6,0,9" Grid.Row="4" Text="{Binding SpecialNeeds, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="120" IsEnabled="{Binding ElementName=isSpecialCheckBox, Path=IsChecked, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}"/>
         </Grid>
     </Grid>
 </Window>

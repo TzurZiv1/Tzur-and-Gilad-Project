@@ -5,25 +5,27 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
         xmlns:BE="clr-namespace:BE;assembly=ClassLibrary1" 
         xmlns:UserControl="clr-namespace:PLWPF.UserControl"
         x:Class="PLWPF.AddNannyWin"
         mc:Ignorable="d"
         Validation.Error="validation_Error"  
-        Title="AddNannyWin" Height="700" Width="500">
+        Title="AddNannyWin" Height="730" Width="600" ResizeMode="NoResize" Icon="images/nanny.png">
 
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="Add New Nanny" FontSize="25" Margin="0" HorizontalContentAlignment="Left"/>
+        <Label Grid.Row="0" Content="   Add New Nanny" FontSize="25" Margin="0" HorizontalContentAlignment="Left"/>
         <Image Grid.Row="0"  HorizontalAlignment="right" Source="images\nanny.png" Width="50"/>
-        <Button x:Name="AddNannyButton" Grid.Row="2" Content="Add" Width="150" Height="30" Margin="0,5" Click="AddNannyButton_Click">
+        <Button x:Name="AddNannyButton" Grid.Row="2" Content="Add" Height="Auto" Margin="172,5,172,6" Click="AddNannyButton_Click">
             <Button.Style>
-				<Style TargetType="{x:Type Button}" 
+                <Style TargetType="{x:Type Button}" 
             BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding ElementName=addressPlaceAutoCompleteUC, Path=Text}" Value="">
@@ -69,7 +71,7 @@
                 </Style>
             </Button.Style>
         </Button>
-        <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="0,0" Grid.Row="1" VerticalAlignment="Top">
+        <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="40,5,0,0" Grid.Row="1" VerticalAlignment="Top" Height="593" Width="248">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -96,13 +98,13 @@
             <Label Content="Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="11" VerticalAlignment="Center"/>
             <UserControl:PlaceAutoCompleteUC x:Name="addressPlaceAutoCompleteUC" Text="" Grid.Column="1" HorizontalAlignment="Left" Margin="3" VerticalAlignment="Center" Grid.Row="11" Width="120"/>
             <Label Content="Allow Per Hour:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="10" VerticalAlignment="Center"/>
-			<CheckBox x:Name="allowPerHourCheckBox" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding AllowPerHour, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="3" Grid.Row="10" VerticalAlignment="Center"/>
+            <CheckBox x:Name="allowPerHourCheckBox" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding AllowPerHour, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="3" Grid.Row="10" VerticalAlignment="Center"/>
             <Label Content="Birthdate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <DatePicker x:Name="birthdateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" SelectedDate="{Binding Birthdate, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center"/>
+            <DatePicker x:Name="birthdateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3,4,0,4" Grid.Row="3" SelectedDate="{Binding Birthdate, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="113"/>
             <Label Content="Exp Years:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBox x:Name="expYearsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding ExpYears, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Financed Vacation:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="15" VerticalAlignment="Center"/>
-			<CheckBox x:Name="financedVacationCheckBox" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding FinancedVacation, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="3" Grid.Row="15" VerticalAlignment="Center"/>
+            <CheckBox x:Name="financedVacationCheckBox" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding FinancedVacation, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="3" Grid.Row="15" VerticalAlignment="Center"/>
             <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="firstNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Floor:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="12" VerticalAlignment="Center"/>
@@ -110,7 +112,7 @@
             <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <TextBox x:Name="iDTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="120"/>
             <Label Content="There is an Elevator:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="13" VerticalAlignment="Center"/>
-			<CheckBox x:Name="isElevatorCheckBox" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding IsElevator, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="3" Grid.Row="13" VerticalAlignment="Center"/>
+            <CheckBox x:Name="isElevatorCheckBox" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding IsElevator, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="3" Grid.Row="13" VerticalAlignment="Center"/>
             <Label Content="Last Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
             <TextBox x:Name="lastNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding LastName, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Max Age In Months:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
@@ -128,7 +130,7 @@
             <Label Content="Recommendations:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="16" VerticalAlignment="Center"/>
             <TextBox x:Name="recommendationsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="16" Text="{Binding Recommendations, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="120"/>
         </Grid>
-        <Grid x:Name="checkboxGrid" Grid.Row="1" HorizontalAlignment="Right" Width="184" Margin="0,0,10,0" Grid.RowSpan="2">
+        <Grid x:Name="checkboxGrid" Grid.Row="1" HorizontalAlignment="Right" Margin="0,0,10,0" Grid.RowSpan="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height ="auto"/>
                 <RowDefinition Height ="auto"/>
@@ -147,7 +149,6 @@
             <Label Content="Work Day" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0"/>
             <Label Content="Start"  Grid.Column="2" Grid.Row="0"/>
             <Label Content="Finish"  Grid.Column="3" Grid.Row="0"/>
-
             <Label Content="Sunday" Grid.Column="0" Grid.Row="1"/>
             <Label Content="Monday"  Grid.Column="0" Grid.Row="2"/>
             <Label Content="Tuesday" Grid.Column="0" Grid.Row="3"/>
@@ -155,26 +156,26 @@
             <Label Content="Thursday" Grid.Column="0" Grid.Row="5"/>
             <Label Content="Friday" Grid.Column="0" Grid.Row="6"/>
 
-			<CheckBox x:Name="wod0" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Grid.Column="1" Grid.Row="1" IsChecked="{Binding WorkOnDay[0], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
-			<CheckBox x:Name="wod1" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Grid.Column="1" Grid.Row="2" IsChecked="{Binding WorkOnDay[1], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
-			<CheckBox x:Name="wod2" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Grid.Column="1" Grid.Row="3" IsChecked="{Binding WorkOnDay[2], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
-			<CheckBox x:Name="wod3" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Grid.Column="1" Grid.Row="4" IsChecked="{Binding WorkOnDay[3], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
-			<CheckBox x:Name="wod4" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Grid.Column="1" Grid.Row="5" IsChecked="{Binding WorkOnDay[4], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
-			<CheckBox x:Name="wod5" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Grid.Column="1" Grid.Row="6" IsChecked="{Binding WorkOnDay[5], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
+            <CheckBox x:Name="wod0" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Grid.Column="1" Grid.Row="1" IsChecked="{Binding WorkOnDay[0], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
+            <CheckBox x:Name="wod1" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Grid.Column="1" Grid.Row="2" IsChecked="{Binding WorkOnDay[1], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
+            <CheckBox x:Name="wod2" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Grid.Column="1" Grid.Row="3" IsChecked="{Binding WorkOnDay[2], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
+            <CheckBox x:Name="wod3" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Grid.Column="1" Grid.Row="4" IsChecked="{Binding WorkOnDay[3], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
+            <CheckBox x:Name="wod4" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Grid.Column="1" Grid.Row="5" IsChecked="{Binding WorkOnDay[4], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
+            <CheckBox x:Name="wod5" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Grid.Column="1" Grid.Row="6" IsChecked="{Binding WorkOnDay[5], Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" />
 
-            <xctk:IntegerUpDown x:Name="hods0" Text="0" Grid.Column="2" Grid.Row="1" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=wod0, Path=IsChecked}"/>
-            <xctk:IntegerUpDown x:Name="hods1" Text="0" Grid.Column="2" Grid.Row="2" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=wod1, Path=IsChecked}"/>
-            <xctk:IntegerUpDown x:Name="hods2" Text="0" Grid.Column="2" Grid.Row="3" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=wod2, Path=IsChecked}"/>
-            <xctk:IntegerUpDown x:Name="hods3" Text="0" Grid.Column="2" Grid.Row="4" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=wod3, Path=IsChecked}"/>
-            <xctk:IntegerUpDown x:Name="hods4" Text="0" Grid.Column="2" Grid.Row="5" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=wod4, Path=IsChecked}"/>
-            <xctk:IntegerUpDown x:Name="hods5" Text="0" Grid.Column="2" Grid.Row="6" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=wod5, Path=IsChecked}"/>
+            <materialDesign:TimePicker x:Name="hods0" Text="{Binding HoursOnDay[0].Start, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Grid.Column="2" Grid.Row="1" IsEnabled="{Binding ElementName=wod0, Path=IsChecked}" Is24Hours="True"/>
+            <materialDesign:TimePicker x:Name="hods1" Text="{Binding HoursOnDay[1].Start, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Grid.Column="2" Grid.Row="2" IsEnabled="{Binding ElementName=wod1, Path=IsChecked}" Is24Hours="True"/>
+            <materialDesign:TimePicker x:Name="hods2" Text="{Binding HoursOnDay[2].Start, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Grid.Column="2" Grid.Row="3" IsEnabled="{Binding ElementName=wod2, Path=IsChecked}" Is24Hours="True"/>
+            <materialDesign:TimePicker x:Name="hods3" Text="{Binding HoursOnDay[3].Start, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Grid.Column="2" Grid.Row="4" IsEnabled="{Binding ElementName=wod3, Path=IsChecked}" Is24Hours="True"/>
+            <materialDesign:TimePicker x:Name="hods4" Text="{Binding HoursOnDay[4].Start, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Grid.Column="2" Grid.Row="5" IsEnabled="{Binding ElementName=wod4, Path=IsChecked}" Is24Hours="True"/>
+            <materialDesign:TimePicker x:Name="hods5" Text="{Binding HoursOnDay[5].Start, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Grid.Column="2" Grid.Row="6" IsEnabled="{Binding ElementName=wod5, Path=IsChecked}" Is24Hours="True"/>
 
-            <xctk:IntegerUpDown x:Name="hodf0" Text="0" Grid.Column="3" Grid.Row="1" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=wod0, Path=IsChecked}"/>
-            <xctk:IntegerUpDown x:Name="hodf1" Text="0" Grid.Column="3" Grid.Row="2" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=wod1, Path=IsChecked}"/>
-            <xctk:IntegerUpDown x:Name="hodf2" Text="0" Grid.Column="3" Grid.Row="3" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=wod2, Path=IsChecked}"/>
-            <xctk:IntegerUpDown x:Name="hodf3" Text="0" Grid.Column="3" Grid.Row="4" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=wod3, Path=IsChecked}"/>
-            <xctk:IntegerUpDown x:Name="hodf4" Text="0" Grid.Column="3" Grid.Row="5" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=wod4, Path=IsChecked}"/>
-            <xctk:IntegerUpDown x:Name="hodf5" Text="0" Grid.Column="3" Grid.Row="6" Minimum="0" Maximum="24" IsEnabled="{Binding ElementName=wod5, Path=IsChecked}"/>
+            <materialDesign:TimePicker x:Name="hodf0" Text="{Binding HoursOnDay[0].Finish, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Grid.Column="3" Grid.Row="1" IsEnabled="{Binding ElementName=wod0, Path=IsChecked}" Is24Hours="True"/>
+            <materialDesign:TimePicker x:Name="hodf1" Text="{Binding HoursOnDay[1].Finish, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Grid.Column="3" Grid.Row="2" IsEnabled="{Binding ElementName=wod1, Path=IsChecked}" Is24Hours="True"/>
+            <materialDesign:TimePicker x:Name="hodf2" Text="{Binding HoursOnDay[2].Finish, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Grid.Column="3" Grid.Row="3" IsEnabled="{Binding ElementName=wod2, Path=IsChecked}" Is24Hours="True"/>
+            <materialDesign:TimePicker x:Name="hodf3" Text="{Binding HoursOnDay[3].Finish, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Grid.Column="3" Grid.Row="4" IsEnabled="{Binding ElementName=wod3, Path=IsChecked}" Is24Hours="True"/>
+            <materialDesign:TimePicker x:Name="hodf4" Text="{Binding HoursOnDay[4].Finish, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Grid.Column="3" Grid.Row="5" IsEnabled="{Binding ElementName=wod4, Path=IsChecked}" Is24Hours="True"/>
+            <materialDesign:TimePicker x:Name="hodf5" Text="{Binding HoursOnDay[5].Finish, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Grid.Column="3" Grid.Row="6" IsEnabled="{Binding ElementName=wod5, Path=IsChecked}" Is24Hours="True"/>
         </Grid>
     </Grid>
 </Window>

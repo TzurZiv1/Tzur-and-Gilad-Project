@@ -23,6 +23,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -95,6 +96,18 @@
       <DependentUpon>AddContractWin.xaml</DependentUpon>
     </Compile>
     <Compile Include="algo\GoogleApiFunc.cs" />
+    <Compile Include="AllChilds.xaml.cs">
+      <DependentUpon>AllChilds.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AllContracts.xaml.cs">
+      <DependentUpon>AllContracts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AllMothers.xaml.cs">
+      <DependentUpon>AllMothers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AllNannies.xaml.cs">
+      <DependentUpon>AllNannies.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RemoveChildWin.xaml.cs">
       <DependentUpon>RemoveChildWin.xaml</DependentUpon>
     </Compile>
@@ -122,6 +135,7 @@
     <Compile Include="UserControl\PlaceAutoCompleteUC.xaml.cs">
       <DependentUpon>PlaceAutoCompleteUC.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters.cs" />
     <Page Include="AddChildWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -135,6 +149,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddNannyWin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AllChilds.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AllContracts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AllMothers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AllNannies.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

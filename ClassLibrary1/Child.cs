@@ -14,7 +14,7 @@ namespace BE
         private int id;
         private int motherID;
         private string firstName;
-        private DateTime birthdate = new DateTime();
+        private DateTime birthdate;
         private bool isSpecial;//the child is a special boy?
         private string specialNeeds;
 
@@ -64,7 +64,10 @@ namespace BE
         /// <summary>
         /// Default constructor
         /// </summary>
-        public Child() { }
+        public Child()
+        {
+            birthdate = DateTime.Now;
+        }
 
         /// <summary>
         /// constructor

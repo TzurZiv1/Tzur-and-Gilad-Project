@@ -6,19 +6,19 @@
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
         Validation.Error="validation_Error"  
-        Title="UpdateContractWin" Height="330" Width="300">
+        Title="UpdateContractWin" Height="400" Width="300" ResizeMode="NoResize" Icon="images/contract.png">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Update Contract" FontSize="25" HorizontalContentAlignment="left" HorizontalAlignment="left" Width="220"/>
+        <Label Grid.Row="0" Content="  Update Contract" FontSize="25" HorizontalContentAlignment="left" HorizontalAlignment="left" Width="220"/>
         <Image Grid.Row="0"  HorizontalAlignment="right" Source="images/contract.png" Margin="0,0,0,0" Width="50"/>
 
         <Button x:Name="UpdateContractButton"  Content="Update" Grid.Row="2"  Margin="71,10,71,5" Click="UpdateContractButton_Click">
             <Button.Style>
-				<Style TargetType="{x:Type Button}" 
+                <Style TargetType="{x:Type Button}" 
             BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding ElementName=endDateDatePicker, Path=Text}" Value="">
@@ -35,7 +35,7 @@
             </Button.Style>
         </Button>
 
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="32,10,0,0" Grid.Row="1" VerticalAlignment="Top">
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="32,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="252" Height="254">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -53,13 +53,13 @@
             <Label Content="End Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="61"/>
             <DatePicker x:Name="endDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" SelectedDate="{Binding EndDate, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Height="24" Width="102"/>
             <Label Content="Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center" Height="26" Width="56"/>
-            <ComboBox x:Name="numberComboBox" Grid.Column="1" SelectedValue="{Binding Path=Number, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" HorizontalAlignment="Left" Height="24" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="120" SelectionChanged="numberComboBox_SelectionChanged"/>
+            <ComboBox x:Name="numberComboBox" Grid.Column="1" SelectedValue="{Binding Path=Number, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" HorizontalAlignment="Left" Height="80" Margin="3,3,-26,3" Grid.Row="0" VerticalAlignment="Center" Width="150" SelectionChanged="numberComboBox_SelectionChanged"/>
             <Label Content="Nanny ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="63"/>
             <TextBlock x:Name="nannyIDTextBlock" Grid.Column="1" Text="{Binding Path=NannyID, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" HorizontalAlignment="Left" Height="24" Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="120"/>
             <Label Content="Start Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" Height="26" Width="65"/>
             <DatePicker x:Name="startDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" SelectedDate="{Binding StartDate, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Height="24" Width="102"/>
             <Label Content="Was Meeting:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center" Height="26" Width="82"/>
-			<CheckBox x:Name="wasMeetingCheckBox" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding WasMeeting, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+            <CheckBox x:Name="wasMeetingCheckBox" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding WasMeeting, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
         </Grid>
     </Grid>
 </Window>

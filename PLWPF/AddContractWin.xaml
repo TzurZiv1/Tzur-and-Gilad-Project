@@ -7,7 +7,7 @@
         xmlns:BE="clr-namespace:BE;assembly=ClassLibrary1" x:Class="PLWPF.AddContractWin"
         mc:Ignorable="d"
         Validation.Error="validation_Error"  
-        Title="AddContractWin" Height="330" Width="300">
+        Title="AddContractWin" Height="380" Width="300" ResizeMode="NoResize" Icon="images/contract.png">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -40,7 +40,7 @@
             </Button.Style>
         </Button>
 
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="32,10,0,0" Grid.Row="1" VerticalAlignment="Top">
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="32,10,0,0" Grid.Row="1" VerticalAlignment="Top" Height="234">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -54,13 +54,13 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Child ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="2" VerticalAlignment="Center" Height="26" Width="55"/>
-            <ComboBox x:Name="childIDComboBox" Grid.Column="1" SelectedValue="{Binding Path=ChildID, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="2" VerticalAlignment="Center" Width="120"/>
+            <ComboBox x:Name="childIDComboBox" Grid.Column="1" SelectedValue="{Binding Path=ChildID, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" HorizontalAlignment="Left" Height="46" Margin="3,4,0,4" Grid.Row="2" VerticalAlignment="Center" Width="120"/>
             <Label Content="End Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="4" VerticalAlignment="Center" Height="26" Width="61"/>
             <DatePicker x:Name="endDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3,4,0,4" Grid.Row="4" SelectedDate="{Binding EndDate, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Height="24" Width="102"/>
             <Label Content="Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="0" VerticalAlignment="Center" Height="26" Width="56"/>
             <TextBlock x:Name="numberTextBlock" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="0" VerticalAlignment="Center" Width="120"/>
             <Label Content="Nanny ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="63"/>
-            <ComboBox x:Name="nannyIDComboBox" Grid.Column="1" SelectedValue="{Binding Path=NannyID, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="1" VerticalAlignment="Center" Width="120"/>
+            <ComboBox x:Name="nannyIDComboBox" Grid.Column="1" SelectedValue="{Binding Path=NannyID, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" HorizontalAlignment="Left" Height="46" Margin="3,4,0,4" Grid.Row="1" VerticalAlignment="Center" Width="120"/>
             <Label Content="Start Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="3" VerticalAlignment="Center" Height="26" Width="65"/>
             <DatePicker x:Name="startDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3,4,0,4" Grid.Row="3" SelectedDate="{Binding StartDate, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Height="24" Width="102"/>
             <Label Content="Was Meeting:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="5" VerticalAlignment="Center" Height="26" Width="82"/>
