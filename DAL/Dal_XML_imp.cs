@@ -7,15 +7,22 @@ using System.Threading.Tasks;
 using System.Xml.Linq;
 using BE;
 using DS;
+using System.Xml.Serialization;
 
 namespace DAL
 {
-    public class XmlSampleNanny
+    public class XmlSample
     {
         public XElement childRoot;
         public string childPath = @"ChildXml.xml";
+        public XElement nannyRoot;
+        public string nannyPath = @"NannyXml.xml";
+        public XElement motherRoot;
+        public string motherPath = @"MotherXml.xml";
+        public XElement contractRoot;
+        public string contractPath = @"ContractXml.xml";
 
-        public XmlSampleNanny()
+        public XmlSample()
         {
             if (!File.Exists(childPath))
                 CreateFiles();
@@ -34,13 +41,27 @@ namespace DAL
                                new XElement("firstName", ch.FirstName),
                                new XElement("birthdate", ch.Birthdate),
                                new XElement("isSpecial", ch.IsSpecial),
-                               new XElement("specialNeeds", ch.SpecialNeeds)    
+                               new XElement("specialNeeds", ch.SpecialNeeds)
                                 )
                             );
             childRoot.Save(childPath);
         }
-
-        private void CreateFiles()
+        public static void SaveToXML<T>(T source, string path)
+        {
+            FileStream file = new FileStream(path, FileMode.Create);
+            XmlSerializer xmlSerializer = new XmlSerializer(source.GetType());
+            xmlSerializer.Serialize(file, source);
+            file.Close();
+        }
+        public static T LoadFromXML<T>(string path)
+        {
+            FileStream file = new FileStream(path, FileMode.Open);
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+            T result = (T)xmlSerializer.Deserialize(file);
+            file.Close();
+            return result;
+        }
+          private void CreateFiles()
         {
             childRoot = new XElement("child");
             childRoot.Save(childPath);
@@ -61,10 +82,11 @@ namespace DAL
 
 
 
-    public class Dal_XML_imp : XmlSampleNanny, IDAL 
+    public class Dal_XML_imp : XmlSample, IDAL
     {
         public void AddChild(Child child)
         {
+            IdAlreadyExist(child.ID);
             XElement id = new XElement("id", child.ID);
             XElement motherID = new XElement("motherID", child.MotherID);
             XElement firstName = new XElement("firstName", child.FirstName);
@@ -72,7 +94,7 @@ namespace DAL
             XElement isSpecial = new XElement("isSpecial", firstName, child.IsSpecial);
             XElement specialNeeds = new XElement("specialNeeds", firstName, child.SpecialNeeds);
 
-            childRoot.Add(new XElement("student", id, motherID, firstName, birthdate, isSpecial, specialNeeds));
+            childRoot.Add(new XElement("child", id, motherID, firstName, birthdate, isSpecial, specialNeeds));
             childRoot.Save(childPath);
         }
 
@@ -88,7 +110,8 @@ namespace DAL
 
         public void AddNanny(Nanny n)
         {
-            throw new NotImplementedException();
+            
+            
         }
 
         public int CurrentNumber()
@@ -98,14 +121,21 @@ namespace DAL
 
         public List<Child> GetAllChilds()
         {
-            throw new NotImplementedException();
+            return (from ch in childRoot.Elements()
+                    select new Child()
+                    {
+                        ID = int.Parse(ch.Element("id").Value),
+                        MotherID = int.Parse(ch.Element("motherID").Value),
+                        FirstName = ch.Element("firstName").Value,
+                        Birthdate = DateTime.Parse(ch.Element("birthdate").Value),
+                        IsSpecial = bool.Parse(ch.Element("isSpecial").Value),
+                        SpecialNeeds = ch.Element("specialNeeds").Value
+                    }
+                   ).ToList();
         }
 
-        public IEnumerable<IGrouping<int, Child>> GetAllChildsByMother()
-        {
-            throw new NotImplementedException();
-        }
-
+        public IEnumerable<IGrouping<int, Child>> GetAllChildsByMother() => from c in GetAllChilds()
+                                                                            group c by c.MotherID;
         public List<Contract> GetAllContracts()
         {
             throw new NotImplementedException();
@@ -133,7 +163,22 @@ namespace DAL
 
         public Child GetChild(int id)
         {
-            throw new NotImplementedException();
+            XElement childElement;
+            Child child = new Child();
+            try
+            {
+                childElement = (from ch in childRoot.Elements()
+                                where int.Parse(ch.Element("id").Value) == id
+                                select ch).FirstOrDefault();
+                child.ID = int.Parse(childElement.Element("id").Value);
+                child.MotherID = int.Parse(childElement.Element("motherID").Value);
+                child.FirstName = childElement.Element("firstName").Value;
+                child.Birthdate = DateTime.Parse(childElement.Element("birthdate").Value);
+                child.IsSpecial = bool.Parse(childElement.Element("isSpecial").Value);
+                child.SpecialNeeds = childElement.Element("specialNeeds").Value;
+                return child;
+            }
+            catch { return null; }
         }
 
         public Contract GetContract(int num)
@@ -157,15 +202,15 @@ namespace DAL
             try
             {
                 childElement = (from ch in childRoot.Elements()
-                                  where int.Parse(ch.Element("id").Value) == id
-                                  select ch).FirstOrDefault();
+                                where int.Parse(ch.Element("id").Value) == id
+                                select ch).FirstOrDefault();
                 childElement.Remove();
                 childRoot.Save(childPath);
-                
+
             }
             catch
             {
-                
+
             }
         }
 
@@ -187,14 +232,13 @@ namespace DAL
         public void UpdateChild(Child c)
         {
             XElement childElement = (from ch in childRoot.Elements()
-                                       where int.Parse(ch.Element("id").Value) == c.ID
-                                       select ch).FirstOrDefault();
+                                     where int.Parse(ch.Element("id").Value) == c.ID
+                                     select ch).FirstOrDefault();
             childElement.Element("firstName").Value = c.FirstName;
-             childElement.Element("birthdate").Value = c.Birthdate.ToString();
+            childElement.Element("birthdate").Value = c.Birthdate.ToString();
             childElement.Element("isSpecial").Value = c.IsSpecial.ToString();
             childElement.Element("specialNeeds").Value = c.SpecialNeeds;
-            //childElement.Element("name").Element("firstName").Value = child.FirstName;
-            //childElement.Element("name").Element("lastName").Value = child.LastName;
+
 
             childRoot.Save(childPath);
         }
@@ -212,6 +256,11 @@ namespace DAL
         public void UpdateNanny(Nanny n)
         {
             throw new NotImplementedException();
+        }
+        private void IdAlreadyExist(int id)
+        {
+            if (GetChild(id) != null || GetMother(id) != null || GetNanny(id) != null)
+                throw new Exception("This ID already exist");
         }
     }
 }
