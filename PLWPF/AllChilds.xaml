@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
-        Title="AllChilds" WindowState="Maximized" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" Icon="images/nanny.png"
+        Title="AllChilds" WindowState="Maximized" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" Icon="images/child.png"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
      TextElement.FontWeight="Medium"
      TextElement.FontSize="14"
