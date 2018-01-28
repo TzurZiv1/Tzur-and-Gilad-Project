@@ -22,7 +22,8 @@
 
         <Button Name="AddChildButton"  Content="Add" Grid.Row="2"  Margin="71,5,71,5" Click="AddChildButton_Click">
             <Button.Style>
-                <Style>
+				<Style TargetType="{x:Type Button}" 
+            BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding ElementName=birthdateDatePicker, Path=Text}" Value="">
                             <Setter Property="Button.IsEnabled" Value="false"/>
@@ -61,7 +62,7 @@
             <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <TextBox x:Name="iDTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding ID, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Is he a special child?" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <CheckBox x:Name="isSpecialCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding IsSpecial, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+			<CheckBox Style="{DynamicResource MaterialDesignSwitchToggleButton}" x:Name="isSpecialCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding IsSpecial, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <Label Content="Mother ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <ComboBox x:Name="motherIDComboBox" Grid.Column="1" SelectedItem="{Binding MotherID, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="120"/>
             <Label Content="Special Needs:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center" IsEnabled="{Binding ElementName=isSpecialCheckBox, Path=IsChecked}"/>

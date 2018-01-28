@@ -21,7 +21,8 @@
 
         <Button x:Name="UpdateChildButton"  Content="Update" Grid.Row="2"  Margin="71,5,71,5" Click="UpdateChildButton_Click">
             <Button.Style>
-                <Style>
+				<Style TargetType="{x:Type Button}" 
+            BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding ElementName=birthdateDatePicker, Path=Text}" Value="">
                             <Setter Property="Button.IsEnabled" Value="false"/>

@@ -19,8 +19,9 @@
         <Image Grid.Row="0"  HorizontalAlignment="right" Source="images/contract.png" Margin="0,0,0,0" Width="50"/>
 
         <Button x:Name="RemoveContractButton" Content="Remove" Grid.Row="2"  Margin="70,24" Click="RemoveContractButton_Click">
-            <Button.Style>
-                <Style>
+			<Button.Style>
+				<Style TargetType="{x:Type Button}" 
+            BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding ElementName=numberComboBox, Path=Text}" Value="">
                             <Setter Property="Button.IsEnabled" Value="false"/>

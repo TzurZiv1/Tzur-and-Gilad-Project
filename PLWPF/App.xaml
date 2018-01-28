@@ -47,14 +47,14 @@
             <!-- tell Dragablz tab control to use the Material Design theme -->
             <Style TargetType="{x:Type dragablz:TabablzControl}" BasedOn="{StaticResource MaterialDesignTabablzControlStyle}" />
 
-            <Style x:Key="RemoveButtonStyle">
-                <Style.Triggers>
-                    <DataTrigger Binding="{Binding ElementName=iDComboBox, Path=Text}" Value="">
-                        <Setter Property="Button.IsEnabled" Value="false"/>
-                    </DataTrigger>
-                </Style.Triggers>
-            </Style>
-            
-        </ResourceDictionary>
+			<Style x:Key="RemoveButtonStyle"  TargetType="{x:Type Button}" 
+            BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
+				<Style.Triggers>
+					<DataTrigger Binding="{Binding ElementName=iDComboBox, Path=Text}" Value="">
+						<Setter Property="Button.IsEnabled" Value="false"/>
+					</DataTrigger>
+				</Style.Triggers>
+			</Style>
+		</ResourceDictionary>
     </Application.Resources>
 </Application>

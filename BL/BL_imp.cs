@@ -31,17 +31,18 @@ namespace BL
 
         public void init()
         {
+			WorkHours z = new WorkHours(TimeSpan.Zero, TimeSpan.Zero);
             AddNanny(new Nanny(123451234, "Mor", "Cohen", new DateTime(1994, 12, 2), "Jerusalem, Israel", 8, 24, 100, new bool[] { true, false, false, true, false, false },
-                new WorkHours[6] { new WorkHours(1, 23), new WorkHours(0, 0), new WorkHours(0, 0), new WorkHours(1, 23), new WorkHours(0, 0), new WorkHours(0, 0) },
+                new WorkHours[6] { new WorkHours(TimeSpan.Zero, new TimeSpan(23, 0, 0)), z, z, new WorkHours(new TimeSpan(1, 0, 0), new TimeSpan(23, 0, 0)), z, z },
                 27, 1500, "054-1231234", true, 2, 2, true, true, "Very good nanny"));
             AddNanny(new Nanny(398734128, "Miri", "Factor", new DateTime(1995, 3, 23), "Ben Zakai 25, Rishon LeTsiyon, Israel", 1, 3, 36, new bool[] { false, false, true, false, false, true },
-                new WorkHours[6] { new WorkHours(0, 0), new WorkHours(0, 0), new WorkHours(12, 20), new WorkHours(0, 0), new WorkHours(0, 0), new WorkHours(10, 15) },
+                new WorkHours[6] {z,z, new WorkHours(new TimeSpan(12, 0, 0), new TimeSpan(20, 0, 0)),z,z, new WorkHours(new TimeSpan(10, 0, 0), new TimeSpan(15, 0, 0)) },
                 29, 2300, "057-3453535", true, 5, 3, true, false));
             AddMother(new Mother(274857123, "Galia", "Nagar", "pinkhas zekharya 24, rishon lezion, israel", "rishon lezion, israel", new bool[] { true, false, false, true, false, false },
-                new WorkHours[6] { new WorkHours(15, 20), new WorkHours(0, 0), new WorkHours(0, 0), new WorkHours(15, 18), new WorkHours(0, 0), new WorkHours(0, 0) },
+                new WorkHours[6] { new WorkHours(new TimeSpan(15, 0, 0), new TimeSpan(20, 0, 0)),z,z, new WorkHours(new TimeSpan(15, 0, 0), new TimeSpan(18, 0, 0)),z,z },
                 false, "032-2345674"));
             AddMother(new Mother(123123123, "Shoshy", "Smith", "Rabbi Meir Street 12, Tel Aviv-Yafo, Israel", null, new bool[] { false, false, true, false, true, true },
-                new WorkHours[6] { new WorkHours(0, 0), new WorkHours(0, 0), new WorkHours(10, 15), new WorkHours(0, 0), new WorkHours(18, 22), new WorkHours(10, 15) },
+                new WorkHours[6] {z,z, new WorkHours(new TimeSpan(10, 0, 0), new TimeSpan(15, 0, 0)),z, new WorkHours(new TimeSpan(18, 0, 0), new TimeSpan(22, 0, 0)), new WorkHours(new TimeSpan(10, 0, 0), new TimeSpan(15, 0, 0)) },
                 true, "03-9582615"));
             AddChild(new Child(234875912, 274857123, "Gili", new DateTime(2012, 4, 15), true, "Need a lot of tzumy"));
             AddChild(new Child(829347234, 123123123, "RL", new DateTime(2017, 2, 24)));
@@ -299,16 +300,16 @@ namespace BL
         /// <param name="m">mother</param>
         /// <param name="n">nanny</param>
         /// <returns>the grade of n according to number of hours when n can work for m </returns>
-        private int GradeNannyToMother(Mother m, Nanny n)
+        private TimeSpan GradeNannyToMother(Mother m, Nanny n)
         {
-            int grade = 0;
-            int start, finish;
+            TimeSpan grade = new TimeSpan(0,0,0);
+            TimeSpan start, finish;
             for (int i = 0; i < 6; i++)
             {
                 if (m.NeedNannyOnDay[i] && n.WorkOnDay[i])
                 {
-                    start = Math.Max(m.HoursForDay[i].Start, n.HoursOnDay[i].Start);
-                    finish = Math.Min(m.HoursForDay[i].Finish, n.HoursOnDay[i].Finish);
+                    start = (m.HoursForDay[i].Start > n.HoursOnDay[i].Start)?m.HoursForDay[i].Start: n.HoursOnDay[i].Start;
+                    finish = (m.HoursForDay[i].Finish < n.HoursOnDay[i].Finish)? m.HoursForDay[i].Finish: n.HoursOnDay[i].Finish;
                     if (start < finish)
                         grade += finish - start;
                 }
@@ -324,8 +325,10 @@ namespace BL
         /// <returns>The least suitable Nanny to m, from 2 nannies</returns>
         private Nanny MinGrade(Mother m, Nanny n1, Nanny n2)
         {
-            int min = Math.Min(GradeNannyToMother(m, n1), GradeNannyToMother(m, n2));
-            if (min == GradeNannyToMother(m, n1))
+			TimeSpan GradeN1 = GradeNannyToMother(m, n1);
+			TimeSpan GradeN2 = GradeNannyToMother(m, n2);
+			TimeSpan min = (GradeN1 < GradeN2)? GradeN1: GradeN2;
+			if (min == GradeN1)
                 return n1;
 
             return n2;
@@ -375,7 +378,7 @@ namespace BL
                 else
                 {
                     c.IsPerMonth = false;
-                    c.WagePerMonth = n.RatePerHour * GradeNannyToMother(m, n) * 4 * discount;
+                    c.WagePerMonth = n.RatePerHour * GradeNannyToMother(m, n).TotalHours * 4 * discount;
                 }
             }
         }

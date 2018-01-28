@@ -18,7 +18,8 @@
 
         <Button x:Name="UpdateContractButton"  Content="Update" Grid.Row="2"  Margin="71,10,71,5" Click="UpdateContractButton_Click">
             <Button.Style>
-                <Style>
+				<Style TargetType="{x:Type Button}" 
+            BasedOn="{StaticResource MaterialDesignRaisedAccentButton}">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding ElementName=endDateDatePicker, Path=Text}" Value="">
                             <Setter Property="Button.IsEnabled" Value="false"/>
@@ -58,7 +59,7 @@
             <Label Content="Start Date:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center" Height="26" Width="65"/>
             <DatePicker x:Name="startDateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" SelectedDate="{Binding StartDate, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Height="24" Width="102"/>
             <Label Content="Was Meeting:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center" Height="26" Width="82"/>
-            <CheckBox x:Name="wasMeetingCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding WasMeeting, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="3" Grid.Row="5" VerticalAlignment="Center" Height="16" Width="20"/>
+			<CheckBox x:Name="wasMeetingCheckBox" Style="{DynamicResource MaterialDesignSwitchToggleButton}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding WasMeeting, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
         </Grid>
     </Grid>
 </Window>

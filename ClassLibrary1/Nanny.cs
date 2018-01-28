@@ -11,30 +11,30 @@ namespace BE
     /// </summary>
     public class WorkHours
     {
-        private int start;
-        private int finish;
+        private TimeSpan start;
+        private TimeSpan finish;
 
         //properties
-        public int Start
+        public TimeSpan Start
         {
             get => start;
             set
             {
-                if (value >= 0 && value <= 24)
+                if (value >= new TimeSpan(0,0,0) && value <= new TimeSpan(24, 0, 0))
                     start = value;
                 else
-                    throw new Exception("Work hours must be between 0 and 24");
+                    throw new Exception("Work hours must be between 00:00 and 24:00");
             }
         }
-        public int Finish
+        public TimeSpan Finish
         {
             get => finish;
             set
             {
-                if (value >= 0 && value <= 24 && value >= Start)
+                if (value >= new TimeSpan(0, 0, 0) && value <= new TimeSpan(24, 0, 0) && value >= Start)
                     finish = value;
-                else if (value < 0 || value > 24)
-                    throw new Exception("Work hours must be between 0 and 24");
+                else if (value < new TimeSpan(0, 0, 0) || value > new TimeSpan(24, 0, 0))
+                    throw new Exception("Work hours must be between 00:00 and 24:00");
                 else
                     throw new Exception("Finish hour must be after start hour");
             }
@@ -44,7 +44,7 @@ namespace BE
         /// </summary>
         /// <param name="s"></param>
         /// <param name="f"></param>
-        public WorkHours(int s = 0, int f = 0)
+        public WorkHours(TimeSpan s = default(TimeSpan), TimeSpan f = default(TimeSpan))
         {
             Start = s;
             Finish = f;
