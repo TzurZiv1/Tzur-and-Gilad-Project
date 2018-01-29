@@ -11,7 +11,8 @@ using System.Xml.Serialization;
 
 namespace DAL
 {
-    public class XmlSample
+   
+    public class Dal_XML_imp : IDAL
     {
         public XElement childRoot;
         public string childPath = @"ChildXml.xml";
@@ -21,15 +22,46 @@ namespace DAL
         public string motherPath = @"MotherXml.xml";
         public XElement contractRoot;
         public string contractPath = @"ContractXml.xml";
+        public XElement configRoot;
+        public string configPath = @"configXml.xml";
 
-        public XmlSample()
+
+        
+        public Dal_XML_imp()
         {
-            if (!File.Exists(childPath))
+            if (!File.Exists(childPath) || !File.Exists(nannyPath) || !File.Exists(motherPath) || !File.Exists(contractPath) || !File.Exists(configPath))
                 CreateFiles();
             else
                 LoadData();
         }
-
+        private void LoadData()
+        {
+            try
+            {
+                childRoot = XElement.Load(childPath);
+                nannyRoot = XElement.Load(nannyPath);
+                motherRoot = XElement.Load(motherPath);
+                contractRoot = XElement.Load(contractPath);
+                configRoot = XElement.Load(configPath);
+            }
+            catch
+            {
+                throw new Exception("File upload problem");
+            }
+        }
+        private void CreateFiles()
+        {
+            childRoot = new XElement("child");
+            childRoot.Save(childPath);
+            nannyRoot = new XElement("nanny");
+            nannyRoot.Save(nannyPath);
+            motherRoot = new XElement("mother");
+            motherRoot.Save(motherPath);
+            contractRoot = new XElement("contract");
+            contractRoot.Save(contractPath);
+            configRoot = new XElement("config");
+            configRoot.Save(configPath);
+        }
         public void SaveChildList(List<Child> childlist)
         {
 
@@ -54,36 +86,14 @@ namespace DAL
             file.Close();
         }
         public static T LoadFromXML<T>(string path)
-        {
-            FileStream file = new FileStream(path, FileMode.Open);
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-            T result = (T)xmlSerializer.Deserialize(file);
-            file.Close();
-            return result;
-        }
-          private void CreateFiles()
-        {
-            childRoot = new XElement("child");
-            childRoot.Save(childPath);
+        { 
+                FileStream file = new FileStream(path, FileMode.Open);
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+                T result = (T)xmlSerializer.Deserialize(file);
+                file.Close();
+                return result;
         }
 
-        private void LoadData()
-        {
-            try
-            {
-                childRoot = XElement.Load(childPath);
-            }
-            catch
-            {
-                throw new Exception("File upload problem");
-            }
-        }
-    }
-
-
-
-    public class Dal_XML_imp : XmlSample, IDAL
-    {
         public void AddChild(Child child)
         {
             IdAlreadyExist(child.ID);
@@ -100,18 +110,41 @@ namespace DAL
 
         public void AddContract(Contract c)
         {
-            throw new NotImplementedException();
+            if (GetChild(c.ChildID) == null)
+                throw new Exception("The child doesn't exist");
+            if (GetMother(c.MotherID) == null)
+                throw new Exception("The mother doesn't exist");
+            if (GetNanny(c.NannyID) == null)
+                throw new Exception("The nanny doesn't exist");
+
+            List<Contract> list = LoadFromXML<List<Contract>>(contractPath);
+            int num = LoadFromXML<int>(configPath);
+            if (c.Number == 0)
+                c.Number = ++num;
+            
+            list.Add(c);
+            //if (c.Number == 0)
+            //    c.Number = ++currentNumber;
+            //list.Add(c);
+            SaveToXML<List<Contract>>(list, contractPath);
+            SaveToXML<int>(++num, configPath);
         }
 
         public void AddMother(Mother m)
         {
-            throw new NotImplementedException();
+            IdAlreadyExist(m.ID);
+            List<Mother> list = LoadFromXML<List<Mother>>(motherPath);
+            list.Add(m);
+            SaveToXML<List<Mother>>(list, motherPath);
         }
 
         public void AddNanny(Nanny n)
         {
-            
-            
+            IdAlreadyExist(n.ID);
+            List<Nanny> list = LoadFromXML<List<Nanny>>(nannyPath);
+            list.Add(n);
+            SaveToXML<List<Nanny>>(list, nannyPath);
+
         }
 
         public int CurrentNumber()
@@ -153,12 +186,12 @@ namespace DAL
 
         public List<Mother> GetAllMothers()
         {
-            throw new NotImplementedException();
+            return LoadFromXML<List<Mother>>(motherPath);
         }
 
         public List<Nanny> GetAllNannies()
         {
-            throw new NotImplementedException();
+            return LoadFromXML<List<Nanny>>(nannyPath);
         }
 
         public Child GetChild(int id)
@@ -188,12 +221,19 @@ namespace DAL
 
         public Mother GetMother(int id)
         {
-            throw new NotImplementedException();
+            List<Mother> list = LoadFromXML<List<Mother>>(motherPath);
+            return (from mother in list
+                    where mother.ID == id
+                    select mother).FirstOrDefault();
         }
 
         public Nanny GetNanny(int id)
         {
-            throw new NotImplementedException();
+            List<Nanny> list = LoadFromXML<List<Nanny>>(nannyPath);
+            return (from nanny in list
+                    where nanny.ID == id
+                    select nanny).FirstOrDefault();
+
         }
 
         public void RemoveChild(int id)
@@ -210,23 +250,50 @@ namespace DAL
             }
             catch
             {
-
+                return;
             }
         }
 
         public void RemoveContract(int num)
         {
-            throw new NotImplementedException();
+
         }
 
         public void RemoveMother(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<Mother> list = LoadFromXML<List<Mother>>(motherPath);
+                Mother mom = (from mother in list
+                              where mother.ID == id
+                              select mother).FirstOrDefault();
+                list.Remove(mom);
+                SaveToXML<List<Mother>>(list, motherPath);
+            }
+            catch
+            {
+
+                return;
+            }
+
         }
 
         public void RemoveNanny(int id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                List<Nanny> list = LoadFromXML<List<Nanny>>(nannyPath);
+                Nanny nan = (from nanny in list
+                             where nanny.ID == id
+                             select nanny).FirstOrDefault();
+                list.Remove(nan);
+                SaveToXML<List<Nanny>>(list, nannyPath);
+            }
+            catch
+            {
+                return;
+            }
+
         }
 
         public void UpdateChild(Child c)
@@ -250,13 +317,21 @@ namespace DAL
 
         public void UpdateMother(Mother m)
         {
-            throw new NotImplementedException();
+            if (GetMother(m.ID) == null)
+                throw new Exception("The mother doesn't exist");
+            RemoveMother(m.ID);
+            AddMother(m);
+
         }
 
         public void UpdateNanny(Nanny n)
         {
-            throw new NotImplementedException();
+            if (GetNanny(n.ID) == null)
+                throw new Exception("The nanny doesn't exist");
+            RemoveNanny(n.ID);
+            AddNanny(n);
         }
+
         private void IdAlreadyExist(int id)
         {
             if (GetChild(id) != null || GetMother(id) != null || GetNanny(id) != null)

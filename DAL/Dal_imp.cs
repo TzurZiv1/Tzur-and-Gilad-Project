@@ -17,7 +17,7 @@ namespace DAL
         public static IDAL GetDAL()
         {
             if (dal == null)
-                dal = new DAL_imp();
+                dal = new Dal_XML_imp();
             return dal;
         }
     }
@@ -109,7 +109,6 @@ namespace DAL
         /// <param name="motherToUpdate">The mother you want to update </param>
         public void UpdateMother(Mother motherToUpdate)
         {
-
             if (GetMother(motherToUpdate.ID) == null)
                 throw new Exception("The mother doesn't exist");
             else

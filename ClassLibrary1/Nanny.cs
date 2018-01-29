@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace BE
 {
@@ -80,10 +81,11 @@ namespace BE
         private bool allowPerHour;
         private double ratePerHour;
         private double ratePerMonth;
-        private bool[] workOnDay;
-        private WorkHours[] hoursOnDay;
         private bool financedVacation;
         private string recommendations;
+        private bool[] workOnDay;
+        private WorkHours[] hoursOnDay;
+        
         
         public Nanny()
         {
@@ -241,7 +243,9 @@ namespace BE
                     throw new Exception("RatePerMonth can't be negative");
             }
         }
+        [XmlIgnoreAttribute]
         public bool[] WorkOnDay { get => workOnDay; set => workOnDay = value; }
+        [XmlIgnoreAttribute]
         public WorkHours[] HoursOnDay { get => hoursOnDay; set => hoursOnDay = value; }
         public bool FinancedVacation { get => financedVacation; set => financedVacation = value; }
         public string Recommendations { get => recommendations ?? ""; set => recommendations = value; }
@@ -249,6 +253,81 @@ namespace BE
         {
             get => "ID: " + ID + "\n" +
                 "Name: " + FirstName + " " + LastName;
+        }
+        public string TempWorkOnDay
+        {
+            get {
+                
+                string StrWorkDays = "";
+                if (workOnDay[0])
+                    StrWorkDays += "Sunday|";
+                if (workOnDay[1])
+                    StrWorkDays += "Monday|";
+                if (workOnDay[2])
+                    StrWorkDays += "Tuesday|";
+                if (workOnDay[3])
+                    StrWorkDays += "Wednesday|";
+                if (workOnDay[4])
+                    StrWorkDays += "Thursday|";
+                if (workOnDay[5])
+                    StrWorkDays += "Friday|";
+                return StrWorkDays.Substring(0,StrWorkDays.Length-1);
+            }
+            set
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    workOnDay[i] = false;
+                }
+                if (value.Contains("Sunday"))
+                    workOnDay[0] = true;
+                if (value.Contains("Monday"))
+                    workOnDay[1] = true;
+                if (value.Contains("Tuesday"))
+                    workOnDay[2] = true;
+                if (value.Contains("Wednesday"))
+                    workOnDay[3] = true;
+                if (value.Contains("Thursday"))
+                    workOnDay[4] = true;
+                if (value.Contains("Friday"))
+                    workOnDay[5] = true;
+            }
+        }
+
+        public string TempHoursOnDay
+        {
+            get
+            {
+                string strWorksOnDays = "|";
+                strWorksOnDays += " Sunday: " + hoursOnDay[0] + " |";
+                strWorksOnDays += " Monday: " + hoursOnDay[1] + " |";
+                strWorksOnDays += " Tuesday: " + hoursOnDay[2] + " |";
+                strWorksOnDays += " Wednesday: " + hoursOnDay[3] + " |";
+                strWorksOnDays += " Thursday: " + hoursOnDay[4] + " |";
+                strWorksOnDays += " Friday: " + hoursOnDay[5] + " |";
+                return strWorksOnDays;
+            }
+            set
+            {
+                int index = value.IndexOf("Sunday");
+                int index2 = value.IndexOf("Monday");
+                int index3 = value.IndexOf("Tuesday");
+                int inde4 = value.IndexOf("Wednesday");
+                int index5 = value.IndexOf("Thursday");
+                int index6 = value.IndexOf("Friday");
+                int sunIndex = value[index + "Sunday".Length + 1];
+                int monIndex = value[index2 + "Monday".Length + 1];
+                int tuesIndex = value[index2 + "Monday".Length + 1];
+                int wenIndex = value[index2 + "Monday".Length + 1];
+                int thurIndex = value[index2 + "Monday".Length + 1];
+                int friIndex = value[index2 + "Monday".Length + 1];
+                hoursOnDay[0].Start = TimeSpan.Parse(value.Substring(sunIndex,monIndex - "Monday".Length-1));
+                hoursOnDay[1].Start = TimeSpan.Parse(value.Substring(monIndex, tuesIndex - "Tuesday".Length - 1));
+                hoursOnDay[2].Start = TimeSpan.Parse(value.Substring(tuesIndex, wenIndex - "Wednesday".Length - 1));
+                hoursOnDay[3].Start = TimeSpan.Parse(value.Substring(wenIndex, thurIndex - "Thursday".Length - 1));
+                hoursOnDay[4].Start = TimeSpan.Parse(value.Substring(thurIndex, friIndex - "Friday".Length - 1));
+                hoursOnDay[5].Start = TimeSpan.Parse(value.Substring(friIndex));
+            }
         }
         public string Name
         {

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
+
 
 namespace BE
 {
@@ -18,9 +20,10 @@ namespace BE
         private string address;
         private string area;
         private bool[] needNannyOnDay;
-        private WorkHours[] hoursForDay;
         private string notes;
         private bool isPerMonth;// true = per month. false = per hour
+        private WorkHours[] hoursForDay;
+
         /// <summary>
         /// Default constructor
         /// </summary>
@@ -83,8 +86,86 @@ namespace BE
         public string PhoneNumber { get => phoneNumber ?? ""; set => phoneNumber = value; }
         public string Address { get => address ?? ""; set => address = value; }
         public string Area { get => area ?? ""; set => area = value; }
+        [XmlIgnoreAttribute]
         public bool[] NeedNannyOnDay { get => needNannyOnDay; set => needNannyOnDay = value; }
+        public string TempNeedNannyOnDay
+        {
+            get
+            {
+
+                string StrWorkDays = "";
+                if (NeedNannyOnDay[0])
+                    StrWorkDays += "Sunday|";
+                if (NeedNannyOnDay[1])
+                    StrWorkDays += "Monday|";
+                if (NeedNannyOnDay[2])
+                    StrWorkDays += "Tuesday|";
+                if (NeedNannyOnDay[3])
+                    StrWorkDays += "Wednesday|";
+                if (NeedNannyOnDay[4])
+                    StrWorkDays += "Thursday|";
+                if (NeedNannyOnDay[5])
+                    StrWorkDays += "Friday|";
+                return StrWorkDays.Substring(0, StrWorkDays.Length - 1);
+            }
+            set
+            {
+                for (int i = 0; i < 6; i++)
+                {
+                    NeedNannyOnDay[i] = false;
+                }
+                if (value.Contains("Sunday"))
+                    NeedNannyOnDay[0] = true;
+                if (value.Contains("Monday"))
+                    NeedNannyOnDay[1] = true;
+                if (value.Contains("Tuesday"))
+                    NeedNannyOnDay[2] = true;
+                if (value.Contains("Wednesday"))
+                    NeedNannyOnDay[3] = true;
+                if (value.Contains("Thursday"))
+                    NeedNannyOnDay[4] = true;
+                if (value.Contains("Friday"))
+                    NeedNannyOnDay[5] = true;
+            }
+        }
+
+        [XmlIgnoreAttribute]
         public WorkHours[] HoursForDay { get => hoursForDay; set => hoursForDay = value; }
+        public string TempHoursForDay
+        {
+            get
+            {
+                string strWorksOnDays = "|";
+                strWorksOnDays += " Sunday: " + HoursForDay[0] + " |";
+                strWorksOnDays += " Monday: " + HoursForDay[1] + " |";
+                strWorksOnDays += " Tuesday: " + HoursForDay[2] + " |";
+                strWorksOnDays += " Wednesday: " + HoursForDay[3] + " |";
+                strWorksOnDays += " Thursday: " + HoursForDay[4] + " |";
+                strWorksOnDays += " Friday: " + HoursForDay[5] + " |";
+                return strWorksOnDays;
+            }
+            set
+            {
+                int index = value.IndexOf("Sunday");
+                int index2 = value.IndexOf("Monday");
+                int index3 = value.IndexOf("Tuesday");
+                int inde4 = value.IndexOf("Wednesday");
+                int index5 = value.IndexOf("Thursday");
+                int index6 = value.IndexOf("Friday");
+                int sunIndex = value[index + "Sunday".Length + 1];
+                int monIndex = value[index2 + "Monday".Length + 1];
+                int tuesIndex = value[index2 + "Monday".Length + 1];
+                int wenIndex = value[index2 + "Monday".Length + 1];
+                int thurIndex = value[index2 + "Monday".Length + 1];
+                int friIndex = value[index2 + "Monday".Length + 1];
+                HoursForDay[0].Start = TimeSpan.Parse(value.Substring(sunIndex, monIndex - "Monday".Length - 1));
+                HoursForDay[1].Start = TimeSpan.Parse(value.Substring(monIndex, tuesIndex - "Tuesday".Length - 1));
+                HoursForDay[2].Start = TimeSpan.Parse(value.Substring(tuesIndex, wenIndex - "Wednesday".Length - 1));
+                HoursForDay[3].Start = TimeSpan.Parse(value.Substring(wenIndex, thurIndex - "Thursday".Length - 1));
+                HoursForDay[4].Start = TimeSpan.Parse(value.Substring(thurIndex, friIndex - "Friday".Length - 1));
+                HoursForDay[5].Start = TimeSpan.Parse(value.Substring(friIndex));
+            }
+        }
         public string Notes { get => notes ?? ""; set => notes = value; }
         public bool IsPerMonth { get => isPerMonth; set => isPerMonth = value; }
         public string MainDetails
