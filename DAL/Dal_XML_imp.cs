@@ -9,40 +9,38 @@ using BE;
 using DS;
 using System.Xml.Serialization;
 
+
 namespace DAL
 {
-   
+
     public class Dal_XML_imp : IDAL
     {
         public XElement childRoot;
-        public string childPath = @"ChildXml.xml";
-        public XElement nannyRoot;
-        public string nannyPath = @"NannyXml.xml";
-        public XElement motherRoot;
-        public string motherPath = @"MotherXml.xml";
-        public XElement contractRoot;
-        public string contractPath = @"ContractXml.xml";
-        public XElement configRoot;
-        public string configPath = @"configXml.xml";
+        public readonly string childPath = @"ChildXml.xml";
+
+        public readonly string nannyPath = @"NannyXml.xml";
+
+        public readonly string motherPath = @"MotherXml.xml";
+
+        public readonly string contractPath = @"ContractXml.xml";
 
 
-        
+
         public Dal_XML_imp()
         {
-            if (!File.Exists(childPath) || !File.Exists(nannyPath) || !File.Exists(motherPath) || !File.Exists(contractPath) || !File.Exists(configPath))
-                CreateFiles();
-            else
-                LoadData();
+            CreateFiles();
+            if (!File.Exists(nannyPath))
+                SaveToXML(new List<Nanny>(), nannyPath);
+            if (!File.Exists(motherPath))
+                SaveToXML(new List<Mother>(), motherPath);
+            if (!File.Exists(contractPath))
+                SaveToXML(new List<Contract>(), contractPath);
         }
         private void LoadData()
         {
             try
             {
                 childRoot = XElement.Load(childPath);
-                nannyRoot = XElement.Load(nannyPath);
-                motherRoot = XElement.Load(motherPath);
-                contractRoot = XElement.Load(contractPath);
-                configRoot = XElement.Load(configPath);
             }
             catch
             {
@@ -53,18 +51,32 @@ namespace DAL
         {
             childRoot = new XElement("child");
             childRoot.Save(childPath);
-            nannyRoot = new XElement("nanny");
-            nannyRoot.Save(nannyPath);
-            motherRoot = new XElement("mother");
-            motherRoot.Save(motherPath);
-            contractRoot = new XElement("contract");
-            contractRoot.Save(contractPath);
-            configRoot = new XElement("config");
-            configRoot.Save(configPath);
+        }
+        public List<Child> LoadChildListLinq(string childFile)
+        {
+            LoadData();
+            List<Child> children;
+            try
+            {
+                children = (from c in childRoot.Elements()
+                            select new Child()
+                            {
+                                ID = int.Parse(c.Element("id").Value),
+                                MotherID = int.Parse(c.Element("motherId").Value),
+                                FirstName = c.Element("firstName").Value,
+                                Birthdate = DateTime.Parse(c.Element("birthDate").Value),
+                                IsSpecial = bool.Parse(c.Element("isSpecialNeeds").Value),
+                                SpecialNeeds = c.Element("specialNeeds").Value
+                            }).ToList();
+            }
+            catch
+            {
+                children = null;
+            }
+            return children;
         }
         public void SaveChildList(List<Child> childlist)
         {
-
             childRoot = new XElement("childs",
                             from ch in childlist
                             select new XElement("child",
@@ -86,12 +98,13 @@ namespace DAL
             file.Close();
         }
         public static T LoadFromXML<T>(string path)
-        { 
-                FileStream file = new FileStream(path, FileMode.Open);
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-                T result = (T)xmlSerializer.Deserialize(file);
-                file.Close();
-                return result;
+        {
+            FileStream file = new FileStream(path, FileMode.Open);
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+            T result = (T)xmlSerializer.Deserialize(file);
+            file.Close();
+            return result;
+
         }
 
         public void AddChild(Child child)
@@ -116,20 +129,10 @@ namespace DAL
                 throw new Exception("The mother doesn't exist");
             if (GetNanny(c.NannyID) == null)
                 throw new Exception("The nanny doesn't exist");
-
             List<Contract> list = LoadFromXML<List<Contract>>(contractPath);
-            int num = LoadFromXML<int>(configPath);
-            if (c.Number == 0)
-                c.Number = ++num;
-            
             list.Add(c);
-            //if (c.Number == 0)
-            //    c.Number = ++currentNumber;
-            //list.Add(c);
-            SaveToXML<List<Contract>>(list, contractPath);
-            SaveToXML<int>(++num, configPath);
+            SaveToXML(list, contractPath);
         }
-
         public void AddMother(Mother m)
         {
             IdAlreadyExist(m.ID);
@@ -154,35 +157,33 @@ namespace DAL
 
         public List<Child> GetAllChilds()
         {
-            return (from ch in childRoot.Elements()
-                    select new Child()
-                    {
-                        ID = int.Parse(ch.Element("id").Value),
-                        MotherID = int.Parse(ch.Element("motherID").Value),
-                        FirstName = ch.Element("firstName").Value,
-                        Birthdate = DateTime.Parse(ch.Element("birthdate").Value),
-                        IsSpecial = bool.Parse(ch.Element("isSpecial").Value),
-                        SpecialNeeds = ch.Element("specialNeeds").Value
-                    }
-                   ).ToList();
+            return LoadChildListLinq(childPath);
+            //return (from ch in childRoot.Elements()
+            //        where ch != null
+            //        select new Child()
+            //        {
+            //            ID = int.Parse(ch.Element("id").Value),
+            //            MotherID = int.Parse(ch.Element("motherID").Value),
+            //            FirstName = ch.Element("firstName").Value,
+            //            Birthdate = DateTime.Parse(ch.Element("birthdate").Value),
+            //            IsSpecial = bool.Parse(ch.Element("isSpecial").Value),
+            //            SpecialNeeds = ch.Element("specialNeeds").Value
+            //        }
+            //       ).ToList();
         }
 
         public IEnumerable<IGrouping<int, Child>> GetAllChildsByMother() => from c in GetAllChilds()
                                                                             group c by c.MotherID;
         public List<Contract> GetAllContracts()
         {
-            throw new NotImplementedException();
+            return LoadFromXML<List<Contract>>(contractPath);
         }
 
-        public IEnumerable<IGrouping<int, Contract>> GetAllContractsByMother()
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerable<IGrouping<int, Contract>> GetAllContractsByMother() => from c in GetAllContracts()
+                                                                                  group c by c.MotherID;
 
-        public IEnumerable<IGrouping<int, Contract>> GetAllContractsByNanny()
-        {
-            throw new NotImplementedException();
-        }
+        public IEnumerable<IGrouping<int, Contract>> GetAllContractsByNanny() => from c in GetAllContracts()
+                                                                                 group c by c.NannyID;
 
         public List<Mother> GetAllMothers()
         {
@@ -196,27 +197,25 @@ namespace DAL
 
         public Child GetChild(int id)
         {
-            XElement childElement;
-            Child child = new Child();
-            try
+            List<Child> list = LoadChildListLinq(childPath);
+            foreach (var item in list)
             {
-                childElement = (from ch in childRoot.Elements()
-                                where int.Parse(ch.Element("id").Value) == id
-                                select ch).FirstOrDefault();
-                child.ID = int.Parse(childElement.Element("id").Value);
-                child.MotherID = int.Parse(childElement.Element("motherID").Value);
-                child.FirstName = childElement.Element("firstName").Value;
-                child.Birthdate = DateTime.Parse(childElement.Element("birthdate").Value);
-                child.IsSpecial = bool.Parse(childElement.Element("isSpecial").Value);
-                child.SpecialNeeds = childElement.Element("specialNeeds").Value;
-                return child;
-            }
-            catch { return null; }
-        }
 
+            }
+            //Child child = new Child();
+            //List<Child> list2 = null;
+            //list2 = list.FindAll(item => item.ID == id);
+            //if (list2.Count() != 0)
+            //    child = list2[0];
+            return null;
+
+        }
         public Contract GetContract(int num)
         {
-            throw new NotImplementedException();
+            List<Contract> list = LoadFromXML<List<Contract>>(contractPath);
+            return (from contract in list
+                    where contract.Number == num
+                    select contract).FirstOrDefault();
         }
 
         public Mother GetMother(int id)
@@ -239,60 +238,48 @@ namespace DAL
         public void RemoveChild(int id)
         {
             XElement childElement;
-            try
-            {
-                childElement = (from ch in childRoot.Elements()
-                                where int.Parse(ch.Element("id").Value) == id
-                                select ch).FirstOrDefault();
-                childElement.Remove();
-                childRoot.Save(childPath);
+            childElement = (from ch in childRoot.Elements()
+                            where int.Parse(ch.Element("id").Value) == id
+                            select ch).FirstOrDefault();
+            childElement.Remove();
+            childRoot.Save(childPath);
 
-            }
-            catch
-            {
-                return;
-            }
+
+
         }
 
         public void RemoveContract(int num)
         {
-
+            if (GetContract(num) == null)
+                throw new Exception("The contract doesn't exist");
+            List<Contract> list = LoadFromXML<List<Contract>>(contractPath);
+            Contract con = (from contract in list
+                            where contract.Number == num
+                            select contract).FirstOrDefault();
+            list.Remove(con);
+            SaveToXML(list, contractPath);
         }
 
         public void RemoveMother(int id)
         {
-            try
-            {
-                List<Mother> list = LoadFromXML<List<Mother>>(motherPath);
-                Mother mom = (from mother in list
-                              where mother.ID == id
-                              select mother).FirstOrDefault();
-                list.Remove(mom);
-                SaveToXML<List<Mother>>(list, motherPath);
-            }
-            catch
-            {
+            List<Mother> list = LoadFromXML<List<Mother>>(motherPath);
+            Mother mom = (from mother in list
+                          where mother.ID == id
+                          select mother).FirstOrDefault();
+            list.Remove(mom);
+            SaveToXML<List<Mother>>(list, motherPath);
 
-                return;
-            }
 
         }
 
         public void RemoveNanny(int id)
         {
-            try
-            {
-                List<Nanny> list = LoadFromXML<List<Nanny>>(nannyPath);
-                Nanny nan = (from nanny in list
-                             where nanny.ID == id
-                             select nanny).FirstOrDefault();
-                list.Remove(nan);
-                SaveToXML<List<Nanny>>(list, nannyPath);
-            }
-            catch
-            {
-                return;
-            }
+            List<Nanny> list = LoadFromXML<List<Nanny>>(nannyPath);
+            Nanny nan = (from nanny in list
+                         where nanny.ID == id
+                         select nanny).FirstOrDefault();
+            list.Remove(nan);
+            SaveToXML<List<Nanny>>(list, nannyPath);
 
         }
 
@@ -312,7 +299,16 @@ namespace DAL
 
         public void UpdateContract(Contract c)
         {
-            throw new NotImplementedException();
+            if (GetContract(c.Number) == null)
+                throw new Exception("The contract doesn't exist");
+            if (GetChild(c.ChildID) == null)
+                throw new Exception("The child doesn't exist");
+            if (GetMother(c.MotherID) == null)
+                throw new Exception("The mother doesn't exist");
+            if (GetNanny(c.NannyID) == null)
+                throw new Exception("The nanny doesn't exist");
+            RemoveContract(c.Number);
+            AddContract(c);
         }
 
         public void UpdateMother(Mother m)
@@ -334,8 +330,19 @@ namespace DAL
 
         private void IdAlreadyExist(int id)
         {
-            if (GetChild(id) != null || GetMother(id) != null || GetNanny(id) != null)
+            if ((GetChild(id) != null && GetChild(id).ID!=0) || GetMother(id) != null || GetNanny(id) != null)
                 throw new Exception("This ID already exist");
+        }
+        void Reset()
+        {
+            List<Nanny> nannies = null;
+            SaveToXML(nannies, nannyPath);
+            List<Mother> mothers = null;
+            SaveToXML(mothers, motherPath);
+            List<Child> children = null;
+            SaveToXML(children, childPath);
+            List<Contract> contracts = null;
+            SaveToXML(contracts, contractPath);
         }
     }
 }

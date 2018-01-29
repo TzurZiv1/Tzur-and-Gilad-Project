@@ -312,21 +312,23 @@ namespace BE
                 int index = value.IndexOf("Sunday");
                 int index2 = value.IndexOf("Monday");
                 int index3 = value.IndexOf("Tuesday");
-                int inde4 = value.IndexOf("Wednesday");
+                int index4 = value.IndexOf("Wednesday");
                 int index5 = value.IndexOf("Thursday");
                 int index6 = value.IndexOf("Friday");
-                int sunIndex = value[index + "Sunday".Length + 1];
-                int monIndex = value[index2 + "Monday".Length + 1];
-                int tuesIndex = value[index2 + "Monday".Length + 1];
-                int wenIndex = value[index2 + "Monday".Length + 1];
-                int thurIndex = value[index2 + "Monday".Length + 1];
-                int friIndex = value[index2 + "Monday".Length + 1];
-                hoursOnDay[0].Start = TimeSpan.Parse(value.Substring(sunIndex,monIndex - "Monday".Length-1));
-                hoursOnDay[1].Start = TimeSpan.Parse(value.Substring(monIndex, tuesIndex - "Tuesday".Length - 1));
-                hoursOnDay[2].Start = TimeSpan.Parse(value.Substring(tuesIndex, wenIndex - "Wednesday".Length - 1));
-                hoursOnDay[3].Start = TimeSpan.Parse(value.Substring(wenIndex, thurIndex - "Thursday".Length - 1));
-                hoursOnDay[4].Start = TimeSpan.Parse(value.Substring(thurIndex, friIndex - "Friday".Length - 1));
-                hoursOnDay[5].Start = TimeSpan.Parse(value.Substring(friIndex));
+                int sunIndex = index + "Sunday".Length + 1;
+                int monIndex = index2 + "Monday".Length + 1;
+                int tuesIndex = index3 + "Tuesday".Length + 1;
+                int wenIndex = index4 + "Wednesday".Length + 1;
+                int thurIndex = index5 + "Thursday".Length + 1;
+                int friIndex = index6 + "Friday".Length + 1;
+
+                hoursOnDay[0].Start = TimeSpan.Parse(!value.Substring(sunIndex, 9).Contains("nothing") ? value.Substring(sunIndex, 9) : "00:00:00");
+                
+                hoursOnDay[1].Start = TimeSpan.Parse(!value.Substring(monIndex, 9).Contains("nothing") ? value.Substring(monIndex, 9) : "00:00:00");
+                hoursOnDay[2].Start = TimeSpan.Parse(!value.Substring(tuesIndex,9).Contains("nothing") ? value.Substring(tuesIndex, 9) : "00:00:00");
+                hoursOnDay[3].Start = TimeSpan.Parse(!value.Substring(wenIndex,9).Contains("nothing") ? value.Substring(wenIndex, 9) : "00:00:00");
+                hoursOnDay[4].Start = TimeSpan.Parse(!value.Substring(thurIndex, 9).Contains("nothing") ? value.Substring(thurIndex, 9) : "00:00:00");
+                hoursOnDay[5].Start = TimeSpan.Parse(!value.Substring(friIndex).Contains("nothing") ? value.Substring(friIndex, 9) : "00:00:00");
             }
         }
         public string Name
