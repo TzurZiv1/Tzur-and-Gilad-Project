@@ -50,7 +50,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Birthdate:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,4,0,7" Grid.Row="2" VerticalAlignment="Center" Height="26" Width="61"/>
-            <DatePicker x:Name="birthdateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3,4,0,7" Grid.Row="2" SelectedDate="{Binding Birthdate, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Height="26" Width="21"/>
+            <DatePicker x:Name="birthdateDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3,4,-7,8" Grid.Row="2" SelectedDate="{Binding Birthdate, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Height="26" Width="128"/>
             <Label Content="First Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,7,0,8" Grid.Row="1" VerticalAlignment="Center" Height="26" Width="70"/>
             <TextBox x:Name="firstNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,9,0,9" Grid.Row="1" Text="{Binding FirstName, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" VerticalAlignment="Center" Width="120"/>
             <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,10,0,11" Grid.Row="0" VerticalAlignment="Center" Height="26" Width="24"/>
