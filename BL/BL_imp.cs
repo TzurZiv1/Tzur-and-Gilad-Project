@@ -26,10 +26,10 @@ namespace BL
         public BL_imp()
         {
             dal = DAL.FactoryDAL.GetDAL();
-            init();
+            Init();
         }
 
-        public void init()
+        public void Init()
         {
 			WorkHours z = new WorkHours(TimeSpan.Zero, TimeSpan.Zero);
             AddNanny(new Nanny(123451234, "Mor", "Cohen", new DateTime(1994, 12, 2), "Jerusalem, Israel", 8, 24, 100, new bool[] { true, false, false, true, false, false },
@@ -493,7 +493,7 @@ namespace BL
             return from c in GetAllContracts()
                    let tempArea = GetMother(c.MotherID).Area
                    let area = (tempArea != null && tempArea != "") ? tempArea : GetMother(c.MotherID).Address
-                   group c by (CalculateDistance(area, GetNanny(c.NannyID).Address) / 5000);
+                   group c by CalculateDistance(area, GetNanny(c.NannyID).Address) / 5000 * 5;
         }
         /// <summary>
         /// Returns all contracts grouped by nanny

@@ -25,23 +25,30 @@ namespace PLWPF
         {
             InitializeComponent();
             bl = BL.FactoryBL.GetBL();
-            Thread thread = new Thread(initComboBox);
+            Thread thread = new Thread(InitComboBox);
             thread.Start();
-            
         }
 
         private void distanceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
+            Thread t = new Thread(UpdateDataDrid);
+            t.Start();
         }
 
-        private void initComboBox()
+        private void InitComboBox()
         {
             foreach (var items in bl.ContractsByDistance())
             {
                 Action action = () => distanceComboBox.Items.Add(new ComboBoxItem() { Content = items.Key });
                 Dispatcher.BeginInvoke(action);
             }
+        }
+        private void UpdateDataDrid()
+        {
+            Action action = () => ContractsDataGrid.ItemsSource = (from dis in bl.ContractsByDistance()
+                                            where dis.Key == (int)distanceComboBox.SelectedItem
+                                            select dis).ToList();
+            Dispatcher.BeginInvoke(action);
         }
     }
 }

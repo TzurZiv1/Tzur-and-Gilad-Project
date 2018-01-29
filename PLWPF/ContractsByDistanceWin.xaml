@@ -26,8 +26,8 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Select distance in KM to show contracts with this distance:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <ComboBox x:Name="distanceComboBox" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Center" Width="161" SelectionChanged="distanceComboBox_SelectionChanged"/>
+            <Label Content="Select distance in jumps of 5 km to show contracts in this distance:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <ComboBox x:Name="distanceComboBox" Grid.Column="1" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Center" Width="85" SelectionChanged="distanceComboBox_SelectionChanged" Margin="0,2"/>
         </Grid>
         <DataGrid x:Name="ContractsDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1">
             <DataGrid.Columns>

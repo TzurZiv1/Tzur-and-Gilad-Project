@@ -7,15 +7,15 @@
         xmlns:local="clr-namespace:PLWPF"
         mc:Ignorable="d"
         Title="MainWindow" WindowState="Maximized" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" Icon="images/icon.png"
-    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
-     TextElement.FontWeight="Medium"
-     TextElement.FontSize="14"
-     TextOptions.TextFormattingMode="Ideal"
-     TextOptions.TextRenderingMode="Auto"
-     Background="{DynamicResource MaterialDesignPaper}"
-     FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
     <dragablz:TabablzControl Margin="8">
         <dragablz:TabablzControl.InterTabController>
             <dragablz:InterTabController />
@@ -38,37 +38,37 @@ Hello and welcome to the the nannies' system!
         </TabItem>
         <TabItem Header="Add" Foreground="{DynamicResource PrimaryHueMidBrush}">
             <TabItem.Content>
-				<Grid>
-					<Grid.RowDefinitions>
-						<RowDefinition/>
-						<RowDefinition/>
-					</Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition/>
-						<ColumnDefinition/>
-					</Grid.ColumnDefinitions>
-					<Button Name="AddNanny" Height="300" Width="300" FontSize="30" Foreground="Purple" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="AddNanny_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
-						<Button.Background>
-							<ImageBrush ImageSource="images/nanny.png"/>
-						</Button.Background>
-					</Button>
-					<Button Name="AddMother" Height="300" Width="300" FontSize="30" Foreground="Purple" Content="Mother" Grid.Row="1" Grid.Column="0" Click="AddMother_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
-						<Button.Background>
-							<ImageBrush ImageSource="images/mother.png"/>
-						</Button.Background>
-					</Button>
-					<Button Name="AddChild" Height="300" Width="300" FontSize="30" Foreground="Purple" Content="Child" Grid.Row="0" Grid.Column="1" Click="AddChild_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
-						<Button.Background>
-							<ImageBrush ImageSource="images/child.png"/>
-						</Button.Background>
-					</Button>
-					<Button Name="AddContract" Height="300" Width="300" FontSize="30" Foreground="Purple" Content="Contract" Grid.Row="1" Grid.Column="1" Click="AddContract_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
-						<Button.Background>
-							<ImageBrush ImageSource="images/contract.png"/>
-						</Button.Background>
-					</Button>
-				</Grid>
-			</TabItem.Content>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Name="AddNanny" Height="300" Width="300" FontSize="30" Foreground="Purple" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="AddNanny_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="images/nanny.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Name="AddMother" Height="300" Width="300" FontSize="30" Foreground="Purple" Content="Mother" Grid.Row="1" Grid.Column="0" Click="AddMother_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="images/mother.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Name="AddChild" Height="300" Width="300" FontSize="30" Foreground="Purple" Content="Child" Grid.Row="0" Grid.Column="1" Click="AddChild_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="images/child.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Name="AddContract" Height="300" Width="300" FontSize="30" Foreground="Purple" Content="Contract" Grid.Row="1" Grid.Column="1" Click="AddContract_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="images/contract.png"/>
+                        </Button.Background>
+                    </Button>
+                </Grid>
+            </TabItem.Content>
         </TabItem>
         <TabItem Header="Remove" Foreground="{DynamicResource PrimaryHueMidBrush}">
             <TabItem.Content>
@@ -77,31 +77,31 @@ Hello and welcome to the the nannies' system!
                         <RowDefinition/>
                         <RowDefinition/>
                     </Grid.RowDefinitions>
-					<Grid.ColumnDefinitions>
-						<ColumnDefinition/>
-						<ColumnDefinition/>
-					</Grid.ColumnDefinitions>
-					<Button Name="RemoveNanny" Height="300" Width="300" FontSize="30" Foreground="Purple" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="RemoveNanny_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
-						<Button.Background>
-							<ImageBrush ImageSource="images/nanny.png"/>
-						</Button.Background>
-					</Button>
-					<Button Name="RemoveMother" Height="300" Width="300" FontSize="30" Foreground="Purple" Content="Mother" Grid.Row="1" Grid.Column="0" Click="RemoveMother_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
-						<Button.Background>
-							<ImageBrush ImageSource="images/mother.png"/>
-						</Button.Background>
-					</Button>
-					<Button Name="RemoveChild" Height="300" Width="300" FontSize="30" Foreground="Purple" Content="Child" Grid.Row="0" Grid.Column="1" Click="RemoveChild_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
-						<Button.Background>
-							<ImageBrush ImageSource="images/child.png"/>
-						</Button.Background>
-					</Button>
-					<Button Name="RemoveContract" Height="300" Width="300" FontSize="30" Foreground="Purple" Content="Contract" Grid.Row="1" Grid.Column="1" Click="RemoveContract_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
-						<Button.Background>
-							<ImageBrush ImageSource="images/contract.png"/>
-						</Button.Background>
-					</Button>
-				</Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Button Name="RemoveNanny" Height="300" Width="300" FontSize="30" Foreground="Purple" Content="Nanny" Grid.Row="0" Grid.Column="0" Click="RemoveNanny_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="images/nanny.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Name="RemoveMother" Height="300" Width="300" FontSize="30" Foreground="Purple" Content="Mother" Grid.Row="1" Grid.Column="0" Click="RemoveMother_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="images/mother.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Name="RemoveChild" Height="300" Width="300" FontSize="30" Foreground="Purple" Content="Child" Grid.Row="0" Grid.Column="1" Click="RemoveChild_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="images/child.png"/>
+                        </Button.Background>
+                    </Button>
+                    <Button Name="RemoveContract" Height="300" Width="300" FontSize="30" Foreground="Purple" Content="Contract" Grid.Row="1" Grid.Column="1" Click="RemoveContract_Click" Margin="10" Style="{DynamicResource MaterialDesignFloatingActionAccentButton}">
+                        <Button.Background>
+                            <ImageBrush ImageSource="images/contract.png"/>
+                        </Button.Background>
+                    </Button>
+                </Grid>
             </TabItem.Content>
         </TabItem>
         <TabItem Header="Update" Foreground="{DynamicResource PrimaryHueMidBrush}">
