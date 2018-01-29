@@ -25,6 +25,7 @@ namespace PLWPF
         public MainWindow()
         {
             InitializeComponent();
+            this.Closing += MainWindow_Closed;
             bl = BL.FactoryBL.GetBL();
             if (bl.GetAllMothers().Count == 0)
             {
@@ -52,10 +53,13 @@ namespace PLWPF
             }
 
         }
-        private void AddNanny_Click(object sender, RoutedEventArgs e)
+        private void MainWindow_Closed(object sender, EventArgs e)
         {
-            AddNannyWin add = new AddNannyWin();
-            add.ShowDialog();
+            Environment.Exit(Environment.ExitCode);
+        }
+            private void AddNanny_Click(object sender, RoutedEventArgs e)
+        {
+            new AddNannyWin().ShowDialog();
             if (bl.GetAllNannies().Count != 0)
             {
                 if (bl.GetAllMothers().Count != 0 && bl.GetAllChilds().Count != 0)
@@ -67,8 +71,7 @@ namespace PLWPF
 
         private void AddMother_Click(object sender, RoutedEventArgs e)
         {
-            AddMotherWin add = new AddMotherWin();
-            add.ShowDialog();
+            new AddMotherWin().ShowDialog();
             if (bl.GetAllMothers().Count != 0)
             {
                 AddChild.IsEnabled = true;
@@ -79,8 +82,7 @@ namespace PLWPF
 
         private void AddChild_Click(object sender, RoutedEventArgs e)
         {
-            AddChildWin add = new AddChildWin();
-            add.ShowDialog();
+            new AddChildWin().ShowDialog();
             if (bl.GetAllChilds().Count != 0)
             {
                 if (bl.GetAllNannies().Count != 0 && bl.GetAllNannies().Count != 0)
@@ -105,8 +107,7 @@ namespace PLWPF
 
         private void RemoveNanny_Click(object sender, RoutedEventArgs e)
         {
-            RemoveNannyWin remove = new RemoveNannyWin();
-            remove.ShowDialog();
+            new RemoveNannyWin().ShowDialog();
             if (bl.GetAllNannies().Count == 0)
             {
                 AddContract.IsEnabled = false;
@@ -124,8 +125,7 @@ namespace PLWPF
 
         private void RemoveMother_Click(object sender, RoutedEventArgs e)
         {
-            RemoveMotherWin remove = new RemoveMotherWin();
-            remove.ShowDialog();
+            new RemoveMotherWin().ShowDialog();
             if (bl.GetAllMothers().Count == 0)
             {
                 AddChild.IsEnabled = false;
@@ -151,8 +151,7 @@ namespace PLWPF
 
         private void RemoveChild_Click(object sender, RoutedEventArgs e)
         {
-            RemoveChildWin remove = new RemoveChildWin();
-            remove.ShowDialog();
+            new RemoveChildWin().ShowDialog();
             if (bl.GetAllChilds().Count == 0)
             {
                 RemoveChild.IsEnabled = false;
@@ -170,8 +169,7 @@ namespace PLWPF
 
         private void RemoveContract_Click(object sender, RoutedEventArgs e)
         {
-            RemoveContractWin remove = new RemoveContractWin();
-            remove.ShowDialog();
+            new RemoveContractWin().ShowDialog();
             if (bl.GetAllContracts().Count == 0)
             {
                 RemoveContract.IsEnabled = false;
@@ -207,8 +205,7 @@ namespace PLWPF
 
         private void UpdateChild_Click(object sender, RoutedEventArgs e)
         {
-            UpdateChildWin update = new UpdateChildWin();
-            update.ShowDialog();
+            new UpdateChildWin().ShowDialog();
             if (bl.GetAllContracts().Count == 0)
             {
                 RemoveContract.IsEnabled = false;
@@ -218,8 +215,7 @@ namespace PLWPF
 
         private void UpdateContract_Click(object sender, RoutedEventArgs e)
         {
-            UpdateContractWin update = new UpdateContractWin();
-            update.ShowDialog();
+            new UpdateContractWin().ShowDialog();
         }
 
         private void GetAllNannies_Click(object sender, RoutedEventArgs e)
@@ -240,6 +236,16 @@ namespace PLWPF
         private void GetAllContracts_Click(object sender, RoutedEventArgs e)
         {
             new AllContracts().ShowDialog();
+        }
+
+        private void ChildsOfMother_Click(object sender, RoutedEventArgs e)
+        {
+            new ChildsOfMotherWin().ShowDialog();
+        }
+
+        private void ContractsByDistance_Click(object sender, RoutedEventArgs e)
+        {
+            new ContractsByDistanceWin().ShowDialog();
         }
     }
 }
