@@ -211,7 +211,7 @@ namespace DAL
         }
 
         /// <summary>
-        /// Remove a contract from the child list
+        /// Remove a contract from the contract list
         /// </summary>
         /// <param name="num">The number of the contract you want to remove from the contract list</param>
         public void RemoveContract(int num)

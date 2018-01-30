@@ -252,5 +252,10 @@ namespace PLWPF
         {
             new NanniesByDisFromMother().ShowDialog();
         }
+
+        private void TabablzControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }
