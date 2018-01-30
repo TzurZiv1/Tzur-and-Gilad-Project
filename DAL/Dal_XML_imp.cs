@@ -50,29 +50,39 @@ namespace DAL
         private void CreateFiles()
         {
             childRoot = new XElement("child");
+            AddChild(new Child(234875912, 274857123, "Gili", new DateTime(2012, 4, 15), true, "Need a lot of tzumy"));
+            AddChild(new Child(829347234, 123123123, "RL", new DateTime(2017, 2, 24)));
+            AddChild(new Child(546987244, 123123123, "BD", new DateTime(2017, 9, 29)));
+            AddContract(new Contract(123451234, 234875912, 274857123, new DateTime(2018, 2, 1), new DateTime(2018, 6, 1), true));
             childRoot.Save(childPath);
         }
         public List<Child> LoadChildListLinq(string childFile)
         {
             LoadData();
             List<Child> children;
-            try
-            {
+            //try
+            //{
+                string v = (from c in childRoot.Elements()
+                            select c.Element("firstName").Value).FirstOrDefault();
+                bool v1 = (from c in childRoot.Elements()
+                           select bool.Parse(((c.Element("isSpecial").Value)))).FirstOrDefault();
+
+
                 children = (from c in childRoot.Elements()
                             select new Child()
                             {
                                 ID = int.Parse(c.Element("id").Value),
-                                MotherID = int.Parse(c.Element("motherId").Value),
+                                MotherID = int.Parse(c.Element("motherID").Value),
                                 FirstName = c.Element("firstName").Value,
-                                Birthdate = DateTime.Parse(c.Element("birthDate").Value),
-                                IsSpecial = bool.Parse(c.Element("isSpecialNeeds").Value),
+                                Birthdate = DateTime.Parse(c.Element("birthdate").Value),
+                                IsSpecial = bool.Parse(c.Element("isSpecial").Value),
                                 SpecialNeeds = c.Element("specialNeeds").Value
                             }).ToList();
-            }
-            catch
-            {
-                children = null;
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    throw ex;
+            //}
             return children;
         }
         public void SaveChildList(List<Child> childlist)
@@ -110,15 +120,19 @@ namespace DAL
         public void AddChild(Child child)
         {
             IdAlreadyExist(child.ID);
-            XElement id = new XElement("id", child.ID);
-            XElement motherID = new XElement("motherID", child.MotherID);
-            XElement firstName = new XElement("firstName", child.FirstName);
-            XElement birthdate = new XElement("birthdate", firstName, child.Birthdate);
-            XElement isSpecial = new XElement("isSpecial", firstName, child.IsSpecial);
-            XElement specialNeeds = new XElement("specialNeeds", firstName, child.SpecialNeeds);
 
-            childRoot.Add(new XElement("child", id, motherID, firstName, birthdate, isSpecial, specialNeeds));
+            List<Child> list = LoadChildListLinq(childPath);
+
+            childRoot.Add(new XElement("child",
+                             new XElement("id", child.ID),
+                             new XElement("motherID", child.MotherID),
+                             new XElement("firstName", child.FirstName),
+                             new XElement("birthdate", child.Birthdate),
+                             new XElement("isSpecial", child.IsSpecial),
+                             new XElement("specialNeeds", child.SpecialNeeds)
+            ));
             childRoot.Save(childPath);
+
         }
 
         public void AddContract(Contract c)
@@ -130,7 +144,11 @@ namespace DAL
             if (GetNanny(c.NannyID) == null)
                 throw new Exception("The nanny doesn't exist");
             List<Contract> list = LoadFromXML<List<Contract>>(contractPath);
+
+            if (c.Number == 0)
+                c.Number = ++currentNumber;
             list.Add(c);
+            
             SaveToXML(list, contractPath);
         }
         public void AddMother(Mother m)
@@ -150,26 +168,12 @@ namespace DAL
 
         }
 
-        public int CurrentNumber()
-        {
-            throw new NotImplementedException();
-        }
+        private static int currentNumber = 10000000;
+        public int CurrentNumber() => currentNumber;
 
         public List<Child> GetAllChilds()
         {
             return LoadChildListLinq(childPath);
-            //return (from ch in childRoot.Elements()
-            //        where ch != null
-            //        select new Child()
-            //        {
-            //            ID = int.Parse(ch.Element("id").Value),
-            //            MotherID = int.Parse(ch.Element("motherID").Value),
-            //            FirstName = ch.Element("firstName").Value,
-            //            Birthdate = DateTime.Parse(ch.Element("birthdate").Value),
-            //            IsSpecial = bool.Parse(ch.Element("isSpecial").Value),
-            //            SpecialNeeds = ch.Element("specialNeeds").Value
-            //        }
-            //       ).ToList();
         }
 
         public IEnumerable<IGrouping<int, Child>> GetAllChildsByMother() => from c in GetAllChilds()
@@ -200,13 +204,11 @@ namespace DAL
             List<Child> list = LoadChildListLinq(childPath);
             foreach (var item in list)
             {
-
+                if (item.ID == id)
+                {
+                    return item;
+                }
             }
-            //Child child = new Child();
-            //List<Child> list2 = null;
-            //list2 = list.FindAll(item => item.ID == id);
-            //if (list2.Count() != 0)
-            //    child = list2[0];
             return null;
 
         }
@@ -330,7 +332,7 @@ namespace DAL
 
         private void IdAlreadyExist(int id)
         {
-            if ((GetChild(id) != null && GetChild(id).ID!=0) || GetMother(id) != null || GetNanny(id) != null)
+            if ((GetChild(id) != null && GetChild(id).ID != 0) || GetMother(id) != null || GetNanny(id) != null)
                 throw new Exception("This ID already exist");
         }
         void Reset()

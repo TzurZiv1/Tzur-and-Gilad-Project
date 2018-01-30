@@ -26,7 +26,7 @@ namespace BL
         public BL_imp()
         {
             dal = DAL.FactoryDAL.GetDAL();
-            Init();
+            //Init();
         }
 
         public void Init()
