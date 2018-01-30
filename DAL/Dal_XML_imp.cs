@@ -62,9 +62,6 @@ namespace DAL
         {
             childRoot = new XElement("child");
             childRoot.Save(childPath);
-            //AddChild(new Child(234875912, 274857123, "Gili", new DateTime(2012, 4, 15), true, "Need a lot of tzumy"));
-            //AddChild(new Child(829347234, 123123123, "RL", new DateTime(2017, 2, 24)));
-            //AddChild(new Child(546987244, 123123123, "BD", new DateTime(2017, 9, 29)));
         }
         /// <summary>
         /// Load the list of the child from the file
