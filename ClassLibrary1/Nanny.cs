@@ -322,13 +322,66 @@ namespace BE
                 int thurIndex = index5 + "Thursday".Length + 1;
                 int friIndex = index6 + "Friday".Length + 1;
 
-                hoursOnDay[0].Start = TimeSpan.Parse(!value.Substring(sunIndex, 9).Contains("nothing") ? value.Substring(sunIndex, 9) : "00:00:00");
-                
-                hoursOnDay[1].Start = TimeSpan.Parse(!value.Substring(monIndex, 9).Contains("nothing") ? value.Substring(monIndex, 9) : "00:00:00");
-                hoursOnDay[2].Start = TimeSpan.Parse(!value.Substring(tuesIndex,9).Contains("nothing") ? value.Substring(tuesIndex, 9) : "00:00:00");
-                hoursOnDay[3].Start = TimeSpan.Parse(!value.Substring(wenIndex,9).Contains("nothing") ? value.Substring(wenIndex, 9) : "00:00:00");
-                hoursOnDay[4].Start = TimeSpan.Parse(!value.Substring(thurIndex, 9).Contains("nothing") ? value.Substring(thurIndex, 9) : "00:00:00");
-                hoursOnDay[5].Start = TimeSpan.Parse(!value.Substring(friIndex).Contains("nothing") ? value.Substring(friIndex, 9) : "00:00:00");
+                if (!value.Substring(sunIndex, 9).Contains("nothing"))
+                {
+                    hoursOnDay[0].Start = TimeSpan.Parse(value.Substring(sunIndex, 9));
+                    hoursOnDay[0].Finish = TimeSpan.Parse(value.Substring(sunIndex + 12, 9));
+                }
+                else
+                {
+                    hoursOnDay[0].Start = TimeSpan.Parse("00:00:00");
+                    hoursOnDay[0].Finish = TimeSpan.Parse("00:00:00");
+                }
+                if (!value.Substring(monIndex, 9).Contains("nothing"))
+                {
+                    hoursOnDay[1].Start = TimeSpan.Parse(value.Substring(monIndex, 9));
+                    hoursOnDay[1].Finish = TimeSpan.Parse(value.Substring(monIndex + 12, 9));
+                }
+                else
+                {
+                    hoursOnDay[1].Start = TimeSpan.Parse("00:00:00");
+                    hoursOnDay[1].Finish = TimeSpan.Parse("00:00:00");
+                }
+                if (!value.Substring(tuesIndex, 9).Contains("nothing"))
+                {
+                    hoursOnDay[2].Start = TimeSpan.Parse(value.Substring(tuesIndex, 9));
+                    hoursOnDay[2].Finish = TimeSpan.Parse(value.Substring(tuesIndex + 12, 9));
+                }
+                else
+                {
+                    hoursOnDay[2].Start = TimeSpan.Parse("00:00:00");
+                    hoursOnDay[2].Finish = TimeSpan.Parse("00:00:00");
+                }
+                if (!value.Substring(wenIndex, 9).Contains("nothing"))
+                {
+                    hoursOnDay[3].Start = TimeSpan.Parse(value.Substring(wenIndex, 9));
+                    hoursOnDay[3].Finish = TimeSpan.Parse(value.Substring(wenIndex + 12, 9));
+                }
+                else
+                {
+                    hoursOnDay[3].Start = TimeSpan.Parse("00:00:00");
+                    hoursOnDay[3].Finish = TimeSpan.Parse("00:00:00");
+                }
+                if (!value.Substring(thurIndex, 9).Contains("nothing"))
+                {
+                    hoursOnDay[4].Start = TimeSpan.Parse(value.Substring(thurIndex, 9));
+                    hoursOnDay[4].Finish = TimeSpan.Parse(value.Substring(thurIndex + 12, 9));
+                }
+                else
+                {
+                    hoursOnDay[4].Start = TimeSpan.Parse("00:00:00");
+                    hoursOnDay[4].Finish = TimeSpan.Parse("00:00:00");
+                }
+                if (!value.Substring(friIndex, 9).Contains("nothing"))
+                {
+                    hoursOnDay[5].Start = TimeSpan.Parse(value.Substring(friIndex, 9));
+                    hoursOnDay[5].Finish = TimeSpan.Parse(value.Substring(friIndex + 12,9));
+                }
+                else
+                {
+                    hoursOnDay[5].Start = TimeSpan.Parse("00:00:00");
+                    hoursOnDay[5].Finish = TimeSpan.Parse("00:00:00");
+                }
             }
         }
         public string Name
