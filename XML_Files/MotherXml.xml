@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<ArrayOfMother xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Mother>
+    <ID>274857123</ID>
+    <LastName>Nagar</LastName>
+    <FirstName>Galia</FirstName>
+    <PhoneNumber>032-2345674</PhoneNumber>
+    <Address>pinkhas zekharya 24, rishon lezion, israel</Address>
+    <Area>rishon lezion, israel</Area>
+    <TempNeedNannyOnDay>Sunday|Wednesday|</TempNeedNannyOnDay>
+    <TempHoursForDay>| Sunday: 15:00:00 - 20:00:00 | Monday: nothing | Tuesday: nothing | Wednesday: 15:00:00 - 18:00:00 | Thursday: nothing | Friday: nothing |</TempHoursForDay>
+    <Notes>Nothing</Notes>
+    <IsPerMonth>false</IsPerMonth>
+  </Mother>
+  <Mother>
+    <ID>123123123</ID>
+    <LastName>Smith</LastName>
+    <FirstName>Shoshy</FirstName>
+    <PhoneNumber>03-9582615</PhoneNumber>
+    <Address>Rabbi Meir Street 12, Tel Aviv-Yafo, Israel</Address>
+    <Area />
+    <TempNeedNannyOnDay>Tuesday|Thursday|Friday|</TempNeedNannyOnDay>
+    <TempHoursForDay>| Sunday: nothing | Monday: nothing | Tuesday: 10:00:00 - 15:00:00 | Wednesday: nothing | Thursday: 18:00:00 - 22:00:00 | Friday: 10:00:00 - 15:00:00 |</TempHoursForDay>
+    <Notes>Nothing</Notes>
+    <IsPerMonth>true</IsPerMonth>
+  </Mother>
+  <Mother>
+    <ID>234234</ID>
+    <LastName>gh</LastName>
+    <FirstName>gh</FirstName>
+    <PhoneNumber>ghyhj</PhoneNumber>
+    <Address>Florida, United States</Address>
+    <Area>FH Joanneum, Alte Poststraße, Graz, Austria</Area>
+    <TempNeedNannyOnDay />
+    <TempHoursForDay>| Sunday: nothing | Monday: nothing | Tuesday: nothing | Wednesday: nothing | Thursday: nothing | Friday: nothing |</TempHoursForDay>
+    <Notes />
+    <IsPerMonth>true</IsPerMonth>
+  </Mother>
+</ArrayOfMother>

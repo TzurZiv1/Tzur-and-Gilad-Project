@@ -255,7 +255,12 @@ namespace PLWPF
 
         private void GoodNanniesToMother_Click(object sender, RoutedEventArgs e)
         {
+            new GoodNanniesToMother().ShowDialog();
+        }
 
+        private void NanniesByExp_Click(object sender, RoutedEventArgs e)
+        {
+            new NanniesByExp().ShowDialog();
         }
     }
 }

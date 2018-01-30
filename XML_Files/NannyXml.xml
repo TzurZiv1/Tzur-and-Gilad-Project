@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<ArrayOfNanny xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Nanny>
+    <ID>123451234</ID>
+    <LastName>Cohen</LastName>
+    <FirstName>Mor</FirstName>
+    <Birthdate>1994-12-02T00:00:00</Birthdate>
+    <PhoneNumber>054-1231234</PhoneNumber>
+    <Address>Jerusalem, Israel</Address>
+    <IsElevator>true</IsElevator>
+    <Floor>2</Floor>
+    <ExpYears>2</ExpYears>
+    <MaxChilds>8</MaxChilds>
+    <MinAgeInMonth>24</MinAgeInMonth>
+    <MaxAgeInMonth>100</MaxAgeInMonth>
+    <AllowPerHour>true</AllowPerHour>
+    <RatePerHour>27</RatePerHour>
+    <RatePerMonth>1500</RatePerMonth>
+    <FinancedVacation>true</FinancedVacation>
+    <Recommendations>Very good nanny</Recommendations>
+    <TempWorkOnDay>Sunday|Wednesday</TempWorkOnDay>
+    <TempHoursOnDay>| Sunday: 00:00:00 - 23:00:00 | Monday: nothing | Tuesday: nothing | Wednesday: 01:00:00 - 23:00:00 | Thursday: nothing | Friday: nothing |</TempHoursOnDay>
+  </Nanny>
+  <Nanny>
+    <ID>398734128</ID>
+    <LastName>Factor</LastName>
+    <FirstName>Miri</FirstName>
+    <Birthdate>1995-03-23T00:00:00</Birthdate>
+    <PhoneNumber>057-3453535</PhoneNumber>
+    <Address>Ben Zakai 25, Rishon LeTsiyon, Israel</Address>
+    <IsElevator>true</IsElevator>
+    <Floor>5</Floor>
+    <ExpYears>3</ExpYears>
+    <MaxChilds>1</MaxChilds>
+    <MinAgeInMonth>3</MinAgeInMonth>
+    <MaxAgeInMonth>36</MaxAgeInMonth>
+    <AllowPerHour>true</AllowPerHour>
+    <RatePerHour>29</RatePerHour>
+    <RatePerMonth>2300</RatePerMonth>
+    <FinancedVacation>false</FinancedVacation>
+    <Recommendations>Nothing</Recommendations>
+    <TempWorkOnDay>Tuesday|Friday</TempWorkOnDay>
+    <TempHoursOnDay>| Sunday: nothing | Monday: nothing | Tuesday: 12:00:00 - 20:00:00 | Wednesday: nothing | Thursday: nothing | Friday: 10:00:00 - 15:00:00 |</TempHoursOnDay>
+  </Nanny>
+  <Nanny>
+    <ID>3453</ID>
+    <LastName>esth</LastName>
+    <FirstName>fdyjr</FirstName>
+    <Birthdate>2000-01-02T00:00:00</Birthdate>
+    <PhoneNumber>234</PhoneNumber>
+    <Address>Ghaziabad, Uttar Pradesh, India</Address>
+    <IsElevator>true</IsElevator>
+    <Floor>234</Floor>
+    <ExpYears>3</ExpYears>
+    <MaxChilds>123</MaxChilds>
+    <MinAgeInMonth>123</MinAgeInMonth>
+    <MaxAgeInMonth>123</MaxAgeInMonth>
+    <AllowPerHour>true</AllowPerHour>
+    <RatePerHour>123123</RatePerHour>
+    <RatePerMonth>123</RatePerMonth>
+    <FinancedVacation>true</FinancedVacation>
+    <Recommendations />
+    <TempWorkOnDay>Sunday</TempWorkOnDay>
+    <TempHoursOnDay>| Sunday: 09:55:00 - 12:59:00 | Monday: nothing | Tuesday: nothing | Wednesday: nothing | Thursday: nothing | Friday: nothing |</TempHoursOnDay>
+  </Nanny>
+</ArrayOfNanny>

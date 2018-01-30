@@ -20,10 +20,10 @@ namespace DAL
     public class Dal_XML_imp : IDAL
     {
         public XElement childRoot;
-        public readonly string childPath = @"ChildXml.xml";
-        public readonly string nannyPath = @"NannyXml.xml";
-        public readonly string motherPath = @"MotherXml.xml";
-        public readonly string contractPath = @"ContractXml.xml";
+        public readonly string childPath = @"../../../XML_Files/ChildXml.xml";
+        public readonly string nannyPath = @"../../../XML_Files/NannyXml.xml";
+        public readonly string motherPath = @"../../../XML_Files/MotherXml.xml";
+        public readonly string contractPath = @"../../../XML_Files/ContractXml.xml";
 
         /// <summary>
         /// Constructor
@@ -62,7 +62,6 @@ namespace DAL
         {
             childRoot = new XElement("child");
             childRoot.Save(childPath);
-            
         }
         /// <summary>
         /// Load the list of the child from the file

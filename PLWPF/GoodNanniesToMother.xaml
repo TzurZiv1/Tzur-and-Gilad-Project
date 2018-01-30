@@ -1,0 +1,66 @@
+﻿<Window x:Class="PLWPF.GoodNanniesToMother"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PLWPF"
+        mc:Ignorable="d"
+        Title="GoodNanniesToMother"  WindowState="Maximized" ResizeMode="NoResize" WindowStyle="SingleBorderWindow" Icon="images/icon.png"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:dragablz="http://dragablz.net/winfx/xaml/dragablz"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="14"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
+    <Window.Resources>
+        <local:WorkHoursArreyToText 
+            x:Key="workHoursArreyToText" />
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="grid1" HorizontalAlignment="Center" Grid.Row="0" VerticalAlignment="Top" Height="59">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Select mother to show nannies who match her:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <ComboBox x:Name="iDComboBox" Grid.Column="1" SelectedValue="{Binding Path=Id, Mode=TwoWay, ValidatesOnDataErrors=True, NotifyOnValidationError=True, ValidatesOnExceptions=True}" HorizontalAlignment="Left" Grid.Row="0" VerticalAlignment="Center" Width="161" SelectionChanged="iDComboBox_SelectionChanged" Height="46"/>
+        </Grid>
+        <DataGrid x:Name="NanniesDataGrid" AutoGenerateColumns="False" IsReadOnly="True" Grid.Row="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="Birthdate" Binding="{Binding Birthdate}"/>
+                <DataGridTextColumn Header="Phone number" Binding="{Binding PhoneNumber}"/>
+                <DataGridTextColumn Header="Address" Binding="{Binding Address}"/>
+                <DataGridCheckBoxColumn Header="There is elevator" Binding="{Binding IsElevator}"/>
+                <DataGridTextColumn Header="Floor" Binding="{Binding Floor}"/>
+                <DataGridTextColumn Header="Experience years" Binding="{Binding ExpYears}"/>
+                <DataGridTextColumn Header="Max childs" Binding="{Binding MaxChilds}"/>
+                <DataGridTextColumn Header="Min age in months" Binding="{Binding MinAgeInMonth}"/>
+                <DataGridTextColumn Header="Max age in months" Binding="{Binding MaxAgeInMonth}"/>
+                <DataGridCheckBoxColumn Header="Allow per hour" Binding="{Binding AllowPerHour}"/>
+                <DataGridTextColumn Header="Rate per hour" Binding="{Binding RatePerHour}"/>
+                <DataGridTextColumn Header="Rate per month" Binding="{Binding RatePerMonth}"/>
+                <DataGridTemplateColumn Header="Hours on every day">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding HoursOnDay, Converter={StaticResource workHoursArreyToText}}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridCheckBoxColumn Header="Financed vacation" Binding="{Binding FinancedVacation}"/>
+                <DataGridTextColumn Header="Recommendations" Binding="{Binding Recommendations}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

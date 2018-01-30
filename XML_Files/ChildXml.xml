@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<child>
+  <child>
+    <id>234875912</id>
+    <motherID>274857123</motherID>
+    <firstName>Gili</firstName>
+    <birthdate>2012-04-15T00:00:00</birthdate>
+    <isSpecial>true</isSpecial>
+    <specialNeeds>Need a lot of tzumy</specialNeeds>
+  </child>
+  <child>
+    <id>829347234</id>
+    <motherID>123123123</motherID>
+    <firstName>RL</firstName>
+    <birthdate>2017-02-24T00:00:00</birthdate>
+    <isSpecial>false</isSpecial>
+    <specialNeeds>Nothing</specialNeeds>
+  </child>
+  <child>
+    <id>546987244</id>
+    <motherID>123123123</motherID>
+    <firstName>BD</firstName>
+    <birthdate>2017-09-29T00:00:00</birthdate>
+    <isSpecial>false</isSpecial>
+    <specialNeeds>Nothing</specialNeeds>
+  </child>
+</child>
