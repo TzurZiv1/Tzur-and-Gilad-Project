@@ -224,10 +224,10 @@ namespace BL
         {
             List<Nanny> nannies = new List<Nanny>();
             string area;
-            if (m.Area != null && m.Area != "")
-                area = m.Area;
-            else // if there is no area to mother
+            if (String.IsNullOrEmpty(m.Area))
                 area = m.Address;
+            else // if there is no area to mother
+                area = m.Area;
 
             foreach (var n in GetNanniesByTerm(n => CalculateDistance(n.Address, area) <= 1000 * desirableDistanceInKM))
                 nannies.Add(n);

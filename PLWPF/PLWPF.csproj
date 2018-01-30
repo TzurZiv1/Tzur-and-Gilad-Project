@@ -114,6 +114,9 @@
     <Compile Include="ContractsByDistanceWin.xaml.cs">
       <DependentUpon>ContractsByDistanceWin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NanniesByDisFromMother.xaml.cs">
+      <DependentUpon>NanniesByDisFromMother.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RemoveChildWin.xaml.cs">
       <DependentUpon>RemoveChildWin.xaml</DependentUpon>
     </Compile>
@@ -200,6 +203,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="NanniesByDisFromMother.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RemoveChildWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
