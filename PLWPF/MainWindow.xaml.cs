@@ -253,7 +253,7 @@ namespace PLWPF
             new NanniesByDisFromMother().ShowDialog();
         }
 
-        private void TabablzControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void GoodNanniesToMother_Click(object sender, RoutedEventArgs e)
         {
 
         }

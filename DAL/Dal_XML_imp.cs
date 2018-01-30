@@ -62,16 +62,14 @@ namespace DAL
         {
             childRoot = new XElement("child");
             childRoot.Save(childPath);
-            //AddChild(new Child(234875912, 274857123, "Gili", new DateTime(2012, 4, 15), true, "Need a lot of tzumy"));
-            //AddChild(new Child(829347234, 123123123, "RL", new DateTime(2017, 2, 24)));
-            //AddChild(new Child(546987244, 123123123, "BD", new DateTime(2017, 9, 29)));
+            
         }
         /// <summary>
         /// Load the list of the child from the file
         /// </summary>
         /// <param name="childFile"></param>
         /// <returns> list of the child from the file</returns>
-        public List<Child> LoadChildListLinq(string childFile)
+        private List<Child> LoadChildListLinq(string childFile)
         {
             LoadData();
             List<Child> children;
@@ -97,7 +95,7 @@ namespace DAL
         /// Save the list of childs in the XML file 
         /// </summary>
         /// <param name="childlist"></param>
-        public void SaveChildList(List<Child> childlist)
+        private void SaveChildList(List<Child> childlist)
         {
             childRoot = new XElement("childs",
                             from ch in childlist
@@ -118,7 +116,7 @@ namespace DAL
         /// <typeparam name="T"></typeparam>
         /// <param name="source"></param>
         /// <param name="path"></param>
-        public static void SaveToXML<T>(T source, string path)
+        private static void SaveToXML<T>(T source, string path)
         {
             FileStream file = new FileStream(path, FileMode.Create);
             XmlSerializer xmlSerializer = new XmlSerializer(source.GetType());
@@ -131,7 +129,7 @@ namespace DAL
         /// <typeparam name="T"></typeparam>
         /// <param name="path"></param>
         /// <returns> list of T that in the XML file</returns>
-        public static T LoadFromXML<T>(string path)
+        private static T LoadFromXML<T>(string path)
         {
             FileStream file = new FileStream(path, FileMode.Open);
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
