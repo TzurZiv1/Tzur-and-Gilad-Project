@@ -159,12 +159,66 @@ namespace BE
                 int thurIndex = index5 + "Thursday".Length + 1;
                 int friIndex = index6 + "Friday".Length + 1;
 
-                HoursForDay[0].Start = TimeSpan.Parse(!value.Substring(sunIndex, 9).Contains("nothing") ? value.Substring(sunIndex, 9) : "00:00:00");
-                HoursForDay[1].Start = TimeSpan.Parse(!value.Substring(monIndex, 9).Contains("nothing") ? value.Substring(monIndex, 9) : "00:00:00");
-                HoursForDay[2].Start = TimeSpan.Parse(!value.Substring(tuesIndex, 9).Contains("nothing") ? value.Substring(tuesIndex, 9) : "00:00:00");
-                HoursForDay[3].Start = TimeSpan.Parse(!value.Substring(wenIndex, 9).Contains("nothing") ? value.Substring(wenIndex, 9) : "00:00:00");
-                HoursForDay[4].Start = TimeSpan.Parse(!value.Substring(thurIndex, 9).Contains("nothing") ? value.Substring(thurIndex, 9) : "00:00:00");
-                HoursForDay[5].Start = TimeSpan.Parse(!value.Substring(friIndex).Contains("nothing") ? value.Substring(friIndex, 9) : "00:00:00");
+                if (!value.Substring(sunIndex, 9).Contains("nothing"))
+                {
+                    hoursForDay[0].Start = TimeSpan.Parse(value.Substring(sunIndex, 9));
+                    hoursForDay[0].Finish = TimeSpan.Parse(value.Substring(sunIndex + 12, 9));
+                }
+                else
+                {
+                    hoursForDay[0].Start = TimeSpan.Parse("00:00:00");
+                    hoursForDay[0].Finish = TimeSpan.Parse("00:00:00");
+                }
+                if (!value.Substring(monIndex, 9).Contains("nothing"))
+                {
+                    hoursForDay[1].Start = TimeSpan.Parse(value.Substring(monIndex, 9));
+                    hoursForDay[1].Finish = TimeSpan.Parse(value.Substring(monIndex + 12, 9));
+                }
+                else
+                {
+                    hoursForDay[1].Start = TimeSpan.Parse("00:00:00");
+                    hoursForDay[1].Finish = TimeSpan.Parse("00:00:00");
+                }
+                if (!value.Substring(tuesIndex, 9).Contains("nothing"))
+                {
+                    hoursForDay[2].Start = TimeSpan.Parse(value.Substring(tuesIndex, 9));
+                    hoursForDay[2].Finish = TimeSpan.Parse(value.Substring(tuesIndex + 12, 9));
+                }
+                else
+                {
+                    hoursForDay[2].Start = TimeSpan.Parse("00:00:00");
+                    hoursForDay[2].Finish = TimeSpan.Parse("00:00:00");
+                }
+                if (!value.Substring(wenIndex, 9).Contains("nothing"))
+                {
+                    hoursForDay[3].Start = TimeSpan.Parse(value.Substring(wenIndex, 9));
+                    hoursForDay[3].Finish = TimeSpan.Parse(value.Substring(wenIndex + 12, 9));
+                }
+                else
+                {
+                    hoursForDay[3].Start = TimeSpan.Parse("00:00:00");
+                    hoursForDay[3].Finish = TimeSpan.Parse("00:00:00");
+                }
+                if (!value.Substring(thurIndex, 9).Contains("nothing"))
+                {
+                    hoursForDay[4].Start = TimeSpan.Parse(value.Substring(thurIndex, 9));
+                    hoursForDay[4].Finish = TimeSpan.Parse(value.Substring(thurIndex + 12, 9));
+                }
+                else
+                {
+                    hoursForDay[4].Start = TimeSpan.Parse("00:00:00");
+                    hoursForDay[4].Finish = TimeSpan.Parse("00:00:00");
+                }
+                if (!value.Substring(friIndex, 9).Contains("nothing"))
+                {
+                    hoursForDay[5].Start = TimeSpan.Parse(value.Substring(friIndex, 9));
+                    hoursForDay[5].Finish = TimeSpan.Parse(value.Substring(friIndex + 12,9));
+                }
+                else
+                {
+                    hoursForDay[5].Start = TimeSpan.Parse("00:00:00");
+                    hoursForDay[5].Finish = TimeSpan.Parse("00:00:00");
+                }
             }
         }
         public string Notes { get => notes ?? ""; set => notes = value; }
