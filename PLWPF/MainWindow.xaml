@@ -176,8 +176,8 @@ Hello and welcome to the the nannies' system!
             <TabItem.Content>
                 <StackPanel>
                     <Button Name="ChildsOfMother" Content="Show all childs of a mother" Click="ChildsOfMother_Click" Style="{DynamicResource MaterialDesignRaisedLightButton}" Margin="500,10" Height="50"/>
-                    <Button Name="ContractsByDistance" Content="Show all contracts by distance" Click="ContractsByDistance_Click" Style="{DynamicResource MaterialDesignRaisedLightButton}" Margin="500,10" Height="50"/>
-                    <Button Name="NanniesByDisFromMother" Content="Show nannies by distance from mother" Click="NanniesByDisFromMother_Click" Style="{DynamicResource MaterialDesignRaisedLightButton}" Margin="500,10" Height="50"/>
+                    <!--<Button Name="ContractsByDistance" Content="Show all contracts by distance" Click="ContractsByDistance_Click" Style="{DynamicResource MaterialDesignRaisedLightButton}" Margin="500,10" Height="50"/>-->
+                    <!--<Button Name="NanniesByDisFromMother" Content="Show nannies by distance from mother" Click="NanniesByDisFromMother_Click" Style="{DynamicResource MaterialDesignRaisedLightButton}" Margin="500,10" Height="50"/>-->
                     <Button Name="GoodNanniesToMother" Content="Show good nannies to a mother" Click="GoodNanniesToMother_Click" Style="{DynamicResource MaterialDesignRaisedLightButton}" Margin="500,10" Height="50"/>
                     <Button Name="NanniesByExp" Content="Show nannies by experience years" Click="NanniesByExp_Click" Style="{DynamicResource MaterialDesignRaisedLightButton}" Margin="500,10" Height="50"/>
                 </StackPanel>

@@ -24,16 +24,4 @@
     <Notes>Nothing</Notes>
     <IsPerMonth>true</IsPerMonth>
   </Mother>
-  <Mother>
-    <ID>234234</ID>
-    <LastName>gh</LastName>
-    <FirstName>gh</FirstName>
-    <PhoneNumber>ghyhj</PhoneNumber>
-    <Address>Florida, United States</Address>
-    <Area>FH Joanneum, Alte Poststraße, Graz, Austria</Area>
-    <TempNeedNannyOnDay />
-    <TempHoursForDay>| Sunday: nothing | Monday: nothing | Tuesday: nothing | Wednesday: nothing | Thursday: nothing | Friday: nothing |</TempHoursForDay>
-    <Notes />
-    <IsPerMonth>true</IsPerMonth>
-  </Mother>
 </ArrayOfMother>

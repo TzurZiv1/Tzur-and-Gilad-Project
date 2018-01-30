@@ -42,25 +42,4 @@
     <TempWorkOnDay>Tuesday|Friday</TempWorkOnDay>
     <TempHoursOnDay>| Sunday: nothing | Monday: nothing | Tuesday: 12:00:00 - 20:00:00 | Wednesday: nothing | Thursday: nothing | Friday: 10:00:00 - 15:00:00 |</TempHoursOnDay>
   </Nanny>
-  <Nanny>
-    <ID>3453</ID>
-    <LastName>esth</LastName>
-    <FirstName>fdyjr</FirstName>
-    <Birthdate>2000-01-02T00:00:00</Birthdate>
-    <PhoneNumber>234</PhoneNumber>
-    <Address>Ghaziabad, Uttar Pradesh, India</Address>
-    <IsElevator>true</IsElevator>
-    <Floor>234</Floor>
-    <ExpYears>3</ExpYears>
-    <MaxChilds>123</MaxChilds>
-    <MinAgeInMonth>123</MinAgeInMonth>
-    <MaxAgeInMonth>123</MaxAgeInMonth>
-    <AllowPerHour>true</AllowPerHour>
-    <RatePerHour>123123</RatePerHour>
-    <RatePerMonth>123</RatePerMonth>
-    <FinancedVacation>true</FinancedVacation>
-    <Recommendations />
-    <TempWorkOnDay>Sunday</TempWorkOnDay>
-    <TempHoursOnDay>| Sunday: 09:55:00 - 12:59:00 | Monday: nothing | Tuesday: nothing | Wednesday: nothing | Thursday: nothing | Friday: nothing |</TempHoursOnDay>
-  </Nanny>
 </ArrayOfNanny>
