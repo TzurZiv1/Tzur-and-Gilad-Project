@@ -247,5 +247,10 @@ namespace PLWPF
         {
             new ContractsByDistanceWin().ShowDialog();
         }
+
+        private void NanniesByDisFromMother_Click(object sender, RoutedEventArgs e)
+        {
+            new NanniesByDisFromMother().ShowDialog();
+        }
     }
 }
