@@ -253,5 +253,9 @@ namespace PLWPF
             new NanniesByDisFromMother().ShowDialog();
         }
 
+        private void GoodNanniesToMother_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
