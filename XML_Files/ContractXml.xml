@@ -3,14 +3,14 @@
   <Contract>
     <Number>10000001</Number>
     <NannyID>123451234</NannyID>
-    <ChildID>234875912</ChildID>
-    <MotherID>274857123</MotherID>
-    <WasMeeting>true</WasMeeting>
+    <ChildID>829347234</ChildID>
+    <MotherID>123123123</MotherID>
+    <WasMeeting>false</WasMeeting>
     <WasSignature>true</WasSignature>
     <WagePerHour>0</WagePerHour>
     <WagePerMonth>0</WagePerMonth>
     <IsPerMonth>false</IsPerMonth>
-    <StartDate>2018-02-01T00:00:00</StartDate>
-    <EndDate>2018-06-01T00:00:00</EndDate>
+    <StartDate>2018-01-17T00:00:00</StartDate>
+    <EndDate>2018-01-30T18:04:44.234009+02:00</EndDate>
   </Contract>
 </ArrayOfContract>

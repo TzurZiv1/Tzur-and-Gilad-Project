@@ -26,7 +26,7 @@ namespace DAL
         public readonly string contractPath = @"../../../XML_Files/ContractXml.xml";
 
         /// <summary>
-        /// Constructor
+        /// Constructor to Dal_XML_imp
         /// </summary>
         public Dal_XML_imp()
         {
@@ -38,6 +38,10 @@ namespace DAL
                 SaveToXML(new List<Mother>(), motherPath);
             if (!File.Exists(contractPath))
                 SaveToXML(new List<Contract>(), contractPath);
+
+            currentNumber = 10000000;
+            foreach (var c in GetAllContracts())
+                currentNumber = Math.Max(currentNumber, c.Number);
         }
 
         #region Load and save
@@ -258,7 +262,7 @@ namespace DAL
         #endregion
 
         #region Contract
-        private static int currentNumber = 10000000;
+        private static int currentNumber;
         public int CurrentNumber() => currentNumber;
 
         /// <summary>
