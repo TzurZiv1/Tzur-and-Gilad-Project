@@ -16,23 +16,31 @@
         TextOptions.TextRenderingMode="Auto"
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto">
-    <dragablz:TabablzControl Margin="8" >
+    <dragablz:TabablzControl Margin="8">
         <dragablz:TabablzControl.InterTabController>
             <dragablz:InterTabController />
         </dragablz:TabablzControl.InterTabController>
         <TabControl.Background>
             <ImageBrush ImageSource="images/Project.jpg"/>
         </TabControl.Background>
-        <TabItem Header="Welcome" Foreground="{DynamicResource PrimaryHueMidBrush}">
+        <TabItem Header="Welcome" Foreground="{DynamicResource PrimaryHueLightBrush}">
             <Grid>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0" FontSize="23">
-Hello and welcome to the the nannies' system!
+                <TextBlock Grid.Row="0" Grid.Column="0" FontSize="57">
+                    Hello!
+                </TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0" FontSize="45">
+                    Welcome to my nannies' system!
+                </TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="0" FontSize="30">
+                    Switch between the tabs to do the different actions
                 </TextBlock>
             </Grid>
         </TabItem>
