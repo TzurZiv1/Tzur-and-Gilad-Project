@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 namespace BE
 {
     /// <summary>
-    /// Class for the nanny's work hours 
+    /// Represents work hours, expressed as start working hours and finish working hours
     /// </summary>
     public class WorkHours
     {
@@ -43,8 +43,8 @@ namespace BE
         /// <summary>
         /// constructor to WorkHours
         /// </summary>
-        /// <param name="s"></param>
-        /// <param name="f"></param>
+        /// <param name="s">start working hours</param>
+        /// <param name="f">finish working hours</param>
         public WorkHours(TimeSpan s = default(TimeSpan), TimeSpan f = default(TimeSpan))
         {
             Start = s;
@@ -86,7 +86,9 @@ namespace BE
         private bool[] workOnDay;
         private WorkHours[] hoursOnDay;
         
-        
+        /// <summary>
+        /// Default for Nanny
+        /// </summary>
         public Nanny()
         {
             hoursOnDay = new WorkHours[6];
@@ -101,25 +103,6 @@ namespace BE
         /// <summary>
         /// Constructor of nanny
         /// </summary>
-        /// <param name="id1"></param>
-        /// <param name="firstName1"></param>
-        /// <param name="lastName1"></param>
-        /// <param name="birthdate1"></param>
-        /// <param name="address1"></param>
-        /// <param name="maxChilds1"></param>
-        /// <param name="minAgeInMonth1"></param>
-        /// <param name="maxAgeInMonth1"></param>
-        /// <param name="workOnDay1"></param>
-        /// <param name="hoursOnDay1"></param>
-        /// <param name="ratePerHour1"></param>
-        /// <param name="ratePerMonth1"></param>
-        /// <param name="phoneNumber1"></param>
-        /// <param name="isElevator1"></param>
-        /// <param name="floor1"></param>
-        /// <param name="expYears1"></param>
-        /// <param name="allowPerHour1"></param>
-        /// <param name="financedVacation1"></param>
-        /// <param name="recommendations1"></param>
         public Nanny(int id1, string firstName1, string lastName1, DateTime birthdate1, string address1,
         int maxChilds1, int minAgeInMonth1, int maxAgeInMonth1, bool[] workOnDay1,
         WorkHours[] hoursOnDay1, double ratePerHour1, double ratePerMonth1 = 0,
@@ -249,11 +232,17 @@ namespace BE
         public WorkHours[] HoursOnDay { get => hoursOnDay; set => hoursOnDay = value; }
         public bool FinancedVacation { get => financedVacation; set => financedVacation = value; }
         public string Recommendations { get => recommendations ?? ""; set => recommendations = value; }
+        /// <summary>
+        /// Returns the main details of Nanny
+        /// </summary>
         public string MainDetails
         {
             get => "ID: " + ID + "\n" +
                 "Name: " + FirstName + " " + LastName;
         }
+        /// <summary>
+        /// Get and set for workOnDay as a string
+        /// </summary>
         public string TempWorkOnDay
         {
             get {
@@ -293,7 +282,9 @@ namespace BE
                     workOnDay[5] = true;
             }
         }
-
+        /// <summary>
+        /// Get and set for hoursOnDay as a string
+        /// </summary>S
         public string TempHoursOnDay
         {
             get

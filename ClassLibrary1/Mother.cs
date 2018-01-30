@@ -39,16 +39,6 @@ namespace BE
         /// <summary>
         /// Constructor of Mother
         /// </summary>
-        /// <param name="id1"></param>
-        /// <param name="firstName1"></param>
-        /// <param name="lastName1"></param>
-        /// <param name="address1"></param>
-        /// <param name="area1"></param>
-        /// <param name="needNannyOdDay1"></param>
-        /// <param name="hoursForDay1"></param>
-        /// <param name="isPerMonth1"></param>
-        /// <param name="phoneNumber1"></param>
-        /// <param name="notes1"></param>
         public Mother(int id1, string firstName1, string lastName1, string address1,
         string area1, bool[] needNannyOdDay1, WorkHours[] hoursForDay1, bool isPerMonth1,
         string phoneNumber1 = "No phone number", string notes1 = "Nothing")
@@ -88,11 +78,13 @@ namespace BE
         public string Area { get => area ?? ""; set => area = value; }
         [XmlIgnoreAttribute]
         public bool[] NeedNannyOnDay { get => needNannyOnDay; set => needNannyOnDay = value; }
+        /// <summary>
+        /// Get and set for NeedNannyOnDay as a string
+        /// </summary>
         public string TempNeedNannyOnDay
         {
             get
             {
-
                 string StrWorkDays = "";
                 if (NeedNannyOnDay[0])
                     StrWorkDays += "Sunday|";
@@ -131,6 +123,9 @@ namespace BE
 
         [XmlIgnoreAttribute]
         public WorkHours[] HoursForDay { get => hoursForDay; set => hoursForDay = value; }
+        /// <summary>
+        ///  Get and set for HoursForDay as a string
+        /// </summary>
         public string TempHoursForDay
         {
             get
@@ -223,6 +218,9 @@ namespace BE
         }
         public string Notes { get => notes ?? ""; set => notes = value; }
         public bool IsPerMonth { get => isPerMonth; set => isPerMonth = value; }
+        /// <summary>
+        /// Returns the main details of mother
+        /// </summary>
         public string MainDetails
         {
             get => "ID: " + ID + "\n" +

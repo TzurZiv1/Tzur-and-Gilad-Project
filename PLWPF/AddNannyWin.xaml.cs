@@ -23,6 +23,11 @@ namespace PLWPF
         BE.Nanny nanny;
         BL.IBL bl;
         private List<string> errorMessages = new List<string>();
+        /// <summary>
+        /// Manages Binding errors
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void validation_Error(object sender, ValidationErrorEventArgs e)
         {
             if (e.Action == ValidationErrorEventAction.Added)
@@ -30,6 +35,9 @@ namespace PLWPF
             else
                 errorMessages.Remove((string)e.Error.ErrorContent);
         }
+        /// <summary>
+        /// constructor of AddNannyWin
+        /// </summary>
         public AddNannyWin()
         {
             InitializeComponent();
@@ -38,6 +46,11 @@ namespace PLWPF
             bl = BL.FactoryBL.GetBL();
         }
 
+        /// <summary>
+        /// add the nanny that have enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddNannyButton_Click(object sender, RoutedEventArgs e)
         {
             if (errorMessages.Any()) //errorMessages.Count > 0  

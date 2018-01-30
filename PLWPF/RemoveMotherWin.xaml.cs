@@ -27,6 +27,11 @@ namespace PLWPF
         BL.IBL bl;
         MyData myData = new MyData() { Id = 0 };
         private List<string> errorMessages = new List<string>();
+        /// <summary>
+        /// Manages Binding errors
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void validation_Error(object sender, ValidationErrorEventArgs e)
         {
             if (e.Action == ValidationErrorEventAction.Added)
@@ -34,6 +39,9 @@ namespace PLWPF
             else
                 errorMessages.Remove((string)e.Error.ErrorContent);
         }
+        /// <summary>
+        /// constructor for RemoveMotherWin
+        /// </summary>
         public RemoveMotherWin()
         {
             InitializeComponent();
@@ -44,6 +52,11 @@ namespace PLWPF
             iDComboBox.DataContext = myData;
         }
 
+        /// <summary>
+        /// Remove the mother that has enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveMotherButton_Click(object sender, RoutedEventArgs e)
         {
             if (errorMessages.Any()) //errorMessages.Count > 0  

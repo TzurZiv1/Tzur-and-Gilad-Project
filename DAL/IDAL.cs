@@ -98,6 +98,10 @@ namespace DAL
         #endregion
 
         #region CONTRACT
+        /// <summary>
+        /// Returns the current number of contract that has added
+        /// </summary>
+        /// <returns>Current number of contract that has added</returns>
         int CurrentNumber();
         /// <summary>
         /// Add a contract to the contract list
@@ -142,12 +146,12 @@ namespace DAL
         /// <returns>all childs who in the childs list</returns>
         List<Child> GetAllChilds();
         /// <summary>
-        /// Returns childs grouped by motherID
+        /// Returns all childs grouped by motherID
         /// </summary>
         /// <returns>all childs grouped by motherID</returns>
         IEnumerable<IGrouping<int, Child>> GetAllChildsByMother();
         /// <summary>
-        /// Returns the all contracts who in the contracts list 
+        /// Returns all contracts who in the contracts list 
         /// </summary>
         /// <returns>all contracts who in the contracts list</returns>
         List<Contract> GetAllContracts();

@@ -26,6 +26,9 @@ namespace PLWPF
             public int Id { get => id; set => id = value; }
         }
         MyData myData = new MyData() { Id = 0 };
+        /// <summary>
+        /// constructor of ChildsOfMotherWin
+        /// </summary>
         public ChildsOfMotherWin()
         {
             InitializeComponent();
@@ -35,7 +38,11 @@ namespace PLWPF
             iDComboBox.DisplayMemberPath = "MainDetails";
             iDComboBox.SelectedValuePath = "ID";
         }
-
+        /// <summary>
+        /// update the data grid of childs
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void iDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ChildsDataGrid.ItemsSource = (from childs in bl.GetAllChildsByMother()

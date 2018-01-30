@@ -20,6 +20,9 @@ namespace PLWPF
     public partial class AllChilds : Window
     {
         BL.IBL bl;
+        /// <summary>
+        /// constructor of AllChilds
+        /// </summary>
         public AllChilds()
         {
             InitializeComponent();

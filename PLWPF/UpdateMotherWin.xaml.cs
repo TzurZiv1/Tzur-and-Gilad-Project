@@ -23,6 +23,11 @@ namespace PLWPF
         BE.Mother mother;
         BL.IBL bl;
         private List<string> errorMessages = new List<string>();
+        /// <summary>
+        /// Manages Binding errors
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void validation_Error(object sender, ValidationErrorEventArgs e)
         {
             if (e.Action == ValidationErrorEventAction.Added)
@@ -30,6 +35,9 @@ namespace PLWPF
             else
                 errorMessages.Remove((string)e.Error.ErrorContent);
         }
+        /// <summary>
+        /// Constructor of UpdateMotherWin
+        /// </summary>
         public UpdateMotherWin()
         {
             InitializeComponent();
@@ -41,6 +49,11 @@ namespace PLWPF
             iDComboBox.SelectedValuePath = "ID";
         }
 
+        /// <summary>
+        /// update the mother that has enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateMotherButton_Click(object sender, RoutedEventArgs e)
         {
             if (errorMessages.Any()) //errorMessages.Count > 0  
@@ -69,6 +82,11 @@ namespace PLWPF
             this.Close();
         }
 
+        /// <summary>
+        /// Updating the fields by the selected mother
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void iDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BE.Mother m = bl.GetMother(mother.ID);

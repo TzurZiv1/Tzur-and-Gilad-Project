@@ -20,6 +20,7 @@ namespace DAL
     public class Dal_XML_imp : IDAL
     {
         public XElement childRoot;
+        ///path for every xml file
         public readonly string childPath = @"../../../XML_Files/ChildXml.xml";
         public readonly string nannyPath = @"../../../XML_Files/NannyXml.xml";
         public readonly string motherPath = @"../../../XML_Files/MotherXml.xml";
@@ -263,6 +264,10 @@ namespace DAL
 
         #region Contract
         private static int currentNumber;
+        /// <summary>
+        /// Returns the current nuber of contract
+        /// </summary>
+        /// <returns>the current nuber of contract</returns>
         public int CurrentNumber() => currentNumber;
 
         /// <summary>
@@ -389,35 +394,62 @@ namespace DAL
         #endregion
 
         #region Get All
+        /// <summary>
+        /// Returns the all childs who are in the xml files
+        /// </summary>
+        /// <returns>all childs who are in the xml files</returns>
         public List<Child> GetAllChilds()
         {
             return LoadChildListLinq(childPath);
         }
-
+        /// <summary>
+        /// Returns all childs grouped by motherID
+        /// </summary>
+        /// <returns>all childs grouped by motherID</returns>
         public IEnumerable<IGrouping<int, Child>> GetAllChildsByMother() => from c in GetAllChilds()
                                                                             group c by c.MotherID;
+        /// <summary>
+        /// Returns all contracts who in the xml files
+        /// </summary>
+        /// <returns>all contracts who in the xml files</returns>
         public List<Contract> GetAllContracts()
         {
             return LoadFromXML<List<Contract>>(contractPath);
         }
-
+        /// <summary>
+        /// Returns all contracts grouped by motherID
+        /// </summary>
+        /// <returns>all contracts grouped by motherID</returns>
         public IEnumerable<IGrouping<int, Contract>> GetAllContractsByMother() => from c in GetAllContracts()
                                                                                   group c by c.MotherID;
-
+        /// <summary>
+        /// Returns all contracts grouped by nannyID
+        /// </summary>
+        /// <returns>all contracts grouped by nannyID</returns>
         public IEnumerable<IGrouping<int, Contract>> GetAllContractsByNanny() => from c in GetAllContracts()
                                                                                  group c by c.NannyID;
-
+        /// <summary>
+        /// Returns the all mothers who are in the xml files
+        /// </summary>
+        /// <returns>all mothers who are in the xml files</returns>
         public List<Mother> GetAllMothers()
         {
             return LoadFromXML<List<Mother>>(motherPath);
         }
-
+        /// <summary>
+        /// Returns the all nannies who are in the xml files
+        /// </summary>
+        /// <returns>all nannies who are in the xml files</returns>
         public List<Nanny> GetAllNannies()
         {
             return LoadFromXML<List<Nanny>>(nannyPath);
         }
 
         #endregion
+        /// <summary>
+        /// check if the id has exist
+        /// </summary>
+        /// <param name="id">ID to search for</param>
         private void IdAlreadyExist(int id)
         {
             if ((GetChild(id) != null && GetChild(id).ID != 0) || GetMother(id) != null || GetNanny(id) != null)

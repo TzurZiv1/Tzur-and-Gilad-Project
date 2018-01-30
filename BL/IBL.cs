@@ -96,6 +96,10 @@ namespace BL
         #endregion
 
         #region CONTRACT
+        /// <summary>
+        /// returns the current number of contract
+        /// </summary>
+        /// <returns>the current number of contract</returns>
         int CurrentNumber();
 
         /// <summary>
@@ -141,6 +145,10 @@ namespace BL
         /// </summary>
         /// <returns>all childs who in the childs list</returns>
         List<Child> GetAllChilds();
+        /// <summary>
+        /// Returns all childs grouped by MotherID
+        /// </summary>
+        /// <returns>all childs grouped by MotherID</returns>
         IEnumerable<IGrouping<int, Child>> GetAllChildsByMother();
 
         /// <summary>
@@ -150,25 +158,112 @@ namespace BL
         List<Contract> GetAllContracts();
         #endregion
 
+        #region Distance
+        /// <summary>
+        /// Returns the distance between source and dest
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="dest"></param>
+        /// <returns>The distance between source and dest</returns>
         int CalculateDistance(string source, string dest);
+        /// <summary>
+        /// Returns list of nannies who close to area of m
+        /// </summary>
+        /// <param name="m">the mother</param>
+        /// <param name="desirableDistanceInKM">maximum distance from m, </param>
+        /// <returns>List of nannies who close to area of m</returns>
         List<Nanny> DistanseFromMotherInKM(Mother m, int desirableDistanceInKM);
+        #endregion
 
+        #region Match nannies to mother
+        /// <summary>
+        /// Returns list just of nannies who can work for m at any hour needed
+        /// </summary>
+        /// <param name="m">mother</param>
+        /// <returns>list just of nannies who can work for m at any hour needed</returns>
         List<Nanny> CompletelyMatchNannies(Mother m);
+        /// <summary>
+        /// Returns list of nannies who can work for m
+        /// If there is no one, return the five with the best match
+        /// </summary>
+        /// <param name="m">The mother we want match nannies to her</param>
+        /// <returns>list of nannies who can work for m
+        /// If there is no one, return the five with the best match</returns>
         List<Nanny> MatchNannies(Mother m);
+        #endregion
 
+        #region Other functions
+        /// <summary>
+        /// Returns list of childs who haven't yet any nanny.
+        /// </summary>
+        /// <returns>List of childs who haven't yet any nanny.</returns>
         List<Child> ChildsWithoutNanny();
+        /// <summary>
+        /// Returns list of nannies with financed vacation by ministry of Industry, Trade and Labor
+        /// </summary>
+        /// <returns>list of nannies with financed vacation</returns>
         List<Nanny> AllFinancedVacation();
-
+        /// <summary>
+        /// Return list of contracts that match a certain condition
+        /// </summary>
+        /// <param name="cond">condition</param>
+        /// <returns>List of contracts that match cond</returns>
         List<Contract> GetContractsByTerm(Predicate<Contract> cond);
+        /// <summary>
+        /// Return list of Mothers that match a certain condition
+        /// </summary>
+        /// <param name="cond">condition</param>
+        /// <returns>List of Mothers that match cond</returns>
         List<Mother> GetMothersByTerm(Predicate<Mother> cond);
+        /// <summary>
+        /// Return list of Childs that match a certain condition
+        /// </summary>
+        /// <param name="cond">condition</param>
+        /// <returns>List of Childs that match cond</returns>
         List<Child> GetChildsByTerm(Predicate<Child> cond);
+        /// <summary>
+        /// Return list of Nannies that match a certain condition
+        /// </summary>
+        /// <param name="cond">condition</param>
+        /// <returns>List of Nannies that match cond</returns>
         List<Nanny> GetNanniesByTerm(Predicate<Nanny> cond);
+        /// <summary>
+        /// Return the number of the contracts that match a certain condition
+        /// </summary>
+        /// <param name="cond">condition</param>
+        /// <returns>Number of the contracts that match a certain condition</returns>
         int NumOfContractsByTerm(Predicate<Contract> cond);
-
+        /// <summary>
+        /// Returns nannies grouped by age, minimum or maximum by choice
+        /// </summary>
+        /// <param name="byMax">true = group by max, false = group by min</param>
+        /// <param name="order">true = order the nannies, false = don't order</param>
+        /// <returns>nannies grouped by age</returns>
         IEnumerable<IGrouping<int, Nanny>> NanniesByChildsAge(bool byMax, bool order = false);
+        /// <summary>
+        /// Returns nannies grouped by ExpYears
+        /// </summary>
+        /// <param name="order">true = order the nannies, false = don't order</param>
+        /// <returns>nannies grouped by ExpYears</returns>
         IEnumerable<IGrouping<int, Nanny>> NanniesByExpYears(bool order = false);
+        /// <summary>
+        /// Returns all contracts grouped by distance between mother's area and nanny's address
+        /// </summary>
+        /// <param name="order">true = order the contracts, false = don't order</param>
+        /// <returns></returns>
         IEnumerable<IGrouping<int, Contract>> ContractsByDistance(bool order = false);
+        /// <summary>
+        /// Returns all contracts grouped by nanny
+        /// </summary>
+        /// <param name="order">true = order the contracts, false = don't order</param>
+        /// <returns></returns>
         IEnumerable<IGrouping<int, Contract>> GetAllContractsByNanny();
+        /// <summary>
+        /// Returns all contracts grouped by Mother
+        /// </summary>
+        /// <param name="order">true = order the contracts, false = don't order</param>
+        /// <returns></returns>
         IEnumerable<IGrouping<int, Contract>> GetAllContractsByMother();
+        #endregion
     }
 }

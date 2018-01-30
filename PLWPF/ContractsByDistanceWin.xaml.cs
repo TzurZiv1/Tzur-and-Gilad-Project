@@ -21,6 +21,9 @@ namespace PLWPF
     public partial class ContractsByDistanceWin : Window
     {
         BL.IBL bl;
+        /// <summary>
+        /// constructor of ContractsByDistanceWin
+        /// </summary>
         public ContractsByDistanceWin()
         {
             InitializeComponent();
@@ -28,13 +31,19 @@ namespace PLWPF
             Thread thread = new Thread(InitComboBox);
             thread.Start();
         }
-
+        /// <summary>
+        /// update the data grid in a thread
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void distanceComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Thread t = new Thread(UpdateDataDrid);
             t.Start();
         }
-
+        /// <summary>
+        /// intialization for distanceComboBox
+        /// </summary>
         private void InitComboBox()
         {
             foreach (var items in bl.ContractsByDistance())
@@ -43,6 +52,9 @@ namespace PLWPF
                 Dispatcher.BeginInvoke(action);
             }
         }
+        /// <summary>
+        /// update the data grid of contracts
+        /// </summary>
         private void UpdateDataDrid()
         {
             Action action = () => ContractsDataGrid.ItemsSource = (from dis in bl.ContractsByDistance()

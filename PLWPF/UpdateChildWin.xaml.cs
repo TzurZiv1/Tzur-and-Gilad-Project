@@ -22,6 +22,11 @@ namespace PLWPF
         BE.Child child;
         BL.IBL bl;
         private List<string> errorMessages = new List<string>();
+        /// <summary>
+        /// Manages Binding errors
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void validation_Error(object sender, ValidationErrorEventArgs e)
         {
             if (e.Action == ValidationErrorEventAction.Added)
@@ -29,6 +34,9 @@ namespace PLWPF
             else
                 errorMessages.Remove((string)e.Error.ErrorContent);
         }
+        /// <summary>
+        /// Constructor of UpdateChildWin
+        /// </summary>
         public UpdateChildWin()
         {
             InitializeComponent();
@@ -40,6 +48,11 @@ namespace PLWPF
             iDComboBox.SelectedValuePath = "ID";
         }
 
+        /// <summary>
+        /// update the child that has enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateChildButton_Click(object sender, RoutedEventArgs e)
         {
             if (errorMessages.Any()) //errorMessages.Count > 0  
@@ -66,6 +79,11 @@ namespace PLWPF
             this.Close();
         }
 
+        /// <summary>
+        /// Updating the fields by the selected child
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void iDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             firstNameTextBox.Text = bl.GetChild(child.ID).FirstName;

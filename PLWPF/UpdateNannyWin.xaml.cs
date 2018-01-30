@@ -22,6 +22,11 @@ namespace PLWPF
         BE.Nanny nanny;
         BL.IBL bl;
         private List<string> errorMessages =new List<string>();
+        /// <summary>
+        /// Manages Binding errors
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void validation_Error(object sender, ValidationErrorEventArgs e)
         {
             if (e.Action == ValidationErrorEventAction.Added)
@@ -29,6 +34,9 @@ namespace PLWPF
             else
                 errorMessages.Remove((string)e.Error.ErrorContent);
         }
+        /// <summary>
+        /// Constructor of UpdateNannyWin
+        /// </summary>
         public UpdateNannyWin()
         {
             InitializeComponent();
@@ -39,7 +47,11 @@ namespace PLWPF
             iDComboBox.DisplayMemberPath = "MainDetails";
             iDComboBox.SelectedValuePath = "ID";
         }
-
+        /// <summary>
+        /// update the nanny that has enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateNannyButton_Click(object sender, RoutedEventArgs e)
         {
             if (errorMessages.Any()) //errorMessages.Count > 0  
@@ -63,7 +75,11 @@ namespace PLWPF
             }
             this.Close();
         }
-
+        /// <summary>
+        /// Updating the fields by the selected nanny
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void iDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             BE.Nanny n = bl.GetNanny(nanny.ID);

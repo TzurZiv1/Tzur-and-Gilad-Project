@@ -23,6 +23,11 @@ namespace PLWPF
         BE.Child child;
         BL.IBL bl;
         private List<string> errorMessages = new List<string>();
+        /// <summary>
+        /// Manages Binding errors
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void validation_Error(object sender, ValidationErrorEventArgs e)
         {
             if (e.Action == ValidationErrorEventAction.Added)
@@ -30,6 +35,9 @@ namespace PLWPF
             else
                 errorMessages.Remove((string)e.Error.ErrorContent);
         }
+        /// <summary>
+        /// constructor of AddChildWin
+        /// </summary>
         public AddChildWin()
         {
             InitializeComponent();
@@ -40,7 +48,11 @@ namespace PLWPF
             motherIDComboBox.DisplayMemberPath = "MainDetails";
             motherIDComboBox.SelectedValuePath = "ID";
         }
-
+        /// <summary>
+        /// add the child that have enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddChildButton_Click(object sender, RoutedEventArgs e)
         {
             if (errorMessages.Any()) //errorMessages.Count > 0  

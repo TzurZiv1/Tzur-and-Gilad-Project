@@ -26,6 +26,9 @@ namespace PLWPF
             public int Years { get => years; set => years = value; }
         }
         MyData myData = new MyData() { Years = 0 };
+        /// <summary>
+        /// constructor of NanniesByExp
+        /// </summary>
         public NanniesByExp()
         {
             InitializeComponent();
@@ -46,7 +49,11 @@ namespace PLWPF
             }
             yearsComboBox.ItemsSource = keys;
         }
-
+        /// <summary>
+        /// update NanniesDataGrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void yearsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             NanniesDataGrid.ItemsSource = (from Group in bl.NanniesByExpYears()

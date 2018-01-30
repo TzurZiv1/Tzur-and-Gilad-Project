@@ -20,6 +20,9 @@ namespace PLWPF
     public partial class AllContracts : Window
     {
         BL.IBL bl;
+        /// <summary>
+        /// constructor of AllContracts
+        /// </summary>
         public AllContracts()
         {
             InitializeComponent();

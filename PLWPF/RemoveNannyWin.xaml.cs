@@ -27,6 +27,11 @@ namespace PLWPF
         BL.IBL bl;
         MyData myData = new MyData() { Id = 0 };
         private List<string> errorMessages = new List<string>();
+        /// <summary>
+        /// Manages Binding errors
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void validation_Error(object sender, ValidationErrorEventArgs e)
         {
             if (e.Action == ValidationErrorEventAction.Added)
@@ -34,7 +39,9 @@ namespace PLWPF
             else
                 errorMessages.Remove((string)e.Error.ErrorContent);
         }
-
+        /// <summary>
+        /// constructor for RemoveNannyWin
+        /// </summary>
         public RemoveNannyWin()
         {
             InitializeComponent();
@@ -44,7 +51,11 @@ namespace PLWPF
             iDComboBox.SelectedValuePath = "ID";
             iDComboBox.DataContext = myData;
         }
-
+        /// <summary>
+        /// Remove the nanny that has enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void RemoveNannyButton_Click(object sender, RoutedEventArgs e)
         {
             if (errorMessages.Any()) //errorMessages.Count > 0  

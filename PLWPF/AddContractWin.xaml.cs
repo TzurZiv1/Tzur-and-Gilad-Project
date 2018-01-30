@@ -22,6 +22,11 @@ namespace PLWPF
         BE.Contract contract;
         BL.IBL bl;
         private List<string> errorMessages = new List<string>();
+        /// <summary>
+        /// Manages Binding errors
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void validation_Error(object sender, ValidationErrorEventArgs e)
         {
             if (e.Action == ValidationErrorEventAction.Added)
@@ -29,6 +34,9 @@ namespace PLWPF
             else
                 errorMessages.Remove((string)e.Error.ErrorContent);
         }
+        /// <summary>
+        /// constructor of AddContractWin
+        /// </summary>
         public AddContractWin()
         {
             InitializeComponent();
@@ -45,6 +53,11 @@ namespace PLWPF
             nannyIDComboBox.SelectedValuePath = "ID";
             numberTextBlock.Text = (bl.CurrentNumber() + 1).ToString();
         }
+        /// <summary>
+        /// add the contract that have enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void AddContractButton_Click(object sender, RoutedEventArgs e)
         {
             if (errorMessages.Any()) //errorMessages.Count > 0  

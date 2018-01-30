@@ -55,6 +55,9 @@ namespace BE
         }
         public bool IsSpecial { get => isSpecial; set => isSpecial = value; }
         public string SpecialNeeds { get => specialNeeds ?? ""; set => specialNeeds = value; }
+        /// <summary>
+        /// return the main details of child as string.
+        /// </summary>
         public string MainDetails
         {
             get => "ID: " + ID + "\n" +
@@ -62,7 +65,7 @@ namespace BE
         }
 
         /// <summary>
-        /// Default constructor
+        /// Default constructor for child
         /// </summary>
         public Child()
         {
@@ -70,14 +73,8 @@ namespace BE
         }
 
         /// <summary>
-        /// constructor
+        /// constructor for child
         /// </summary>
-        /// <param name="id1"></param>
-        /// <param name="motherID1"></param>
-        /// <param name="firstName1"></param>
-        /// <param name="birthdate1"></param>
-        /// <param name="isSpecial1"></param>
-        /// <param name="specialNeeds1"></param>
         public Child(int id1, int motherID1, string firstName1, DateTime birthdate1,
             bool isSpecial1 = false, string specialNeeds1 = "Nothing")
         {

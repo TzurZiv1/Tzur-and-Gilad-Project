@@ -20,6 +20,9 @@ namespace PLWPF
     public partial class AllMothers : Window
     {
         BL.IBL bl;
+        /// <summary>
+        /// constructor of AllMothers
+        /// </summary>
         public AllMothers()
         {
             InitializeComponent();

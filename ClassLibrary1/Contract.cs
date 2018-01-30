@@ -22,6 +22,9 @@ namespace BE
         private bool isPerMonth;// true = per month. false = per hour
         private DateTime startDate;
         private DateTime endDate;
+        /// <summary>
+        /// Returns the main details of contract
+        /// </summary>
         public string MainDetails
         {
             get => "Number: " + Number + "\n" +
@@ -29,7 +32,9 @@ namespace BE
                 "Child's ID: " + ChildID + "\n" +
                 "Mother's ID: " + MotherID;
         }
-
+        /// <summary>
+        /// Default constructor for contract
+        /// </summary>
         public Contract()
         {
             startDate = DateTime.Now;
@@ -37,18 +42,8 @@ namespace BE
         }
 
         /// <summary>
-        /// Constructor to contract
+        /// Constructor for contract
         /// </summary>
-        /// <param name="nunnyID1"></param>
-        /// <param name="childID1"></param>
-        /// <param name="motherID1"></param>
-        /// <param name="wagePerHour1"></param>
-        /// <param name="wagePerMonth1"></param>
-        /// <param name="isPerMonth1"></param>
-        /// <param name="wasMeeting1"></param>
-        /// <param name="wasSignature1"></param>
-        /// <param name="startDate1"></param>
-        /// <param name="endDate1"></param>
         public Contract(int nannyID1, int childID1, int motherID1, DateTime startDate1 = default(DateTime),
             DateTime endDate1 = default(DateTime), bool wasMeeting1 = false, double wagePerHour1 = 0,
             double wagePerMonth1 = 0, bool isPerMonth1 = false,

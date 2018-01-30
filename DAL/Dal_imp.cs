@@ -11,6 +11,9 @@ using DS;
 /// </summary>
 namespace DAL
 {
+    /// <summary>
+    /// Singelton factory for the DAL layer
+    /// </summary>
     public class FactoryDAL
     {
         static IDAL dal = null;
@@ -189,6 +192,10 @@ namespace DAL
 
         #region CONTRACT
         private static int currentNumber = 10000000;
+        /// <summary>
+        /// returns the current number of contract
+        /// </summary>
+        /// <returns>current number of contract</returns>
         public int CurrentNumber() => currentNumber;
 
         /// <summary>
@@ -304,7 +311,10 @@ namespace DAL
         public IEnumerable<IGrouping<int, Contract>> GetAllContractsByNanny() => from c in GetAllContracts()
                                                                                     group c by c.NannyID;
         #endregion
-
+        /// <summary>
+        /// check if the id has exist
+        /// </summary>
+        /// <param name="id">ID to search for</param>
         private void IdAlreadyExist(int id)
         {
             if (GetChild(id) != null || GetMother(id) != null || GetNanny(id) != null)

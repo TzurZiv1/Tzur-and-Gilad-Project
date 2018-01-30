@@ -20,6 +20,9 @@ namespace PLWPF
     public partial class AllNannies : Window
     {
         BL.IBL bl;
+        /// <summary>
+        /// constructor of AllNannies
+        /// </summary>
         public AllNannies()
         {
             InitializeComponent();

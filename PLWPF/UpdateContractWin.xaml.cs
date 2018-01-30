@@ -22,6 +22,11 @@ namespace PLWPF
         BE.Contract contract;
         BL.IBL bl;
         private List<string> errorMessages = new List<string>();
+        /// <summary>
+        /// Manages Binding errors
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void validation_Error(object sender, ValidationErrorEventArgs e)
         {
             if (e.Action == ValidationErrorEventAction.Added)
@@ -29,6 +34,9 @@ namespace PLWPF
             else
                 errorMessages.Remove((string)e.Error.ErrorContent);
         }
+        /// <summary>
+        /// Constructor of UpdateContractWin
+        /// </summary>
         public UpdateContractWin()
         {
             InitializeComponent();
@@ -41,6 +49,11 @@ namespace PLWPF
             numberComboBox.SelectedValuePath = "Number";
         }
 
+        /// <summary>
+        /// update the Contract that has enter
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void UpdateContractButton_Click(object sender, RoutedEventArgs e)
         {
             if (errorMessages.Any()) //errorMessages.Count > 0  
@@ -72,6 +85,11 @@ namespace PLWPF
             this.Close();
         }
 
+        /// <summary>
+        /// Updating the fields by the selected contract
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void numberComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             nannyIDTextBlock.Text = bl.GetContract((int)numberComboBox.SelectedValue).NannyID.ToString();

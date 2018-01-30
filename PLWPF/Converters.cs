@@ -9,6 +9,9 @@ using System.Windows.Data;
 
 namespace PLWPF
 {
+    /// <summary>
+    /// convert bool[6] to string of days
+    /// </summary>
     class WorkDaysArreyToText : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -34,6 +37,9 @@ namespace PLWPF
             throw new NotImplementedException();
         }
     }
+    /// <summary>
+    /// convert WorkHours[6] to string of work hours in a week
+    /// </summary>
     class WorkHoursArreyToText : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)

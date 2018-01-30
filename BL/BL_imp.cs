@@ -10,6 +10,9 @@ using GoogleMapsApi.Entities.Directions.Response;
 
 namespace BL
 {
+    /// <summary>
+    /// Singelton factory for the BL layer
+    /// </summary>
     public class FactoryBL
     {
         static IBL bl = null;
@@ -20,15 +23,24 @@ namespace BL
             return bl;
         }
     }
+    /// <summary>
+    /// Implementaion of the IBL interface
+    /// </summary>
     public class BL_imp : IBL
     {
+        //The occurrence of the DAL
         DAL.IDAL dal;
+        /// <summary>
+        /// Constructor of the BL layer
+        /// </summary>
         public BL_imp()
         {
             dal = DAL.FactoryDAL.GetDAL();
             //Init();
         }
-
+        /// <summary>
+        /// Inialization of the data
+        /// </summary>
         public void Init()
         {
             WorkHours z = new WorkHours(TimeSpan.Zero, TimeSpan.Zero);
@@ -51,12 +63,20 @@ namespace BL
         }
 
         #region Nanny
+        // <summary>
+        /// Add a nanny to the nanny list
+        /// </summary>
+        /// <param name="n"> The nanny you want to add to the nanny list </param>
         public void AddNanny(Nanny n)
         {
             if (DateTime.Today < n.Birthdate.AddYears(18))
                 throw new Exception("A nanny must be age 18 and over");
             dal.AddNanny(n);
         }
+        /// <summary>
+        /// Remove a nanny from the nanny list
+        /// </summary>
+        /// <param name="id">The id of nanny you want to remove from the nanny list</param>
         public void RemoveNanny(int id)
         {
             foreach (var c in GetContractsByTerm(c => c.NannyID == id))
@@ -64,6 +84,10 @@ namespace BL
 
             dal.RemoveNanny(id);
         }
+        /// <summary>
+        /// Update a nanny who is in the list
+        /// </summary>
+        /// <param name="n">The nanny you want to update </param>
         public void UpdateNanny(Nanny n)
         {
             if (DateTime.Today < n.Birthdate.AddYears(18))
@@ -78,6 +102,11 @@ namespace BL
                     AddContract(c);
             }
         }
+        /// <summary>
+        /// Return the nanny from the list who has this ID
+        /// </summary>
+        /// <param name="id">The ID you want to find in the nanny list</param>
+        /// <returns>The nanny from the list who has this ID</returns>
         public Nanny GetNanny(int id)
         {
             return dal.GetNanny(id);
@@ -85,10 +114,18 @@ namespace BL
         #endregion
 
         #region Mother
+        /// <summary>
+        /// Add a mother to the mother list
+        /// </summary>
+        /// <param name="m">The mother you want to add to the mother list</param>
         public void AddMother(Mother m)
         {
             dal.AddMother(m);
         }
+        /// <summary>
+        /// Remove a mother from the mother list
+        /// </summary>
+        /// <param name="id">The id of the mother you want to remove from the mother list</param>
         public void RemoveMother(int id)
         {
             foreach (var c in GetContractsByTerm(c => c.MotherID == id))
@@ -99,6 +136,10 @@ namespace BL
 
             dal.RemoveMother(id);
         }
+        /// <summary>
+        /// Update a mother who is in the list
+        /// </summary>
+        /// <param name="n">The mother you want to update </param>
         public void UpdateMother(Mother m)
         {
             dal.UpdateMother(m);
@@ -113,6 +154,11 @@ namespace BL
                 }
             }
         }
+        /// <summary>
+        /// Return the mother from the list who has this ID
+        /// </summary>
+        /// <param name="id">The ID you want to find in the mother list</param>
+        /// <returns>The mother from the list who has this ID</returns>
         public Mother GetMother(int id)
         {
             return dal.GetMother(id);
@@ -120,10 +166,18 @@ namespace BL
         #endregion
 
         #region Child
+        /// <summary>
+        /// Add a child to the child list
+        /// </summary>
+        /// <param name="m">The child you want to add to the child list</param>
         public void AddChild(Child c)
         {
             dal.AddChild(c);
         }
+        /// <summary>
+        /// Remove a child from the child list
+        /// </summary>
+        /// <param name="id">The id of the child you want to remove from the child list</param>
         public void RemoveChild(int id)
         {
             foreach (var c in GetContractsByTerm(con => id == con.ChildID))
@@ -131,10 +185,19 @@ namespace BL
 
             dal.RemoveChild(id);
         }
+        /// <summary>
+        /// Update a child who is in the list
+        /// </summary>
+        /// <param name="n">The child you want to update </param>
         public void UpdateChild(Child c)
         {
             dal.UpdateChild(c);
         }
+        /// <summary>
+        /// Return the child from the list who has this ID
+        /// </summary>
+        /// <param name="id">The ID you want to find in the child list</param>
+        /// <returns>The child from the list who has this ID</returns>
         public Child GetChild(int id)
         {
             return dal.GetChild(id);
@@ -142,8 +205,16 @@ namespace BL
         #endregion
 
         #region Contract
+        /// <summary>
+        /// returns the current number of contract
+        /// </summary>
+        /// <returns>the current number of contract</returns>
         public int CurrentNumber() => dal.CurrentNumber();
 
+        /// <summary>
+        /// Add a contract to the contract list
+        /// </summary>
+        /// <param name="m">The contract you want to add to the contract list</param>
         public void AddContract(Contract c)
         {
             if (DateTime.Today < GetChild(c.ChildID).Birthdate.AddMonths(3))
@@ -162,17 +233,30 @@ namespace BL
             dal.AddContract(c);
             RepairWageForMotherAndNanny(GetMother(c.MotherID), GetNanny(c.NannyID));
         }
+        /// <summary>
+        /// Remove a contract from the contract list
+        /// </summary>
+        /// <param name="num">The number of the contract you want to remove from the contract list</param>
         public void RemoveContract(int num)
         {
             Contract c = GetContract(num);
             dal.RemoveContract(num);
             RepairWageForMotherAndNanny(GetMother(c.MotherID), GetNanny(c.NannyID));
         }
+        /// <summary>
+        /// Update a contract who is in the list
+        /// </summary>
+        /// <param name="n">The contract you want to update </param>
         public void UpdateContract(Contract c)
         {
             dal.UpdateContract(c);
             RepairWageForMotherAndNanny(GetMother(c.MotherID), GetNanny(c.NannyID));
         }
+        /// <summary>
+        /// Return the contract from the list who has this number
+        /// </summary>
+        /// <param name="id">The number you want to find in the contract list</param>
+        /// <returns>The contract from the list who has this number</returns>
         public Contract GetContract(int num)
         {
             return dal.GetContract(num);
@@ -180,10 +264,30 @@ namespace BL
         #endregion
 
         #region GetAll
+        /// <summary>
+        /// Returns the all nannys who are in the nannys list 
+        /// </summary>
+        /// <returns>all nannys who in the nannys list</returns>
         public List<BE.Nanny> GetAllNannies() => dal.GetAllNannies();
+        /// <summary>
+        /// Returns the all mothers who are in the mothers list 
+        /// </summary>
+        /// <returns>all mothers who in the mothers list</returns>
         public List<BE.Mother> GetAllMothers() => dal.GetAllMothers();
+        /// <summary>
+        /// Returns the all childs who are in the childs list 
+        /// </summary>
+        /// <returns>all childs who in the childs list</returns>
         public List<BE.Child> GetAllChilds() => dal.GetAllChilds();
+        /// <summary>
+        /// Returns all childs grouped by MotherID
+        /// </summary>
+        /// <returns>all childs grouped by MotherID</returns>
         public IEnumerable<IGrouping<int, Child>> GetAllChildsByMother() => dal.GetAllChildsByMother();
+        /// <summary>
+        /// Returns the all contracts who in the contracts list 
+        /// </summary>
+        /// <returns>all contracts who in the contracts list</returns>
         public List<BE.Contract> GetAllContracts() => dal.GetAllContracts();
         #endregion
 

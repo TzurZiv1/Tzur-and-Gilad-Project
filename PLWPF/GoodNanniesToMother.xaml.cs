@@ -26,6 +26,9 @@ namespace PLWPF
             public int Id { get => id; set => id = value; }
         }
         MyData myData = new MyData() { Id = 0 };
+        /// <summary>
+        /// constructor of GoodNanniesToMother
+        /// </summary>
         public GoodNanniesToMother()
         {
             InitializeComponent();
@@ -35,7 +38,11 @@ namespace PLWPF
             iDComboBox.DisplayMemberPath = "MainDetails";
             iDComboBox.SelectedValuePath = "ID";
         }
-
+        /// <summary>
+        /// update NanniesDataGrid
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void iDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             NanniesDataGrid.ItemsSource = bl.MatchNannies(bl.GetMother((int)iDComboBox.SelectedValue));

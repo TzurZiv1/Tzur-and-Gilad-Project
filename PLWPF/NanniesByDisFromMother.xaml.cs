@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -28,6 +29,9 @@ namespace PLWPF
             public int Distance { get => distance; set => distance = value; }
         }
         MyData myData = new MyData() { Id = 0 };
+        /// <summary>
+        /// constructor of NanniesByDisFromMother
+        /// </summary>
         public NanniesByDisFromMother()
         {
             InitializeComponent();
@@ -37,12 +41,27 @@ namespace PLWPF
             iDComboBox.SelectedValuePath = "ID";
             DataContext = myData;
         }
-
+        /// <summary>
+        /// update NanniesDataGrid in a thread
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void DisTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            Thread t = new Thread(UpdateDataDrid);
+            t.Start();
+        }
+        /// <summary>
+        /// update the data grid
+        /// </summary>
+        private void UpdateDataDrid()
         {
             BE.Mother m = bl.GetMother(myData.Id);
             if (m != null)
-                NanniesDataGrid.ItemsSource = bl.DistanseFromMotherInKM(bl.GetMother(myData.Id), myData.Distance);
+            {
+                Action action = () => NanniesDataGrid.ItemsSource = bl.DistanseFromMotherInKM(bl.GetMother(myData.Id), myData.Distance);
+                Dispatcher.BeginInvoke(action);
+            }
         }
     }
 }
